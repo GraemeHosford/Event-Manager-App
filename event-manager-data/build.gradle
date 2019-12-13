@@ -1,15 +1,21 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-android {
-    compileSdkVersion 28
+apply plugin: 'kotlin-kapt'
 
+android {
+    compileSdkVersion project.ext.sharedCompileSdkVersion
+    buildToolsVersion project.ext.sharedBuildToolsVersion
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 
     defaultConfig {
-        minSdkVersion 23
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion project.ext.sharedMinSdkVersion
+        targetSdkVersion project.ext.sharedTargetSdkVersion
+        versionCode project.ext.appVersionCode
+        versionName project.ext.appVersionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
@@ -22,11 +28,25 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    // Dagger for Dependency Injection
+    api "com.google.dagger:dagger:${versions.dagger}"
+    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
+
+    // internal dependencies
+    api project(':event-manager-entity')
+    implementation project(':event-manager-data-access')
+
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.core:core-ktx:1.0.2'
     testImplementation 'junit:junit:4.12'

@@ -19,8 +19,33 @@ allprojects {
     repositories {
         google()
         jcenter()
-
     }
+
+    project.ext {
+        sharedCompileSdkVersion = 28
+        sharedMinSdkVersion = 21
+        sharedTargetSdkVersion = 28
+        sharedBuildToolsVersion = "28.0.3"
+
+        appVersionCode = 1
+        appVersionName = "0.0.0.1"
+    }
+}
+
+ext {
+    // dependency versions (sorted alphabetically)
+    versions = [
+            // production dependencies
+            butterknife     : '10.2.0',
+            dagger          : '2.25.2',
+            moshi           : '1.8.0',
+            retrofit        : '2.6.0',
+            rxandroid       : '2.1.0',
+            rxjava          : '2.2.2',
+
+            // Test dependencies
+            junit           : '4.12',
+    ]
 }
 
 task clean(type: Delete) {

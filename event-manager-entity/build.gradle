@@ -2,14 +2,18 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 android {
-    compileSdkVersion 28
+    compileSdkVersion project.ext.sharedCompileSdkVersion
+    buildToolsVersion project.ext.sharedBuildToolsVersion
 
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 
     defaultConfig {
-        minSdkVersion 23
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion project.ext.sharedMinSdkVersion
+        targetSdkVersion project.ext.sharedTargetSdkVersion
+        versionCode project.ext.appVersionCode
+        versionName project.ext.appVersionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
@@ -20,6 +24,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
 }
