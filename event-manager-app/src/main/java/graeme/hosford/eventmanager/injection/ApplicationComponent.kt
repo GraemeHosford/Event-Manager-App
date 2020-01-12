@@ -22,9 +22,11 @@ interface ApplicationComponent {
          * The instance can be replaced with a mock for testing when necessary.
          */
         @Volatile
+        @JvmStatic
         lateinit var INSTANCE: ApplicationComponent
     }
 
+    @Component.Factory
     interface Factory {
         fun create(
             @BindsInstance applicationContext: Context,

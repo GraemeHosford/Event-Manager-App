@@ -2,6 +2,8 @@ package graeme.hosford.event.manager.data.bridge
 
 import android.content.Context
 import graeme.hosford.event.manager.data.injection.DataLayerInitializer
+import javax.annotation.concurrent.ThreadSafe
+import javax.inject.Singleton
 
 @Singleton
 @ThreadSafe

@@ -2,7 +2,6 @@ package graeme.hosford.event.manager.data.injection
 
 import android.content.Context
 import graeme.hosford.event.manager.data.access.DataAccessComponent
-import javax.annotation.concurrent.ThreadSafe
 import javax.inject.Singleton
 
 /**
@@ -12,7 +11,6 @@ import javax.inject.Singleton
  * other layer initialization code dependent on the component in [initializeNetworkLayer] and [initializeCacheLayer].
  */
 @Singleton
-@ThreadSafe
 class DataLayerInitializer {
 
     fun initialize(appContext: Context) {

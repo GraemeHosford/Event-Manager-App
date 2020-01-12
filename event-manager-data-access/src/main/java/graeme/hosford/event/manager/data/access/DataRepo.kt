@@ -9,5 +9,4 @@ package graeme.hosford.event.manager.data.access
  * A repository provides an abstraction layer over concrete data source implementations, encapsulates them and provides
  * interfaces for those implementations so that they are easily pluggable and interchangeable.
  */
-@AnyThread
 interface DataRepo

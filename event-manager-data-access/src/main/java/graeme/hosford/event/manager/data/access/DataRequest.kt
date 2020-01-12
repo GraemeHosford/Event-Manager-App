@@ -1,5 +1,6 @@
 package graeme.hosford.event.manager.data.access
 
+import graeme.hosford.event.manager.entity.BusinessEntity
 import java.io.IOException
 
 /**
@@ -8,11 +9,9 @@ import java.io.IOException
  */
 interface DataRequest<R : BusinessEntity> {
 
-    @WorkerThread
     @Throws(IOException::class)
     fun sync(): R
 
-    @AnyThread
     fun async(callback: DataCallback<R>)
 
 }

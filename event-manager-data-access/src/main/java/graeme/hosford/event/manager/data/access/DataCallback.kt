@@ -1,5 +1,7 @@
 package graeme.hosford.event.manager.data.access
 
+import graeme.hosford.event.manager.entity.BusinessEntity
+
 @Suppress("unused")
 /**
  * Basic interface for an asynchronous data result.

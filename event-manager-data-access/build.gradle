@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+
 android {
     compileSdkVersion project.ext.sharedCompileSdkVersion
     buildToolsVersion project.ext.sharedBuildToolsVersion
@@ -16,13 +16,16 @@ android {
         versionName project.ext.appVersionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles 'consumer-rules.pro'
     }
 
     buildTypes {
+        debug {
+            minifyEnabled false
+            multiDexEnabled true
+        }
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 
@@ -30,15 +33,21 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlin_version}"
+
 
     // internal dependencies
     api project(':event-manager-entity')
 
-    testImplementation 'junit:junit:4.12'
+
+    // third party dependencies
+    api "androidx.annotation:annotation:${versions.androidx.annotation}"
+
+
+    // unit test dependencies
+    testImplementation "junit:junit:${versions.junit}"
+
 }

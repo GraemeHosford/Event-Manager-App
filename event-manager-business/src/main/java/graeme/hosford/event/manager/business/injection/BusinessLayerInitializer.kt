@@ -5,6 +5,7 @@ package graeme.hosford.event.manager.business.injection
 import android.content.Context
 import graeme.hosford.event.manager.business.internal.InternalInteractor
 import graeme.hosford.event.manager.data.access.DataAccessComponent
+import graeme.hosford.event.manager.data.access.feature1.Entity1Repo
 import javax.inject.Inject
 
 /**
@@ -14,9 +15,6 @@ import javax.inject.Inject
  * other layer initialization code dependent on the component in [initializeBusinessLayer].
  */
 internal class BusinessLayerInitializer {
-
-    @Inject
-    lateinit var dataAccessDependency: Entity1Repo
 
     @Inject
     lateinit var businessInternalDependency: InternalInteractor
@@ -31,7 +29,6 @@ internal class BusinessLayerInitializer {
     fun initializeBusinessLayer(appContext: Context) {
         InternalBusinessComponent.INSTANCE.inject(this)
 
-        dataAccessDependency.initialize()
         businessInternalDependency.initialize()
     }
 

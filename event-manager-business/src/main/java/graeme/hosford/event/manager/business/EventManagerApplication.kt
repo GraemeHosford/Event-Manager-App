@@ -1,5 +1,3 @@
-@file:Suppress("MemberVisibilityCanBePrivate")
-
 package graeme.hosford.event.manager.business
 
 import android.app.Application

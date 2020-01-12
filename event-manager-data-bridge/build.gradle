@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+
 android {
     compileSdkVersion project.ext.sharedCompileSdkVersion
     buildToolsVersion project.ext.sharedBuildToolsVersion
@@ -16,13 +16,15 @@ android {
         versionName project.ext.appVersionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles 'consumer-rules.pro'
     }
 
     buildTypes {
+        debug {
+            minifyEnabled false
+            multiDexEnabled true
+        }
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
@@ -30,17 +32,19 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlin_version}"
+
 
     // internal dependencies
+
+    // non-transitive dependencies so that any `sample-data` dependencies won't be available in app module
     implementation project(':event-manager-data-access')
-    // non-transitive dependency so that any sample-data dependencies won't be available in sample-business
     implementation project(':event-manager-data')
 
-    testImplementation 'junit:junit:4.12'
+
+    // unit test dependencies
+    testImplementation "junit:junit:${versions.junit}"
 }

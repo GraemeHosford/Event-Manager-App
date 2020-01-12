@@ -1,6 +1,6 @@
 package graeme.hosford.event.manager.business.internal
 
-import com.teamwork.android.samples.clean.entity.feature2.Entity2
+import graeme.hosford.event.manager.entity.feature2.Entity2
 import graeme.hosford.event.manager.business.Interactor
 
 /**

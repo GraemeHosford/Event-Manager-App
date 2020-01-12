@@ -1,7 +1,6 @@
 package graeme.hosford.event.manager.data.injection
 
 import android.content.Context
-import androidx.core.view.KeyEventDispatcher
 import dagger.BindsInstance
 import dagger.Component
 import graeme.hosford.event.manager.data.access.DataAccessComponent
@@ -39,7 +38,7 @@ internal interface DataComponent : DataAccessComponent {
         lateinit var INSTANCE: DataComponent
     }
 
-    @KeyEventDispatcher.Component.Factory
+    @Component.Factory
     interface Factory {
         fun create(@BindsInstance applicationContext: Context): DataComponent
     }
