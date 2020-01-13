@@ -1,5 +1,7 @@
 package graeme.hosford.event.manager.app.core.common;
 
+import android.content.Intent;
+
 import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,6 +34,10 @@ public class BasePresenter<V> {
     @CallSuper
     public void onViewDestroyed() {
         view = null;
+    }
+
+    @CallSuper
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
     }
 
 }
