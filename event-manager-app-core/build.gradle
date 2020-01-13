@@ -43,6 +43,7 @@ dependencies {
 
     // internal dependencies
     api project(':event-manager-business')
+    implementation project(':event-manager-data-bridge') // for initialization only
     api project(':event-manager-entity')
 
 
@@ -51,6 +52,10 @@ dependencies {
     api "androidx.appcompat:appcompat:${versions.androidx.appCompat}"
     api "com.google.android.material:material:${versions.androidx.material}"
     implementation "androidx.constraintlayout:constraintlayout:${versions.androidx.constraintLayout}"
+
+    // Dagger for Dependency Injection
+    implementation "com.google.dagger:dagger:${versions.dagger}"
+    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
 
     // Firebase dependencies
     implementation "com.google.firebase:firebase-messaging:${versions.firebase.fcm}"

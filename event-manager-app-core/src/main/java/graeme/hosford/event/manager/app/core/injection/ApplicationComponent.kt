@@ -1,14 +1,17 @@
-package graeme.hosford.eventmanager.injection
+package graeme.hosford.event.manager.app.core.injection
 
 import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
+import graeme.hosford.event.manager.app.core.login.view.LoginActivity
 import graeme.hosford.event.manager.business.injection.BusinessComponent
 import javax.inject.Singleton
 
 @Singleton
 @Component(
-    modules = [],
+    modules = [
+        PresenterBindingModule::class
+    ],
     dependencies = [
         BusinessComponent::class
     ]
@@ -34,5 +37,7 @@ interface ApplicationComponent {
         ): ApplicationComponent
 
     }
+
+    fun inject(loginActivity: LoginActivity)
 
 }

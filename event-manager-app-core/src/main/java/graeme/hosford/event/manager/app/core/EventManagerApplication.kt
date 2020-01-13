@@ -1,11 +1,11 @@
-package graeme.hosford.eventmanager
+package graeme.hosford.event.manager.app.core
 
 import android.app.Application
+import graeme.hosford.event.manager.app.core.injection.ApplicationComponent
+import graeme.hosford.event.manager.app.core.injection.DaggerApplicationComponent
 import graeme.hosford.event.manager.business.EventManagerBusinessApplication
 import graeme.hosford.event.manager.business.injection.BusinessComponent
 import graeme.hosford.event.manager.data.bridge.DataBridgeInitializer
-import graeme.hosford.eventmanager.injection.ApplicationComponent
-import graeme.hosford.eventmanager.injection.DaggerApplicationComponent
 
 /**
  * Projects [Application] concrete class.

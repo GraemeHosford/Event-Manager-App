@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.firebase.ui.auth.AuthUI
+import graeme.hosford.event.manager.app.core.EventManagerApplication
 import graeme.hosford.event.manager.app.core.R
 import graeme.hosford.event.manager.app.core.login.LoginView
 import graeme.hosford.event.manager.app.core.login.SIGN_IN
@@ -17,6 +18,8 @@ class LoginActivity : AppCompatActivity(), LoginView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        EventManagerApplication.appComponent.inject(this)
+
         setContentView(R.layout.activity_login)
         presenter.onViewCreated(this)
 

@@ -50,7 +50,7 @@ ext {
 
             firebase      : [
                     fcm   : '20.1.0',
-                    authui: '4.3.1'
+                    authui: '6.2.0'
             ],
 
             // AndroidX - https://developer.android.com/jetpack/androidx/versions

@@ -3,7 +3,7 @@
     package="graeme.hosford.eventmanager">
 
     <application
-        android:name=".EventManagerApplication"
+        android:name="graeme.hosford.event.manager.app.core.EventManagerApplication"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
