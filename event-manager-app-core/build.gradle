@@ -52,6 +52,9 @@ dependencies {
     api "com.google.android.material:material:${versions.androidx.material}"
     implementation "androidx.constraintlayout:constraintlayout:${versions.androidx.constraintLayout}"
 
+    // Firebase dependencies
+    implementation "com.google.firebase:firebase-messaging:${versions.firebase.fcm}"
+    implementation "com.firebaseui:firebase-ui-auth:${versions.firebase.authui}"
 
     // unit test dependencies
     testImplementation "junit:junit:${versions.junit}"
