@@ -4,7 +4,7 @@ const val SIGN_IN_REQUEST_CODE = 101
 
 interface LoginView {
 
-    fun showLoginFLow()
+    fun showLoginFlow()
 
     fun showCompanyCreationFlow()
 

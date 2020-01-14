@@ -9,11 +9,6 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/event-manager-app" />
-            <option value="$PROJECT_DIR$/event-manager-app-core" />
-            <option value="$PROJECT_DIR$/event-manager-business" />
-            <option value="$PROJECT_DIR$/event-manager-data" />
-            <option value="$PROJECT_DIR$/event-manager-data-access" />
-            <option value="$PROJECT_DIR$/event-manager-data-bridge" />
             <option value="$PROJECT_DIR$/event-manager-entity" />
           </set>
         </option>

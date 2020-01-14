@@ -9,6 +9,4 @@ import java.util.concurrent.ExecutorService
  * This could also include custom RxJava `Scheduler`s or any other global, cross-layer threading dependency.
  */
 @Module
-internal object ThreadingModule {
-
-}
+internal interface ThreadingModule

@@ -2,7 +2,7 @@ package graeme.hosford.eventmanager.presentation.injection
 
 import dagger.Component
 import graeme.hosford.eventmanager.business.injection.module.internal.InteractorsBindingModule
-import graeme.hosford.eventmanager.data.injection.module.internal.DataRepoBindingModule
+import graeme.hosford.eventmanager.data.injection.module.internal.DataBindingModule
 import graeme.hosford.eventmanager.data.injection.module.internal.NetworkModule
 import graeme.hosford.eventmanager.data.injection.module.internal.ThreadingModule
 import graeme.hosford.eventmanager.presentation.login.view.LoginActivity
@@ -13,7 +13,7 @@ import javax.inject.Singleton
     modules = [
         PresenterBindingModule::class,
         InteractorsBindingModule::class,
-        DataRepoBindingModule::class,
+        DataBindingModule::class,
         NetworkModule::class,
         ThreadingModule::class
     ]

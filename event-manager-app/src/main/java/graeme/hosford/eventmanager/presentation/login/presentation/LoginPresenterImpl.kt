@@ -4,11 +4,11 @@ import android.app.Activity
 import android.content.Intent
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
+import graeme.hosford.eventmanager.business.login.LoginInteractor
 import graeme.hosford.eventmanager.presentation.common.BasePresenter
 import graeme.hosford.eventmanager.presentation.login.LoginPresenter
 import graeme.hosford.eventmanager.presentation.login.LoginView
 import graeme.hosford.eventmanager.presentation.login.SIGN_IN_REQUEST_CODE
-import graeme.hosford.eventmanager.business.login.LoginInteractor
 import javax.inject.Inject
 
 class LoginPresenterImpl @Inject constructor(
@@ -20,7 +20,7 @@ class LoginPresenterImpl @Inject constructor(
         if (interactor.loggedIn()) {
             view.showCompanyCreationFlow()
         } else {
-            view.showLoginFLow()
+            view.showLoginFlow()
         }
     }
 

@@ -2,6 +2,7 @@ package graeme.hosford.eventmanager.presentation.login.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.firebase.ui.auth.AuthUI
 import graeme.hosford.eventmanager.EventManagerApplication
@@ -18,13 +19,13 @@ class LoginActivity : AppCompatActivity(),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        graeme.hosford.eventmanager.EventManagerApplication.appComponent.inject(this)
+        EventManagerApplication.appComponent.inject(this)
 
         presenter.onViewCreated(this)
         presenter.checkLoggedIn()
     }
 
-    override fun showLoginFLow() {
+    override fun showLoginFlow() {
         startActivityForResult(
             AuthUI.getInstance()
                 .createSignInIntentBuilder()
@@ -35,7 +36,7 @@ class LoginActivity : AppCompatActivity(),
     }
 
     override fun showCompanyCreationFlow() {
-
+        Toast.makeText(this, "Company flow", Toast.LENGTH_LONG).show()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
