@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion project.ext.sharedCompileSdkVersion
@@ -38,14 +39,16 @@ android {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlin_version}"
 
-
     // internal dependencies
     api project(':event-manager-entity')
-
 
     // third party dependencies
     api "androidx.annotation:annotation:${versions.androidx.annotation}"
 
+    implementation "com.google.dagger:dagger:${versions.dagger}"
+    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
+
+    implementation "com.firebaseui:firebase-ui-auth:${versions.firebase.authui}"
 
     // unit test dependencies
     testImplementation "junit:junit:${versions.junit}"

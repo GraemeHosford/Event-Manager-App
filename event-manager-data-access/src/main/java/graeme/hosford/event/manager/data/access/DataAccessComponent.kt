@@ -1,5 +1,8 @@
 package graeme.hosford.event.manager.data.access
 
+import dagger.Component
+import graeme.hosford.event.manager.data.access.injection.DataAccessBindingModule
+import graeme.hosford.event.manager.data.access.injection.DataProvisionModule
 import java.util.concurrent.ExecutorService
 import javax.inject.Named
 
@@ -10,6 +13,7 @@ import javax.inject.Named
  * [provision methods](https://dagger.dev/api/2.25.2/dagger/Component.html) which then can be used by injected
  * classes in the business layer.
  */
+@Component(modules = [DataAccessBindingModule::class, DataProvisionModule::class])
 interface DataAccessComponent {
 
     companion object {
