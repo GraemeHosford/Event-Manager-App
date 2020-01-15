@@ -87,6 +87,7 @@ ext {
             espressoCore  : '3.0.2',
             junit         : '4.12',
             mockito       : '2.15.0',
+            mockK         : '1.9.3',
             supportTest   : '1.0.2'
     ]
 }
