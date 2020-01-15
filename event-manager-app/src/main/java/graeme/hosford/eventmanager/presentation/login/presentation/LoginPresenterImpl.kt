@@ -5,7 +5,7 @@ import android.content.Intent
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import graeme.hosford.eventmanager.business.login.LoginInteractor
-import graeme.hosford.eventmanager.presentation.common.BasePresenter
+import graeme.hosford.eventmanager.presentation.common.presenter.BasePresenter
 import graeme.hosford.eventmanager.presentation.login.LoginPresenter
 import graeme.hosford.eventmanager.presentation.login.LoginView
 import graeme.hosford.eventmanager.presentation.login.SIGN_IN_REQUEST_CODE
@@ -35,7 +35,10 @@ class LoginPresenterImpl @Inject constructor(
             val response = IdpResponse.fromResultIntent(data)
 
             if (resultCode == Activity.RESULT_OK) {
-                /* Sign in success */
+                /* Get user info from response here and save to Firestore */
+                view.showCompanyCreationFlow()
+            } else {
+                view.showLongToast("Error on signing in")
             }
         }
     }

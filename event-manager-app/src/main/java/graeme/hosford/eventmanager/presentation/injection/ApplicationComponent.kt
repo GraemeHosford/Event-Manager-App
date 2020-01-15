@@ -5,6 +5,8 @@ import graeme.hosford.eventmanager.business.injection.module.internal.Interactor
 import graeme.hosford.eventmanager.data.injection.module.internal.DataBindingModule
 import graeme.hosford.eventmanager.data.injection.module.internal.NetworkModule
 import graeme.hosford.eventmanager.data.injection.module.internal.ThreadingModule
+import graeme.hosford.eventmanager.presentation.company.create_join_screen.view.CreateJoinCompanyActivity
+import graeme.hosford.eventmanager.presentation.company.join.view.JoinCompanyActivity
 import graeme.hosford.eventmanager.presentation.login.view.LoginActivity
 import javax.inject.Singleton
 
@@ -32,5 +34,9 @@ interface ApplicationComponent {
     }
 
     fun inject(loginActivity: LoginActivity)
+
+    fun inject(createJoinCompanyActivity: CreateJoinCompanyActivity)
+
+    fun inject(joinCompanyActivity: JoinCompanyActivity)
 
 }

@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Event Manager</string>
+
+    <string name="company_creation_enter_company_name_hint">Company Name</string>
+    <string name="company_creation_create_company_text">Create a Company</string>
+    <string name="company_creation_join_company_text">Join a Company</string>
+    <string name="company_creation_enter_company_id_hint">Enter Company ID</string>
+    <string name="company_creation_confirm_id_text">Confirm Company ID</string>
 </resources>

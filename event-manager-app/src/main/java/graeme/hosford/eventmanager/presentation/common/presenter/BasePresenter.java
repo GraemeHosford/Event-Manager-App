@@ -1,4 +1,4 @@
-package graeme.hosford.eventmanager.presentation.common;
+package graeme.hosford.eventmanager.presentation.common.presenter;
 
 import android.content.Intent;
 
