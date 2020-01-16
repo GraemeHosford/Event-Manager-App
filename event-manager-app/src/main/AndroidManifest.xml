@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="graeme.hosford.eventmanager">
@@ -11,22 +12,28 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-
+        <activity
+            android:name=".presentation.event.list.view.EventListActivity"
+            android:label="@string/title_activity_event_list"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".presentation.login.view.LoginActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
+
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
         <activity
             android:name=".presentation.company.create_join_screen.view.CreateJoinCompanyActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".presentation.company.join.view.JoinCompanyActivity"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name=".presentation.company.create.view.CreateCompanyActivity"
+            android:screenOrientation="portrait" />
     </application>
+
 </manifest>
