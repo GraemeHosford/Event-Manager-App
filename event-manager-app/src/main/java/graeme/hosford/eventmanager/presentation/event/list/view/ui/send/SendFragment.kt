@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import graeme.hosford.eventmanager.presentation.event.list.view.R
+import graeme.hosford.eventmanager.R
 
 class SendFragment : Fragment() {
 
