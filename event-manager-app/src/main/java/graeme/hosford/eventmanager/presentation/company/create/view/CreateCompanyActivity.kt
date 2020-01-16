@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import butterknife.BindView
+import butterknife.ButterKnife
 import graeme.hosford.eventmanager.EventManagerApplication
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.presentation.common.view.BaseActivity
@@ -28,6 +29,9 @@ class CreateCompanyActivity : BaseActivity(), CreateCompanyView {
         EventManagerApplication.appComponent.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_company)
+        unbinder = ButterKnife.bind(this)
+
+        presenter.onViewCreated(this)
 
         confirmCreateCompanyButton.setOnClickListener {
             presenter.onCreateCompanyButtonClick(companyNameEditText.text.toString())

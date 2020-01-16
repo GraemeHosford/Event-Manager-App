@@ -10,6 +10,6 @@ class CreateCompanyPresenterImpl @Inject constructor(
 ) : BasePresenter<CreateCompanyView>(), CreateCompanyPresenter {
 
     override fun onCreateCompanyButtonClick(name: String) {
-
+        view.showEventList()
     }
 }

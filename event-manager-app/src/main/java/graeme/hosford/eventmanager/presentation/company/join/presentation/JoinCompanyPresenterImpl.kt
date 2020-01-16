@@ -10,5 +10,6 @@ class JoinCompanyPresenterImpl @Inject constructor() : BasePresenter<JoinCompany
 
     override fun onJoinCompanyClick(id: String) {
         /* Interactor stuff here */
+        view.showEventList()
     }
 }
