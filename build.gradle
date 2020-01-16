@@ -37,7 +37,7 @@ ext {
     // dependency versions (sorted alphabetically)
     versions = [
             // production dependencies
-            butterknife   : '10.2.0',
+            butterknife   : '10.2.1',
             dagger        : '2.25.2',
             jsrAnnotations: '3.0.2',
             moshi         : '1.8.0',

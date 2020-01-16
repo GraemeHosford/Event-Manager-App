@@ -2,6 +2,8 @@ package graeme.hosford.eventmanager.presentation.injection
 
 import dagger.Binds
 import dagger.Module
+import graeme.hosford.eventmanager.presentation.company.create.CreateCompanyPresenter
+import graeme.hosford.eventmanager.presentation.company.create.presentation.CreateCompanyPresenterImpl
 import graeme.hosford.eventmanager.presentation.company.create_join_screen.CreateJoinCompanyPresenter
 import graeme.hosford.eventmanager.presentation.company.create_join_screen.presentation.CreateJoinCompanyPresenterImpl
 import graeme.hosford.eventmanager.presentation.company.join.JoinCompanyPresenter
@@ -24,5 +26,9 @@ interface PresenterBindingModule {
     @Binds
     @Singleton
     fun joinCompanyPresenter(impl: JoinCompanyPresenterImpl): JoinCompanyPresenter
+
+    @Binds
+    @Singleton
+    fun createCompanyPresenter(impl: CreateCompanyPresenterImpl): CreateCompanyPresenter
 
 }
