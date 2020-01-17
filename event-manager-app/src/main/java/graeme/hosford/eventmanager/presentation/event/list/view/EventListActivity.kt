@@ -13,7 +13,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import graeme.hosford.eventmanager.R
-import graeme.hosford.eventmanager.presentation.common.view.BaseActivity
+import graeme.hosford.eventmanager.presentation.common.view.activity.BaseActivity
 import graeme.hosford.eventmanager.presentation.event.list.EventListView
 
 class EventListActivity : BaseActivity(), EventListView {

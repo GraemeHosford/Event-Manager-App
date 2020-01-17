@@ -49,8 +49,9 @@ ext {
             timber        : '4.7.1',
 
             firebase      : [
+                    authui: '6.2.0',
                     fcm   : '20.1.0',
-                    authui: '6.2.0'
+                    firestore : '21.3.1'
             ],
 
             // AndroidX - https://developer.android.com/jetpack/androidx/versions

@@ -8,7 +8,7 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import graeme.hosford.eventmanager.EventManagerApplication
 import graeme.hosford.eventmanager.R
-import graeme.hosford.eventmanager.presentation.common.view.BaseActivity
+import graeme.hosford.eventmanager.presentation.common.view.activity.BaseActivity
 import graeme.hosford.eventmanager.presentation.company.create.CreateCompanyView
 import graeme.hosford.eventmanager.presentation.company.create.presentation.CreateCompanyPresenterImpl
 import graeme.hosford.eventmanager.presentation.event.list.view.EventListActivity

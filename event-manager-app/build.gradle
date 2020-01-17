@@ -46,19 +46,18 @@ dependencies {
     api "androidx.annotation:annotation:${versions.androidx.annotation}"
     api "androidx.appcompat:appcompat:${versions.androidx.appCompat}"
     api "com.google.android.material:material:${versions.androidx.material}"
+
     implementation "androidx.constraintlayout:constraintlayout:${versions.androidx.constraintLayout}"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.navigation:navigation-fragment:2.1.0'
+    implementation 'androidx.navigation:navigation-ui:2.1.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.1.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.1.0'
 
     // Dagger for Dependency Injection
     implementation "com.google.dagger:dagger:${versions.dagger}"
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.google.android.material:material:1.0.0'
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.navigation:navigation-fragment:2.0.0'
-    implementation 'androidx.navigation:navigation-ui:2.0.0'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.0.0'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.0.0'
     kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
 
     // ButterKnife dependencies
@@ -66,8 +65,9 @@ dependencies {
     kapt "com.jakewharton:butterknife-compiler:${versions.butterknife}"
 
     // Firebase dependencies
-    implementation "com.google.firebase:firebase-messaging:${versions.firebase.fcm}"
     implementation "com.firebaseui:firebase-ui-auth:${versions.firebase.authui}"
+    implementation "com.google.firebase:firebase-messaging:${versions.firebase.fcm}"
+    implementation "com.google.firebase:firebase-firestore:${versions.firebase.firestore}"
 
     // unit test dependencies
     testImplementation "junit:junit:${versions.junit}"

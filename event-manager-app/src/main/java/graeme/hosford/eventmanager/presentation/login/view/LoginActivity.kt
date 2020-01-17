@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import com.firebase.ui.auth.AuthUI
 import graeme.hosford.eventmanager.EventManagerApplication
-import graeme.hosford.eventmanager.presentation.common.view.BaseActivity
+import graeme.hosford.eventmanager.presentation.common.view.activity.BaseActivity
 import graeme.hosford.eventmanager.presentation.company.create_join_screen.view.CreateJoinCompanyActivity
 import graeme.hosford.eventmanager.presentation.login.LoginView
 import graeme.hosford.eventmanager.presentation.login.SIGN_IN_REQUEST_CODE
