@@ -29,6 +29,7 @@ class LoginActivity : BaseActivity(),
         startActivityForResult(
             AuthUI.getInstance()
                 .createSignInIntentBuilder()
+                .setIsSmartLockEnabled(false, true)
                 .setAvailableProviders(presenter.getSignInProviders())
                 .build(),
             SIGN_IN_REQUEST_CODE

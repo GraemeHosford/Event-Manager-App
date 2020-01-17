@@ -1,6 +1,8 @@
 package graeme.hosford.eventmanager.business.company.create
 
-interface CreateCompanyInteractor {
+import graeme.hosford.eventmanager.business.common.Interactor
+
+interface CreateCompanyInteractor : Interactor {
 
     interface CreateCompanyListener {
 

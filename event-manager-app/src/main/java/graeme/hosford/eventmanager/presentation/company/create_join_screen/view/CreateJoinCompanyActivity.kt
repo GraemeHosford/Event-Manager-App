@@ -10,14 +10,9 @@ import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.presentation.common.view.activity.BaseActivity
 import graeme.hosford.eventmanager.presentation.company.create.view.CreateCompanyActivity
 import graeme.hosford.eventmanager.presentation.company.create_join_screen.CreateJoinCompanyView
-import graeme.hosford.eventmanager.presentation.company.create_join_screen.presentation.CreateJoinCompanyPresenterImpl
 import graeme.hosford.eventmanager.presentation.company.join.view.JoinCompanyActivity
-import javax.inject.Inject
 
 class CreateJoinCompanyActivity : BaseActivity(), CreateJoinCompanyView {
-
-    @Inject
-    lateinit var presenter: CreateJoinCompanyPresenterImpl
 
     @BindView(R.id.create_company_button)
     lateinit var createCompanyButton: Button
@@ -31,14 +26,12 @@ class CreateJoinCompanyActivity : BaseActivity(), CreateJoinCompanyView {
         setContentView(R.layout.activity_create_join_company)
         unbinder = ButterKnife.bind(this)
 
-        presenter.onViewCreated(this)
-
         createCompanyButton.setOnClickListener {
-            presenter.onCreateCompanyClick()
+            startCreateCompanyFlow()
         }
 
         joinCompanyButton.setOnClickListener {
-            presenter.onJoinCompanyClick()
+            startJoinCompanyFlow()
         }
     }
 

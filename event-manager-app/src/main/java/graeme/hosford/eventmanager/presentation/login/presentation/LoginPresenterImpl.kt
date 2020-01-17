@@ -6,6 +6,7 @@ import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.business.login.LoginInteractor
+import graeme.hosford.eventmanager.business.login.LoginInteractorImpl
 import graeme.hosford.eventmanager.presentation.common.presenter.BasePresenter
 import graeme.hosford.eventmanager.presentation.login.LoginPresenter
 import graeme.hosford.eventmanager.presentation.login.LoginView
@@ -13,8 +14,8 @@ import graeme.hosford.eventmanager.presentation.login.SIGN_IN_REQUEST_CODE
 import javax.inject.Inject
 
 class LoginPresenterImpl @Inject constructor(
-    private val interactor: LoginInteractor
-) : BasePresenter<LoginView>(),
+    private val interactor: LoginInteractorImpl
+) : BasePresenter<LoginView, LoginInteractorImpl>(interactor),
     LoginPresenter {
 
     override fun onViewCreated(view: LoginView) {

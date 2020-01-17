@@ -7,6 +7,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
 
+import graeme.hosford.eventmanager.business.common.BaseInteractor;
+import graeme.hosford.eventmanager.business.common.Interactor;
+
 /**
  * The Presenter is the orchestrator of the View. It reacts to lifecycle events and user actions, it manages the
  * user-modified state, it triggers data loading and receives (and manipulates) the data coming from the business layer
@@ -17,18 +20,25 @@ import androidx.annotation.UiThread;
  */
 @UiThread
 @SuppressWarnings("WeakerAccess")
-public class BasePresenter<V> {
+public abstract class BasePresenter<View, I extends BaseInteractor & Interactor> {
 
     /**
      * This field is not marked as {@link Nullable} as it would force subclasses to perform a null check at every
      * access. The base presenter delegates to the subclass, depending on the lifecycle state, the need to perform such
      * check.
      */
-    protected V view;
+    protected View view;
+
+    private I interactor;
+
+    public BasePresenter(I interactor) {
+        this.interactor = interactor;
+    }
 
     @CallSuper
-    public void onViewCreated(@NonNull V view) {
+    public void onViewCreated(@NonNull View view) {
         this.view = view;
+        interactor.onCreate();
     }
 
     @CallSuper

@@ -10,7 +10,8 @@ import javax.inject.Inject
 
 class CreateCompanyPresenterImpl @Inject constructor(
     private val interactor: CreateCompanyInteractorImpl
-) : BasePresenter<CreateCompanyView>(), CreateCompanyPresenter {
+) : BasePresenter<CreateCompanyView, CreateCompanyInteractorImpl>(interactor),
+    CreateCompanyPresenter {
 
     override fun onViewCreated(view: CreateCompanyView) {
         super.onViewCreated(view)
