@@ -9,6 +9,7 @@
     <string name="company_creation_confirm_create_company">Create Company</string>
 
     <string name="error_sign_in">There was an error on signing in. Please try again</string>
+    <string name="error_creating_company">There was an error when attempting to create your company</string>
 
     <string name="title_activity_event_list">EventListActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>

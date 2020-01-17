@@ -1,6 +1,8 @@
 package graeme.hosford.eventmanager.presentation.company.create
 
-interface CreateCompanyView {
+import graeme.hosford.eventmanager.presentation.common.view.toast.ToastView
+
+interface CreateCompanyView : ToastView {
 
     fun showEventList()
 
