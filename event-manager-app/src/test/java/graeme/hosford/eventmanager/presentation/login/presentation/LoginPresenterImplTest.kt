@@ -1,10 +1,12 @@
 package graeme.hosford.eventmanager.presentation.login.presentation
 
+import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.business.login.LoginInteractor
 import graeme.hosford.eventmanager.presentation.login.LoginView
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.RelaxedMockK
+import io.mockk.slot
 import io.mockk.verify
 import org.junit.Before
 import org.junit.Test
@@ -19,12 +21,16 @@ class LoginPresenterImplTest {
     @RelaxedMockK
     private lateinit var interactor: LoginInteractor
 
+    private val userDetailsListener = slot<LoginInteractor.SaveUserDetailsListener>()
+
     @Before
     fun setup() {
         MockKAnnotations.init(this)
 
         presenter = LoginPresenterImpl(interactor)
         presenter.onViewCreated(view)
+
+        verify { interactor.setUserDetailsListener(capture(userDetailsListener)) }
     }
 
     @Test
@@ -42,6 +48,21 @@ class LoginPresenterImplTest {
 
         presenter.checkLoggedIn()
 
+        verify { view.showLoginFlow() }
+    }
+
+    @Test
+    fun onUserDetailsSaveSuccess_showsCompanyCreationFlow() {
+        userDetailsListener.captured.onSaveSuccess()
+
+        verify { view.showCompanyCreationFlow() }
+    }
+
+    @Test
+    fun onUserDetailsSaveFailure_showsErrorAndLoginFlow() {
+        userDetailsListener.captured.onSaveFailure()
+
+        verify { view.showLongToast(R.string.error_sign_in) }
         verify { view.showLoginFlow() }
     }
 
