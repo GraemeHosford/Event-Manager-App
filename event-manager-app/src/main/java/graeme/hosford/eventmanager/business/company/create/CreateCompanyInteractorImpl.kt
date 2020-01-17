@@ -20,7 +20,7 @@ class CreateCompanyInteractorImpl @Inject constructor(
         this.listener = createCompanyListener
     }
 
-    override fun getCompanyId(): Int {
+    override fun getCompanyId(name: String): Int {
         /* Some RxJava stuff here to handle Ruby server background stuff */
         return 0
     }

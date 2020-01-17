@@ -18,7 +18,7 @@ class CreateCompanyPresenterImpl @Inject constructor(
     }
 
     override fun onCreateCompanyButtonClick(name: String) {
-        interactor.getCompanyId()
+        interactor.getCompanyId(name)
     }
 
     private inner class CompanyListener : CreateCompanyInteractor.CreateCompanyListener {
