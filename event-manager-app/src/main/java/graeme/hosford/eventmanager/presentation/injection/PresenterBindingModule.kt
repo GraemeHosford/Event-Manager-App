@@ -19,10 +19,6 @@ interface PresenterBindingModule {
 
     @Binds
     @Singleton
-    fun createJoinCompanyPresenter(impl: CreateJoinCompanyPresenterImpl): CreateJoinCompanyPresenter
-
-    @Binds
-    @Singleton
     fun joinCompanyPresenter(impl: JoinCompanyPresenterImpl): JoinCompanyPresenter
 
     @Binds
