@@ -30,7 +30,7 @@ class CreateCompanyPresenterImplTest {
         presenter = CreateCompanyPresenterImpl(interactor)
         presenter.onViewCreated(view)
 
-        verify { interactor.setCreateCompanyListener(capture(listener)) }
+        verify { interactor.registerCallback(capture(listener)) }
     }
 
     @Test

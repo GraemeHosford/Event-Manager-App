@@ -2,7 +2,7 @@ package graeme.hosford.eventmanager.business.company.create
 
 import graeme.hosford.eventmanager.business.common.Interactor
 
-interface CreateCompanyInteractor : Interactor {
+interface CreateCompanyInteractor : Interactor<CreateCompanyInteractor.CreateCompanyListener> {
 
     interface CreateCompanyListener {
 

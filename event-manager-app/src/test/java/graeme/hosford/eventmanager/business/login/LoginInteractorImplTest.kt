@@ -59,7 +59,7 @@ class LoginInteractorImplTest {
 
     @Test
     fun saveUserDetails_callsUserDetailsListenerOnFailureWhenEmailIsNull() {
-        interactor.setUserDetailsListener(interactorListener)
+        interactor.registerCallback(interactorListener)
         interactor.saveUserDetails(null)
 
         verify { interactorListener.onSaveFailure() }
@@ -67,7 +67,7 @@ class LoginInteractorImplTest {
 
     @Test
     fun emailSaveListener_callsUserDetailsListenerOnSaveSuccessWhenSavedSuccessfully() {
-        interactor.setUserDetailsListener(interactorListener)
+        interactor.registerCallback(interactorListener)
         saveListener.captured.onEmailSaveSuccess()
 
         verify { interactorListener.onSaveSuccess() }
@@ -75,7 +75,7 @@ class LoginInteractorImplTest {
 
     @Test
     fun emailSaveListener_callsUserDetailsListenerOnSaveFailureWhenNotSaved() {
-        interactor.setUserDetailsListener(interactorListener)
+        interactor.registerCallback(interactorListener)
         saveListener.captured.onEmailSaveFailure()
 
         verify { interactorListener.onSaveFailure() }

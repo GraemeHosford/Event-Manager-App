@@ -4,6 +4,8 @@ import dagger.Binds
 import dagger.Module
 import graeme.hosford.eventmanager.business.company.create.CreateCompanyInteractor
 import graeme.hosford.eventmanager.business.company.create.CreateCompanyInteractorImpl
+import graeme.hosford.eventmanager.business.company.join.JoinCompanyInteractor
+import graeme.hosford.eventmanager.business.company.join.JoinCompanyInteractorImpl
 import graeme.hosford.eventmanager.business.login.LoginInteractor
 import graeme.hosford.eventmanager.business.login.LoginInteractorImpl
 import javax.inject.Singleton
@@ -20,6 +22,10 @@ internal interface InteractorsBindingModule {
     @Binds
     @Singleton
     fun createCompanyInteractor(impl: CreateCompanyInteractorImpl): CreateCompanyInteractor
+
+    @Binds
+    @Singleton
+    fun joinCompanyInteractor(impl: JoinCompanyInteractorImpl): JoinCompanyInteractor
 
     //endregion
 

@@ -2,15 +2,13 @@ package graeme.hosford.eventmanager.business.login
 
 import graeme.hosford.eventmanager.business.common.Interactor
 
-interface LoginInteractor : Interactor {
+interface LoginInteractor : Interactor<LoginInteractor.SaveUserDetailsListener> {
 
     interface SaveUserDetailsListener {
         fun onSaveSuccess()
 
         fun onSaveFailure()
     }
-
-    fun setUserDetailsListener(userDetailsListener: SaveUserDetailsListener)
 
     fun loggedIn(): Boolean
 

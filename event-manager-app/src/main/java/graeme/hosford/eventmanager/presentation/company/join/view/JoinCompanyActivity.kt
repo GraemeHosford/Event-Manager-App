@@ -38,6 +38,11 @@ class JoinCompanyActivity : BaseActivity(), JoinCompanyView {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.onViewDestroyed()
+    }
+
     override fun showEventList() {
         startActivity(Intent(this, EventListActivity::class.java))
         finish()

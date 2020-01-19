@@ -9,6 +9,10 @@ import androidx.annotation.MainThread
  *
  */
 @MainThread
-interface Interactor {
+interface Interactor<C> {
+
+    fun onCreate()
+
+    fun registerCallback(callback: C)
 
 }

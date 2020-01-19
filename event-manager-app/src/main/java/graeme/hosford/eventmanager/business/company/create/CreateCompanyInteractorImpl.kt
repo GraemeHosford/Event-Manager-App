@@ -7,17 +7,11 @@ import javax.inject.Inject
 
 class CreateCompanyInteractorImpl @Inject constructor(
     private val companyFirebaseAccess: CompanyFirebaseAccessImpl
-) : BaseInteractor(), CreateCompanyInteractor {
-
-    private var listener: CreateCompanyInteractor.CreateCompanyListener? = null
+) : BaseInteractor<CreateCompanyInteractor.CreateCompanyListener>(), CreateCompanyInteractor {
 
     override fun onCreate() {
         super.onCreate()
         companyFirebaseAccess.setCompanySaveListener(CompanySaveListener())
-    }
-
-    fun setCreateCompanyListener(createCompanyListener: CreateCompanyInteractor.CreateCompanyListener) {
-        this.listener = createCompanyListener
     }
 
     override fun getCompanyId(name: String): Int {
@@ -31,11 +25,11 @@ class CreateCompanyInteractorImpl @Inject constructor(
 
     private inner class CompanySaveListener : CompanyFirebaseAccess.CompanySaveListener {
         override fun onCompanySaveSuccess() {
-            listener?.onSaveCompanySuccess()
+            callback?.onSaveCompanySuccess()
         }
 
         override fun onCompanySaveFailure() {
-            listener?.onSaveCompanyFailure()
+            callback?.onSaveCompanyFailure()
         }
     }
 }

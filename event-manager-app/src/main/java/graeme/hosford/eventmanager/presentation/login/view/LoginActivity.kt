@@ -25,6 +25,11 @@ class LoginActivity : BaseActivity(),
         presenter.checkLoggedIn()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.onViewDestroyed()
+    }
+
     override fun showLoginFlow() {
         startActivityForResult(
             AuthUI.getInstance()

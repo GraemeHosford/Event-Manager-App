@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
 
-import graeme.hosford.eventmanager.business.common.BaseInteractor;
 import graeme.hosford.eventmanager.business.common.Interactor;
 
 /**
@@ -20,7 +19,7 @@ import graeme.hosford.eventmanager.business.common.Interactor;
  */
 @UiThread
 @SuppressWarnings("WeakerAccess")
-public abstract class BasePresenter<View, I extends BaseInteractor & Interactor> {
+public abstract class BasePresenter<View, I extends Interactor> {
 
     /**
      * This field is not marked as {@link Nullable} as it would force subclasses to perform a null check at every

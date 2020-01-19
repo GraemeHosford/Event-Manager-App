@@ -30,7 +30,7 @@ class LoginPresenterImplTest {
         presenter = LoginPresenterImpl(interactor)
         presenter.onViewCreated(view)
 
-        verify { interactor.setUserDetailsListener(capture(userDetailsListener)) }
+        verify { interactor.registerCallback(capture(userDetailsListener)) }
     }
 
     @Test

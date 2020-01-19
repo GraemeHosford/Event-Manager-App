@@ -40,7 +40,7 @@ class CreateCompanyInteractorImplTest {
 
     @Test
     fun companySaveListener_callsInteractorListenerOnSaveCompanySuccess_whenSaveSuccessful() {
-        interactor.setCreateCompanyListener(createCompanyListener)
+        interactor.registerCallback(createCompanyListener)
 
         firebaseListener.captured.onCompanySaveSuccess()
         verify { createCompanyListener.onSaveCompanySuccess() }
@@ -48,7 +48,7 @@ class CreateCompanyInteractorImplTest {
 
     @Test
     fun companySaveListener_callsInteractorListenerOnSaveCompanyFailure_whenSaveFails() {
-        interactor.setCreateCompanyListener(createCompanyListener)
+        interactor.registerCallback(createCompanyListener)
 
         firebaseListener.captured.onCompanySaveFailure()
         verify { createCompanyListener.onSaveCompanyFailure() }

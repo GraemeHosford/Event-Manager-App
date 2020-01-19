@@ -2,20 +2,19 @@ package graeme.hosford.eventmanager.presentation.company.create.presentation
 
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.business.company.create.CreateCompanyInteractor
-import graeme.hosford.eventmanager.business.company.create.CreateCompanyInteractorImpl
 import graeme.hosford.eventmanager.presentation.common.presenter.BasePresenter
 import graeme.hosford.eventmanager.presentation.company.create.CreateCompanyPresenter
 import graeme.hosford.eventmanager.presentation.company.create.CreateCompanyView
 import javax.inject.Inject
 
 class CreateCompanyPresenterImpl @Inject constructor(
-    private val interactor: CreateCompanyInteractorImpl
-) : BasePresenter<CreateCompanyView, CreateCompanyInteractorImpl>(interactor),
+    private val interactor: CreateCompanyInteractor
+) : BasePresenter<CreateCompanyView, CreateCompanyInteractor>(interactor),
     CreateCompanyPresenter {
 
     override fun onViewCreated(view: CreateCompanyView) {
         super.onViewCreated(view)
-        interactor.setCreateCompanyListener(CompanyListener())
+        interactor.registerCallback(CompanyListener())
     }
 
     override fun onCreateCompanyButtonClick(name: String) {

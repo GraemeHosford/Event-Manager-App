@@ -11,6 +11,11 @@ abstract class BaseActivity : AppCompatActivity(),
 
     protected var unbinder: Unbinder? = null
 
+    override fun onDestroy() {
+        super.onDestroy()
+        unbinder?.unbind()
+    }
+
     override fun showShortToast(text: String) {
         toast(text, length = Toast.LENGTH_SHORT)
     }
@@ -25,10 +30,5 @@ abstract class BaseActivity : AppCompatActivity(),
 
     override fun showLongToast(string: Int) {
         showLongToast(getString(string))
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        unbinder?.unbind()
     }
 }
