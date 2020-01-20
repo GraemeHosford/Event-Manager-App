@@ -16,7 +16,7 @@ interface CreateCompanyInteractor : Interactor<CreateCompanyInteractor.CreateCom
 
     }
 
-    fun getCompanyId(name: String): Int
+    fun getCompanyId(name: String)
 
     fun saveCompany(id: Int, name: String)
 

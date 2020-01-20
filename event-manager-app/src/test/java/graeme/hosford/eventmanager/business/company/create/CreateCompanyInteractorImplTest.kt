@@ -2,6 +2,7 @@ package graeme.hosford.eventmanager.business.company.create
 
 import graeme.hosford.eventmanager.data.company.CompanyFirebaseAccess
 import graeme.hosford.eventmanager.data.company.CompanyFirebaseAccessImpl
+import graeme.hosford.eventmanager.data.company.service.CompanyApiService
 import io.mockk.MockKAnnotations
 import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.slot
@@ -17,6 +18,9 @@ class CreateCompanyInteractorImplTest {
     private lateinit var firebaseAccess: CompanyFirebaseAccessImpl
 
     @RelaxedMockK
+    private lateinit var companyApiService: CompanyApiService
+
+    @RelaxedMockK
     private lateinit var createCompanyListener: CreateCompanyInteractor.CreateCompanyListener
 
     private val firebaseListener = slot<CompanyFirebaseAccess.CompanySaveListener>()
@@ -25,7 +29,7 @@ class CreateCompanyInteractorImplTest {
     fun setup() {
         MockKAnnotations.init(this)
 
-        interactor = CreateCompanyInteractorImpl(firebaseAccess)
+        interactor = CreateCompanyInteractorImpl(firebaseAccess, companyApiService)
         interactor.onCreate()
 
         verify { firebaseAccess.setCompanySaveListener(capture(firebaseListener)) }
