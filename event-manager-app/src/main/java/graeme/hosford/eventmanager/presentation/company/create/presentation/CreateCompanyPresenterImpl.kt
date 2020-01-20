@@ -27,15 +27,15 @@ class CreateCompanyPresenterImpl @Inject constructor(
         }
 
         override fun onGetCompanyIdFailure() {
-            view.showLongToast(R.string.error_creating_company)
+            view?.showLongToast(R.string.error_creating_company)
         }
 
         override fun onSaveCompanySuccess() {
-            view.showEventList()
+            view?.showEventList()
         }
 
         override fun onSaveCompanyFailure() {
-            view.showLongToast(R.string.error_creating_company)
+            view?.showLongToast(R.string.error_creating_company)
         }
     }
 }

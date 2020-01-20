@@ -13,6 +13,6 @@ class JoinCompanyPresenterImpl @Inject constructor(
 
     override fun onJoinCompanyClick(id: String) {
         /* Interactor stuff here */
-        view.showEventList()
+        view?.showEventList()
     }
 }

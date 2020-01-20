@@ -24,9 +24,9 @@ class LoginPresenterImpl @Inject constructor(
 
     override fun checkLoggedIn() {
         if (interactor.loggedIn()) {
-            view.showCompanyCreationFlow()
+            view?.showCompanyCreationFlow()
         } else {
-            view.showLoginFlow()
+            view?.showLoginFlow()
         }
     }
 
@@ -49,13 +49,13 @@ class LoginPresenterImpl @Inject constructor(
     }
 
     private fun signInError() {
-        view.showLongToast(R.string.error_sign_in)
-        view.showLoginFlow()
+        view?.showLongToast(R.string.error_sign_in)
+        view?.showLoginFlow()
     }
 
     private inner class UserDetailsSaveListener : LoginInteractor.SaveUserDetailsListener {
         override fun onSaveSuccess() {
-            view.showCompanyCreationFlow()
+            view?.showCompanyCreationFlow()
         }
 
         override fun onSaveFailure() {
