@@ -8,7 +8,7 @@ abstract class BaseRetrofitService<Service> {
 
     protected val service: Service by lazy { createService() }
 
-    abstract fun getServiceClass(): Class<Service>
+    protected abstract fun getServiceClass(): Class<Service>
 
     private fun createService(): Service {
         return Retrofit.Builder()
