@@ -1,2 +1,2 @@
-include ':event-manager-app', ':event-manager-entity'
+include ':event-manager-app'
 rootProject.name='Event Manager'

@@ -9,7 +9,6 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/event-manager-app" />
-            <option value="$PROJECT_DIR$/event-manager-entity" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
