@@ -1,4 +1,4 @@
-package graeme.hosford.eventmanager.presentation.event.list.view.ui.slideshow
+package graeme.hosford.eventmanager.presentation.slideshow
 
 import android.os.Bundle
 import android.view.LayoutInflater

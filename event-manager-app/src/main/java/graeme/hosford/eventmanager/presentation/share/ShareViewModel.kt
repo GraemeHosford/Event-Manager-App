@@ -1,13 +1,13 @@
-package graeme.hosford.eventmanager.presentation.event.list.view.ui.home
+package graeme.hosford.eventmanager.presentation.share
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class HomeViewModel : ViewModel() {
+class ShareViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+        value = "This is share Fragment"
     }
     val text: LiveData<String> = _text
 }

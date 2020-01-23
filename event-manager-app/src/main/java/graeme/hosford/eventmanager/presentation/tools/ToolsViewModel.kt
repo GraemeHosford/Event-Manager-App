@@ -1,4 +1,4 @@
-package graeme.hosford.eventmanager.presentation.event.list.view.ui.tools
+package graeme.hosford.eventmanager.presentation.tools
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
