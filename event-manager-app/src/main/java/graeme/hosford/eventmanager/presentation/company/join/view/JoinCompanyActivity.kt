@@ -11,7 +11,7 @@ import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.presentation.common.view.activity.BaseActivity
 import graeme.hosford.eventmanager.presentation.company.join.JoinCompanyView
 import graeme.hosford.eventmanager.presentation.company.join.presentation.JoinCompanyPresenterImpl
-import graeme.hosford.eventmanager.presentation.event.list.view.EventListActivity
+import graeme.hosford.eventmanager.presentation.main.view.MainActivity
 import javax.inject.Inject
 
 class JoinCompanyActivity : BaseActivity(), JoinCompanyView {
@@ -44,7 +44,7 @@ class JoinCompanyActivity : BaseActivity(), JoinCompanyView {
     }
 
     override fun showEventList() {
-        startActivity(Intent(this, EventListActivity::class.java))
+        startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
 }

@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".presentation.event.list.view.EventListActivity"
+            android:name=".presentation.main.view.MainActivity"
             android:label="@string/title_activity_event_list"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
