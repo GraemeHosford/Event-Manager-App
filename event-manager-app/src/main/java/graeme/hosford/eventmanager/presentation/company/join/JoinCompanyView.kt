@@ -1,7 +1,9 @@
 package graeme.hosford.eventmanager.presentation.company.join
 
-interface JoinCompanyView {
+import graeme.hosford.eventmanager.presentation.common.view.toast.ToastView
 
-    fun showEventList()
+interface JoinCompanyView : ToastView {
+
+    fun showMainActivity()
 
 }

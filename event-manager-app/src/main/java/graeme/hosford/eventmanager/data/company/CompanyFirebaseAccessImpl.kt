@@ -4,19 +4,26 @@ import com.google.firebase.firestore.FirebaseFirestore
 import javax.inject.Inject
 
 const val COMPANIES_COLLECTION = "Companies"
+const val MEMBERS_SUBCOLLECTION = "Members"
 
 class CompanyFirebaseAccessImpl @Inject constructor() : CompanyFirebaseAccess {
 
     private var companySaveListener: CompanyFirebaseAccess.CompanySaveListener? = null
+    private var addUserCallback: CompanyFirebaseAccess.AddUserListener? = null
 
-    fun setCompanySaveListener(companyListener: CompanyFirebaseAccess.CompanySaveListener) {
-        this.companySaveListener = companyListener
+    override fun setCompanySaveListener(comapnySaveListener: CompanyFirebaseAccess.CompanySaveListener) {
+        this.companySaveListener = comapnySaveListener
+    }
+
+    override fun setAddUserListener(addUserListener: CompanyFirebaseAccess.AddUserListener) {
+        this.addUserCallback = addUserListener
     }
 
     override fun saveCompany(id: Int, name: String) {
         FirebaseFirestore.getInstance()
             .collection(COMPANIES_COLLECTION)
-            .add(
+            .document(id.toString())
+            .set(
                 hashMapOf(
                     "id" to id,
                     "name" to name
@@ -26,5 +33,22 @@ class CompanyFirebaseAccessImpl @Inject constructor() : CompanyFirebaseAccess {
             }.addOnFailureListener {
                 companySaveListener?.onCompanySaveFailure()
             }
+    }
+
+    override fun addUserToCompany(companyId: Int, userEmail: String) {
+        FirebaseFirestore.getInstance()
+            .collection(COMPANIES_COLLECTION)
+            .document(companyId.toString())
+            .collection(MEMBERS_SUBCOLLECTION)
+            .add(
+                hashMapOf(
+                    "userEmail" to userEmail
+                )
+            ).addOnSuccessListener {
+                addUserCallback?.onAddUserSuccess()
+            }.addOnFailureListener {
+                addUserCallback?.onAddUserFailure()
+            }
+
     }
 }

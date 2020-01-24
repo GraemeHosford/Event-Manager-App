@@ -31,7 +31,7 @@ class CreateCompanyPresenterImpl @Inject constructor(
         }
 
         override fun onSaveCompanySuccess() {
-            view?.showEventList()
+            view?.showMainActivity()
         }
 
         override fun onSaveCompanyFailure() {

@@ -14,6 +14,6 @@ interface CurrentUserNetworkAccess {
 
     fun getCurrentUser(): FirebaseUser?
 
-    fun saveUserInfo(userEmail: String)
+    fun saveUserInfo(userEmail: String, isAdmin: Boolean = false)
 
 }

@@ -4,6 +4,6 @@ import graeme.hosford.eventmanager.presentation.common.view.toast.ToastView
 
 interface CreateCompanyView : ToastView {
 
-    fun showEventList()
+    fun showMainActivity()
 
 }

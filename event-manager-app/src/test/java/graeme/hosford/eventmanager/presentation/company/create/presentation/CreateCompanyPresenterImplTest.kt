@@ -58,7 +58,7 @@ class CreateCompanyPresenterImplTest {
     fun companyListener_showsEventList_onSaveCompanySuccess() {
         listener.captured.onSaveCompanySuccess()
 
-        verify { view.showEventList() }
+        verify { view.showMainActivity() }
     }
 
     @Test

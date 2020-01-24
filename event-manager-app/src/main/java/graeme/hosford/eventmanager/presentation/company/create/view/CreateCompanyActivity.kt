@@ -43,7 +43,7 @@ class CreateCompanyActivity : BaseActivity(), CreateCompanyView {
         presenter.onViewDestroyed()
     }
 
-    override fun showEventList() {
+    override fun showMainActivity() {
         startActivity(Intent(this, MainActivity::class.java))
         finish()
     }

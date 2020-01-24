@@ -8,6 +8,9 @@
     <string name="company_creation_confirm_id_text">Confirm Company ID</string>
     <string name="company_creation_confirm_create_company">Create Company</string>
 
+    <string name="company_join_success_message">You have successfully joined the company</string>
+    <string name="company_join_failure_message">There was an error joining the company</string>
+
     <string name="error_sign_in">There was an error on signing in. Please try again</string>
     <string name="error_creating_company">There was an error when attempting to create your company</string>
 

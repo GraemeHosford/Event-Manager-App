@@ -3,6 +3,7 @@ package graeme.hosford.eventmanager.data.login
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import javax.inject.Inject
 
 const val USERS_COLLECTION = "Users"
@@ -20,13 +21,16 @@ class CurrentUserNetworkAccessImpl @Inject constructor() :
         return FirebaseAuth.getInstance().currentUser
     }
 
-    override fun saveUserInfo(userEmail: String) {
+    override fun saveUserInfo(userEmail: String, isAdmin: Boolean) {
         FirebaseFirestore.getInstance()
             .collection(USERS_COLLECTION)
-            .add(
+            .document(userEmail)
+            .set(
                 hashMapOf(
-                    "email" to userEmail
-                )
+                    "email" to userEmail,
+                    "isAdmin" to isAdmin
+                ),
+                SetOptions.merge()
             ).addOnSuccessListener {
                 emailSaveListener?.onEmailSaveSuccess()
             }.addOnFailureListener {
