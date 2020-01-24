@@ -70,7 +70,7 @@ dependencies {
 
     // Retrofit Dependencies
     implementation "com.squareup.retrofit2:retrofit:${versions.retrofit}"
-    implementation "com.squareup.retrofit2:adapter-rxjava:${versions.retrofit}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofit}"
     implementation "com.squareup.retrofit2:converter-moshi:2.4.0"
 
     // RxJava Dependencies

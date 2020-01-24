@@ -1,7 +1,7 @@
 package graeme.hosford.eventmanager.data.common.retrofit
 
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 abstract class BaseRetrofitService<Service> {
@@ -13,7 +13,7 @@ abstract class BaseRetrofitService<Service> {
     private fun createService(): Service {
         return Retrofit.Builder()
             .baseUrl("http://event-manager-fyp.herokuapp.com")
-            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
             .create(getServiceClass())
