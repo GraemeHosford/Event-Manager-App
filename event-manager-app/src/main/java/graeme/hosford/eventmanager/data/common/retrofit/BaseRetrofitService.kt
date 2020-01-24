@@ -12,7 +12,7 @@ abstract class BaseRetrofitService<Service> {
 
     private fun createService(): Service {
         return Retrofit.Builder()
-            .baseUrl("http://event-manager-fyp.herokuapp.com")
+            .baseUrl("http://event-manager-fyp.herokuapp.com/")
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
