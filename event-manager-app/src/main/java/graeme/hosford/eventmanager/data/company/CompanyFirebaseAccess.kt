@@ -2,6 +2,11 @@ package graeme.hosford.eventmanager.data.company
 
 interface CompanyFirebaseAccess {
 
+    companion object {
+        const val COMPANIES_COLLECTION = "Companies"
+        const val MEMBERS_SUBCOLLECTION = "Members"
+    }
+
     interface CompanySaveListener {
         fun onCompanySaveSuccess()
 

@@ -1,10 +1,9 @@
 package graeme.hosford.eventmanager.data.company
 
 import com.google.firebase.firestore.FirebaseFirestore
+import graeme.hosford.eventmanager.data.company.CompanyFirebaseAccess.Companion.COMPANIES_COLLECTION
+import graeme.hosford.eventmanager.data.company.CompanyFirebaseAccess.Companion.MEMBERS_SUBCOLLECTION
 import javax.inject.Inject
-
-const val COMPANIES_COLLECTION = "Companies"
-const val MEMBERS_SUBCOLLECTION = "Members"
 
 class CompanyFirebaseAccessImpl @Inject constructor() : CompanyFirebaseAccess {
 
