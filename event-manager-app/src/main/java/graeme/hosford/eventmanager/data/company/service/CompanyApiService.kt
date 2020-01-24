@@ -7,11 +7,7 @@ import retrofit2.http.Query
 
 interface CompanyApiService {
 
-    companion object {
-        private const val BASE_COMPANY_API_URL = "event-manager-fyp.herokuapp.com/companys"
-    }
-
-    @POST(BASE_COMPANY_API_URL)
+    @POST("companys")
     fun getCompanyId(@Query("name") name: String): Observable<Company>
 
 }
