@@ -6,6 +6,8 @@ import graeme.hosford.eventmanager.business.company.create.CreateCompanyInteract
 import graeme.hosford.eventmanager.business.company.create.CreateCompanyInteractorImpl
 import graeme.hosford.eventmanager.business.company.join.JoinCompanyInteractor
 import graeme.hosford.eventmanager.business.company.join.JoinCompanyInteractorImpl
+import graeme.hosford.eventmanager.business.event.list.EventListInteractor
+import graeme.hosford.eventmanager.business.event.list.EventListInteractorImpl
 import graeme.hosford.eventmanager.business.login.LoginInteractor
 import graeme.hosford.eventmanager.business.login.LoginInteractorImpl
 import javax.inject.Singleton
@@ -26,6 +28,10 @@ internal interface InteractorsBindingModule {
     @Binds
     @Singleton
     fun joinCompanyInteractor(impl: JoinCompanyInteractorImpl): JoinCompanyInteractor
+
+    @Binds
+    @Singleton
+    fun eventListInteractor(impl: EventListInteractorImpl): EventListInteractor
 
     //endregion
 

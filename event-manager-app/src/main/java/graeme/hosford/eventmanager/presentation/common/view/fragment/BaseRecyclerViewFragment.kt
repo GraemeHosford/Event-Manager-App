@@ -14,12 +14,13 @@ import butterknife.ButterKnife
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.presentation.common.view.recyclerview.BaseAdapter
 import graeme.hosford.eventmanager.presentation.common.view.recyclerview.BaseViewHolder
+import graeme.hosford.eventmanager.presentation.common.view.recyclerview.RecyclerViewListView
 
 abstract class BaseRecyclerViewFragment<
         Model,
         ViewHolder : BaseViewHolder<Model>,
         Adapter : BaseAdapter<Model, ViewHolder>> :
-    BaseFragment() {
+    BaseFragment(), RecyclerViewListView<Model> {
 
     @BindView(R.id.recycler_view)
     lateinit var recyclerview: RecyclerView
@@ -29,6 +30,8 @@ abstract class BaseRecyclerViewFragment<
 
     @BindView(R.id.error_text_view)
     lateinit var errorMessage: TextView
+
+    private lateinit var recyclerViewAdapter: Adapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,9 +46,10 @@ abstract class BaseRecyclerViewFragment<
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        recyclerview.adapter = recyclerViewAdapter()
+        this.recyclerViewAdapter = recyclerViewAdapter()
         val layoutManager = LinearLayoutManager(context)
         recyclerview.layoutManager = layoutManager
+        recyclerview.adapter = recyclerViewAdapter
         recyclerview.addItemDecoration(
             DividerItemDecoration(
                 recyclerview.context,
@@ -55,4 +59,10 @@ abstract class BaseRecyclerViewFragment<
     }
 
     protected abstract fun recyclerViewAdapter(): Adapter
+
+    override fun showData(items: List<Model>) {
+        recyclerViewAdapter.setItems(items)
+        loadingBar.visibility = View.GONE
+        recyclerview.visibility = View.VISIBLE
+    }
 }

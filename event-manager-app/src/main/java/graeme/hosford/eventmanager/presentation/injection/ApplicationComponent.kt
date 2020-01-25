@@ -8,6 +8,7 @@ import graeme.hosford.eventmanager.data.injection.module.internal.ThreadingModul
 import graeme.hosford.eventmanager.presentation.company.create.view.CreateCompanyActivity
 import graeme.hosford.eventmanager.presentation.company.create_join_screen.view.CreateJoinCompanyActivity
 import graeme.hosford.eventmanager.presentation.company.join.view.JoinCompanyActivity
+import graeme.hosford.eventmanager.presentation.event.list.view.EventListFragment
 import graeme.hosford.eventmanager.presentation.login.view.LoginActivity
 import javax.inject.Singleton
 
@@ -41,5 +42,7 @@ interface ApplicationComponent {
     fun inject(joinCompanyActivity: JoinCompanyActivity)
 
     fun inject(createCompanyActivity: CreateCompanyActivity)
+
+    fun inject(eventListFragment: EventListFragment)
 
 }

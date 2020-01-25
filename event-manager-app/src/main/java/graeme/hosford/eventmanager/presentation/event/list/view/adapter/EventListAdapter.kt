@@ -11,7 +11,8 @@ import graeme.hosford.eventmanager.presentation.common.view.recyclerview.BaseAda
 import graeme.hosford.eventmanager.presentation.common.view.recyclerview.BaseViewHolder
 import graeme.hosford.eventmanager.presentation.event.list.model.EventListItemUiModel
 
-class EventListAdapter : BaseAdapter<EventListItemUiModel, EventListItemViewHolder>() {
+class EventListAdapter(private val itemClickListener: (View) -> Unit) :
+    BaseAdapter<EventListItemUiModel, EventListItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventListItemViewHolder {
         return EventListItemViewHolder(
@@ -19,12 +20,14 @@ class EventListAdapter : BaseAdapter<EventListItemUiModel, EventListItemViewHold
                 R.layout.event_list_item,
                 parent,
                 false
-            )
+            ),
+            itemClickListener
         )
     }
 }
 
-class EventListItemViewHolder(itemView: View) : BaseViewHolder<EventListItemUiModel>(itemView) {
+class EventListItemViewHolder(itemView: View, clickListener: (View) -> Unit) :
+    BaseViewHolder<EventListItemUiModel>(itemView, clickListener) {
 
     @BindView(R.id.event_list_item_name_text_view)
     lateinit var eventName: TextView

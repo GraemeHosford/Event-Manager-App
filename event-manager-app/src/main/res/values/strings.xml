@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Event Manager</string>
 
+    <string name="generic_error_loading_data">There was an error while trying to load your data. Please try again</string>
+
     <string name="company_creation_enter_company_name_hint">Company Name</string>
     <string name="company_creation_create_company_text">Create a Company</string>
     <string name="company_creation_join_company_text">Join a Company</string>
