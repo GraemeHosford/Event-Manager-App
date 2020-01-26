@@ -48,9 +48,9 @@ class JoinCompanyInteractorImplTest {
         every { userAccess.getCurrentUser() } returns user
         every { user.email } returns "Test"
 
-        interactor.addCurrentUserToCompany(3)
+        interactor.addCurrentUserToCompany("3")
 
-        verify { companyAccess.addUserToCompany(3, "Test") }
+        verify { companyAccess.addUserToCompany("3", "Test") }
     }
 
 }

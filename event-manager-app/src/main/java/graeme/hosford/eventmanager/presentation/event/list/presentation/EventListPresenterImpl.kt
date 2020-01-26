@@ -2,6 +2,7 @@ package graeme.hosford.eventmanager.presentation.event.list.presentation
 
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.business.event.list.EventListInteractor
+import graeme.hosford.eventmanager.entity.event.Event
 import graeme.hosford.eventmanager.presentation.common.model.UiModelListProcessor
 import graeme.hosford.eventmanager.presentation.common.presenter.BasePresenter
 import graeme.hosford.eventmanager.presentation.event.list.EventListPresenter
@@ -19,6 +20,7 @@ class EventListPresenterImpl @Inject constructor(
     override fun onViewCreated(view: EventListView) {
         super.onViewCreated(view)
         processor.registerProcessingCallback(EventListProcessorCallback())
+        interactor.registerCallback(EventListInteractorCallback())
     }
 
     override fun onEventItemClick() {
@@ -32,6 +34,16 @@ class EventListPresenterImpl @Inject constructor(
         }
 
         override fun onProcessingFailure() {
+            view?.showLongToast(R.string.generic_error_loading_data)
+        }
+    }
+
+    private inner class EventListInteractorCallback : EventListInteractor.EventListCallback {
+        override fun onEventsRetrieved(entites: List<Event>) {
+            processor.process(entites)
+        }
+
+        override fun onEventsRetrievalFailure() {
             view?.showLongToast(R.string.generic_error_loading_data)
         }
     }

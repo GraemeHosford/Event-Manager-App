@@ -11,7 +11,7 @@ import graeme.hosford.eventmanager.presentation.common.view.recyclerview.BaseAda
 import graeme.hosford.eventmanager.presentation.common.view.recyclerview.BaseViewHolder
 import graeme.hosford.eventmanager.presentation.event.list.model.EventListItemUiModel
 
-class EventListAdapter(private val itemClickListener: (View) -> Unit) :
+class EventListAdapter(private val itemClickListener: View.OnClickListener) :
     BaseAdapter<EventListItemUiModel, EventListItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventListItemViewHolder {
@@ -26,15 +26,17 @@ class EventListAdapter(private val itemClickListener: (View) -> Unit) :
     }
 }
 
-class EventListItemViewHolder(itemView: View, clickListener: (View) -> Unit) :
-    BaseViewHolder<EventListItemUiModel>(itemView, clickListener) {
+class EventListItemViewHolder(
+    itemView: View,
+    private val clickListener: View.OnClickListener
+) : BaseViewHolder<EventListItemUiModel>(itemView) {
 
     @BindView(R.id.event_list_item_name_text_view)
     lateinit var eventName: TextView
 
     override fun bind(model: EventListItemUiModel) {
         ButterKnife.bind(this, itemView)
-
+        itemView.setOnClickListener(clickListener)
         eventName.text = model.eventName
     }
 }

@@ -43,8 +43,8 @@ class CreateCompanyInteractorImpl @Inject constructor(
     }
 
     private inner class CompanySaveListener : CompanyFirebaseAccess.CompanySaveListener {
-        override fun onCompanySaveSuccess() {
-            callback?.onSaveCompanySuccess()
+        override fun onCompanySaveSuccess(companyId: String) {
+            callback?.onSaveCompanySuccess(companyId)
         }
 
         override fun onCompanySaveFailure() {

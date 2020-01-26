@@ -17,6 +17,6 @@ interface EventListFirebaseAccess {
 
     fun setEventListener(listener: EventDataListener)
 
-    fun getAllEvents(companyId: String)
+    fun getAllEvents(userEmail: String)
 
 }

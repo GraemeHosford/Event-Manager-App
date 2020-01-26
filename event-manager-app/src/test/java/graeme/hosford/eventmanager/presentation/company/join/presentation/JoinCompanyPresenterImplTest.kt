@@ -2,6 +2,7 @@ package graeme.hosford.eventmanager.presentation.company.join.presentation
 
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.business.company.join.JoinCompanyInteractor
+import graeme.hosford.eventmanager.business.user.CurrentUserInteractor
 import graeme.hosford.eventmanager.presentation.company.join.JoinCompanyView
 import io.mockk.MockKAnnotations
 import io.mockk.impl.annotations.RelaxedMockK
@@ -18,17 +19,23 @@ class JoinCompanyPresenterImplTest {
     private lateinit var interactor: JoinCompanyInteractor
 
     @RelaxedMockK
+    private lateinit var userInteractor: CurrentUserInteractor
+
+    @RelaxedMockK
     private lateinit var view: JoinCompanyView
 
     private val listenerCapture = slot<JoinCompanyInteractor.JoinCompanyListener>()
+
+    private val userListenerCapture = slot<CurrentUserInteractor.AddUserCompanyListener>()
 
     @Before
     fun setup() {
         MockKAnnotations.init(this)
 
-        presenter = JoinCompanyPresenterImpl(interactor)
+        presenter = JoinCompanyPresenterImpl(interactor, userInteractor)
         presenter.onViewCreated(view)
         verify { interactor.registerCallback(capture(listenerCapture)) }
+        verify { userInteractor.registerCallback(capture(userListenerCapture)) }
     }
 
     @Test
@@ -42,20 +49,33 @@ class JoinCompanyPresenterImplTest {
     fun onJoinCompanyClick_callsInteractor_addUserToCompany() {
         presenter.onJoinCompanyClick("4")
 
-        verify { interactor.addCurrentUserToCompany(4) }
+        verify { interactor.addCurrentUserToCompany("4") }
     }
 
     @Test
     fun joinCompanyListener_onSuccess_callsShowMessageAndMainActivity() {
-        listenerCapture.captured.onJoinCompanySuccess()
+        listenerCapture.captured.onJoinCompanySuccess("4")
 
-        verify { view.showLongToast(R.string.company_join_success_message) }
-        verify { view.showMainActivity() }
+        verify { userInteractor.setUserCompany("4") }
     }
 
     @Test
     fun joinCompanyListener_onFailure_callsShowFailureMessage() {
         listenerCapture.captured.onJoinCompanyFailure()
+
+        verify { view.showLongToast(R.string.company_join_failure_message) }
+    }
+
+    @Test
+    fun addUserListener_onSuccess_showsMainActivity() {
+        userListenerCapture.captured.onAddUserCompanySuccess()
+
+        verify { view.showMainActivity() }
+    }
+
+    @Test
+    fun addUserListener_onFailure_callsViewShowErrorMessage() {
+        userListenerCapture.captured.onAddUserCompanyFailure()
 
         verify { view.showLongToast(R.string.company_join_failure_message) }
     }

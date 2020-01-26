@@ -28,23 +28,23 @@ class CompanyFirebaseAccessImpl @Inject constructor() : CompanyFirebaseAccess {
                     "name" to name
                 )
             ).addOnSuccessListener {
-                companySaveListener?.onCompanySaveSuccess()
+                companySaveListener?.onCompanySaveSuccess(id.toString())
             }.addOnFailureListener {
                 companySaveListener?.onCompanySaveFailure()
             }
     }
 
-    override fun addUserToCompany(companyId: Int, userEmail: String) {
+    override fun addUserToCompany(companyId: String, userEmail: String) {
         FirebaseFirestore.getInstance()
             .collection(COMPANIES_COLLECTION)
-            .document(companyId.toString())
+            .document(companyId)
             .collection(MEMBERS_SUBCOLLECTION)
             .add(
                 hashMapOf(
                     "userEmail" to userEmail
                 )
             ).addOnSuccessListener {
-                addUserCallback?.onAddUserSuccess()
+                addUserCallback?.onAddUserSuccess(companyId)
             }.addOnFailureListener {
                 addUserCallback?.onAddUserFailure()
             }

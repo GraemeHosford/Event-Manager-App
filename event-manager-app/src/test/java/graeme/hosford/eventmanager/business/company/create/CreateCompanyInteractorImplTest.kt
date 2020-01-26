@@ -46,8 +46,8 @@ class CreateCompanyInteractorImplTest {
     fun companySaveListener_callsInteractorListenerOnSaveCompanySuccess_whenSaveSuccessful() {
         interactor.registerCallback(createCompanyListener)
 
-        firebaseListener.captured.onCompanySaveSuccess()
-        verify { createCompanyListener.onSaveCompanySuccess() }
+        firebaseListener.captured.onCompanySaveSuccess("123")
+        verify { createCompanyListener.onSaveCompanySuccess("123") }
     }
 
     @Test

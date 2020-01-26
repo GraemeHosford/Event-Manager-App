@@ -13,6 +13,12 @@ class CurrentUserNetworkAccessImpl @Inject constructor() :
 
     private var emailSaveListener: CurrentUserNetworkAccess.EmailSaveListener? = null
 
+    private var userCompanyListener: CurrentUserNetworkAccess.AddUserCompanyListener? = null
+
+    override fun setAddUserCompanyListener(listener: CurrentUserNetworkAccess.AddUserCompanyListener) {
+        userCompanyListener = listener
+    }
+
     override fun setEmailSaveListener(listener: CurrentUserNetworkAccess.EmailSaveListener) {
         emailSaveListener = listener
     }
@@ -35,6 +41,22 @@ class CurrentUserNetworkAccessImpl @Inject constructor() :
                 emailSaveListener?.onEmailSaveSuccess()
             }.addOnFailureListener {
                 emailSaveListener?.onEmailSaveFailure()
+            }
+    }
+
+    override fun setUserCompany(userEmail: String, companyId: String) {
+        FirebaseFirestore.getInstance()
+            .collection(USERS_COLLECTION)
+            .document(userEmail)
+            .set(
+                hashMapOf(
+                    "companyId" to companyId
+                ),
+                SetOptions.merge()
+            ).addOnSuccessListener {
+                userCompanyListener?.onAddUserCompanySuccess()
+            }.addOnFailureListener {
+                userCompanyListener?.onAddUserCompanyFailure()
             }
     }
 }

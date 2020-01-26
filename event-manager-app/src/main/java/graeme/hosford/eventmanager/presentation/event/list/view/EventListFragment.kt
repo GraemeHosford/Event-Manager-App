@@ -1,6 +1,7 @@
 package graeme.hosford.eventmanager.presentation.event.list.view
 
 import android.os.Bundle
+import android.view.View
 import graeme.hosford.eventmanager.EventManagerApplication
 import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseRecyclerViewFragment
 import graeme.hosford.eventmanager.presentation.event.list.EventListView
@@ -20,15 +21,15 @@ class EventListFragment :
     override fun onCreate(savedInstanceState: Bundle?) {
         EventManagerApplication.appComponent.inject(this)
         super.onCreate(savedInstanceState)
+        presenter.onViewCreated(this)
     }
 
     override fun recyclerViewAdapter(): EventListAdapter {
-        return EventListAdapter {
-            presenter.onEventItemClick()
-        }
+        return EventListAdapter(View.OnClickListener { presenter.onEventItemClick() })
     }
 
     override fun showEventDetail() {
         /* Nothing for now */
+        showLongToast("Event Details Not Implemented Yet")
     }
 }

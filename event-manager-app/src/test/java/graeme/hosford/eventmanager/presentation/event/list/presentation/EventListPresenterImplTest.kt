@@ -2,6 +2,7 @@ package graeme.hosford.eventmanager.presentation.event.list.presentation
 
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.business.event.list.EventListInteractor
+import graeme.hosford.eventmanager.entity.event.Event
 import graeme.hosford.eventmanager.presentation.common.model.UiModelListProcessor
 import graeme.hosford.eventmanager.presentation.event.list.EventListView
 import graeme.hosford.eventmanager.presentation.event.list.model.EventListItemUiModel
@@ -29,6 +30,8 @@ class EventListPresenterImplTest {
     private val processorCapture =
         slot<UiModelListProcessor.ProcessingCompleteCallback<EventListItemUiModel>>()
 
+    private val interactorCapture = slot<EventListInteractor.EventListCallback>()
+
     @Before
     fun setup() {
         MockKAnnotations.init(this)
@@ -37,6 +40,7 @@ class EventListPresenterImplTest {
         presenter.onViewCreated(view)
 
         verify { processor.registerProcessingCallback(capture(processorCapture)) }
+        verify { interactor.registerCallback(capture(interactorCapture)) }
     }
 
     @Test
@@ -44,6 +48,13 @@ class EventListPresenterImplTest {
         presenter.onViewCreated(view)
 
         verify { processor.registerProcessingCallback(processorCapture.captured) }
+    }
+
+    @Test
+    fun onViewCreated_callsInteractor_registerCallback() {
+        presenter.onViewCreated(view)
+
+        verify { interactor.registerCallback(interactorCapture.captured) }
     }
 
     @Test
@@ -61,6 +72,25 @@ class EventListPresenterImplTest {
     @Test
     fun eventListProcessingCallback_showsErrorMessage_onFailure() {
         processorCapture.captured.onProcessingFailure()
+
+        verify { view.showLongToast(R.string.generic_error_loading_data) }
+    }
+
+    @Test
+    fun interactorCallback_onEventsRetrieved_callsProcessorToProcess() {
+        val entities = listOf(
+            Event("Event 1"),
+            Event("Event 2")
+        )
+
+        interactorCapture.captured.onEventsRetrieved(entities)
+
+        verify { processor.process(entities) }
+    }
+
+    @Test
+    fun interactorCallback_onEventsRetrievedFailure_callsViewShowErrorMessage() {
+        interactorCapture.captured.onEventsRetrievalFailure()
 
         verify { view.showLongToast(R.string.generic_error_loading_data) }
     }

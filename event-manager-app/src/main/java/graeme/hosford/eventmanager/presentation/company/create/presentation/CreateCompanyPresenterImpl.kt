@@ -2,19 +2,22 @@ package graeme.hosford.eventmanager.presentation.company.create.presentation
 
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.business.company.create.CreateCompanyInteractor
+import graeme.hosford.eventmanager.business.user.CurrentUserInteractor
 import graeme.hosford.eventmanager.presentation.common.presenter.BasePresenter
 import graeme.hosford.eventmanager.presentation.company.create.CreateCompanyPresenter
 import graeme.hosford.eventmanager.presentation.company.create.CreateCompanyView
 import javax.inject.Inject
 
 class CreateCompanyPresenterImpl @Inject constructor(
-    private val interactor: CreateCompanyInteractor
+    private val interactor: CreateCompanyInteractor,
+    private val currentUserInteractor: CurrentUserInteractor
 ) : BasePresenter<CreateCompanyView, CreateCompanyInteractor>(interactor),
     CreateCompanyPresenter {
 
     override fun onViewCreated(view: CreateCompanyView) {
         super.onViewCreated(view)
         interactor.registerCallback(CompanyListener())
+        currentUserInteractor.registerCallback(UserInteractorCallback())
     }
 
     override fun onCreateCompanyButtonClick(name: String) {
@@ -30,11 +33,21 @@ class CreateCompanyPresenterImpl @Inject constructor(
             view?.showLongToast(R.string.error_creating_company)
         }
 
-        override fun onSaveCompanySuccess() {
-            view?.showMainActivity()
+        override fun onSaveCompanySuccess(companyId: String) {
+            currentUserInteractor.setUserCompany(companyId)
         }
 
         override fun onSaveCompanyFailure() {
+            view?.showLongToast(R.string.error_creating_company)
+        }
+    }
+
+    private inner class UserInteractorCallback : CurrentUserInteractor.AddUserCompanyListener {
+        override fun onAddUserCompanySuccess() {
+            view?.showMainActivity()
+        }
+
+        override fun onAddUserCompanyFailure() {
             view?.showLongToast(R.string.error_creating_company)
         }
     }

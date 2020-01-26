@@ -8,13 +8,13 @@ interface CompanyFirebaseAccess {
     }
 
     interface CompanySaveListener {
-        fun onCompanySaveSuccess()
+        fun onCompanySaveSuccess(companyId: String)
 
         fun onCompanySaveFailure()
     }
 
     interface AddUserListener {
-        fun onAddUserSuccess()
+        fun onAddUserSuccess(companyId: String)
 
         fun onAddUserFailure()
     }
@@ -25,6 +25,6 @@ interface CompanyFirebaseAccess {
 
     fun saveCompany(id: Int, name: String)
 
-    fun addUserToCompany(companyId: Int, userEmail: String)
+    fun addUserToCompany(companyId: String, userEmail: String)
 
 }

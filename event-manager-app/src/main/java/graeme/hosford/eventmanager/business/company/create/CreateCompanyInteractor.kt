@@ -10,7 +10,7 @@ interface CreateCompanyInteractor : Interactor<CreateCompanyInteractor.CreateCom
 
         fun onGetCompanyIdFailure()
 
-        fun onSaveCompanySuccess()
+        fun onSaveCompanySuccess(companyId: String)
 
         fun onSaveCompanyFailure()
 

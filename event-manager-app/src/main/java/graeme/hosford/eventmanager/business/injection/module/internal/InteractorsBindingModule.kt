@@ -10,6 +10,8 @@ import graeme.hosford.eventmanager.business.event.list.EventListInteractor
 import graeme.hosford.eventmanager.business.event.list.EventListInteractorImpl
 import graeme.hosford.eventmanager.business.login.LoginInteractor
 import graeme.hosford.eventmanager.business.login.LoginInteractorImpl
+import graeme.hosford.eventmanager.business.user.CurrentUserInteractor
+import graeme.hosford.eventmanager.business.user.CurrentUserInteractorImpl
 import javax.inject.Singleton
 
 @Module
@@ -32,6 +34,10 @@ internal interface InteractorsBindingModule {
     @Binds
     @Singleton
     fun eventListInteractor(impl: EventListInteractorImpl): EventListInteractor
+
+    @Binds
+    @Singleton
+    fun currentUserInteractor(impl: CurrentUserInteractorImpl): CurrentUserInteractor
 
     //endregion
 

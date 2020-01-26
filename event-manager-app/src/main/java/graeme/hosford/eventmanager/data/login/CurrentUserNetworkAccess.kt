@@ -10,10 +10,20 @@ interface CurrentUserNetworkAccess {
         fun onEmailSaveFailure()
     }
 
+    interface AddUserCompanyListener {
+        fun onAddUserCompanySuccess()
+
+        fun onAddUserCompanyFailure()
+    }
+
     fun setEmailSaveListener(listener: EmailSaveListener)
+
+    fun setAddUserCompanyListener(listener: AddUserCompanyListener)
 
     fun getCurrentUser(): FirebaseUser?
 
     fun saveUserInfo(userEmail: String, isAdmin: Boolean = false)
+
+    fun setUserCompany(userEmail: String, companyId: String)
 
 }

@@ -15,7 +15,7 @@ class JoinCompanyInteractorImpl @Inject constructor(
         companyFirebaseAccess.setAddUserListener(AddUserListener())
     }
 
-    override fun addCurrentUserToCompany(id: Int) {
+    override fun addCurrentUserToCompany(id: String) {
         companyFirebaseAccess.addUserToCompany(
             id,
             currentUserNetworkAccess.getCurrentUser()?.email!!
@@ -23,8 +23,8 @@ class JoinCompanyInteractorImpl @Inject constructor(
     }
 
     private inner class AddUserListener : CompanyFirebaseAccess.AddUserListener {
-        override fun onAddUserSuccess() {
-            callback?.onJoinCompanySuccess()
+        override fun onAddUserSuccess(companyId: String) {
+            callback?.onJoinCompanySuccess(companyId)
         }
 
         override fun onAddUserFailure() {
