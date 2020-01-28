@@ -2,6 +2,7 @@
     <string name="app_name">Event Manager</string>
 
     <string name="generic_error_loading_data">There was an error while trying to load your data. Please try again</string>
+    <string name="generic_nothing_to_load">There was nothing to load!</string>
 
     <string name="company_creation_enter_company_name_hint">Company Name</string>
     <string name="company_creation_create_company_text">Create a Company</string>

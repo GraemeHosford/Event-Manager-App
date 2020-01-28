@@ -19,8 +19,8 @@
 
     <ProgressBar
         android:id="@+id/loading_bar"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:indeterminate="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,10 +32,23 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
+        android:text="@string/generic_error_loading_data"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="An error has occurred" />
+
+    <TextView
+        android:id="@+id/no_items_text_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="@string/generic_nothing_to_load"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="There is nothing to load!" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

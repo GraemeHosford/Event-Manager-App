@@ -31,6 +31,9 @@ abstract class BaseRecyclerViewFragment<
     @BindView(R.id.error_text_view)
     lateinit var errorMessage: TextView
 
+    @BindView(R.id.no_items_text_view)
+    lateinit var emptyItems: TextView
+
     private lateinit var recyclerViewAdapter: Adapter
 
     override fun onCreateView(
@@ -61,8 +64,15 @@ abstract class BaseRecyclerViewFragment<
     protected abstract fun recyclerViewAdapter(): Adapter
 
     override fun showData(items: List<Model>) {
-        recyclerViewAdapter.setItems(items)
+        if (items.isNotEmpty()) {
+            recyclerViewAdapter.setItems(items)
+            recyclerview.visibility = View.VISIBLE
+        } else {
+            emptyItems.visibility = View.VISIBLE
+        }
+
+        /* Hide loading bar after items have been set to avoid flicker which can
+        sometimes happen when hiding before RecyclerView is updated */
         loadingBar.visibility = View.GONE
-        recyclerview.visibility = View.VISIBLE
     }
 }
