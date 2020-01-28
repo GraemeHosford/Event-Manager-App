@@ -21,6 +21,7 @@ class LoginPresenterImpl @Inject constructor(
 
     override fun onViewCreated(view: LoginView) {
         super.onViewCreated(view)
+        currentUserInteractor.onCreate()
         interactor.registerCallback(UserDetailsSaveListener())
         currentUserInteractor.registerCallback(UserInfoRetrieved())
     }

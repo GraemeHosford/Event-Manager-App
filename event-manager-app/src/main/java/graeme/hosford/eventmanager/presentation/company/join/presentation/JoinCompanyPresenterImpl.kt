@@ -16,6 +16,7 @@ class JoinCompanyPresenterImpl @Inject constructor(
 
     override fun onViewCreated(view: JoinCompanyView) {
         super.onViewCreated(view)
+        currentUserInteractor.onCreate()
         interactor.registerCallback(JoinCompanyListener())
         currentUserInteractor.registerCallback(AddUserListener())
     }
