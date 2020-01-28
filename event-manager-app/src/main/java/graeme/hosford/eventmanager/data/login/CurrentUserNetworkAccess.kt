@@ -4,26 +4,26 @@ import com.google.firebase.auth.FirebaseUser
 
 interface CurrentUserNetworkAccess {
 
-    interface EmailSaveListener {
-        fun onEmailSaveSuccess()
+    interface UserInfoSavedCallback {
+        fun onUserInfoSavedSuccess()
 
-        fun onEmailSaveFailure()
+        fun onUserInfoSavedFailure()
     }
 
-    interface AddUserCompanyListener {
-        fun onAddUserCompanySuccess()
+    interface UserInfoRetrievedCallback {
+        fun onUserInfoRetrieved(info: Any?)
 
-        fun onAddUserCompanyFailure()
+        fun onUserInfoRetrievalFailure()
     }
 
-    fun setEmailSaveListener(listener: EmailSaveListener)
+    fun setUserInfoSavedListener(userInfoListener: UserInfoSavedCallback)
 
-    fun setAddUserCompanyListener(listener: AddUserCompanyListener)
+    fun setUserInfoRetrievedListener(userInfoRetrievedCallback: UserInfoRetrievedCallback)
 
     fun getCurrentUser(): FirebaseUser?
 
-    fun saveUserInfo(userEmail: String, isAdmin: Boolean = false)
+    fun saveUserInfo(userEmail: String, details: HashMap<String, Any>)
 
-    fun setUserCompany(userEmail: String, companyId: String)
+    fun getUserInfo(userEmail: String, details: String)
 
 }

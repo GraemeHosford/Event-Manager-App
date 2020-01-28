@@ -27,7 +27,7 @@ class CreateCompanyPresenterImplTest {
 
     private val listener = slot<CreateCompanyInteractor.CreateCompanyListener>()
 
-    private val interactorCallback = slot<CurrentUserInteractor.AddUserCompanyListener>()
+    private val interactorCallback = slot<CurrentUserInteractor.UserCompanyListener>()
 
     @Before
     fun setup() {

@@ -10,7 +10,7 @@ class LoginInteractorImpl @Inject constructor(
 
     override fun onCreate() {
         super.onCreate()
-        currentUserNetworkAccess.setEmailSaveListener(SaveListener())
+        currentUserNetworkAccess.setUserInfoSavedListener(EmailSaveListener())
     }
 
     override fun loggedIn(): Boolean {
@@ -19,18 +19,23 @@ class LoginInteractorImpl @Inject constructor(
 
     override fun saveUserDetails(email: String?) {
         if (email != null) {
-            currentUserNetworkAccess.saveUserInfo(email)
+            currentUserNetworkAccess.saveUserInfo(
+                email,
+                hashMapOf(
+                    "userEmail" to email
+                )
+            )
         } else {
             callback?.onSaveFailure()
         }
     }
 
-    private inner class SaveListener : CurrentUserNetworkAccess.EmailSaveListener {
-        override fun onEmailSaveSuccess() {
+    private inner class EmailSaveListener : CurrentUserNetworkAccess.UserInfoSavedCallback {
+        override fun onUserInfoSavedSuccess() {
             callback?.onSaveSuccess()
         }
 
-        override fun onEmailSaveFailure() {
+        override fun onUserInfoSavedFailure() {
             callback?.onSaveFailure()
         }
     }

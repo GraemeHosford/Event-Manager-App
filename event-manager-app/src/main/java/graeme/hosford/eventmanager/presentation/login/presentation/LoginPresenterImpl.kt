@@ -6,6 +6,7 @@ import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.business.login.LoginInteractor
+import graeme.hosford.eventmanager.business.user.CurrentUserInteractor
 import graeme.hosford.eventmanager.presentation.common.presenter.BasePresenter
 import graeme.hosford.eventmanager.presentation.login.LoginPresenter
 import graeme.hosford.eventmanager.presentation.login.LoginView
@@ -13,18 +14,20 @@ import graeme.hosford.eventmanager.presentation.login.SIGN_IN_REQUEST_CODE
 import javax.inject.Inject
 
 class LoginPresenterImpl @Inject constructor(
-    private val interactor: LoginInteractor
+    private val interactor: LoginInteractor,
+    private val currentUserInteractor: CurrentUserInteractor
 ) : BasePresenter<LoginView, LoginInteractor>(interactor),
     LoginPresenter {
 
     override fun onViewCreated(view: LoginView) {
         super.onViewCreated(view)
         interactor.registerCallback(UserDetailsSaveListener())
+        currentUserInteractor.registerCallback(UserInfoRetrieved())
     }
 
     override fun checkLoggedIn() {
         if (interactor.loggedIn()) {
-            view?.showCompanyCreationFlow()
+            currentUserInteractor.checkUserHasCompany()
         } else {
             view?.showLoginFlow()
         }
@@ -60,6 +63,26 @@ class LoginPresenterImpl @Inject constructor(
 
         override fun onSaveFailure() {
             signInError()
+        }
+    }
+
+    private inner class UserInfoRetrieved : CurrentUserInteractor.UserCompanyListener {
+        override fun onAddUserCompanySuccess() {
+        }
+
+        override fun onAddUserCompanyFailure() {
+        }
+
+        override fun onUserInfoRetrieved(info: Any?) {
+            if (info != null) {
+                view?.showMainActivity()
+            } else {
+                view?.showCompanyCreationFlow()
+            }
+        }
+
+        override fun onUserInfoRetrievalFailed() {
+            view?.showLongToast(R.string.generic_error_loading_data)
         }
     }
 }

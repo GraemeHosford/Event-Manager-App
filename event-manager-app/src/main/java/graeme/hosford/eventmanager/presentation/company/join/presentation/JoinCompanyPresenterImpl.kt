@@ -34,13 +34,19 @@ class JoinCompanyPresenterImpl @Inject constructor(
         }
     }
 
-    private inner class AddUserListener : CurrentUserInteractor.AddUserCompanyListener {
+    private inner class AddUserListener : CurrentUserInteractor.UserCompanyListener {
         override fun onAddUserCompanySuccess() {
             view?.showMainActivity()
         }
 
         override fun onAddUserCompanyFailure() {
             view?.showLongToast(R.string.company_join_failure_message)
+        }
+
+        override fun onUserInfoRetrieved(info: Any?) {
+        }
+
+        override fun onUserInfoRetrievalFailed() {
         }
     }
 

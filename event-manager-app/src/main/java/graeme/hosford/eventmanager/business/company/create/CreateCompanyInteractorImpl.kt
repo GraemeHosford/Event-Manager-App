@@ -1,6 +1,5 @@
 package graeme.hosford.eventmanager.business.company.create
 
-import android.util.Log
 import graeme.hosford.eventmanager.business.common.BaseInteractor
 import graeme.hosford.eventmanager.data.company.CompanyFirebaseAccess
 import graeme.hosford.eventmanager.data.company.CompanyFirebaseAccessImpl
@@ -31,7 +30,6 @@ class CreateCompanyInteractorImpl @Inject constructor(
                     callback?.onGetCompanyIdSuccess(it.id, it.name)
                 },
                 {
-                    Log.d("CompanyID", it.message, it)
                     callback?.onGetCompanyIdFailure()
                 }
             )

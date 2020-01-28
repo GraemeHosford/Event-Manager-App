@@ -18,12 +18,12 @@ class CurrentUserInteractorImplTest {
     private lateinit var userNetwork: CurrentUserNetworkAccess
 
     @RelaxedMockK
-    private lateinit var callback: CurrentUserInteractor.AddUserCompanyListener
+    private lateinit var callback: CurrentUserInteractor.UserCompanyListener
 
     @RelaxedMockK
     private lateinit var user: FirebaseUser
 
-    private val capture = slot<CurrentUserNetworkAccess.AddUserCompanyListener>()
+    private val capture = slot<CurrentUserNetworkAccess.UserInfoSavedCallback>()
 
     @Before
     fun setup() {
@@ -56,7 +56,7 @@ class CurrentUserInteractorImplTest {
     fun userCompanyListener_callsSuccessOnCallbackWhenSuccessful() {
         interactor.registerCallback(callback)
 
-        capture.captured.onAddUserCompanySuccess()
+        capture.captured.onUserInfoSavedSuccess()
 
         verify { interactor.callback?.onAddUserCompanySuccess() }
     }
@@ -64,8 +64,8 @@ class CurrentUserInteractorImplTest {
     @Test
     fun userCompanyListener_callsFailureOnCallbackWhenFailed() {
         interactor.registerCallback(callback)
-        
-        capture.captured.onAddUserCompanyFailure()
+
+        capture.captured.onUserInfoSavedFailure()
 
         verify { interactor.callback?.onAddUserCompanyFailure() }
     }

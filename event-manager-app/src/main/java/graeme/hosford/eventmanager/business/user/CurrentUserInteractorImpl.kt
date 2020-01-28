@@ -6,28 +6,49 @@ import javax.inject.Inject
 
 class CurrentUserInteractorImpl @Inject constructor(
     private val currentUserNetworkAccess: CurrentUserNetworkAccess
-) : BaseInteractor<CurrentUserInteractor.AddUserCompanyListener>(),
+) : BaseInteractor<CurrentUserInteractor.UserCompanyListener>(),
     CurrentUserInteractor {
 
     override fun onCreate() {
         super.onCreate()
-        currentUserNetworkAccess.setAddUserCompanyListener(AddUserCompanyListener())
+        currentUserNetworkAccess.setUserInfoSavedListener(UserInfoSavedListener())
+        currentUserNetworkAccess.setUserInfoRetrievedListener(UserInfoRetrievedListener())
     }
 
     override fun setUserCompany(companyId: String) {
-        currentUserNetworkAccess.setUserCompany(
+        currentUserNetworkAccess.saveUserInfo(
             currentUserNetworkAccess.getCurrentUser()?.email!!,
-            companyId
+            hashMapOf(
+                "companyId" to companyId
+            )
         )
     }
 
-    private inner class AddUserCompanyListener : CurrentUserNetworkAccess.AddUserCompanyListener {
-        override fun onAddUserCompanySuccess() {
+    override fun checkUserHasCompany() {
+        currentUserNetworkAccess.getUserInfo(
+            currentUserNetworkAccess.getCurrentUser()?.email!!,
+            "companyId"
+        )
+    }
+
+    private inner class UserInfoSavedListener : CurrentUserNetworkAccess.UserInfoSavedCallback {
+        override fun onUserInfoSavedSuccess() {
             callback?.onAddUserCompanySuccess()
         }
 
-        override fun onAddUserCompanyFailure() {
+        override fun onUserInfoSavedFailure() {
             callback?.onAddUserCompanyFailure()
+        }
+    }
+
+    private inner class UserInfoRetrievedListener :
+        CurrentUserNetworkAccess.UserInfoRetrievedCallback {
+        override fun onUserInfoRetrieved(info: Any?) {
+            callback?.onUserInfoRetrieved(info)
+        }
+
+        override fun onUserInfoRetrievalFailure() {
+            callback?.onUserInfoRetrievalFailed()
         }
     }
 

@@ -26,7 +26,7 @@ class JoinCompanyPresenterImplTest {
 
     private val listenerCapture = slot<JoinCompanyInteractor.JoinCompanyListener>()
 
-    private val userListenerCapture = slot<CurrentUserInteractor.AddUserCompanyListener>()
+    private val userListenerCapture = slot<CurrentUserInteractor.UserCompanyListener>()
 
     @Before
     fun setup() {

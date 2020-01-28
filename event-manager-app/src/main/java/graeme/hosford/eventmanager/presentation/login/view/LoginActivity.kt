@@ -9,6 +9,7 @@ import graeme.hosford.eventmanager.presentation.company.create_join_screen.view.
 import graeme.hosford.eventmanager.presentation.login.LoginView
 import graeme.hosford.eventmanager.presentation.login.SIGN_IN_REQUEST_CODE
 import graeme.hosford.eventmanager.presentation.login.presentation.LoginPresenterImpl
+import graeme.hosford.eventmanager.presentation.main.view.MainActivity
 import javax.inject.Inject
 
 class LoginActivity : BaseActivity(),
@@ -43,6 +44,11 @@ class LoginActivity : BaseActivity(),
 
     override fun showCompanyCreationFlow() {
         startActivity(Intent(this, CreateJoinCompanyActivity::class.java))
+        finish()
+    }
+
+    override fun showMainActivity() {
+        startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
 

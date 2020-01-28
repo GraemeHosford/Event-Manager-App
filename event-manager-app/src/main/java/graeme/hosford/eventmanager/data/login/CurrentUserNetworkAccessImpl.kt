@@ -11,52 +11,46 @@ const val USERS_COLLECTION = "Users"
 class CurrentUserNetworkAccessImpl @Inject constructor() :
     CurrentUserNetworkAccess {
 
-    private var emailSaveListener: CurrentUserNetworkAccess.EmailSaveListener? = null
+    lateinit var userInfoSavedCallback: CurrentUserNetworkAccess.UserInfoSavedCallback
+    lateinit var userInfoRetrievedCallback: CurrentUserNetworkAccess.UserInfoRetrievedCallback
 
-    private var userCompanyListener: CurrentUserNetworkAccess.AddUserCompanyListener? = null
-
-    override fun setAddUserCompanyListener(listener: CurrentUserNetworkAccess.AddUserCompanyListener) {
-        userCompanyListener = listener
+    override fun setUserInfoSavedListener(userInfoListener: CurrentUserNetworkAccess.UserInfoSavedCallback) {
+        userInfoSavedCallback = userInfoListener
     }
 
-    override fun setEmailSaveListener(listener: CurrentUserNetworkAccess.EmailSaveListener) {
-        emailSaveListener = listener
+    override fun setUserInfoRetrievedListener(
+        userInfoRetrievedCallback: CurrentUserNetworkAccess.UserInfoRetrievedCallback
+    ) {
+        this.userInfoRetrievedCallback = userInfoRetrievedCallback
     }
 
     override fun getCurrentUser(): FirebaseUser? {
         return FirebaseAuth.getInstance().currentUser
     }
 
-    override fun saveUserInfo(userEmail: String, isAdmin: Boolean) {
+    override fun getUserInfo(userEmail: String, details: String) {
         FirebaseFirestore.getInstance()
             .collection(USERS_COLLECTION)
             .document(userEmail)
-            .set(
-                hashMapOf(
-                    "email" to userEmail,
-                    "isAdmin" to isAdmin
-                ),
-                SetOptions.merge()
-            ).addOnSuccessListener {
-                emailSaveListener?.onEmailSaveSuccess()
+            .get()
+            .addOnSuccessListener {
+                userInfoRetrievedCallback.onUserInfoRetrieved(it.get(details))
             }.addOnFailureListener {
-                emailSaveListener?.onEmailSaveFailure()
+                userInfoRetrievedCallback.onUserInfoRetrievalFailure()
             }
     }
 
-    override fun setUserCompany(userEmail: String, companyId: String) {
+    override fun saveUserInfo(userEmail: String, details: HashMap<String, Any>) {
         FirebaseFirestore.getInstance()
             .collection(USERS_COLLECTION)
             .document(userEmail)
             .set(
-                hashMapOf(
-                    "companyId" to companyId
-                ),
+                details,
                 SetOptions.merge()
             ).addOnSuccessListener {
-                userCompanyListener?.onAddUserCompanySuccess()
+                userInfoSavedCallback.onUserInfoSavedSuccess()
             }.addOnFailureListener {
-                userCompanyListener?.onAddUserCompanyFailure()
+                userInfoSavedCallback.onUserInfoSavedFailure()
             }
     }
 }

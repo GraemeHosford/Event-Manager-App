@@ -42,13 +42,19 @@ class CreateCompanyPresenterImpl @Inject constructor(
         }
     }
 
-    private inner class UserInteractorCallback : CurrentUserInteractor.AddUserCompanyListener {
+    private inner class UserInteractorCallback : CurrentUserInteractor.UserCompanyListener {
         override fun onAddUserCompanySuccess() {
             view?.showMainActivity()
         }
 
         override fun onAddUserCompanyFailure() {
             view?.showLongToast(R.string.error_creating_company)
+        }
+
+        override fun onUserInfoRetrieved(info: Any?) {
+        }
+
+        override fun onUserInfoRetrievalFailed() {
         }
     }
 }

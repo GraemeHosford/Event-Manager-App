@@ -11,4 +11,6 @@ interface LoginView :
 
     fun showCompanyCreationFlow()
 
+    fun showMainActivity()
+
 }
