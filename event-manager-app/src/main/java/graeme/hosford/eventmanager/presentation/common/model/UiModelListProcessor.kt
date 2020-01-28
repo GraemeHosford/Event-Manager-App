@@ -2,11 +2,14 @@ package graeme.hosford.eventmanager.presentation.common.model
 
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 abstract class UiModelListProcessor<Entity, UiModel>(
     private val converter: UiModelConverter<Entity, UiModel>
 ) {
+
+    private val disposable: CompositeDisposable = CompositeDisposable()
 
     private var callback: ProcessingCompleteCallback<UiModel>? = null
 
@@ -21,7 +24,7 @@ abstract class UiModelListProcessor<Entity, UiModel>(
     }
 
     fun process(entities: List<Entity>) {
-        Observable.fromArray(entities)
+        disposable.add(Observable.fromArray(entities)
             .map { t ->
                 val modelList = ArrayList<UiModel>()
                 t.forEach {
@@ -34,12 +37,18 @@ abstract class UiModelListProcessor<Entity, UiModel>(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
-                    callback?.onProcessingComplete(it)
+                    onProcessingFinished(it)
                 },
                 {
                     callback?.onProcessingFailure()
                 }
-            ).dispose()
+            )
+        )
+    }
+
+    private fun onProcessingFinished(entities: List<UiModel>) {
+        callback?.onProcessingComplete(entities)
+        disposable.clear()
     }
 
 }
