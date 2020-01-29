@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 abstract class BaseAdapter<Model, ViewHolder : BaseViewHolder<Model>> :
     RecyclerView.Adapter<ViewHolder>() {
 
-    private lateinit var items: ArrayList<Model>
+    private val items: ArrayList<Model> = ArrayList()
 
     fun setItems(models: List<Model>) {
         items.clear()
