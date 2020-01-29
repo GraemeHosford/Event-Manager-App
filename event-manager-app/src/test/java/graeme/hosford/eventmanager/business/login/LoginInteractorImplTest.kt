@@ -24,7 +24,7 @@ class LoginInteractorImplTest {
     @RelaxedMockK
     private lateinit var user: FirebaseUser
 
-    private val saveListener = slot<CurrentUserNetworkAccess.EmailSaveListener>()
+    private val saveListener = slot<CurrentUserNetworkAccess.UserInfoSavedCallback>()
 
     @Before
     fun setup() {
@@ -33,7 +33,7 @@ class LoginInteractorImplTest {
         interactor = LoginInteractorImpl(userAccess)
         interactor.onCreate()
 
-        verify { userAccess.setEmailSaveListener(capture(saveListener)) }
+        verify { userAccess.setUserInfoSavedListener(capture(saveListener)) }
     }
 
     @Test
@@ -52,15 +52,15 @@ class LoginInteractorImplTest {
 
     @Test
     fun saveUserDetails_callsUserAccessSaveInfoWHenEmailNotNull() {
-        interactor.saveUserDetails("Test")
+        interactor.saveUserEmail("Test")
 
-        verify { userAccess.saveUserInfo("Test") }
+        verify { userAccess.saveUserInfo("Test", hashMapOf("userEmail" to "Test")) }
     }
 
     @Test
     fun saveUserDetails_callsUserDetailsListenerOnFailureWhenEmailIsNull() {
         interactor.registerCallback(interactorListener)
-        interactor.saveUserDetails(null)
+        interactor.saveUserEmail(null)
 
         verify { interactorListener.onSaveFailure() }
     }
@@ -68,7 +68,7 @@ class LoginInteractorImplTest {
     @Test
     fun emailSaveListener_callsUserDetailsListenerOnSaveSuccessWhenSavedSuccessfully() {
         interactor.registerCallback(interactorListener)
-        saveListener.captured.onEmailSaveSuccess()
+        saveListener.captured.onUserInfoSavedSuccess()
 
         verify { interactorListener.onSaveSuccess() }
     }
@@ -76,7 +76,7 @@ class LoginInteractorImplTest {
     @Test
     fun emailSaveListener_callsUserDetailsListenerOnSaveFailureWhenNotSaved() {
         interactor.registerCallback(interactorListener)
-        saveListener.captured.onEmailSaveFailure()
+        saveListener.captured.onUserInfoSavedFailure()
 
         verify { interactorListener.onSaveFailure() }
     }

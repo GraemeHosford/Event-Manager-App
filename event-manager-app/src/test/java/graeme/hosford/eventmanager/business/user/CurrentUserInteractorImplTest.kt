@@ -32,14 +32,14 @@ class CurrentUserInteractorImplTest {
         interactor = CurrentUserInteractorImpl(userNetwork)
         interactor.onCreate()
 
-        verify { userNetwork.setAddUserCompanyListener(capture(capture)) }
+        verify { userNetwork.setUserInfoSavedListener(capture(capture)) }
     }
 
     @Test
     fun onCreate_addUserCompanyListener() {
         interactor.onCreate()
 
-        verify { userNetwork.setAddUserCompanyListener(capture.captured) }
+        verify { userNetwork.setUserInfoSavedListener(capture.captured) }
     }
 
     @Test
@@ -49,7 +49,7 @@ class CurrentUserInteractorImplTest {
 
         interactor.setUserCompany("123")
 
-        verify { userNetwork.setUserCompany("Test", "123") }
+        verify { userNetwork.saveUserInfo("Test", hashMapOf("companyId" to "123")) }
     }
 
     @Test

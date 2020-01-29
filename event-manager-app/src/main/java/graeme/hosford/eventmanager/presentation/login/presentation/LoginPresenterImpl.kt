@@ -45,7 +45,7 @@ class LoginPresenterImpl @Inject constructor(
             val response = IdpResponse.fromResultIntent(data)
 
             if (resultCode == Activity.RESULT_OK && response != null) {
-                interactor.saveUserDetails(response.email)
+                interactor.saveUserEmail(response.email)
             } else {
                 signInError()
             }

@@ -12,6 +12,6 @@ interface LoginInteractor : Interactor<LoginInteractor.SaveUserDetailsListener> 
 
     fun loggedIn(): Boolean
 
-    fun saveUserDetails(email: String?)
+    fun saveUserEmail(email: String?)
 
 }
