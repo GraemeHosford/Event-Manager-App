@@ -69,6 +69,10 @@ class LoginPresenterImpl @Inject constructor(
 
     private inner class UserInfoRetrieved : CurrentUserInteractor.UserCompanyListener {
         override fun onAddUserCompanySuccess() {
+            /* This callback method name does not make much sense here and comes from previous
+            changes made where this method name was not updated. This callback interface should be
+            split up more but do not have time for that refactoring right now :/ */
+            currentUserInteractor.checkUserHasCompany()
         }
 
         override fun onAddUserCompanyFailure() {
