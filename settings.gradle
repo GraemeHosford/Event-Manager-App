@@ -1,2 +1,2 @@
-include ':event-manager-app', ':event-manager-app-core', ':event-manager-business', ':event-manager-data', ':event-manager-data-access', ':event-manager-data-bridge', ':event-manager-entity'
+include ':event-manager-app'
 rootProject.name='Event Manager'
