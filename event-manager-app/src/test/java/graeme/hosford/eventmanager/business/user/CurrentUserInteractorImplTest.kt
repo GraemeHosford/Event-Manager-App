@@ -23,7 +23,9 @@ class CurrentUserInteractorImplTest {
     @RelaxedMockK
     private lateinit var user: FirebaseUser
 
-    private val capture = slot<CurrentUserNetworkAccess.UserInfoSavedCallback>()
+    private val saveCapture = slot<CurrentUserNetworkAccess.UserInfoSavedCallback>()
+
+    private val retrieveCapture = slot<CurrentUserNetworkAccess.UserInfoRetrievedCallback>()
 
     @Before
     fun setup() {
@@ -32,14 +34,16 @@ class CurrentUserInteractorImplTest {
         interactor = CurrentUserInteractorImpl(userNetwork)
         interactor.onCreate()
 
-        verify { userNetwork.setUserInfoSavedListener(capture(capture)) }
+        verify { userNetwork.setUserInfoSavedListener(capture(saveCapture)) }
+        verify { userNetwork.setUserInfoRetrievedListener(capture(retrieveCapture)) }
     }
 
     @Test
-    fun onCreate_addUserCompanyListener() {
+    fun onCreate_setsUserInfoListeners() {
         interactor.onCreate()
 
-        verify { userNetwork.setUserInfoSavedListener(capture.captured) }
+        verify { userNetwork.setUserInfoSavedListener(saveCapture.captured) }
+        verify { userNetwork.setUserInfoRetrievedListener(retrieveCapture.captured) }
     }
 
     @Test
@@ -53,21 +57,48 @@ class CurrentUserInteractorImplTest {
     }
 
     @Test
+    fun checkUserHasCompany_callsNetworkAccess_getUserInfo() {
+        every { userNetwork.getCurrentUser() } returns user
+        every { user.email } returns "Test"
+
+        interactor.checkUserHasCompany()
+
+        verify { userNetwork.getUserInfo("Test", "companyId") }
+    }
+
+    @Test
     fun userCompanyListener_callsSuccessOnCallbackWhenSuccessful() {
         interactor.registerCallback(callback)
 
-        capture.captured.onUserInfoSavedSuccess()
+        saveCapture.captured.onUserInfoSavedSuccess()
 
-        verify { interactor.callback?.onAddUserCompanySuccess() }
+        verify { callback.onAddUserCompanySuccess() }
     }
 
     @Test
     fun userCompanyListener_callsFailureOnCallbackWhenFailed() {
         interactor.registerCallback(callback)
 
-        capture.captured.onUserInfoSavedFailure()
+        saveCapture.captured.onUserInfoSavedFailure()
 
-        verify { interactor.callback?.onAddUserCompanyFailure() }
+        verify { callback.onAddUserCompanyFailure() }
+    }
+
+    @Test
+    fun userInfoRetrieved_onUserInfoRetrieved_callsCallbackOnUserInfoRetrieved() {
+        interactor.registerCallback(callback)
+
+        retrieveCapture.captured.onUserInfoRetrieved("Some Info")
+        verify { callback.onUserInfoRetrieved("Some Info") }
+    }
+
+    @Test
+    fun userInfoRetrieved_onUserInfoRetrievedFailure_callsCallbackOnUserInfoRetrievedFailed() {
+        interactor.registerCallback(callback)
+
+        retrieveCapture.captured.onUserInfoRetrievalFailure()
+
+        verify { callback.onUserInfoRetrievalFailed() }
     }
 
 }

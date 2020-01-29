@@ -27,6 +27,8 @@ class LoginPresenterImplTest {
 
     private val userDetailsListener = slot<LoginInteractor.SaveUserDetailsListener>()
 
+    private val userInfoRetrieved = slot<CurrentUserInteractor.UserCompanyListener>()
+
     @Before
     fun setup() {
         MockKAnnotations.init(this)
@@ -35,15 +37,26 @@ class LoginPresenterImplTest {
         presenter.onViewCreated(view)
 
         verify { interactor.registerCallback(capture(userDetailsListener)) }
+        verify { userInteractor.registerCallback(capture(userInfoRetrieved)) }
     }
 
     @Test
-    fun checkLoggedIn_showsCompanyCreationFlow_whenLoggedIn() {
+    fun presenterOnCreate_callsCurrentUserInteractor_onCreate() {
+        /* This test here to handle having multiple interactors in this presenter.
+        * Would like to move interactors to be nested to avoid this case and the poor code that
+        * comes with it but no time at the moment. Remove this test when this is completed. */
+        presenter.onViewCreated(view)
+
+        verify { userInteractor.onCreate() }
+    }
+
+    @Test
+    fun checkLoggedIn_checksIfUserAlreadyHasCompany_whenLoggedIn() {
         every { interactor.loggedIn() } returns true
 
         presenter.checkLoggedIn()
 
-        verify { view.showCompanyCreationFlow() }
+        verify { userInteractor.checkUserHasCompany() }
     }
 
     @Test
@@ -70,4 +83,39 @@ class LoginPresenterImplTest {
         verify { view.showLoginFlow() }
     }
 
+    @Test
+    fun userInfoRetrieved_onAddUserCompanySuccess_checksUserHasCompany() {
+        userInfoRetrieved.captured.onAddUserCompanySuccess()
+
+        verify { userInteractor.checkUserHasCompany() }
+    }
+
+    @Test
+    fun userInfoRetrieved_onAddUserCompanyFailure_showsErrorAndLoginFlow() {
+        userInfoRetrieved.captured.onAddUserCompanyFailure()
+
+        verify { view.showLongToast(R.string.error_sign_in) }
+        verify { view.showLoginFlow() }
+    }
+
+    @Test
+    fun userInfoRetrieved_onInfoRetrieved_showsMainActivity_whenNotNull() {
+        userInfoRetrieved.captured.onUserInfoRetrieved("123")
+
+        verify { view.showMainActivity() }
+    }
+
+    @Test
+    fun userInfoRetrieved_onInfoRetrieved_showsCompanyCreationFlow_whenNull() {
+        userInfoRetrieved.captured.onUserInfoRetrieved(null)
+
+        verify { view.showCompanyCreationFlow() }
+    }
+
+    @Test
+    fun userInfoRetrieved_onInfoRetrievedFailure_showsError() {
+        userInfoRetrieved.captured.onUserInfoRetrievalFailed()
+
+        verify { view.showLongToast(R.string.generic_error_loading_data) }
+    }
 }

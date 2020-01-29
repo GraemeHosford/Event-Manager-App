@@ -41,6 +41,15 @@ class CreateCompanyPresenterImplTest {
     }
 
     @Test
+    fun onViewCreated_callsCurrentUserInteractor_onCreate() {
+        /* Has to be handled here because BasePresenter does not handle multiple interactors.
+        Not great but works for now */
+        presenter.onViewCreated(view)
+
+        verify { userInteractor.onCreate() }
+    }
+
+    @Test
     fun onCreateCompanyButtonClick_callsInteractorGetCompanyId() {
         presenter.onCreateCompanyButtonClick("Test")
 

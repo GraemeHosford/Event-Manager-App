@@ -76,6 +76,7 @@ class LoginPresenterImpl @Inject constructor(
         }
 
         override fun onAddUserCompanyFailure() {
+            signInError()
         }
 
         override fun onUserInfoRetrieved(info: Any?) {

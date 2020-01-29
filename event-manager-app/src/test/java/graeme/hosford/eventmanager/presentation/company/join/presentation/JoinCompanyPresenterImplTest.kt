@@ -39,6 +39,13 @@ class JoinCompanyPresenterImplTest {
     }
 
     @Test
+    fun onViewCreated_callsUserInteractor_onCreate() {
+        presenter.onViewCreated(view)
+
+        verify { userInteractor.onCreate() }
+    }
+
+    @Test
     fun onViewCreated_callsRegisterCallback_onInteractor() {
         presenter.onViewCreated(view)
 
