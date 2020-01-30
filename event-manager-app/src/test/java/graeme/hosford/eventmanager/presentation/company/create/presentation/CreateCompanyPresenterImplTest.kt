@@ -22,31 +22,18 @@ class CreateCompanyPresenterImplTest {
     @RelaxedMockK
     private lateinit var interactor: CreateCompanyInteractorImpl
 
-    @RelaxedMockK
-    private lateinit var userInteractor: CurrentUserInteractor
-
     private val listener = slot<CreateCompanyInteractor.CreateCompanyListener>()
-
     private val interactorCallback = slot<CurrentUserInteractor.UserCompanyListener>()
 
     @Before
     fun setup() {
         MockKAnnotations.init(this)
 
-        presenter = CreateCompanyPresenterImpl(interactor, userInteractor)
+        presenter = CreateCompanyPresenterImpl(interactor)
         presenter.onViewCreated(view)
 
         verify { interactor.registerCallback(capture(listener)) }
-        verify { userInteractor.registerCallback(capture(interactorCallback)) }
-    }
-
-    @Test
-    fun onViewCreated_callsCurrentUserInteractor_onCreate() {
-        /* Has to be handled here because BasePresenter does not handle multiple interactors.
-        Not great but works for now */
-        presenter.onViewCreated(view)
-
-        verify { userInteractor.onCreate() }
+        verify { interactor.registerCurrentUserInteractorListener(capture(interactorCallback)) }
     }
 
     @Test
@@ -74,7 +61,7 @@ class CreateCompanyPresenterImplTest {
     fun companyListener_showsEventList_onSaveCompanySuccess() {
         listener.captured.onSaveCompanySuccess("123")
 
-        verify { userInteractor.setUserCompany("123") }
+        verify { interactor.setUserCompany("123") }
     }
 
     @Test
