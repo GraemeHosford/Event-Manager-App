@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="graeme.hosford.eventmanager">
@@ -10,5 +11,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning" />
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name=".presentation.login.view.LoginActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".presentation.company.create_join_screen.view.CreateJoinCompanyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".presentation.company.join.view.JoinCompanyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".presentation.company.create.view.CreateCompanyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".presentation.main.view.MainActivity"
+            android:label="@string/title_activity_event_list"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+    </application>
+
 </manifest>
