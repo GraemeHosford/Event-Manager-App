@@ -59,7 +59,7 @@ class LoginPresenterImplTest {
     fun onUserDetailsSaveSuccess_showsCompanyCreationFlow() {
         userDetailsListener.captured.onSaveSuccess()
 
-        verify { view.showCompanyCreationFlow() }
+        verify { interactor.checkUserHasCompany() }
     }
 
     @Test

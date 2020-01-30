@@ -57,7 +57,7 @@ class LoginPresenterImpl @Inject constructor(
 
     private inner class UserDetailsSaveListener : LoginInteractor.SaveUserDetailsListener {
         override fun onSaveSuccess() {
-            view?.showCompanyCreationFlow()
+            interactor.checkUserHasCompany()
         }
 
         override fun onSaveFailure() {
