@@ -14,21 +14,19 @@ import graeme.hosford.eventmanager.presentation.login.SIGN_IN_REQUEST_CODE
 import javax.inject.Inject
 
 class LoginPresenterImpl @Inject constructor(
-    private val interactor: LoginInteractor,
-    private val currentUserInteractor: CurrentUserInteractor
+    private val interactor: LoginInteractor
 ) : BasePresenter<LoginView, LoginInteractor>(interactor),
     LoginPresenter {
 
     override fun onViewCreated(view: LoginView) {
         super.onViewCreated(view)
-        currentUserInteractor.onCreate()
         interactor.registerCallback(UserDetailsSaveListener())
-        currentUserInteractor.registerCallback(UserInfoRetrieved())
+        interactor.registerCurrentUserInteractorCallback(UserInfoRetrieved())
     }
 
     override fun checkLoggedIn() {
         if (interactor.loggedIn()) {
-            currentUserInteractor.checkUserHasCompany()
+            interactor.checkUserHasCompany()
         } else {
             view?.showLoginFlow()
         }
@@ -59,7 +57,7 @@ class LoginPresenterImpl @Inject constructor(
 
     private inner class UserDetailsSaveListener : LoginInteractor.SaveUserDetailsListener {
         override fun onSaveSuccess() {
-            view?.showCompanyCreationFlow()
+            interactor.checkUserHasCompany()
         }
 
         override fun onSaveFailure() {
@@ -72,7 +70,7 @@ class LoginPresenterImpl @Inject constructor(
             /* This callback method name does not make much sense here and comes from previous
             changes made where this method name was not updated. This callback interface should be
             split up more but do not have time for that refactoring right now :/ */
-            currentUserInteractor.checkUserHasCompany()
+            interactor.checkUserHasCompany()
         }
 
         override fun onAddUserCompanyFailure() {

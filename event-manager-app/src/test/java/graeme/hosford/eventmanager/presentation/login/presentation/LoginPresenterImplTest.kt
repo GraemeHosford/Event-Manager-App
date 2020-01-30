@@ -22,9 +22,6 @@ class LoginPresenterImplTest {
     @RelaxedMockK
     private lateinit var interactor: LoginInteractor
 
-    @RelaxedMockK
-    private lateinit var userInteractor: CurrentUserInteractor
-
     private val userDetailsListener = slot<LoginInteractor.SaveUserDetailsListener>()
 
     private val userInfoRetrieved = slot<CurrentUserInteractor.UserCompanyListener>()
@@ -33,21 +30,11 @@ class LoginPresenterImplTest {
     fun setup() {
         MockKAnnotations.init(this)
 
-        presenter = LoginPresenterImpl(interactor, userInteractor)
+        presenter = LoginPresenterImpl(interactor)
         presenter.onViewCreated(view)
 
         verify { interactor.registerCallback(capture(userDetailsListener)) }
-        verify { userInteractor.registerCallback(capture(userInfoRetrieved)) }
-    }
-
-    @Test
-    fun presenterOnCreate_callsCurrentUserInteractor_onCreate() {
-        /* This test here to handle having multiple interactors in this presenter.
-        * Would like to move interactors to be nested to avoid this case and the poor code that
-        * comes with it but no time at the moment. Remove this test when this is completed. */
-        presenter.onViewCreated(view)
-
-        verify { userInteractor.onCreate() }
+        verify { interactor.registerCurrentUserInteractorCallback(capture(userInfoRetrieved)) }
     }
 
     @Test
@@ -56,7 +43,7 @@ class LoginPresenterImplTest {
 
         presenter.checkLoggedIn()
 
-        verify { userInteractor.checkUserHasCompany() }
+        verify { interactor.checkUserHasCompany() }
     }
 
     @Test
@@ -72,7 +59,7 @@ class LoginPresenterImplTest {
     fun onUserDetailsSaveSuccess_showsCompanyCreationFlow() {
         userDetailsListener.captured.onSaveSuccess()
 
-        verify { view.showCompanyCreationFlow() }
+        verify { interactor.checkUserHasCompany() }
     }
 
     @Test
@@ -87,7 +74,7 @@ class LoginPresenterImplTest {
     fun userInfoRetrieved_onAddUserCompanySuccess_checksUserHasCompany() {
         userInfoRetrieved.captured.onAddUserCompanySuccess()
 
-        verify { userInteractor.checkUserHasCompany() }
+        verify { interactor.checkUserHasCompany() }
     }
 
     @Test

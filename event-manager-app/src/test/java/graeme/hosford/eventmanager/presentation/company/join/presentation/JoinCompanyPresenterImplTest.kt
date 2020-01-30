@@ -19,9 +19,6 @@ class JoinCompanyPresenterImplTest {
     private lateinit var interactor: JoinCompanyInteractor
 
     @RelaxedMockK
-    private lateinit var userInteractor: CurrentUserInteractor
-
-    @RelaxedMockK
     private lateinit var view: JoinCompanyView
 
     private val listenerCapture = slot<JoinCompanyInteractor.JoinCompanyListener>()
@@ -32,17 +29,10 @@ class JoinCompanyPresenterImplTest {
     fun setup() {
         MockKAnnotations.init(this)
 
-        presenter = JoinCompanyPresenterImpl(interactor, userInteractor)
+        presenter = JoinCompanyPresenterImpl(interactor)
         presenter.onViewCreated(view)
         verify { interactor.registerCallback(capture(listenerCapture)) }
-        verify { userInteractor.registerCallback(capture(userListenerCapture)) }
-    }
-
-    @Test
-    fun onViewCreated_callsUserInteractor_onCreate() {
-        presenter.onViewCreated(view)
-
-        verify { userInteractor.onCreate() }
+        verify { interactor.registerCurrentUserInteractorCallback(capture(userListenerCapture)) }
     }
 
     @Test
@@ -63,7 +53,7 @@ class JoinCompanyPresenterImplTest {
     fun joinCompanyListener_onSuccess_callsShowMessageAndMainActivity() {
         listenerCapture.captured.onJoinCompanySuccess("4")
 
-        verify { userInteractor.setUserCompany("4") }
+        verify { interactor.setUserCompany("4") }
     }
 
     @Test

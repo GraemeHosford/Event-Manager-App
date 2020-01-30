@@ -15,4 +15,6 @@ interface Interactor<C> {
 
     fun registerCallback(callback: C)
 
+    fun registerManagedInteractors(): List<Interactor<*>>
+
 }

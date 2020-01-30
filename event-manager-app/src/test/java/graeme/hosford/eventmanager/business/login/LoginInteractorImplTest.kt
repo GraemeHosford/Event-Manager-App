@@ -1,6 +1,7 @@
 package graeme.hosford.eventmanager.business.login
 
 import com.google.firebase.auth.FirebaseUser
+import graeme.hosford.eventmanager.business.user.CurrentUserInteractor
 import graeme.hosford.eventmanager.data.login.CurrentUserNetworkAccess
 import io.mockk.MockKAnnotations
 import io.mockk.every
@@ -19,6 +20,12 @@ class LoginInteractorImplTest {
     private lateinit var userAccess: CurrentUserNetworkAccess
 
     @RelaxedMockK
+    private lateinit var currentUserInteractor: CurrentUserInteractor
+
+    @RelaxedMockK
+    private lateinit var userlistener: CurrentUserInteractor.UserCompanyListener
+
+    @RelaxedMockK
     private lateinit var interactorListener: LoginInteractor.SaveUserDetailsListener
 
     @RelaxedMockK
@@ -30,10 +37,15 @@ class LoginInteractorImplTest {
     fun setup() {
         MockKAnnotations.init(this)
 
-        interactor = LoginInteractorImpl(userAccess)
+        interactor = LoginInteractorImpl(userAccess, currentUserInteractor)
         interactor.onCreate()
 
         verify { userAccess.setUserInfoSavedListener(capture(saveListener)) }
+    }
+
+    @Test
+    fun registerManagedInteractors_registersCurrentUserInteractor() {
+        assertEquals(listOf(currentUserInteractor), interactor.registerManagedInteractors())
     }
 
     @Test
@@ -48,6 +60,20 @@ class LoginInteractorImplTest {
         every { userAccess.getCurrentUser() } returns null
 
         assertEquals(false, interactor.loggedIn())
+    }
+
+    @Test
+    fun registerCurrentUserInteractorCallback_callsCurrentUserInteractorRegisterCallback() {
+        interactor.registerCurrentUserInteractorCallback(userlistener)
+
+        verify { currentUserInteractor.registerCallback(userlistener) }
+    }
+
+    @Test
+    fun checkUserHasCompany_callsCurrentUserInteractorCheckUserHasCompany() {
+        interactor.checkUserHasCompany()
+
+        verify { currentUserInteractor.checkUserHasCompany() }
     }
 
     @Test

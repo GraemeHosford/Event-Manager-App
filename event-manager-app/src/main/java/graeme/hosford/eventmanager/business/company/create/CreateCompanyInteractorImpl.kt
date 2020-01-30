@@ -1,6 +1,8 @@
 package graeme.hosford.eventmanager.business.company.create
 
 import graeme.hosford.eventmanager.business.common.BaseInteractor
+import graeme.hosford.eventmanager.business.common.Interactor
+import graeme.hosford.eventmanager.business.user.CurrentUserInteractor
 import graeme.hosford.eventmanager.data.company.CompanyFirebaseAccess
 import graeme.hosford.eventmanager.data.company.CompanyFirebaseAccessImpl
 import graeme.hosford.eventmanager.data.company.service.CompanyApiService
@@ -11,7 +13,8 @@ import javax.inject.Inject
 
 class CreateCompanyInteractorImpl @Inject constructor(
     private val companyFirebaseAccess: CompanyFirebaseAccessImpl,
-    private val companyApiService: CompanyApiService
+    private val companyApiService: CompanyApiService,
+    private val currentUserInteractor: CurrentUserInteractor
 ) : BaseInteractor<CreateCompanyInteractor.CreateCompanyListener>(), CreateCompanyInteractor {
 
     private val disposables: CompositeDisposable = CompositeDisposable()
@@ -19,6 +22,16 @@ class CreateCompanyInteractorImpl @Inject constructor(
     override fun onCreate() {
         super.onCreate()
         companyFirebaseAccess.setCompanySaveListener(CompanySaveListener())
+    }
+
+    override fun registerManagedInteractors(): List<Interactor<*>> = listOf(currentUserInteractor)
+
+    override fun registerCurrentUserInteractorListener(listener: CurrentUserInteractor.UserCompanyListener) {
+        currentUserInteractor.registerCallback(listener)
+    }
+
+    override fun setUserCompany(companyId: String) {
+        currentUserInteractor.setUserCompany(companyId)
     }
 
     override fun getCompanyId(name: String) {
