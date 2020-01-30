@@ -9,16 +9,14 @@ import graeme.hosford.eventmanager.presentation.company.create.CreateCompanyView
 import javax.inject.Inject
 
 class CreateCompanyPresenterImpl @Inject constructor(
-    private val interactor: CreateCompanyInteractor,
-    private val currentUserInteractor: CurrentUserInteractor
+    private val interactor: CreateCompanyInteractor
 ) : BasePresenter<CreateCompanyView, CreateCompanyInteractor>(interactor),
     CreateCompanyPresenter {
 
     override fun onViewCreated(view: CreateCompanyView) {
         super.onViewCreated(view)
-        currentUserInteractor.onCreate()
         interactor.registerCallback(CompanyListener())
-        currentUserInteractor.registerCallback(UserInteractorCallback())
+        interactor.registerCurrentUserInteractorListener(UserInteractorCallback())
     }
 
     override fun onCreateCompanyButtonClick(name: String) {
@@ -35,7 +33,7 @@ class CreateCompanyPresenterImpl @Inject constructor(
         }
 
         override fun onSaveCompanySuccess(companyId: String) {
-            currentUserInteractor.setUserCompany(companyId)
+            interactor.setUserCompany(companyId)
         }
 
         override fun onSaveCompanyFailure() {
