@@ -2,7 +2,7 @@ package graeme.hosford.eventmanager.business.common
 
 import graeme.hosford.eventmanager.business.login.LoginInteractor
 import graeme.hosford.eventmanager.business.user.CurrentUserInteractor
-import io.mockk.every
+import io.mockk.MockKAnnotations
 import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.verify
 import org.junit.Before
@@ -20,20 +20,14 @@ class BaseInteractorTest {
 
     @Before
     fun setup() {
+        MockKAnnotations.init(this)
+
         interactor = TestInteractor()
     }
 
     @Test
     fun onCreate_callsRegisterManagedInteractors() {
-        every { interactor.registerManagedInteractors() } returns listOf(
-            /* Arbitrary interactors being returned just to test that
-            onCreate is called for all of them */
-            managedInteractor1,
-            managedInteractor2
-        )
         interactor.onCreate()
-
-        verify { interactor.registerManagedInteractors() }
 
         verify { managedInteractor1.onCreate() }
         verify { managedInteractor2.onCreate() }
@@ -41,5 +35,14 @@ class BaseInteractorTest {
 
     /* Only testing base common functionality so the callback being used is arbitrary */
     private inner class TestInteractor :
-        BaseInteractor<LoginInteractor.SaveUserDetailsListener>()
+        BaseInteractor<LoginInteractor.SaveUserDetailsListener>() {
+
+        override fun registerManagedInteractors(): List<Interactor<*>> =
+            listOf(
+                /* Arbitrary interactors being returned just to test that
+                onCreate is called for all of them */
+                managedInteractor1,
+                managedInteractor2
+            )
+    }
 }
