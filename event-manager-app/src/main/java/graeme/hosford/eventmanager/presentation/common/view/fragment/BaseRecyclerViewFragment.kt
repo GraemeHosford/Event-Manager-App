@@ -75,4 +75,9 @@ abstract class BaseRecyclerViewFragment<
         sometimes happen when hiding before RecyclerView is updated */
         loadingBar.visibility = View.GONE
     }
+
+    override fun showErrorScreen() {
+        loadingBar.visibility = View.INVISIBLE
+        errorMessage.visibility = View.VISIBLE
+    }
 }
