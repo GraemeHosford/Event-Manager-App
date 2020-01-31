@@ -8,6 +8,6 @@ import javax.inject.Inject
 class MemberEntityConverter @Inject constructor() : EntityConverter<Member> {
 
     override fun convert(document: DocumentSnapshot): Member {
-        return Member(document.getString("name")!!)
+        return Member(document.getString("userEmail")!!)
     }
 }
