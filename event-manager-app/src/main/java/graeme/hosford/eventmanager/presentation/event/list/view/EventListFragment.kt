@@ -28,6 +28,8 @@ class EventListFragment :
         return EventListAdapter(View.OnClickListener { presenter.onEventItemClick() })
     }
 
+    override fun showFab(): Boolean = true
+
     override fun showEventDetail() {
         /* Nothing for now */
         showLongToast("Event Details Not Implemented Yet")

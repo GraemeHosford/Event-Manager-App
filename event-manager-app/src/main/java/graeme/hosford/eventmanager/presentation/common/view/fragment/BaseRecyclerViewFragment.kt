@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import butterknife.BindView
 import butterknife.ButterKnife
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.presentation.common.view.recyclerview.BaseAdapter
 import graeme.hosford.eventmanager.presentation.common.view.recyclerview.BaseViewHolder
@@ -33,6 +34,9 @@ abstract class BaseRecyclerViewFragment<
 
     @BindView(R.id.no_items_text_view)
     lateinit var emptyItems: TextView
+
+    @BindView(R.id.fab)
+    lateinit var fab: FloatingActionButton
 
     private lateinit var recyclerViewAdapter: Adapter
 
@@ -59,6 +63,16 @@ abstract class BaseRecyclerViewFragment<
                 layoutManager.orientation
             )
         )
+
+        if (showFab()) {
+            fab.show()
+        } else {
+            fab.hide()
+        }
+    }
+
+    protected open fun showFab(): Boolean {
+        return false
     }
 
     protected abstract fun recyclerViewAdapter(): Adapter
