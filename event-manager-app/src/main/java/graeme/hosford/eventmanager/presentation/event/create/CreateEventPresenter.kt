@@ -1,3 +1,7 @@
 package graeme.hosford.eventmanager.presentation.event.create
 
-interface CreateEventPresenter
+interface CreateEventPresenter {
+
+    fun onCreateEventButtonClick(name: String, description: String, location: String)
+
+}

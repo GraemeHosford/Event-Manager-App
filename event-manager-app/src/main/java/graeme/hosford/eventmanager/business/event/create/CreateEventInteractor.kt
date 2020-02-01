@@ -4,6 +4,12 @@ import graeme.hosford.eventmanager.business.common.Interactor
 
 interface CreateEventInteractor : Interactor<CreateEventInteractor.CreateEventCallback> {
 
-    interface CreateEventCallback
+    interface CreateEventCallback {
+        fun onEventSaved()
+
+        fun onEventSaveFailed()
+    }
+
+    fun createEvent(name: String, description: String, location: String)
 
 }

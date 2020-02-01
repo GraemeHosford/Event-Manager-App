@@ -32,6 +32,10 @@
     <string name="create_event_enter_event_description_hint">Enter a Description</string>
     <string name="create_event_enter_event_location_hint">Enter the Event Location</string>
 
+    <string name="create_event_error_empty_fields">You must enter a value for all fields</string>
+    <string name="create_event_success">Your event has been created successfully</string>
+    <string name="create_event_error">There was an eror creating your event. Please try again</string>
+
     <string name="nav_menu_my_company">My Company</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_tools">Tools</string>
