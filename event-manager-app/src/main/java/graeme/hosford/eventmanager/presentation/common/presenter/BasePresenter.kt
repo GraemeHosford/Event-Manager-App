@@ -26,6 +26,10 @@ abstract class BasePresenter<View, I : Interactor<*>>(private val interactor: I)
     }
 
     @CallSuper
+    open fun onResume() {
+    }
+
+    @CallSuper
     fun onViewDestroyed() {
         view = null
     }

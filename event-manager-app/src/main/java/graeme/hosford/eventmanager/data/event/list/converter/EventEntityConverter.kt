@@ -9,7 +9,9 @@ class EventEntityConverter @Inject constructor() : EntityConverter<Event> {
 
     override fun convert(document: DocumentSnapshot): Event {
         return Event(
-            document.getString(Event.NAME_FIELD)!!
+            document.getString(Event.NAME_FIELD) ?: "Test Name",
+            document.getString(Event.DESCRIPTION_FIELD) ?: "Test Description",
+            document.getString(Event.LOCATION_FIELD) ?: "Test Location"
         )
     }
 }

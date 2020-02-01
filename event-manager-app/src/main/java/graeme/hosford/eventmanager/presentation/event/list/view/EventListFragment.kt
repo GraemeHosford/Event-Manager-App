@@ -24,10 +24,19 @@ class EventListFragment :
         EventManagerApplication.appComponent.inject(this)
         super.onCreate(savedInstanceState)
         presenter.onViewCreated(this)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         fab.setOnClickListener {
             presenter.onFabClick()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        presenter.onResume()
     }
 
     override fun startCreateNewEvent() {

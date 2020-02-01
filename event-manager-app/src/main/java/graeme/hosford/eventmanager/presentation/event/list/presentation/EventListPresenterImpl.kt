@@ -21,6 +21,10 @@ class EventListPresenterImpl @Inject constructor(
         super.onViewCreated(view)
         processor.registerProcessingCallback(EventListProcessorCallback())
         interactor.registerCallback(EventListInteractorCallback())
+    }
+
+    override fun onResume() {
+        super.onResume()
 
         interactor.getEvents()
     }

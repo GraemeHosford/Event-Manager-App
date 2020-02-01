@@ -2,6 +2,7 @@ package graeme.hosford.eventmanager.business.event.create
 
 import graeme.hosford.eventmanager.business.common.BaseInteractor
 import graeme.hosford.eventmanager.data.event.create.CreateEventFirebaseAccess
+import graeme.hosford.eventmanager.entity.event.Event
 import javax.inject.Inject
 
 class CreateEventInteractorImpl @Inject constructor(
@@ -17,9 +18,9 @@ class CreateEventInteractorImpl @Inject constructor(
     override fun createEvent(name: String, description: String, location: String) {
         createEventFirebaseAccess.saveEvent(
             hashMapOf(
-                "eventName" to name,
-                "eventDescription" to description,
-                "eventLocation" to location
+                Event.NAME_FIELD to name,
+                Event.DESCRIPTION_FIELD to description,
+                Event.LOCATION_FIELD to location
             )
         )
     }
