@@ -22,12 +22,15 @@ class EventListPresenterImpl @Inject constructor(
         processor.registerProcessingCallback(EventListProcessorCallback())
         interactor.registerCallback(EventListInteractorCallback())
 
-
         interactor.getEvents()
     }
 
     override fun onEventItemClick() {
         view?.showEventDetail()
+    }
+
+    override fun onFabClick() {
+        view?.startCreateNewEvent()
     }
 
     private inner class EventListProcessorCallback :

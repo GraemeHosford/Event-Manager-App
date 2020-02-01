@@ -2,7 +2,9 @@ package graeme.hosford.eventmanager.presentation.event.list.view
 
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import graeme.hosford.eventmanager.EventManagerApplication
+import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseRecyclerViewFragment
 import graeme.hosford.eventmanager.presentation.event.list.EventListView
 import graeme.hosford.eventmanager.presentation.event.list.model.EventListItemUiModel
@@ -22,6 +24,14 @@ class EventListFragment :
         EventManagerApplication.appComponent.inject(this)
         super.onCreate(savedInstanceState)
         presenter.onViewCreated(this)
+
+        fab.setOnClickListener {
+            presenter.onFabClick()
+        }
+    }
+
+    override fun startCreateNewEvent() {
+        findNavController().navigate(R.id.nav_create_event)
     }
 
     override fun recyclerViewAdapter(): EventListAdapter {

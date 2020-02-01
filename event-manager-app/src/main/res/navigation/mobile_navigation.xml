@@ -12,6 +12,11 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
+        android:id="@+id/nav_create_event"
+        android:name="graeme.hosford.eventmanager.presentation.event.create.view.CreateEventFragment"
+        android:label="@string/nav_create_event" />
+
+    <fragment
         android:id="@+id/nav_my_company"
         android:name="graeme.hosford.eventmanager.presentation.company.detail.view.CompanyDetailFragment"
         android:label="@string/nav_menu_my_company"

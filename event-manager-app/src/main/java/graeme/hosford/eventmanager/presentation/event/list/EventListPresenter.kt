@@ -4,4 +4,6 @@ interface EventListPresenter {
 
     fun onEventItemClick()
 
+    fun onFabClick()
+
 }

@@ -8,4 +8,6 @@ interface EventListView : RecyclerViewListView<EventListItemUiModel>, ToastView 
 
     fun showEventDetail()
 
+    fun startCreateNewEvent()
+
 }
