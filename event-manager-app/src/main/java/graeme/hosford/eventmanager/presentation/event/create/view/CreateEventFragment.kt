@@ -11,14 +11,14 @@ import butterknife.ButterKnife
 import graeme.hosford.eventmanager.EventManagerApplication
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseFragment
+import graeme.hosford.eventmanager.presentation.event.create.CreateEventPresenter
 import graeme.hosford.eventmanager.presentation.event.create.CreateEventView
-import graeme.hosford.eventmanager.presentation.event.create.presentation.CreateEventPresenterImpl
 import javax.inject.Inject
 
 class CreateEventFragment : BaseFragment(), CreateEventView {
 
     @Inject
-    lateinit var presenter: CreateEventPresenterImpl
+    lateinit var presenter: CreateEventPresenter
 
     @BindView(R.id.enter_event_name_edit_text)
     lateinit var eventName: EditText

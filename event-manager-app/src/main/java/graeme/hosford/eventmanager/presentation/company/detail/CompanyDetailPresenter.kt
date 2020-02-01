@@ -1,3 +1,5 @@
 package graeme.hosford.eventmanager.presentation.company.detail
 
-interface CompanyDetailPresenter
+import graeme.hosford.eventmanager.presentation.common.presenter.Presenter
+
+interface CompanyDetailPresenter : Presenter<CompanyDetailView>

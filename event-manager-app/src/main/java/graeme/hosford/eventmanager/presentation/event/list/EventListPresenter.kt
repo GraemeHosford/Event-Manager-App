@@ -1,6 +1,8 @@
 package graeme.hosford.eventmanager.presentation.event.list
 
-interface EventListPresenter {
+import graeme.hosford.eventmanager.presentation.common.presenter.Presenter
+
+interface EventListPresenter : Presenter<EventListView> {
 
     fun onEventItemClick()
 

@@ -9,15 +9,15 @@ import butterknife.ButterKnife
 import graeme.hosford.eventmanager.EventManagerApplication
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.presentation.common.view.activity.BaseActivity
+import graeme.hosford.eventmanager.presentation.company.join.JoinCompanyPresenter
 import graeme.hosford.eventmanager.presentation.company.join.JoinCompanyView
-import graeme.hosford.eventmanager.presentation.company.join.presentation.JoinCompanyPresenterImpl
 import graeme.hosford.eventmanager.presentation.main.view.MainActivity
 import javax.inject.Inject
 
 class JoinCompanyActivity : BaseActivity(), JoinCompanyView {
 
     @Inject
-    lateinit var presenter: JoinCompanyPresenterImpl
+    lateinit var presenter: JoinCompanyPresenter
 
     @BindView(R.id.enter_company_id_edit_text)
     lateinit var idEditText: EditText

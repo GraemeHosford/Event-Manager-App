@@ -1,6 +1,8 @@
 package graeme.hosford.eventmanager.presentation.event.create
 
-interface CreateEventPresenter {
+import graeme.hosford.eventmanager.presentation.common.presenter.Presenter
+
+interface CreateEventPresenter : Presenter<CreateEventView> {
 
     fun onCreateEventButtonClick(name: String, description: String, location: String)
 

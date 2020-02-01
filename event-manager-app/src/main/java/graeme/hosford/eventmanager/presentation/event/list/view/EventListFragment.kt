@@ -6,9 +6,9 @@ import androidx.navigation.fragment.findNavController
 import graeme.hosford.eventmanager.EventManagerApplication
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseRecyclerViewFragment
+import graeme.hosford.eventmanager.presentation.event.list.EventListPresenter
 import graeme.hosford.eventmanager.presentation.event.list.EventListView
 import graeme.hosford.eventmanager.presentation.event.list.model.EventListItemUiModel
-import graeme.hosford.eventmanager.presentation.event.list.presentation.EventListPresenterImpl
 import graeme.hosford.eventmanager.presentation.event.list.view.adapter.EventListAdapter
 import graeme.hosford.eventmanager.presentation.event.list.view.adapter.EventListItemViewHolder
 import javax.inject.Inject
@@ -18,7 +18,7 @@ class EventListFragment :
     EventListView {
 
     @Inject
-    lateinit var presenter: EventListPresenterImpl
+    lateinit var presenter: EventListPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         EventManagerApplication.appComponent.inject(this)
