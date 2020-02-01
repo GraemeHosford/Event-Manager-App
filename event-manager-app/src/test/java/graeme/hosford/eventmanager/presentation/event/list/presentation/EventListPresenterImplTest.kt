@@ -60,8 +60,8 @@ class EventListPresenterImplTest {
     @Test
     fun eventListProcessingCallback_showsData_onSuccess() {
         val models = listOf(
-            EventListItemUiModel("Event 1"),
-            EventListItemUiModel("Event 2")
+            EventListItemUiModel("Event 1", "Desc 1", "Loc 1"),
+            EventListItemUiModel("Event 2", "Desc 2", "Loc 2")
         )
 
         processorCapture.captured.onProcessingComplete(models)
@@ -79,8 +79,8 @@ class EventListPresenterImplTest {
     @Test
     fun interactorCallback_onEventsRetrieved_callsProcessorToProcess() {
         val entities = listOf(
-            Event("Event 1"),
-            Event("Event 2")
+            Event("Event 1", "Desc 1", "Loc 1"),
+            Event("Event 2", "Desc 2", "Loc 2")
         )
 
         interactorCapture.captured.onEventsRetrieved(entities)

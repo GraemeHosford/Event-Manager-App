@@ -34,9 +34,18 @@ class EventListItemViewHolder(
     @BindView(R.id.event_list_item_name_text_view)
     lateinit var eventName: TextView
 
+    @BindView(R.id.event_list_item_description_text_view)
+    lateinit var eventDesc: TextView
+
+    @BindView(R.id.event_list_item_location_text_view)
+    lateinit var eventLocation: TextView
+
     override fun bind(model: EventListItemUiModel) {
         ButterKnife.bind(this, itemView)
         itemView.setOnClickListener(clickListener)
+
         eventName.text = model.eventName
+        eventDesc.text = model.eventDesc
+        eventLocation.text = model.eventLocation
     }
 }

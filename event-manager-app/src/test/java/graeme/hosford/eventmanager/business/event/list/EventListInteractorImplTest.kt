@@ -62,7 +62,7 @@ class EventListInteractorImplTest {
         interactor.registerCallback(callback)
 
         val entities = listOf(
-            Event("Event 1")
+            Event("Event 1", "Desc", "Loc")
         )
 
         eventListenerCapture.captured.onEventRetrieveSuccess(entities)
