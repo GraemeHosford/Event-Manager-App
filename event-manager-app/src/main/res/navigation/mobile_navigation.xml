@@ -14,7 +14,7 @@
     <fragment
         android:id="@+id/nav_create_event"
         android:name="graeme.hosford.eventmanager.presentation.event.create.view.CreateEventFragment"
-        android:label="@string/nav_create_event" />
+        android:label="@string/create_event_text" />
 
     <fragment
         android:id="@+id/nav_my_company"
