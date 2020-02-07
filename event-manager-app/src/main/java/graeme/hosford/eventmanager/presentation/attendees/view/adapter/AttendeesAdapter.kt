@@ -1,4 +1,4 @@
-package graeme.hosford.eventmanager.presentation.company.detail.view.adapter
+package graeme.hosford.eventmanager.presentation.attendees.view.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,14 +7,14 @@ import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
 import graeme.hosford.eventmanager.R
+import graeme.hosford.eventmanager.presentation.attendees.model.AttendeesUiModel
 import graeme.hosford.eventmanager.presentation.common.view.recyclerview.BaseAdapter
 import graeme.hosford.eventmanager.presentation.common.view.recyclerview.BaseViewHolder
-import graeme.hosford.eventmanager.presentation.company.detail.model.CompanyMemberUiModel
 
-class CompanyDetailAdapter : BaseAdapter<CompanyMemberUiModel, CompanyDetailViewHolder>() {
+class AttendeesAdapter : BaseAdapter<AttendeesUiModel, AttendeesViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CompanyDetailViewHolder {
-        return CompanyDetailViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AttendeesViewHolder {
+        return AttendeesViewHolder(
             LayoutInflater.from(parent.context).inflate(
                 R.layout.person_item_layout,
                 parent,
@@ -24,14 +24,14 @@ class CompanyDetailAdapter : BaseAdapter<CompanyMemberUiModel, CompanyDetailView
     }
 }
 
-class CompanyDetailViewHolder(itemView: View) : BaseViewHolder<CompanyMemberUiModel>(itemView) {
+class AttendeesViewHolder(itemView: View) : BaseViewHolder<AttendeesUiModel>(itemView) {
 
     @BindView(R.id.member_name_text_view)
-    lateinit var memberName: TextView
+    lateinit var personName: TextView
 
-    override fun bind(model: CompanyMemberUiModel) {
+    override fun bind(model: AttendeesUiModel) {
         ButterKnife.bind(this, itemView)
 
-        memberName.text = model.personName
+        personName.text = model.name
     }
 }

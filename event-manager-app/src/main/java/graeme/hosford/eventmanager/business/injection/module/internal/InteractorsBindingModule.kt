@@ -2,6 +2,8 @@ package graeme.hosford.eventmanager.business.injection.module.internal
 
 import dagger.Binds
 import dagger.Module
+import graeme.hosford.eventmanager.business.attendees.AttendeesInteractor
+import graeme.hosford.eventmanager.business.attendees.AttendeesInteractorImpl
 import graeme.hosford.eventmanager.business.company.create.CreateCompanyInteractor
 import graeme.hosford.eventmanager.business.company.create.CreateCompanyInteractorImpl
 import graeme.hosford.eventmanager.business.company.detail.CompanyDetailInteractor
@@ -50,6 +52,10 @@ internal interface InteractorsBindingModule {
     @Binds
     @Singleton
     fun createEventInteractor(impl: CreateEventInteractorImpl): CreateEventInteractor
+
+    @Binds
+    @Singleton
+    fun attendeesInteractor(impl: AttendeesInteractorImpl): AttendeesInteractor
 
     //endregion
 

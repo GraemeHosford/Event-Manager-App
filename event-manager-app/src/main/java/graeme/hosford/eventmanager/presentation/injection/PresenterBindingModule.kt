@@ -2,6 +2,8 @@ package graeme.hosford.eventmanager.presentation.injection
 
 import dagger.Binds
 import dagger.Module
+import graeme.hosford.eventmanager.presentation.attendees.AttendeesPresenter
+import graeme.hosford.eventmanager.presentation.attendees.presentation.AttendeesPresenterImpl
 import graeme.hosford.eventmanager.presentation.company.create.CreateCompanyPresenter
 import graeme.hosford.eventmanager.presentation.company.create.presentation.CreateCompanyPresenterImpl
 import graeme.hosford.eventmanager.presentation.company.detail.CompanyDetailPresenter
@@ -42,5 +44,9 @@ interface PresenterBindingModule {
     @Binds
     @Singleton
     fun createEventPresenter(impl: CreateEventPresenterImpl): CreateEventPresenter
+
+    @Binds
+    @Singleton
+    fun attendeesPresenter(impl: AttendeesPresenterImpl): AttendeesPresenter
 
 }

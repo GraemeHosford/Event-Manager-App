@@ -1,0 +1,3 @@
+package graeme.hosford.eventmanager.presentation.attendees
+
+interface AttendeesView
