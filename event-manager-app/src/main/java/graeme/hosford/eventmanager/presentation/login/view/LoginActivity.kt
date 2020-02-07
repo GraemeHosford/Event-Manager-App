@@ -12,6 +12,10 @@ import graeme.hosford.eventmanager.presentation.login.SIGN_IN_REQUEST_CODE
 import graeme.hosford.eventmanager.presentation.main.view.MainActivity
 import javax.inject.Inject
 
+/* Calendar view for seeing all events to see event schedule
+* Event types for filtering.
+* Restricted event attendees, all invited but limited spaces */
+
 class LoginActivity : BaseActivity(),
     LoginView {
 
