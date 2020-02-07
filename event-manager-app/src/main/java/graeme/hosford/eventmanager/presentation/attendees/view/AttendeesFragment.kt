@@ -29,6 +29,11 @@ class AttendeesFragment :
         presenter.onViewCreated(this)
     }
 
+    override fun onResume() {
+        super.onResume()
+        presenter.onResume()
+    }
+
     override fun getRecyclerViewLayout(): Int = R.layout.choose_attendees_layout
 
     override fun recyclerViewAdapter(): AttendeesAdapter = AttendeesAdapter()
