@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import androidx.navigation.fragment.findNavController
 import butterknife.BindView
 import butterknife.ButterKnife
 import graeme.hosford.eventmanager.EventManagerApplication
@@ -29,6 +30,9 @@ class CreateEventFragment : BaseFragment(), CreateEventView {
     @BindView(R.id.enter_event_location_edit_text)
     lateinit var eventLocation: EditText
 
+    @BindView(R.id.choose_attendees_button)
+    lateinit var chooseAttendees: Button
+
     @BindView(R.id.create_event_button)
     lateinit var createEvent: Button
 
@@ -51,6 +55,10 @@ class CreateEventFragment : BaseFragment(), CreateEventView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        chooseAttendees.setOnClickListener {
+            presenter.onChooseAttendeesButtonClick()
+        }
+
         createEvent.setOnClickListener {
             presenter.onCreateEventButtonClick(
                 eventName.text.toString(),
@@ -58,5 +66,9 @@ class CreateEventFragment : BaseFragment(), CreateEventView {
                 eventLocation.text.toString()
             )
         }
+    }
+
+    override fun showChooseAttendeesFragment() {
+        findNavController().navigate(R.id.nav_choose_attendees)
     }
 }

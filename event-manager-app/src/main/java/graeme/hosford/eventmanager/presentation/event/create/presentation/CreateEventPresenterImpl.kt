@@ -16,6 +16,10 @@ class CreateEventPresenterImpl @Inject constructor(
         interactor.registerCallback(InteractorCallback())
     }
 
+    override fun onChooseAttendeesButtonClick() {
+        view?.showChooseAttendeesFragment()
+    }
+
     override fun onCreateEventButtonClick(name: String, description: String, location: String) {
         if (name.isBlank() || description.isBlank() || location.isBlank()) {
             view?.showLongToast(R.string.create_event_error_empty_fields)

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -45,10 +46,13 @@ abstract class BaseRecyclerViewFragment<
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.base_recycler_view_layout, container, false)
+        val view = inflater.inflate(getRecyclerViewLayout(), container, false)
         ButterKnife.bind(this, view)
         return view
     }
+
+    @LayoutRes
+    protected open fun getRecyclerViewLayout(): Int = R.layout.base_recycler_view_layout
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
