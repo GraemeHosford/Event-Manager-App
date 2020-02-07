@@ -40,6 +40,9 @@ class EventListItemViewHolder(
     @BindView(R.id.event_list_item_location_text_view)
     lateinit var eventLocation: TextView
 
+    @BindView(R.id.event_list_item_num_attendees_text_view)
+    lateinit var numAttendeesTextView: TextView
+
     override fun bind(model: EventListItemUiModel) {
         ButterKnife.bind(this, itemView)
         itemView.setOnClickListener(clickListener)
@@ -47,5 +50,8 @@ class EventListItemViewHolder(
         eventName.text = model.eventName
         eventDesc.text = model.eventDesc
         eventLocation.text = model.eventLocation
+
+        /* TODO: Temporary for now. Make visible based on number of attendees eventually */
+        numAttendeesTextView.visibility = View.GONE
     }
 }

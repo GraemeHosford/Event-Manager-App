@@ -1,8 +1,10 @@
 package graeme.hosford.eventmanager.presentation.event.list.view
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import graeme.hosford.eventmanager.EventManagerApplication
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseRecyclerViewFragment
@@ -33,6 +35,11 @@ class EventListFragment :
             presenter.onFabClick()
         }
     }
+
+    override fun addRecyclerViewDecorations(
+        recyclerViewContext: Context,
+        layoutOrientation: Int
+    ): List<RecyclerView.ItemDecoration> = emptyList()
 
     override fun onResume() {
         super.onResume()

@@ -1,5 +1,6 @@
 package graeme.hosford.eventmanager.presentation.common.view.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -61,12 +62,10 @@ abstract class BaseRecyclerViewFragment<
         val layoutManager = LinearLayoutManager(context)
         recyclerview.layoutManager = layoutManager
         recyclerview.adapter = recyclerViewAdapter
-        recyclerview.addItemDecoration(
-            DividerItemDecoration(
-                recyclerview.context,
-                layoutManager.orientation
-            )
-        )
+
+        addRecyclerViewDecorations(recyclerview.context, layoutManager.orientation).forEach {
+            recyclerview.addItemDecoration(it)
+        }
 
         if (showFab()) {
             fab.show()
@@ -78,6 +77,12 @@ abstract class BaseRecyclerViewFragment<
     protected open fun showFab(): Boolean {
         return false
     }
+
+    protected open fun addRecyclerViewDecorations(
+        recyclerViewContext: Context,
+        layoutOrientation: Int
+    ): List<RecyclerView.ItemDecoration> =
+        listOf(DividerItemDecoration(recyclerViewContext, layoutOrientation))
 
     protected abstract fun recyclerViewAdapter(): Adapter
 
