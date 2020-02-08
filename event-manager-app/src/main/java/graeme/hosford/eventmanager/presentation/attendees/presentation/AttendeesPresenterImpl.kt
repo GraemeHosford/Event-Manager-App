@@ -17,6 +17,8 @@ class AttendeesPresenterImpl @Inject constructor(
 ) : BasePresenter<AttendeesView, AttendeesInteractor>(interactor),
     AttendeesPresenter {
 
+    private val attendees: ArrayList<String> = ArrayList()
+
     override fun onViewCreated(view: AttendeesView) {
         super.onViewCreated(view)
         interactor.registerCallback(AttendeesCallback())
@@ -27,6 +29,16 @@ class AttendeesPresenterImpl @Inject constructor(
         super.onResume()
         interactor.getCompanyMembers()
     }
+
+    override fun onAttendeeClick(email: String) {
+        if (attendees.contains(email)) {
+            attendees.remove(email)
+        } else {
+            attendees.add(email)
+        }
+    }
+
+    override fun getAttendees(): ArrayList<String> = attendees
 
     private inner class AttendeesCallback : AttendeesInteractor.AttendeesCallback {
         override fun onCompanyMembersRetrieved(members: List<Member>) {
