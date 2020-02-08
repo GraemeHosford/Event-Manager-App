@@ -7,7 +7,10 @@
 
     <include
         layout="@layout/base_recycler_view_layout"
-        app:layout_constraintBottom_toTopOf="@id/confirm_attendees_button" />
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/confirm_attendees_button"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/confirm_attendees_button"
