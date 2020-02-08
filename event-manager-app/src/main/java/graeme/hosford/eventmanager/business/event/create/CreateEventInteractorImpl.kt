@@ -15,12 +15,18 @@ class CreateEventInteractorImpl @Inject constructor(
         createEventFirebaseAccess.setEventSaveCallback(EventSavedCallback())
     }
 
-    override fun createEvent(name: String, description: String, location: String) {
+    override fun createEvent(
+        name: String,
+        description: String,
+        location: String,
+        attendees: ArrayList<String>
+    ) {
         createEventFirebaseAccess.saveEvent(
             hashMapOf(
                 Event.NAME_FIELD to name,
                 Event.DESCRIPTION_FIELD to description,
-                Event.LOCATION_FIELD to location
+                Event.LOCATION_FIELD to location,
+                Event.ATTENDEES_LIST to attendees
             )
         )
     }

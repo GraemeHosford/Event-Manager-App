@@ -6,6 +6,13 @@ interface CreateEventPresenter : Presenter<CreateEventView> {
 
     fun onChooseAttendeesButtonClick()
 
-    fun onCreateEventButtonClick(name: String, description: String, location: String)
+    fun onCreateEventButtonClick(
+        name: String,
+        description: String,
+        location: String,
+        attendees: ArrayList<String>
+    )
+
+    fun getInvitedAttendees(): ArrayList<String>
 
 }

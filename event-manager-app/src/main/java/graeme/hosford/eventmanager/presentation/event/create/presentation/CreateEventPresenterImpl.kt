@@ -35,13 +35,20 @@ class CreateEventPresenterImpl @Inject constructor(
         }
     }
 
-    override fun onCreateEventButtonClick(name: String, description: String, location: String) {
+    override fun onCreateEventButtonClick(
+        name: String,
+        description: String,
+        location: String,
+        attendees: ArrayList<String>
+    ) {
         if (name.isBlank() || description.isBlank() || location.isBlank()) {
             view?.showLongToast(R.string.create_event_error_empty_fields)
         } else {
-            interactor.createEvent(name, description, location)
+            interactor.createEvent(name, description, location, attendees)
         }
     }
+
+    override fun getInvitedAttendees(): ArrayList<String> = attendees!!
 
     private inner class InteractorCallback : CreateEventInteractor.CreateEventCallback {
         override fun onEventSaved() {

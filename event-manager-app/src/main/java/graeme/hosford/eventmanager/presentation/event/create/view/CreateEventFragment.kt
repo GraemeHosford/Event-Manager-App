@@ -64,7 +64,8 @@ class CreateEventFragment : BaseFragment(), CreateEventView {
             presenter.onCreateEventButtonClick(
                 eventName.text.toString(),
                 eventDescription.text.toString(),
-                eventLocation.text.toString()
+                eventLocation.text.toString(),
+                presenter.getInvitedAttendees()
             )
         }
     }

@@ -10,6 +10,11 @@ interface CreateEventInteractor : Interactor<CreateEventInteractor.CreateEventCa
         fun onEventSaveFailed()
     }
 
-    fun createEvent(name: String, description: String, location: String)
+    fun createEvent(
+        name: String,
+        description: String,
+        location: String,
+        attendees: ArrayList<String>
+    )
 
 }

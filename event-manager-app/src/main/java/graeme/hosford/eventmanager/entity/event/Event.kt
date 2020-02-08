@@ -6,6 +6,7 @@ data class Event(val name: String, val description: String, val location: String
         const val NAME_FIELD = "name"
         const val DESCRIPTION_FIELD = "Description"
         const val LOCATION_FIELD = "Location"
+        const val ATTENDEES_LIST = "Attendees"
     }
 
 }
