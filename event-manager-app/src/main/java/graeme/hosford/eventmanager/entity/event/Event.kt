@@ -1,16 +1,17 @@
 package graeme.hosford.eventmanager.entity.event
 
 data class Event(
-    val name: String,
-    val description: String,
-    val location: String,
-    val attendees: ArrayList<String>
+    /* Default params used so Firebase can deserialize objects */
+    val name: String = "",
+    val description: String = "",
+    val location: String = "",
+    val attendees: ArrayList<String> = arrayListOf()
 ) {
     companion object {
         const val NAME_FIELD = "name"
-        const val DESCRIPTION_FIELD = "Description"
-        const val LOCATION_FIELD = "Location"
-        const val ATTENDEES_LIST = "Attendees"
+        const val DESCRIPTION_FIELD = "description"
+        const val LOCATION_FIELD = "location"
+        const val ATTENDEES_LIST = "attendees"
         const val START_DATE = "StartDate"
         const val END_DATE = "EndDate"
     }

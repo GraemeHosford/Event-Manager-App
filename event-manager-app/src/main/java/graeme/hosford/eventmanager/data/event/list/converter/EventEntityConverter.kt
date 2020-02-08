@@ -8,12 +8,6 @@ import javax.inject.Inject
 class EventEntityConverter @Inject constructor() : EntityConverter<Event> {
 
     override fun convert(document: DocumentSnapshot): Event {
-        return Event(
-            document.getString(Event.NAME_FIELD) ?: "Test Name",
-            document.getString(Event.DESCRIPTION_FIELD) ?: "Test Description",
-            document.getString(Event.LOCATION_FIELD) ?: "Test Location",
-            document.get(Event.ATTENDEES_LIST, ArrayList::class.java) as ArrayList<String>?
-                ?: arrayListOf()
-        )
+        return document.toObject(Event::class.java)!!
     }
 }
