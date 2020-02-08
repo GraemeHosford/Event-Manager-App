@@ -1,6 +1,7 @@
 package graeme.hosford.eventmanager.presentation.attendees.view
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
 import butterknife.BindView
@@ -29,7 +30,10 @@ class AttendeesFragment :
         EventManagerApplication.appComponent.inject(this)
         super.onCreate(savedInstanceState)
         presenter.onViewCreated(this)
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         confirmAttendeesButton.setOnClickListener {
             val args = Bundle()
             args.putStringArrayList(AttendeesView.ATTENDEE_EMAILS_KEY, presenter.getAttendees())
