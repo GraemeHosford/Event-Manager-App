@@ -31,6 +31,10 @@
     <string name="create_event_enter_event_name_hint">Enter Event Name</string>
     <string name="create_event_enter_event_description_hint">Enter a Description</string>
     <string name="create_event_enter_event_location_hint">Enter the Event Location</string>
+    <string name="create_event_choose_start_date_text">Choose Start Date</string>
+    <string name="create_event_choose_end_date_text">Choose End Date</string>
+    <string name="create_event_choose_start_time_Text">Choose Start Time</string>
+    <string name="create_event_choose_end_time_Text">Choose End Time</string>
     <string name="create_event_choose_attendees_text">Choose Attendees</string>
 
     <string name="create_event_error_empty_fields">You must enter a value for all fields</string>

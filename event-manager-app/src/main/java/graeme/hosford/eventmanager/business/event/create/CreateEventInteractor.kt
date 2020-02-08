@@ -1,6 +1,7 @@
 package graeme.hosford.eventmanager.business.event.create
 
 import graeme.hosford.eventmanager.business.common.Interactor
+import java.util.*
 
 interface CreateEventInteractor : Interactor<CreateEventInteractor.CreateEventCallback> {
 
@@ -14,7 +15,9 @@ interface CreateEventInteractor : Interactor<CreateEventInteractor.CreateEventCa
         name: String,
         description: String,
         location: String,
-        attendees: ArrayList<String>
+        attendees: ArrayList<String>,
+        startDate: Calendar,
+        endDate: Calendar
     )
 
 }

@@ -10,4 +10,12 @@ interface CreateEventView : ToastView {
 
     fun showChooseAttendeesFragment()
 
+    fun showStartDatePicker()
+
+    fun showEndDatePicker()
+
+    fun showStartTimePicker()
+
+    fun showEndTimePicker()
+
 }

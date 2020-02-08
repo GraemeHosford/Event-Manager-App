@@ -15,4 +15,20 @@ interface CreateEventPresenter : Presenter<CreateEventView> {
 
     fun getInvitedAttendees(): ArrayList<String>
 
+    fun onChooseStartDateButtonClick()
+
+    fun onChooseEndDateButtonClick()
+
+    fun onChooseStartTimeButtonClick()
+
+    fun onChooseEndTimeButtonClick()
+
+    fun startDateChosen(year: Int, month: Int, dayOfMonth: Int)
+
+    fun endDateChosen(year: Int, month: Int, dayOfMonth: Int)
+
+    fun startTimeChosen(hourofDay: Int, minute: Int)
+
+    fun endTimeChosen(hourofDay: Int, minute: Int)
+
 }

@@ -1,5 +1,7 @@
 package graeme.hosford.eventmanager.presentation.event.create.view
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,6 +17,7 @@ import graeme.hosford.eventmanager.presentation.attendees.view.AttendeesActivity
 import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseFragment
 import graeme.hosford.eventmanager.presentation.event.create.CreateEventPresenter
 import graeme.hosford.eventmanager.presentation.event.create.CreateEventView
+import java.util.*
 import javax.inject.Inject
 
 class CreateEventFragment : BaseFragment(), CreateEventView {
@@ -30,6 +33,18 @@ class CreateEventFragment : BaseFragment(), CreateEventView {
 
     @BindView(R.id.enter_event_location_edit_text)
     lateinit var eventLocation: EditText
+
+    @BindView(R.id.create_event_choose_start_date_button)
+    lateinit var chooseStartDate: Button
+
+    @BindView(R.id.create_event_choose_end_date_button)
+    lateinit var chooseEndDate: Button
+
+    @BindView(R.id.create_event_choose_start_time_button)
+    lateinit var chooseStartTime: Button
+
+    @BindView(R.id.create_event_choose_end_time_button)
+    lateinit var chooseEndTime: Button
 
     @BindView(R.id.choose_attendees_button)
     lateinit var chooseAttendees: Button
@@ -56,6 +71,22 @@ class CreateEventFragment : BaseFragment(), CreateEventView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        chooseStartDate.setOnClickListener {
+            presenter.onChooseStartDateButtonClick()
+        }
+
+        chooseEndDate.setOnClickListener {
+            presenter.onChooseEndDateButtonClick()
+        }
+
+        chooseStartTime.setOnClickListener {
+            presenter.onChooseStartTimeButtonClick()
+        }
+
+        chooseEndTime.setOnClickListener {
+            presenter.onChooseEndTimeButtonClick()
+        }
+
         chooseAttendees.setOnClickListener {
             presenter.onChooseAttendeesButtonClick()
         }
@@ -81,5 +112,67 @@ class CreateEventFragment : BaseFragment(), CreateEventView {
             Intent(context, AttendeesActivity::class.java),
             CreateEventView.CHOOSE_ATTENDEES_REQUEST_CODE
         )
+    }
+
+    override fun showStartDatePicker() {
+        val calendar = Calendar.getInstance()
+
+        DatePickerDialog(
+            requireContext(),
+            DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+                presenter.startDateChosen(year, month, dayOfMonth)
+            },
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        ).show()
+    }
+
+    override fun showEndDatePicker() {
+        val calendar = Calendar.getInstance()
+
+        DatePickerDialog(
+            requireContext(),
+            DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+                presenter.endDateChosen(year, month, dayOfMonth)
+            },
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        ).show()
+    }
+
+    override fun showStartTimePicker() {
+        val calendar = Calendar.getInstance()
+
+        TimePickerDialog(
+            requireContext(),
+            TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
+                presenter.startTimeChosen(
+                    hourOfDay,
+                    minute
+                )
+            },
+            calendar.get(Calendar.HOUR_OF_DAY),
+            calendar.get(Calendar.MINUTE),
+            true
+        ).show()
+    }
+
+    override fun showEndTimePicker() {
+        val calendar = Calendar.getInstance()
+
+        TimePickerDialog(
+            requireContext(),
+            TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
+                presenter.endTimeChosen(
+                    hourOfDay,
+                    minute
+                )
+            },
+            calendar.get(Calendar.HOUR_OF_DAY),
+            calendar.get(Calendar.MINUTE),
+            true
+        ).show()
     }
 }

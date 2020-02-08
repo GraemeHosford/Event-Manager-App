@@ -43,11 +43,39 @@
         tools:ignore="Autofill" />
 
     <Button
+        android:id="@+id/create_event_choose_start_date_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/create_event_choose_start_date_text"
+        app:layout_constraintTop_toBottomOf="@id/enter_event_location_edit_text" />
+
+    <Button
+        android:id="@+id/create_event_choose_end_date_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/create_event_choose_end_date_text"
+        app:layout_constraintTop_toBottomOf="@id/create_event_choose_start_date_button" />
+
+    <Button
+        android:id="@+id/create_event_choose_start_time_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/create_event_choose_start_time_Text"
+        app:layout_constraintTop_toBottomOf="@id/create_event_choose_end_date_button" />
+
+    <Button
+        android:id="@+id/create_event_choose_end_time_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/create_event_choose_end_time_Text"
+        app:layout_constraintTop_toBottomOf="@id/create_event_choose_start_time_button" />
+
+    <Button
         android:id="@+id/choose_attendees_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/create_event_choose_attendees_text"
-        app:layout_constraintTop_toBottomOf="@id/enter_event_location_edit_text" />
+        app:layout_constraintTop_toBottomOf="@id/create_event_choose_end_time_button" />
 
     <Button
         android:id="@+id/create_event_button"
