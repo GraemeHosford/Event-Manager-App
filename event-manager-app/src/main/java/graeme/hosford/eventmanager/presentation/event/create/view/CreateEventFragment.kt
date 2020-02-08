@@ -1,16 +1,17 @@
 package graeme.hosford.eventmanager.presentation.event.create.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import androidx.navigation.fragment.findNavController
 import butterknife.BindView
 import butterknife.ButterKnife
 import graeme.hosford.eventmanager.EventManagerApplication
 import graeme.hosford.eventmanager.R
+import graeme.hosford.eventmanager.presentation.attendees.view.AttendeesActivity
 import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseFragment
 import graeme.hosford.eventmanager.presentation.event.create.CreateEventPresenter
 import graeme.hosford.eventmanager.presentation.event.create.CreateEventView
@@ -68,7 +69,16 @@ class CreateEventFragment : BaseFragment(), CreateEventView {
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        presenter.onActivityResult(requestCode, resultCode, data)
+    }
+
     override fun showChooseAttendeesFragment() {
-        findNavController().navigate(R.id.nav_choose_attendees)
+        /* Need to use this to get choice of attendees back. Navigation component currently
+        does not support a startForResult operation. This isn't ideal but only option for now */
+        startActivityForResult(
+            Intent(context, AttendeesActivity::class.java),
+            CreateEventView.CHOOSE_ATTENDEES_REQUEST_CODE
+        )
     }
 }

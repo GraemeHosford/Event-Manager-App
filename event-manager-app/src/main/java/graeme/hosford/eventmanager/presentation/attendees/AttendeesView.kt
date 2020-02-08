@@ -10,4 +10,6 @@ interface AttendeesView : RecyclerViewListView<AttendeesUiModel>, ToastView {
         const val ATTENDEE_EMAILS_KEY = "ATTENDEES_EMAILS"
     }
 
+    fun returnAttendeeEmails()
+
 }

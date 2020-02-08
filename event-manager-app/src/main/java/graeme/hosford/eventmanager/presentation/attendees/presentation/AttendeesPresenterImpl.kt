@@ -38,6 +38,10 @@ class AttendeesPresenterImpl @Inject constructor(
         }
     }
 
+    override fun onConfirmAttendeesButtonClick() {
+        view?.returnAttendeeEmails()
+    }
+
     override fun getAttendees(): ArrayList<String> = attendees
 
     private inner class AttendeesCallback : AttendeesInteractor.AttendeesCallback {
