@@ -47,6 +47,10 @@ class AttendeesFragment :
         presenter.onResume()
     }
 
+    override fun returnAttendeeEmails() {
+        /* Nothing for now */
+    }
+
     override fun getRecyclerViewLayout(): Int = R.layout.choose_attendees_layout
 
     override fun recyclerViewAdapter(): AttendeesAdapter {
