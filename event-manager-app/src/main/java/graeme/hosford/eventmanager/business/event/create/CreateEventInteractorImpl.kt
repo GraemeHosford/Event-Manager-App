@@ -21,8 +21,8 @@ class CreateEventInteractorImpl @Inject constructor(
         description: String,
         location: String,
         attendees: ArrayList<String>,
-        startDate: Calendar,
-        endDate: Calendar
+        startDate: Long,
+        endDate: Long
     ) {
         createEventFirebaseAccess.saveEvent(
             hashMapOf(

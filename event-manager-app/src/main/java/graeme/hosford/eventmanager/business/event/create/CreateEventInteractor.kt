@@ -16,8 +16,8 @@ interface CreateEventInteractor : Interactor<CreateEventInteractor.CreateEventCa
         description: String,
         location: String,
         attendees: ArrayList<String>,
-        startDate: Calendar,
-        endDate: Calendar
+        startDate: Long,
+        endDate: Long
     )
 
 }

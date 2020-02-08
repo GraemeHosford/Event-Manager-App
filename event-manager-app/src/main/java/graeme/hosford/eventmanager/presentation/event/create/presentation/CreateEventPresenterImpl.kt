@@ -106,7 +106,14 @@ class CreateEventPresenterImpl @Inject constructor(
                 set(endYear, endMonth, endDayOfMonth, endHour, endMinute, 0)
             }
 
-            interactor.createEvent(name, description, location, attendees, startCal, endCal)
+            interactor.createEvent(
+                name,
+                description,
+                location,
+                attendees,
+                startCal.timeInMillis,
+                endCal.timeInMillis
+            )
         }
     }
 
