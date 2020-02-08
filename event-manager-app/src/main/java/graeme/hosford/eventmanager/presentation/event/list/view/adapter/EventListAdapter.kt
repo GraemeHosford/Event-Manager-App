@@ -51,7 +51,19 @@ class EventListItemViewHolder(
         eventDesc.text = model.eventDesc
         eventLocation.text = model.eventLocation
 
-        /* TODO: Temporary for now. Make visible based on number of attendees eventually */
-        numAttendeesTextView.visibility = View.GONE
+        val attendees = model.attendees
+
+        if (attendees.size == 0) {
+            numAttendeesTextView.visibility = View.INVISIBLE
+        } else if (attendees.size > 0) {
+            numAttendeesTextView.visibility = View.VISIBLE
+            numAttendeesTextView.text =
+                itemView.context.resources.getQuantityString(
+                    R.plurals.attendees_summary,
+                    attendees.size,
+                    attendees[0],
+                    attendees.size - 1
+                )
+        }
     }
 }
