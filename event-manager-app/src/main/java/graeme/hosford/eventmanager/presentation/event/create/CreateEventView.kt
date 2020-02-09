@@ -18,4 +18,14 @@ interface CreateEventView : ToastView {
 
     fun showEndTimePicker()
 
+    fun updateStartDateText()
+
+    fun updateEndDateText()
+
+    fun updateStartTimeText()
+
+    fun updateEndTimeText()
+
+    fun updateAttendeesText(attendees: ArrayList<String>?)
+
 }

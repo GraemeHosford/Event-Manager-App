@@ -37,6 +37,8 @@
     <string name="create_event_choose_end_time_Text">Choose End Time</string>
     <string name="create_event_choose_attendees_text">Choose Attendees</string>
 
+    <string name="create_event_no_attendees_chosen">No Attendees Chosen</string>
+
     <string name="create_event_error_empty_fields">You must enter a value for all fields</string>
     <string name="create_event_success">Your event has been created successfully</string>
     <string name="create_event_error">There was an eror creating your event. Please try again</string>

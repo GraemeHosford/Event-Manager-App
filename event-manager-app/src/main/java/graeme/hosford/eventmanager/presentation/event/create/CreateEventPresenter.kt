@@ -1,5 +1,6 @@
 package graeme.hosford.eventmanager.presentation.event.create
 
+import android.content.res.Resources
 import graeme.hosford.eventmanager.presentation.common.presenter.Presenter
 
 interface CreateEventPresenter : Presenter<CreateEventView> {
@@ -31,4 +32,33 @@ interface CreateEventPresenter : Presenter<CreateEventView> {
 
     fun endTimeChosen(hourofDay: Int, minute: Int)
 
+    fun getStartDateDescriptionText(): String
+
+    fun getEndDateDescriptionText(): String
+
+    fun getStartTimeDescriptionText(): String
+
+    fun getEndTimeDescriptionText(): String
+
+    fun getAttendeesDescriptionText(resources: Resources, attendees: ArrayList<String>?): String
+
+    fun getDefaultStartHour(): Int
+
+    fun getDefaultStartMinute(): Int
+
+    fun getDefaultStartDayOfMonth(): Int
+
+    fun getDefaultStartMonth(): Int
+
+    fun getDefaultStartYear(): Int
+
+    fun getDefaultEndHour(): Int
+
+    fun getDefaultEndMinute(): Int
+
+    fun getDefaultEndDayOfMonth(): Int
+
+    fun getDefaultEndMonth(): Int
+
+    fun getDefaultEndYear(): Int
 }

@@ -18,7 +18,6 @@ import graeme.hosford.eventmanager.presentation.common.view.custom.SummaryTextVi
 import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseFragment
 import graeme.hosford.eventmanager.presentation.event.create.CreateEventPresenter
 import graeme.hosford.eventmanager.presentation.event.create.CreateEventView
-import java.util.*
 import javax.inject.Inject
 
 class CreateEventFragment : BaseFragment(), CreateEventView {
@@ -115,37 +114,56 @@ class CreateEventFragment : BaseFragment(), CreateEventView {
         )
     }
 
-    override fun showStartDatePicker() {
-        val calendar = Calendar.getInstance()
+    override fun updateStartDateText() {
+        chooseStartDate.setDescriptionText(presenter.getStartDateDescriptionText())
+    }
 
+    override fun updateEndDateText() {
+        chooseEndDate.setDescriptionText(presenter.getEndDateDescriptionText())
+    }
+
+    override fun updateStartTimeText() {
+        chooseStartTime.setDescriptionText(presenter.getStartTimeDescriptionText())
+    }
+
+    override fun updateEndTimeText() {
+        chooseEndTime.setDescriptionText(presenter.getEndTimeDescriptionText())
+    }
+
+    override fun updateAttendeesText(attendees: ArrayList<String>?) {
+        chooseAttendees.setDescriptionText(
+            presenter.getAttendeesDescriptionText(
+                resources,
+                attendees
+            )
+        )
+    }
+
+    override fun showStartDatePicker() {
         DatePickerDialog(
             requireContext(),
             DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
                 presenter.startDateChosen(year, month, dayOfMonth)
             },
-            calendar.get(Calendar.YEAR),
-            calendar.get(Calendar.MONTH),
-            calendar.get(Calendar.DAY_OF_MONTH)
+            presenter.getDefaultStartYear(),
+            presenter.getDefaultStartMonth(),
+            presenter.getDefaultStartDayOfMonth()
         ).show()
     }
 
     override fun showEndDatePicker() {
-        val calendar = Calendar.getInstance()
-
         DatePickerDialog(
             requireContext(),
             DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
                 presenter.endDateChosen(year, month, dayOfMonth)
             },
-            calendar.get(Calendar.YEAR),
-            calendar.get(Calendar.MONTH),
-            calendar.get(Calendar.DAY_OF_MONTH)
+            presenter.getDefaultEndYear(),
+            presenter.getDefaultEndMonth(),
+            presenter.getDefaultEndDayOfMonth()
         ).show()
     }
 
     override fun showStartTimePicker() {
-        val calendar = Calendar.getInstance()
-
         TimePickerDialog(
             requireContext(),
             TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
@@ -154,15 +172,13 @@ class CreateEventFragment : BaseFragment(), CreateEventView {
                     minute
                 )
             },
-            calendar.get(Calendar.HOUR_OF_DAY),
-            calendar.get(Calendar.MINUTE),
+            presenter.getDefaultStartHour(),
+            presenter.getDefaultStartMinute(),
             true
         ).show()
     }
 
     override fun showEndTimePicker() {
-        val calendar = Calendar.getInstance()
-
         TimePickerDialog(
             requireContext(),
             TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
@@ -171,8 +187,8 @@ class CreateEventFragment : BaseFragment(), CreateEventView {
                     minute
                 )
             },
-            calendar.get(Calendar.HOUR_OF_DAY),
-            calendar.get(Calendar.MINUTE),
+            presenter.getDefaultEndHour(),
+            presenter.getDefaultEndMinute(),
             true
         ).show()
     }

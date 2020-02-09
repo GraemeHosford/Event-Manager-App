@@ -4,4 +4,9 @@
         <item quantity="one">%s</item>
         <item quantity="other">%s &amp; %d others</item>
     </plurals>
+
+    <plurals name="num_attendees">
+        <item quantity="one">1 Attendee</item>
+        <item quantity="other">%d Attendees</item>
+    </plurals>
 </resources>
