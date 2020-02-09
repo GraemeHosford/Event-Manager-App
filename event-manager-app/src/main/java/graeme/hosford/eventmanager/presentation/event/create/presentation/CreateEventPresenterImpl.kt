@@ -123,7 +123,7 @@ class CreateEventPresenterImpl @Inject constructor(
     }
 
     override fun getEndTimeDescriptionText(): String {
-        return "${endHour}/${endMinute}"
+        return "${endHour}:${endMinute}"
     }
 
     override fun getDefaultStartHour(): Int {
