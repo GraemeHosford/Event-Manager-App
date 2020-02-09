@@ -14,6 +14,7 @@ import butterknife.ButterKnife
 import graeme.hosford.eventmanager.EventManagerApplication
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.presentation.attendees.view.AttendeesActivity
+import graeme.hosford.eventmanager.presentation.common.view.custom.SummaryTextView
 import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseFragment
 import graeme.hosford.eventmanager.presentation.event.create.CreateEventPresenter
 import graeme.hosford.eventmanager.presentation.event.create.CreateEventView
@@ -35,19 +36,19 @@ class CreateEventFragment : BaseFragment(), CreateEventView {
     lateinit var eventLocation: EditText
 
     @BindView(R.id.create_event_choose_start_date_button)
-    lateinit var chooseStartDate: Button
+    lateinit var chooseStartDate: SummaryTextView
 
     @BindView(R.id.create_event_choose_end_date_button)
-    lateinit var chooseEndDate: Button
+    lateinit var chooseEndDate: SummaryTextView
 
     @BindView(R.id.create_event_choose_start_time_button)
-    lateinit var chooseStartTime: Button
+    lateinit var chooseStartTime: SummaryTextView
 
     @BindView(R.id.create_event_choose_end_time_button)
-    lateinit var chooseEndTime: Button
+    lateinit var chooseEndTime: SummaryTextView
 
     @BindView(R.id.choose_attendees_button)
-    lateinit var chooseAttendees: Button
+    lateinit var chooseAttendees: SummaryTextView
 
     @BindView(R.id.create_event_button)
     lateinit var createEvent: Button

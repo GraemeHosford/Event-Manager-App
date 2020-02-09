@@ -42,40 +42,72 @@
         app:layout_constraintTop_toBottomOf="@id/enter_event_description_edit_text"
         tools:ignore="Autofill" />
 
-    <Button
-        android:id="@+id/create_event_choose_start_date_button"
+    <LinearLayout
+        android:id="@+id/date_chooser_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/create_event_choose_start_date_text"
-        app:layout_constraintTop_toBottomOf="@id/enter_event_location_edit_text" />
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintTop_toBottomOf="@id/enter_event_location_edit_text">
 
-    <Button
-        android:id="@+id/create_event_choose_end_date_button"
+        <graeme.hosford.eventmanager.presentation.common.view.custom.SummaryTextView
+            android:id="@+id/create_event_choose_start_date_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:descText="No Start Date Chosen"
+            app:imageDrawable="@drawable/ic_calendar"
+            app:layout_constraintTop_toBottomOf="@id/enter_event_location_edit_text"
+            app:titleText="@string/create_event_choose_start_date_text" />
+
+        <graeme.hosford.eventmanager.presentation.common.view.custom.SummaryTextView
+            android:id="@+id/create_event_choose_end_date_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:descText="No End Date Chosen"
+            app:imageDrawable="@drawable/ic_calendar"
+            app:layout_constraintTop_toBottomOf="@id/create_event_choose_start_date_button"
+            app:titleText="@string/create_event_choose_end_date_text" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/time_chooser_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/create_event_choose_end_date_text"
-        app:layout_constraintTop_toBottomOf="@id/create_event_choose_start_date_button" />
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintTop_toBottomOf="@id/date_chooser_container">
 
-    <Button
-        android:id="@+id/create_event_choose_start_time_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/create_event_choose_start_time_Text"
-        app:layout_constraintTop_toBottomOf="@id/create_event_choose_end_date_button" />
+        <graeme.hosford.eventmanager.presentation.common.view.custom.SummaryTextView
+            android:id="@+id/create_event_choose_start_time_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:descText="No Start Time Chosen"
+            app:imageDrawable="@drawable/ic_clock"
+            app:layout_constraintTop_toBottomOf="@id/date_chooser_container"
+            app:titleText="@string/create_event_choose_start_time_Text" />
 
-    <Button
-        android:id="@+id/create_event_choose_end_time_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/create_event_choose_end_time_Text"
-        app:layout_constraintTop_toBottomOf="@id/create_event_choose_start_time_button" />
+        <graeme.hosford.eventmanager.presentation.common.view.custom.SummaryTextView
+            android:id="@+id/create_event_choose_end_time_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:descText="No End Time Chosen"
+            app:imageDrawable="@drawable/ic_clock"
+            app:layout_constraintTop_toBottomOf="@id/create_event_choose_start_time_button"
+            app:titleText="@string/create_event_choose_end_time_Text" />
+    </LinearLayout>
 
-    <Button
+    <graeme.hosford.eventmanager.presentation.common.view.custom.SummaryTextView
         android:id="@+id/choose_attendees_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/create_event_choose_attendees_text"
-        app:layout_constraintTop_toBottomOf="@id/create_event_choose_end_time_button" />
+        app:descText="No Attendees Chosen"
+        app:imageDrawable="@drawable/ic_add_attendee"
+        app:layout_constraintTop_toBottomOf="@id/time_chooser_container"
+        app:titleText="@string/create_event_choose_attendees_text" />
 
     <Button
         android:id="@+id/create_event_button"
