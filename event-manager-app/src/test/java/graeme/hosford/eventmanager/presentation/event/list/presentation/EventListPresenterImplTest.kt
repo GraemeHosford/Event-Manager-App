@@ -60,8 +60,8 @@ class EventListPresenterImplTest {
     @Test
     fun eventListProcessingCallback_showsData_onSuccess() {
         val models = listOf(
-            EventListItemUiModel("Event 1", "Desc 1", "Loc 1"),
-            EventListItemUiModel("Event 2", "Desc 2", "Loc 2")
+            EventListItemUiModel("Event 1", "Desc 1", "Loc 1", arrayListOf()),
+            EventListItemUiModel("Event 2", "Desc 2", "Loc 2", arrayListOf())
         )
 
         processorCapture.captured.onProcessingComplete(models)
