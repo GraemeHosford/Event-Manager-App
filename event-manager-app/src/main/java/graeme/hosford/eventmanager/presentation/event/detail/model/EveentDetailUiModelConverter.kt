@@ -4,7 +4,7 @@ import graeme.hosford.eventmanager.entity.event.Event
 import graeme.hosford.eventmanager.presentation.common.model.UiModelConverter
 import javax.inject.Inject
 
-class EveentDetailUiModelConverter @Inject constructor() :
+class EventDetailUiModelConverter @Inject constructor() :
     UiModelConverter<Event, EventDetailUiModel> {
 
     override fun toUiModel(entity: Event): EventDetailUiModel {
