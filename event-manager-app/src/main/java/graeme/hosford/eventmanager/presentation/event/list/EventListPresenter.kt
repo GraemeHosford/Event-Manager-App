@@ -4,7 +4,7 @@ import graeme.hosford.eventmanager.presentation.common.presenter.Presenter
 
 interface EventListPresenter : Presenter<EventListView> {
 
-    fun onEventItemClick()
+    fun onEventItemClick(eventId: String)
 
     fun onFabClick()
 

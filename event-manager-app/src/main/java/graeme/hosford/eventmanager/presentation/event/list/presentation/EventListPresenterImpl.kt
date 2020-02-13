@@ -29,8 +29,8 @@ class EventListPresenterImpl @Inject constructor(
         interactor.getEvents()
     }
 
-    override fun onEventItemClick() {
-        view?.showEventDetail()
+    override fun onEventItemClick(eventId: String) {
+        view?.showEventDetail(eventId)
     }
 
     override fun onFabClick() {

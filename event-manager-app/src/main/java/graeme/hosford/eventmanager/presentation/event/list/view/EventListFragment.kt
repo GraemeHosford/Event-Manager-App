@@ -12,6 +12,7 @@ import graeme.hosford.eventmanager.presentation.event.list.EventListPresenter
 import graeme.hosford.eventmanager.presentation.event.list.EventListView
 import graeme.hosford.eventmanager.presentation.event.list.model.EventListItemUiModel
 import graeme.hosford.eventmanager.presentation.event.list.view.adapter.EventListAdapter
+import graeme.hosford.eventmanager.presentation.event.list.view.adapter.EventListItemClickListener
 import graeme.hosford.eventmanager.presentation.event.list.view.adapter.EventListItemViewHolder
 import javax.inject.Inject
 
@@ -51,7 +52,11 @@ class EventListFragment :
     }
 
     override fun recyclerViewAdapter(): EventListAdapter {
-        return EventListAdapter(View.OnClickListener { presenter.onEventItemClick() })
+        return EventListAdapter(object : EventListItemClickListener {
+            override fun onEventListItemClick(eventId: String) {
+                presenter.onEventItemClick(eventId)
+            }
+        })
     }
 
     override fun showFab(): Boolean = true
