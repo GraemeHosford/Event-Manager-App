@@ -126,6 +126,8 @@ class CreateEventPresenterImpl @Inject constructor(
         return "${endHour}:${endMinute}"
     }
 
+    /* Add list of accomodation */
+
     override fun getDefaultStartHour(): Int {
         return if (startHour == 0) {
             val cal = Calendar.getInstance()

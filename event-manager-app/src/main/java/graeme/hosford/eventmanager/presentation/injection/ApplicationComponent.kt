@@ -12,6 +12,7 @@ import graeme.hosford.eventmanager.presentation.company.create_join_screen.view.
 import graeme.hosford.eventmanager.presentation.company.detail.view.CompanyDetailFragment
 import graeme.hosford.eventmanager.presentation.company.join.view.JoinCompanyActivity
 import graeme.hosford.eventmanager.presentation.event.create.view.CreateEventFragment
+import graeme.hosford.eventmanager.presentation.event.detail.view.EventDetailFragment
 import graeme.hosford.eventmanager.presentation.event.list.view.EventListFragment
 import graeme.hosford.eventmanager.presentation.login.view.LoginActivity
 import javax.inject.Singleton
@@ -56,5 +57,7 @@ interface ApplicationComponent {
     fun inject(attendeesFragment: AttendeesFragment)
 
     fun inject(attendeesActivity: AttendeesActivity)
+
+    fun inject(eventDetailFragment: EventDetailFragment)
 
 }
