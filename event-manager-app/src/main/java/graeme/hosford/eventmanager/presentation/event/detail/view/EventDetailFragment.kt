@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.navArgs
 import graeme.hosford.eventmanager.EventManagerApplication
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseFragment
@@ -23,7 +22,7 @@ class EventDetailFragment : BaseFragment(), EventDetailView {
         super.onCreate(savedInstanceState)
         presenter.onViewCreated(this)
 
-        presenter.loadEventDetail(arguments?.getString(EventListView.ARG_EVENT_ID) ?: "")
+        presenter.loadEventDetail(arguments?.getString(EventListView.ARG_EVENT_ID)!!)
     }
 
     override fun onCreateView(

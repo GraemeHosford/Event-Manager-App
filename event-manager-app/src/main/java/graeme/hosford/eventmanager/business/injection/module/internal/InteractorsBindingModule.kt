@@ -61,7 +61,7 @@ internal interface InteractorsBindingModule {
 
     @Binds
     @Singleton
-    fun eventDetailInteractor(ompl: EventDetailInteractorImpl): EventDetailInteractor
+    fun eventDetailInteractor(impl: EventDetailInteractorImpl): EventDetailInteractor
 
     //endregion
 
