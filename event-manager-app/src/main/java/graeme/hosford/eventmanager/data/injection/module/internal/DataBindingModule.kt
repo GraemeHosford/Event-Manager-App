@@ -6,6 +6,8 @@ import graeme.hosford.eventmanager.data.company.CompanyFirebaseAccess
 import graeme.hosford.eventmanager.data.company.CompanyFirebaseAccessImpl
 import graeme.hosford.eventmanager.data.event.create.CreateEventFirebaseAccess
 import graeme.hosford.eventmanager.data.event.create.CreateEventFirebaseAccessImpl
+import graeme.hosford.eventmanager.data.event.detail.EventDetailFirebaseAccess
+import graeme.hosford.eventmanager.data.event.detail.EventDetailFirebaseAccessImpl
 import graeme.hosford.eventmanager.data.event.list.EventListFirebaseAccess
 import graeme.hosford.eventmanager.data.event.list.EventListFirebaseAccessImpl
 import graeme.hosford.eventmanager.data.login.CurrentUserNetworkAccess
@@ -29,6 +31,10 @@ internal interface DataBindingModule {
     @Binds
     @Singleton
     fun eventListFirebaseAccess(impl: EventListFirebaseAccessImpl): EventListFirebaseAccess
+
+    @Binds
+    @Singleton
+    fun eventDetailFirebaseAccess(impl: EventDetailFirebaseAccessImpl): EventDetailFirebaseAccess
 
     @Binds
     @Singleton

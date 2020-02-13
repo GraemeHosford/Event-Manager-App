@@ -56,8 +56,9 @@ class EventListFragment :
 
     override fun showFab(): Boolean = true
 
-    override fun showEventDetail() {
-        /* Nothing for now */
-        showLongToast("Event Details Not Implemented Yet")
+    override fun showEventDetail(eventId: String) {
+        val args = Bundle()
+        args.putString(EventListView.ARG_EVENT_ID, eventId)
+        findNavController().navigate(R.id.nav_event_detail, args)
     }
 }
