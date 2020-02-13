@@ -2,6 +2,7 @@ package graeme.hosford.eventmanager.entity.event
 
 data class Event(
     /* Default params used so Firebase can deserialize objects */
+    val id: String,
     val name: String = "",
     val description: String = "",
     val location: String = "",

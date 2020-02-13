@@ -8,6 +8,18 @@ import javax.inject.Inject
 class EventEntityConverter @Inject constructor() : EntityConverter<Event> {
 
     override fun convert(document: DocumentSnapshot): Event {
-        return document.toObject(Event::class.java)!!
+        with(document.data) {
+            return Event(
+                document.id,
+                getOrDefault(this, Event.NAME_FIELD, "") as String,
+                getOrDefault(this, Event.DESCRIPTION_FIELD, "") as String,
+                getOrDefault(this, Event.LOCATION_FIELD, "") as String,
+                getOrDefault(this, Event.ATTENDEES_LIST, arrayListOf<String>()) as ArrayList<String>
+            )
+        }
     }
+
+    private fun getOrDefault(data: MutableMap<String, Any>?, key: String, defaultValue: Any): Any =
+        data?.get(key) ?: defaultValue
+
 }
