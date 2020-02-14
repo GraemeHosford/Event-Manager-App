@@ -10,6 +10,7 @@ import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.presentation.common.view.recyclerview.BaseAdapter
 import graeme.hosford.eventmanager.presentation.common.view.recyclerview.BaseViewHolder
 import graeme.hosford.eventmanager.presentation.event.list.model.EventListItemUiModel
+import graeme.hosford.eventmanager.presentation.utils.PeoplePresentationUtils
 
 class EventListAdapter(private val itemClickListener: EventListItemClickListener) :
     BaseAdapter<EventListItemUiModel, EventListItemViewHolder>() {
@@ -60,12 +61,7 @@ class EventListItemViewHolder(
         } else if (attendees.size > 0) {
             numAttendeesTextView.visibility = View.VISIBLE
             numAttendeesTextView.text =
-                itemView.context.resources.getQuantityString(
-                    R.plurals.attendees_summary,
-                    attendees.size,
-                    attendees[0],
-                    attendees.size - 1
-                )
+                PeoplePresentationUtils.getAttendeeSummary(itemView.context.resources, attendees)
         }
     }
 }

@@ -2,6 +2,7 @@
 <resources>
     <plurals name="attendees_summary">
         <item quantity="one">%s</item>
+        <item quantity="two">%s &amp; 1 other</item>
         <item quantity="other">%s &amp; %d others</item>
     </plurals>
 

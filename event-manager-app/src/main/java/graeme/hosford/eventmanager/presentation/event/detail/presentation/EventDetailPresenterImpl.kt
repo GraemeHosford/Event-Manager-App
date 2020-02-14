@@ -42,7 +42,7 @@ class EventDetailPresenterImpl @Inject constructor(
 
     private inner class ProcessorCallback: UiModelSingleProcessor.ProcessingCompleteCallback<EventDetailUiModel> {
         override fun onProcessingComplete(model: EventDetailUiModel) {
-
+            view?.setData(model)
         }
 
         override fun onProcessingFailed() {

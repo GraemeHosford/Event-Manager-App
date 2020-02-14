@@ -1,6 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/event_detail_event_name_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Example Event Name That goes across multiple lines" />
+
+    <TextView
+        android:id="@+id/event_detail_event_desc_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/event_detail_event_name_text_view"
+        tools:text="Some test description that goes across many lines so I can see how this looks" />
+
+    <TextView
+        android:id="@+id/event_detail_event_attendees_summary_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_person"
+        android:padding="8dp"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/event_detail_event_desc_text_view"
+        tools:text="Graeme H. &amp; 3 others" />
+
+    <TextView
+        android:id="@+id/event_detail_event_location_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_location"
+        android:padding="8dp"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/event_detail_event_attendees_summary_text_view"
+        tools:text="Cork" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
