@@ -5,6 +5,7 @@ import graeme.hosford.eventmanager.business.attendees.AttendeesInteractor
 import graeme.hosford.eventmanager.entity.company.Member
 import graeme.hosford.eventmanager.presentation.attendees.AttendeesPresenter
 import graeme.hosford.eventmanager.presentation.attendees.AttendeesView
+import graeme.hosford.eventmanager.presentation.attendees.model.AttendeeComparator
 import graeme.hosford.eventmanager.presentation.attendees.model.AttendeesUiModel
 import graeme.hosford.eventmanager.presentation.attendees.model.AttendeesUiModelProcessor
 import graeme.hosford.eventmanager.presentation.common.model.UiModelListProcessor
@@ -23,6 +24,8 @@ class AttendeesPresenterImpl @Inject constructor(
         super.onViewCreated(view)
         interactor.registerCallback(AttendeesCallback())
         processor.registerProcessingCallback(ProcessorCallback())
+
+        processor.setListComparator(AttendeeComparator.attendeeNameComparator)
     }
 
     override fun onResume() {

@@ -6,6 +6,7 @@ import graeme.hosford.eventmanager.presentation.common.model.UiModelListProcesso
 import graeme.hosford.eventmanager.presentation.common.presenter.BasePresenter
 import graeme.hosford.eventmanager.presentation.company.detail.CompanyDetailPresenter
 import graeme.hosford.eventmanager.presentation.company.detail.CompanyDetailView
+import graeme.hosford.eventmanager.presentation.company.detail.model.CompanyMemberComparator
 import graeme.hosford.eventmanager.presentation.company.detail.model.CompanyMemberUiModel
 import graeme.hosford.eventmanager.presentation.company.detail.model.CompanyMemberUiModelProcessor
 import javax.inject.Inject
@@ -21,6 +22,7 @@ class CompanyDetailPresenterImpl @Inject constructor(
         interactor.registerCallback(CompanyDetailInteractorCallback())
         processor.registerProcessingCallback(ProcessorCallback())
 
+        processor.setListComparator(CompanyMemberComparator.memberNameComparator)
         interactor.getCompanyMembers()
     }
 

@@ -8,6 +8,7 @@ import graeme.hosford.eventmanager.presentation.common.presenter.BasePresenter
 import graeme.hosford.eventmanager.presentation.event.list.EventListPresenter
 import graeme.hosford.eventmanager.presentation.event.list.EventListView
 import graeme.hosford.eventmanager.presentation.event.list.model.EventListItemUiModel
+import graeme.hosford.eventmanager.presentation.event.list.model.EventListItemUiModelComparator
 import graeme.hosford.eventmanager.presentation.event.list.model.EventListItemUiModelProcessor
 import javax.inject.Inject
 
@@ -21,6 +22,8 @@ class EventListPresenterImpl @Inject constructor(
         super.onViewCreated(view)
         processor.registerProcessingCallback(EventListProcessorCallback())
         interactor.registerCallback(EventListInteractorCallback())
+
+        processor.setListComparator(EventListItemUiModelComparator.DateTimeComparator)
     }
 
     override fun onResume() {
