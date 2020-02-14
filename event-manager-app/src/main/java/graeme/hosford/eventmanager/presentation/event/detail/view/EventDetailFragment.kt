@@ -14,6 +14,7 @@ import graeme.hosford.eventmanager.presentation.event.detail.EventDetailPresente
 import graeme.hosford.eventmanager.presentation.event.detail.EventDetailView
 import graeme.hosford.eventmanager.presentation.event.detail.model.EventDetailUiModel
 import graeme.hosford.eventmanager.presentation.event.list.EventListView
+import graeme.hosford.eventmanager.presentation.utils.DatePresentationUtils
 import graeme.hosford.eventmanager.presentation.utils.PeoplePresentationUtils
 import javax.inject.Inject
 
@@ -27,6 +28,12 @@ class EventDetailFragment : BaseFragment(), EventDetailView {
 
     @BindView(R.id.event_detail_event_desc_text_view)
     lateinit var eventDesc: TextView
+
+    @BindView(R.id.event_detail_event_date_text_view)
+    lateinit var eventDate: TextView
+
+    @BindView(R.id.event_Detail_event_time_text_view)
+    lateinit var eventTime: TextView
 
     @BindView(R.id.event_detail_event_attendees_summary_text_view)
     lateinit var eventAttendees: TextView
@@ -55,6 +62,8 @@ class EventDetailFragment : BaseFragment(), EventDetailView {
     override fun setData(model: EventDetailUiModel) {
         eventName.text = model.name
         eventDesc.text = model.description
+        eventDate.text = DatePresentationUtils.formatDateRange(model.startDate, model.endDate)
+        eventTime.text = DatePresentationUtils.formatTimeRange(model.startDate, model.endDate)
         eventAttendees.text = PeoplePresentationUtils.getAttendeeSummary(resources, model.attendees)
         eventLocation.text = model.location
     }
