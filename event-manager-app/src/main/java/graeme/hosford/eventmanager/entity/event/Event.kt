@@ -1,10 +1,14 @@
 package graeme.hosford.eventmanager.entity.event
 
+import java.util.*
+
 data class Event(
     /* Default params used so Firebase can deserialize objects */
     val id: String,
     val name: String = "",
     val description: String = "",
+    val startDate: Calendar,
+    val endDate: Calendar,
     val location: String = "",
     val attendees: ArrayList<String> = arrayListOf()
 ) {

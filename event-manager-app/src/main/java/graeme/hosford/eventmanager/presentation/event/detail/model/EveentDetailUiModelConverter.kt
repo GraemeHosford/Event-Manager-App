@@ -9,8 +9,11 @@ class EventDetailUiModelConverter @Inject constructor() :
 
     override fun toUiModel(entity: Event): EventDetailUiModel {
         return EventDetailUiModel(
+            entity.id,
             entity.name,
             entity.description,
+            entity.startDate,
+            entity.endDate,
             entity.location,
             entity.attendees
         )

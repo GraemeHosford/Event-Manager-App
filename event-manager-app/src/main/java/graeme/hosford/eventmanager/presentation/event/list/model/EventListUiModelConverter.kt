@@ -12,6 +12,8 @@ class EventListUiModelConverter @Inject constructor() :
             entity.id,
             entity.name,
             entity.description,
+            entity.startDate,
+            entity.endDate,
             entity.location,
             entity.attendees
         )
