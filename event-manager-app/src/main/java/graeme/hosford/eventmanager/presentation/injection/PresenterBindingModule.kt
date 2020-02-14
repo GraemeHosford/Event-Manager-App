@@ -44,7 +44,6 @@ interface PresenterBindingModule {
     fun companyDetailPresenter(impl: CompanyDetailPresenterImpl): CompanyDetailPresenter
 
     @Binds
-    @Singleton
     fun createEventPresenter(impl: CreateEventPresenterImpl): CreateEventPresenter
 
     @Binds
