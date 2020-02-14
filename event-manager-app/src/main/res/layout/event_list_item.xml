@@ -48,6 +48,32 @@
             tools:text="Event Description" />
 
         <TextView
+            android:id="@+id/event_list_item_date_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_calendar"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="8dp"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/event_list_item_description_text_view"
+            tools:text="Feb 12th - Feb 13th 2020" />
+
+        <TextView
+            android:id="@+id/event_list_item_time_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_clock"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="8dp"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@id/event_list_item_date_text_view"
+            app:layout_constraintTop_toBottomOf="@id/event_list_item_description_text_view"
+            tools:text="15:30 - 16:30" />
+
+        <TextView
             android:id="@+id/event_list_item_location_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -60,7 +86,7 @@
             android:paddingBottom="8dp"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/event_list_item_description_text_view"
+            app:layout_constraintTop_toBottomOf="@id/event_list_item_date_text_view"
             tools:text="Location" />
 
         <TextView
@@ -76,7 +102,7 @@
             android:paddingBottom="8dp"
             android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@id/event_list_item_location_text_view"
-            app:layout_constraintTop_toBottomOf="@id/event_list_item_description_text_view"
+            app:layout_constraintTop_toBottomOf="@id/event_list_item_date_text_view"
             tools:text="Num Attendees" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

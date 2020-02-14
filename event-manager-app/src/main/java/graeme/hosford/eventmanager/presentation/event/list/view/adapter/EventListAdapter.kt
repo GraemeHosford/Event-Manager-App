@@ -10,6 +10,7 @@ import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.presentation.common.view.recyclerview.BaseAdapter
 import graeme.hosford.eventmanager.presentation.common.view.recyclerview.BaseViewHolder
 import graeme.hosford.eventmanager.presentation.event.list.model.EventListItemUiModel
+import graeme.hosford.eventmanager.presentation.utils.DatePresentationUtils
 import graeme.hosford.eventmanager.presentation.utils.PeoplePresentationUtils
 
 class EventListAdapter(private val itemClickListener: EventListItemClickListener) :
@@ -38,6 +39,12 @@ class EventListItemViewHolder(
     @BindView(R.id.event_list_item_description_text_view)
     lateinit var eventDesc: TextView
 
+    @BindView(R.id.event_list_item_date_text_view)
+    lateinit var eventDate: TextView
+
+    @BindView(R.id.event_list_item_time_text_view)
+    lateinit var eventTime: TextView
+
     @BindView(R.id.event_list_item_location_text_view)
     lateinit var eventLocation: TextView
 
@@ -52,6 +59,10 @@ class EventListItemViewHolder(
 
         eventName.text = model.eventName
         eventDesc.text = model.eventDesc
+
+        eventDate.text = DatePresentationUtils.formatDateRange(model.startDate, model.endDate)
+        eventTime.text = DatePresentationUtils.formatTimeRange(model.startDate, model.endDate)
+
         eventLocation.text = model.eventLocation
 
         val attendees = model.attendees
