@@ -31,7 +31,7 @@ object DatePresentationUtils {
     }
 
     fun formatTimeRange(start: Calendar, end: Calendar): String {
-        val formatter = SimpleDateFormat("hh:mm", Locale.getDefault())
+        val formatter = SimpleDateFormat("HH:mm", Locale.getDefault())
 
         val startTime = formatter.format(start.time)
         val endTime = formatter.format(end.time)

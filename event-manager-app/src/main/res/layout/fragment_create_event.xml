@@ -55,7 +55,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:descText="No Start Date Chosen"
+            app:descText="@string/create_event_no_start_date_chosen"
             app:imageDrawable="@drawable/ic_calendar"
             app:layout_constraintTop_toBottomOf="@id/enter_event_location_edit_text"
             app:titleText="@string/create_event_choose_start_date_text" />
@@ -65,7 +65,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:descText="No End Date Chosen"
+            app:descText="@string/create_event_no_end_date_chosen"
             app:imageDrawable="@drawable/ic_calendar"
             app:layout_constraintTop_toBottomOf="@id/create_event_choose_start_date_button"
             app:titleText="@string/create_event_choose_end_date_text" />
@@ -84,7 +84,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:descText="No Start Time Chosen"
+            app:descText="@string/create_event_no_start_time_chosen"
             app:imageDrawable="@drawable/ic_clock"
             app:layout_constraintTop_toBottomOf="@id/date_chooser_container"
             app:titleText="@string/create_event_choose_start_time_Text" />
@@ -94,7 +94,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:descText="No End Time Chosen"
+            app:descText="@string/create_event_no_end_time_chosen"
             app:imageDrawable="@drawable/ic_clock"
             app:layout_constraintTop_toBottomOf="@id/create_event_choose_start_time_button"
             app:titleText="@string/create_event_choose_end_time_Text" />
@@ -104,7 +104,7 @@
         android:id="@+id/choose_attendees_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:descText="No Attendees Chosen"
+        app:descText="@string/create_event_no_attendees_chosen"
         app:imageDrawable="@drawable/ic_add_attendee"
         app:layout_constraintTop_toBottomOf="@id/time_chooser_container"
         app:titleText="@string/create_event_choose_attendees_text" />
