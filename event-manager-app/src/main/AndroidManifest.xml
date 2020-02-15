@@ -35,6 +35,9 @@
             android:label="@string/title_activity_event_list"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".presentation.attendees.view.AttendeesActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/event_detail_event_name_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Example Event Name That goes across multiple lines" />
+
+    <TextView
+        android:id="@+id/event_detail_event_desc_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/event_detail_event_name_text_view"
+        tools:text="Some test description that goes across many lines so I can see how this looks" />
+
+    <LinearLayout
+        android:id="@+id/event_detail_date_time_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        app:layout_constraintTop_toBottomOf="@id/event_detail_event_desc_text_view">
+
+        <TextView
+            android:id="@+id/event_detail_event_date_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_calendar"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="8dp"
+            android:textSize="14sp"
+            tools:text="Feb 12 - Feb 13 2020" />
+
+        <TextView
+            android:id="@+id/event_Detail_event_time_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_clock"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="8dp"
+            android:textSize="14sp"
+            tools:text="15:30 - 17:00" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/event_detail_event_attendees_summary_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_person"
+        android:padding="8dp"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/event_detail_date_time_container"
+        tools:text="Graeme H. &amp; 3 others" />
+
+    <TextView
+        android:id="@+id/event_detail_event_location_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_location"
+        android:padding="8dp"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/event_detail_event_attendees_summary_text_view"
+        tools:text="Cork" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

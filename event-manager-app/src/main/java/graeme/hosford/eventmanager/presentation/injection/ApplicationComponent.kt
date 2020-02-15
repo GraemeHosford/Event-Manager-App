@@ -5,9 +5,14 @@ import graeme.hosford.eventmanager.business.injection.module.internal.Interactor
 import graeme.hosford.eventmanager.data.injection.module.internal.DataBindingModule
 import graeme.hosford.eventmanager.data.injection.module.internal.NetworkModule
 import graeme.hosford.eventmanager.data.injection.module.internal.ThreadingModule
+import graeme.hosford.eventmanager.presentation.attendees.view.AttendeesActivity
+import graeme.hosford.eventmanager.presentation.attendees.view.AttendeesFragment
 import graeme.hosford.eventmanager.presentation.company.create.view.CreateCompanyActivity
 import graeme.hosford.eventmanager.presentation.company.create_join_screen.view.CreateJoinCompanyActivity
+import graeme.hosford.eventmanager.presentation.company.detail.view.CompanyDetailFragment
 import graeme.hosford.eventmanager.presentation.company.join.view.JoinCompanyActivity
+import graeme.hosford.eventmanager.presentation.event.create.view.CreateEventFragment
+import graeme.hosford.eventmanager.presentation.event.detail.view.EventDetailFragment
 import graeme.hosford.eventmanager.presentation.event.list.view.EventListFragment
 import graeme.hosford.eventmanager.presentation.login.view.LoginActivity
 import javax.inject.Singleton
@@ -44,5 +49,15 @@ interface ApplicationComponent {
     fun inject(createCompanyActivity: CreateCompanyActivity)
 
     fun inject(eventListFragment: EventListFragment)
+
+    fun inject(companyDetailFragment: CompanyDetailFragment)
+
+    fun inject(createEventFragment: CreateEventFragment)
+
+    fun inject(attendeesFragment: AttendeesFragment)
+
+    fun inject(attendeesActivity: AttendeesActivity)
+
+    fun inject(eventDetailFragment: EventDetailFragment)
 
 }

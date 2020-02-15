@@ -24,6 +24,13 @@ class CurrentUserInteractorImpl @Inject constructor(
         )
     }
 
+    override fun getUserCompanyId() {
+        currentUserNetworkAccess.getUserInfo(
+            currentUserNetworkAccess.getCurrentUser()?.email!!,
+            "companyId"
+        )
+    }
+
     override fun checkUserHasCompany() {
         currentUserNetworkAccess.getUserInfo(
             currentUserNetworkAccess.getCurrentUser()?.email!!,

@@ -13,6 +13,7 @@ import io.mockk.slot
 import io.mockk.verify
 import org.junit.Before
 import org.junit.Test
+import java.util.*
 
 class EventListPresenterImplTest {
 
@@ -26,6 +27,12 @@ class EventListPresenterImplTest {
 
     @RelaxedMockK
     private lateinit var view: EventListView
+
+    @RelaxedMockK
+    private lateinit var startDate: Calendar
+
+    @RelaxedMockK
+    private lateinit var endDate: Calendar
 
     private val processorCapture =
         slot<UiModelListProcessor.ProcessingCompleteCallback<EventListItemUiModel>>()
@@ -60,8 +67,24 @@ class EventListPresenterImplTest {
     @Test
     fun eventListProcessingCallback_showsData_onSuccess() {
         val models = listOf(
-            EventListItemUiModel("Event 1"),
-            EventListItemUiModel("Event 2")
+            EventListItemUiModel(
+                "122",
+                "Event 1",
+                "Desc 1",
+                startDate,
+                endDate,
+                "Loc 1",
+                arrayListOf()
+            ),
+            EventListItemUiModel(
+                "123",
+                "Event 2",
+                "Desc 2",
+                startDate,
+                endDate,
+                "Loc 2",
+                arrayListOf()
+            )
         )
 
         processorCapture.captured.onProcessingComplete(models)
@@ -79,8 +102,8 @@ class EventListPresenterImplTest {
     @Test
     fun interactorCallback_onEventsRetrieved_callsProcessorToProcess() {
         val entities = listOf(
-            Event("Event 1"),
-            Event("Event 2")
+            Event("122", "Event 1", "Desc 1", startDate, endDate, "Loc 1"),
+            Event("123", "Event 2", "Desc 2", startDate, endDate, "Loc 2")
         )
 
         interactorCapture.captured.onEventsRetrieved(entities)

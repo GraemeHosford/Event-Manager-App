@@ -6,6 +6,12 @@ import graeme.hosford.eventmanager.presentation.event.list.model.EventListItemUi
 
 interface EventListView : RecyclerViewListView<EventListItemUiModel>, ToastView {
 
-    fun showEventDetail()
+    companion object {
+        const val ARG_EVENT_ID = "ARG_EVENT_ID"
+    }
+
+    fun showEventDetail(eventId: String)
+
+    fun startCreateNewEvent()
 
 }

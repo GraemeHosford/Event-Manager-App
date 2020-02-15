@@ -1,6 +1,8 @@
 package graeme.hosford.eventmanager.presentation.company.create
 
-interface CreateCompanyPresenter {
+import graeme.hosford.eventmanager.presentation.common.presenter.Presenter
+
+interface CreateCompanyPresenter : Presenter<CreateCompanyView> {
 
     fun onCreateCompanyButtonClick(name: String)
 

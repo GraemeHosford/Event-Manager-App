@@ -28,8 +28,8 @@ allprojects {
         sharedTargetSdkVersion = 28
         sharedBuildToolsVersion = "28.0.3"
 
-        appVersionCode = 2
-        appVersionName = "0.0.0.2"
+        appVersionCode = 3
+        appVersionName = "0.0.0.3"
     }
 }
 

@@ -1,7 +1,11 @@
 package graeme.hosford.eventmanager.presentation.event.list
 
-interface EventListPresenter {
+import graeme.hosford.eventmanager.presentation.common.presenter.Presenter
 
-    fun onEventItemClick()
+interface EventListPresenter : Presenter<EventListView> {
+
+    fun onEventItemClick(eventId: String)
+
+    fun onFabClick()
 
 }

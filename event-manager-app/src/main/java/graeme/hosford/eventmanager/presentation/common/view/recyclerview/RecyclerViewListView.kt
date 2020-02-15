@@ -4,4 +4,6 @@ interface RecyclerViewListView<UiModel> {
 
     fun showData(items: List<UiModel>)
 
+    fun showErrorScreen()
+
 }

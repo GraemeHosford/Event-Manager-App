@@ -2,10 +2,18 @@ package graeme.hosford.eventmanager.presentation.injection
 
 import dagger.Binds
 import dagger.Module
+import graeme.hosford.eventmanager.presentation.attendees.AttendeesPresenter
+import graeme.hosford.eventmanager.presentation.attendees.presentation.AttendeesPresenterImpl
 import graeme.hosford.eventmanager.presentation.company.create.CreateCompanyPresenter
 import graeme.hosford.eventmanager.presentation.company.create.presentation.CreateCompanyPresenterImpl
+import graeme.hosford.eventmanager.presentation.company.detail.CompanyDetailPresenter
+import graeme.hosford.eventmanager.presentation.company.detail.presentation.CompanyDetailPresenterImpl
 import graeme.hosford.eventmanager.presentation.company.join.JoinCompanyPresenter
 import graeme.hosford.eventmanager.presentation.company.join.presentation.JoinCompanyPresenterImpl
+import graeme.hosford.eventmanager.presentation.event.create.CreateEventPresenter
+import graeme.hosford.eventmanager.presentation.event.create.presentation.CreateEventPresenterImpl
+import graeme.hosford.eventmanager.presentation.event.detail.EventDetailPresenter
+import graeme.hosford.eventmanager.presentation.event.detail.presentation.EventDetailPresenterImpl
 import graeme.hosford.eventmanager.presentation.event.list.EventListPresenter
 import graeme.hosford.eventmanager.presentation.event.list.presentation.EventListPresenterImpl
 import graeme.hosford.eventmanager.presentation.login.LoginPresenter
@@ -30,5 +38,20 @@ interface PresenterBindingModule {
     @Binds
     @Singleton
     fun eventListPresenter(impl: EventListPresenterImpl): EventListPresenter
+
+    @Binds
+    @Singleton
+    fun companyDetailPresenter(impl: CompanyDetailPresenterImpl): CompanyDetailPresenter
+
+    @Binds
+    fun createEventPresenter(impl: CreateEventPresenterImpl): CreateEventPresenter
+
+    @Binds
+    @Singleton
+    fun attendeesPresenter(impl: AttendeesPresenterImpl): AttendeesPresenter
+
+    @Binds
+    @Singleton
+    fun eventDetailPresenter(impl: EventDetailPresenterImpl): EventDetailPresenter
 
 }

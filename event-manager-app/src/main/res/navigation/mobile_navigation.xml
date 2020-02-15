@@ -3,18 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_my_events">
 
     <fragment
-        android:id="@+id/nav_home"
+        android:id="@+id/nav_my_events"
         android:name="graeme.hosford.eventmanager.presentation.event.list.view.EventListFragment"
-        android:label="@string/menu_home"
+        android:label="@string/nav_menu_my_events"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="graeme.hosford.eventmanager.presentation.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
+        android:id="@+id/nav_event_detail"
+        android:name="graeme.hosford.eventmanager.presentation.event.detail.view.EventDetailFragment"/>
+
+    <fragment
+        android:id="@+id/nav_create_event"
+        android:name="graeme.hosford.eventmanager.presentation.event.create.view.CreateEventFragment"
+        android:label="@string/create_event_text" />
+
+    <fragment
+        android:id="@+id/nav_choose_attendees"
+        android:name="graeme.hosford.eventmanager.presentation.attendees.view.AttendeesFragment"
+        android:label="@string/create_event_choose_attendees_text" />
+
+    <fragment
+        android:id="@+id/nav_my_company"
+        android:name="graeme.hosford.eventmanager.presentation.company.detail.view.CompanyDetailFragment"
+        android:label="@string/nav_menu_my_company"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment

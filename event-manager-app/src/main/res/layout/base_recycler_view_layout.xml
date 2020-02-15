@@ -32,8 +32,8 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
-        android:visibility="gone"
         android:text="@string/generic_error_loading_data"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,12 +45,24 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
-        android:visibility="gone"
         android:text="@string/generic_nothing_to_load"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="There is nothing to load!" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_add"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,6 +11,7 @@ import io.mockk.slot
 import io.mockk.verify
 import org.junit.Before
 import org.junit.Test
+import java.util.*
 
 class EventListInteractorImplTest {
 
@@ -61,8 +62,10 @@ class EventListInteractorImplTest {
     fun eventsListener_onEventsRetrievedSuccess_callsOnEventsRetrievedCallback() {
         interactor.registerCallback(callback)
 
+        val cal = Calendar.getInstance()
+
         val entities = listOf(
-            Event("Event 1")
+            Event("123", "Event 1", "Desc", cal, cal, "Loc")
         )
 
         eventListenerCapture.captured.onEventRetrieveSuccess(entities)

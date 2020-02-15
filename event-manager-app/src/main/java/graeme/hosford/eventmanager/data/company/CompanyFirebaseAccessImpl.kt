@@ -3,12 +3,17 @@ package graeme.hosford.eventmanager.data.company
 import com.google.firebase.firestore.FirebaseFirestore
 import graeme.hosford.eventmanager.data.company.CompanyFirebaseAccess.Companion.COMPANIES_COLLECTION
 import graeme.hosford.eventmanager.data.company.CompanyFirebaseAccess.Companion.MEMBERS_SUBCOLLECTION
+import graeme.hosford.eventmanager.data.company.member.converter.MemberEntityConverter
+import graeme.hosford.eventmanager.entity.company.Member
 import javax.inject.Inject
 
-class CompanyFirebaseAccessImpl @Inject constructor() : CompanyFirebaseAccess {
+class CompanyFirebaseAccessImpl @Inject constructor(
+    private val memberConverter: MemberEntityConverter
+) : CompanyFirebaseAccess {
 
-    private var companySaveListener: CompanyFirebaseAccess.CompanySaveListener? = null
-    private var addUserCallback: CompanyFirebaseAccess.AddUserListener? = null
+    private lateinit var companySaveListener: CompanyFirebaseAccess.CompanySaveListener
+    private lateinit var addUserCallback: CompanyFirebaseAccess.AddUserListener
+    private lateinit var memberslistener: CompanyFirebaseAccess.MembersListener
 
     override fun setCompanySaveListener(comapnySaveListener: CompanyFirebaseAccess.CompanySaveListener) {
         this.companySaveListener = comapnySaveListener
@@ -16,6 +21,10 @@ class CompanyFirebaseAccessImpl @Inject constructor() : CompanyFirebaseAccess {
 
     override fun setAddUserListener(addUserListener: CompanyFirebaseAccess.AddUserListener) {
         this.addUserCallback = addUserListener
+    }
+
+    override fun setMembersListener(listener: CompanyFirebaseAccess.MembersListener) {
+        this.memberslistener = listener
     }
 
     override fun saveCompany(id: Int, name: String) {
@@ -28,9 +37,9 @@ class CompanyFirebaseAccessImpl @Inject constructor() : CompanyFirebaseAccess {
                     "name" to name
                 )
             ).addOnSuccessListener {
-                companySaveListener?.onCompanySaveSuccess(id.toString())
+                companySaveListener.onCompanySaveSuccess(id.toString())
             }.addOnFailureListener {
-                companySaveListener?.onCompanySaveFailure()
+                companySaveListener.onCompanySaveFailure()
             }
     }
 
@@ -44,10 +53,26 @@ class CompanyFirebaseAccessImpl @Inject constructor() : CompanyFirebaseAccess {
                     "userEmail" to userEmail
                 )
             ).addOnSuccessListener {
-                addUserCallback?.onAddUserSuccess(companyId)
+                addUserCallback.onAddUserSuccess(companyId)
             }.addOnFailureListener {
-                addUserCallback?.onAddUserFailure()
+                addUserCallback.onAddUserFailure()
             }
+    }
 
+    override fun getCompanyMembers(companyId: String) {
+        FirebaseFirestore.getInstance()
+            .collection(COMPANIES_COLLECTION)
+            .document(companyId)
+            .collection(MEMBERS_SUBCOLLECTION)
+            .get()
+            .addOnSuccessListener {
+                val entities = ArrayList<Member>()
+                it.documents.forEach {
+                    entities.add(memberConverter.convert(it))
+                }
+                memberslistener.onMembersRetrieved(entities)
+            }.addOnFailureListener {
+                memberslistener.onMembersRetrievalFailed()
+            }
     }
 }

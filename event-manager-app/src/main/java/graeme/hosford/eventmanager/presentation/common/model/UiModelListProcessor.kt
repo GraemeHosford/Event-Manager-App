@@ -13,6 +13,8 @@ abstract class UiModelListProcessor<Entity, UiModel>(
 
     private var callback: ProcessingCompleteCallback<UiModel>? = null
 
+    private lateinit var listComparator: Comparator<UiModel>
+
     interface ProcessingCompleteCallback<UiModel> {
         fun onProcessingComplete(models: List<UiModel>)
 
@@ -23,6 +25,10 @@ abstract class UiModelListProcessor<Entity, UiModel>(
         this.callback = callback
     }
 
+    fun setListComparator(comparator: Comparator<UiModel>) {
+        this.listComparator = comparator
+    }
+
     fun process(entities: List<Entity>) {
         disposable.add(Observable.fromArray(entities)
             .map { t ->
@@ -31,7 +37,7 @@ abstract class UiModelListProcessor<Entity, UiModel>(
                     modelList.add(converter.toUiModel(it))
                 }
 
-                modelList
+                modelList.sortedWith(listComparator)
             }
             .subscribeOn(Schedulers.computation())
             .observeOn(AndroidSchedulers.mainThread())

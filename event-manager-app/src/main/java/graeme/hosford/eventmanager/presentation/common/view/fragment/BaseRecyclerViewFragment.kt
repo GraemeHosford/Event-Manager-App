@@ -1,16 +1,19 @@
 package graeme.hosford.eventmanager.presentation.common.view.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import butterknife.BindView
 import butterknife.ButterKnife
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.presentation.common.view.recyclerview.BaseAdapter
 import graeme.hosford.eventmanager.presentation.common.view.recyclerview.BaseViewHolder
@@ -34,6 +37,9 @@ abstract class BaseRecyclerViewFragment<
     @BindView(R.id.no_items_text_view)
     lateinit var emptyItems: TextView
 
+    @BindView(R.id.fab)
+    lateinit var fab: FloatingActionButton
+
     private lateinit var recyclerViewAdapter: Adapter
 
     override fun onCreateView(
@@ -41,10 +47,13 @@ abstract class BaseRecyclerViewFragment<
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.base_recycler_view_layout, container, false)
+        val view = inflater.inflate(getRecyclerViewLayout(), container, false)
         ButterKnife.bind(this, view)
         return view
     }
+
+    @LayoutRes
+    protected open fun getRecyclerViewLayout(): Int = R.layout.base_recycler_view_layout
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -53,13 +62,27 @@ abstract class BaseRecyclerViewFragment<
         val layoutManager = LinearLayoutManager(context)
         recyclerview.layoutManager = layoutManager
         recyclerview.adapter = recyclerViewAdapter
-        recyclerview.addItemDecoration(
-            DividerItemDecoration(
-                recyclerview.context,
-                layoutManager.orientation
-            )
-        )
+
+        addRecyclerViewDecorations(recyclerview.context, layoutManager.orientation).forEach {
+            recyclerview.addItemDecoration(it)
+        }
+
+        if (showFab()) {
+            fab.show()
+        } else {
+            fab.hide()
+        }
     }
+
+    protected open fun showFab(): Boolean {
+        return false
+    }
+
+    protected open fun addRecyclerViewDecorations(
+        recyclerViewContext: Context,
+        layoutOrientation: Int
+    ): List<RecyclerView.ItemDecoration> =
+        listOf(DividerItemDecoration(recyclerViewContext, layoutOrientation))
 
     protected abstract fun recyclerViewAdapter(): Adapter
 
@@ -74,5 +97,10 @@ abstract class BaseRecyclerViewFragment<
         /* Hide loading bar after items have been set to avoid flicker which can
         sometimes happen when hiding before RecyclerView is updated */
         loadingBar.visibility = View.GONE
+    }
+
+    override fun showErrorScreen() {
+        loadingBar.visibility = View.INVISIBLE
+        errorMessage.visibility = View.VISIBLE
     }
 }

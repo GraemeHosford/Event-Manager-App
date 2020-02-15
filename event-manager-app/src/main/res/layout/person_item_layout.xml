@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/person_item_layout_image"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:contentDescription="@string/person_profile_picture"
+        android:padding="8dp"
+        android:src="@drawable/ic_person"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/member_name_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:padding="8dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/person_item_layout_image"
+        app:layout_constraintStart_toEndOf="@id/person_item_layout_image"
+        app:layout_constraintTop_toTopOf="@id/person_item_layout_image"
+        tools:text="Graeme Hosford" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

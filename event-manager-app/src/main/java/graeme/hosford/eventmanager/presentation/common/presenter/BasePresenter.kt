@@ -15,23 +15,27 @@ import graeme.hosford.eventmanager.business.common.Interactor
  * used as a demonstration of a more complex real implementation.
  */
 @UiThread
-abstract class BasePresenter<View, I : Interactor<*>>(private val interactor: I) {
+abstract class BasePresenter<View, I : Interactor<*>>(private val interactor: I) : Presenter<View> {
 
     protected var view: View? = null
 
     @CallSuper
-    open fun onViewCreated(view: View) {
+    override fun onViewCreated(view: View) {
         this.view = view
         interactor.onCreate()
     }
 
     @CallSuper
-    fun onViewDestroyed() {
+    override fun onResume() {
+    }
+
+    @CallSuper
+    override fun onViewDestroyed() {
         view = null
     }
 
     @CallSuper
-    open fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     }
 
 }
