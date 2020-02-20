@@ -8,6 +8,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.google.firebase.messaging.RemoteMessage
 import graeme.hosford.eventmanager.EventManagerApplication
+import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.presentation.common.view.firebase.BaseMessagingService
 import javax.inject.Inject
 
@@ -36,6 +37,7 @@ class EventManagerNotificationService : BaseMessagingService(), EventManagerNoti
             val notBuilder = NotificationCompat.Builder(this, CHANNEL_ID)
                 .setContentTitle(it.title)
                 .setContentText(it.body)
+                .setSmallIcon(R.drawable.ic_calendar)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
