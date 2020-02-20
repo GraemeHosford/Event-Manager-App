@@ -9,6 +9,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.messaging.FirebaseMessaging
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.presentation.common.view.activity.BaseActivity
 import graeme.hosford.eventmanager.presentation.main.MainView
@@ -38,6 +39,9 @@ class MainActivity : BaseActivity(),
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        /* Only init FCM when user has passed the sign in and chose company stuff */
+        FirebaseMessaging.getInstance().isAutoInitEnabled = true
     }
 
     override fun onSupportNavigateUp(): Boolean {
