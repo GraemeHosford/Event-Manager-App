@@ -18,6 +18,8 @@ import graeme.hosford.eventmanager.business.event.list.EventListInteractor
 import graeme.hosford.eventmanager.business.event.list.EventListInteractorImpl
 import graeme.hosford.eventmanager.business.login.LoginInteractor
 import graeme.hosford.eventmanager.business.login.LoginInteractorImpl
+import graeme.hosford.eventmanager.business.notification.EventManagerNotificationInteractor
+import graeme.hosford.eventmanager.business.notification.EventManagerNotificationInteractorImpl
 import graeme.hosford.eventmanager.business.user.CurrentUserInteractor
 import graeme.hosford.eventmanager.business.user.CurrentUserInteractorImpl
 import javax.inject.Singleton
@@ -62,6 +64,10 @@ internal interface InteractorsBindingModule {
     @Binds
     @Singleton
     fun eventDetailInteractor(impl: EventDetailInteractorImpl): EventDetailInteractor
+
+    @Binds
+    @Singleton
+    fun eventManagerNotificationInteractor(impl: EventManagerNotificationInteractorImpl): EventManagerNotificationInteractor
 
     //endregion
 

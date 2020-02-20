@@ -18,6 +18,8 @@ import graeme.hosford.eventmanager.presentation.event.list.EventListPresenter
 import graeme.hosford.eventmanager.presentation.event.list.presentation.EventListPresenterImpl
 import graeme.hosford.eventmanager.presentation.login.LoginPresenter
 import graeme.hosford.eventmanager.presentation.login.presentation.LoginPresenterImpl
+import graeme.hosford.eventmanager.presentation.notification.EventManagerNotificationPresenter
+import graeme.hosford.eventmanager.presentation.notification.presentation.EventManagerNotificationPresenterImpl
 import javax.inject.Singleton
 
 @Module
@@ -53,5 +55,9 @@ interface PresenterBindingModule {
     @Binds
     @Singleton
     fun eventDetailPresenter(impl: EventDetailPresenterImpl): EventDetailPresenter
+
+    @Binds
+    @Singleton
+    fun eventManagerNotificationPresenter(impl: EventManagerNotificationPresenterImpl): EventManagerNotificationPresenter
 
 }
