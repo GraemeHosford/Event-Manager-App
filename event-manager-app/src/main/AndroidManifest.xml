@@ -41,7 +41,7 @@
 
         <!-- Firebase stuff and things -->
         <service
-            android:name=".presentation.notification.EventManagerNotificationService"
+            android:name=".presentation.notification.service.EventManagerNotificationService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

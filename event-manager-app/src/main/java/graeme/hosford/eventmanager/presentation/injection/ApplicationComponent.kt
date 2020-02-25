@@ -15,7 +15,7 @@ import graeme.hosford.eventmanager.presentation.event.create.view.CreateEventFra
 import graeme.hosford.eventmanager.presentation.event.detail.view.EventDetailFragment
 import graeme.hosford.eventmanager.presentation.event.list.view.EventListFragment
 import graeme.hosford.eventmanager.presentation.login.view.LoginActivity
-import graeme.hosford.eventmanager.presentation.notification.EventManagerNotificationService
+import graeme.hosford.eventmanager.presentation.notification.service.EventManagerNotificationService
 import javax.inject.Singleton
 
 @Singleton

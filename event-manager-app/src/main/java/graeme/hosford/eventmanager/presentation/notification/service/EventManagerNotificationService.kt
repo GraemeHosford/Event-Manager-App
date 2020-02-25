@@ -1,4 +1,4 @@
-package graeme.hosford.eventmanager.presentation.notification
+package graeme.hosford.eventmanager.presentation.notification.service
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -12,9 +12,12 @@ import graeme.hosford.eventmanager.EventManagerApplication
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.presentation.CoreIntents
 import graeme.hosford.eventmanager.presentation.common.view.firebase.BaseMessagingService
+import graeme.hosford.eventmanager.presentation.notification.EventManagerNotificationPresenter
+import graeme.hosford.eventmanager.presentation.notification.EventManagerNotificationView
 import javax.inject.Inject
 
-class EventManagerNotificationService : BaseMessagingService(), EventManagerNotificationView {
+class EventManagerNotificationService : BaseMessagingService(),
+    EventManagerNotificationView {
 
     companion object {
         const val CHANNEL_ID = "Event Manager Channel"
@@ -44,7 +47,10 @@ class EventManagerNotificationService : BaseMessagingService(), EventManagerNoti
                     PendingIntent.FLAG_UPDATE_CURRENT
                 )
 
-            val notBuilder = NotificationCompat.Builder(this, CHANNEL_ID)
+            val notBuilder = NotificationCompat.Builder(
+                this,
+                CHANNEL_ID
+            )
                 .setContentTitle(it.title)
                 .setContentText(it.body)
                 .setContentIntent(pendingIntent)
