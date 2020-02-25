@@ -9,5 +9,6 @@ class EventDetailUiModel(
     val startDate: Calendar,
     val endDate: Calendar,
     val location: String,
+    val invitees: List<String>,
     val attendees: List<String>
 )

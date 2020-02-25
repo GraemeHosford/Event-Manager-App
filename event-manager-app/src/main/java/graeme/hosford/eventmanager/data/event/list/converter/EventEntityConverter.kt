@@ -17,6 +17,7 @@ class EventEntityConverter @Inject constructor() : EntityConverter<Event> {
                 getCalendarFromLong(document.getLong(Event.START_DATE) ?: 0L),
                 getCalendarFromLong(document.getLong(Event.END_DATE) ?: 0L),
                 getOrDefault(this, Event.LOCATION_FIELD, "") as String,
+                getOrDefault(this, Event.INVITEES_LIST, arrayListOf<String>()) as ArrayList<String>,
                 getOrDefault(this, Event.ATTENDEES_LIST, arrayListOf<String>()) as ArrayList<String>
             )
         }

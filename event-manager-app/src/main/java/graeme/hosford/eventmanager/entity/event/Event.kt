@@ -10,12 +10,14 @@ data class Event(
     val startDate: Calendar,
     val endDate: Calendar,
     val location: String = "",
+    val invitees: ArrayList<String> = arrayListOf(),
     val attendees: ArrayList<String> = arrayListOf()
 ) {
     companion object {
         const val NAME_FIELD = "name"
         const val DESCRIPTION_FIELD = "description"
         const val LOCATION_FIELD = "location"
+        const val INVITEES_LIST = "invitees"
         const val ATTENDEES_LIST = "attendees"
         const val START_DATE = "StartDate"
         const val END_DATE = "EndDate"

@@ -29,7 +29,7 @@ class CreateEventInteractorImpl @Inject constructor(
                 Event.NAME_FIELD to name,
                 Event.DESCRIPTION_FIELD to description,
                 Event.LOCATION_FIELD to location,
-                Event.ATTENDEES_LIST to attendees,
+                Event.INVITEES_LIST to attendees,
                 Event.START_DATE to startDate,
                 Event.END_DATE to endDate
             )
