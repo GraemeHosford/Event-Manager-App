@@ -32,6 +32,14 @@ class EventListPresenterImpl @Inject constructor(
         interactor.getEvents()
     }
 
+    override fun onGoingResponseClick(eventId: String) {
+        interactor.updateAttendingStatus(eventId, true)
+    }
+
+    override fun onNotGoingResponseClick(eventId: String) {
+        interactor.updateAttendingStatus(eventId, false)
+    }
+
     override fun onEventItemClick(eventId: String) {
         view?.showEventDetail(eventId)
     }

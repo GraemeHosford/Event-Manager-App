@@ -53,6 +53,14 @@ class EventListFragment :
 
     override fun recyclerViewAdapter(): EventListAdapter {
         return EventListAdapter(object : EventListItemClickListener {
+            override fun onGoingResponseClick(eventId: String) {
+
+            }
+
+            override fun onNotGoingResponseClick(eventId: String) {
+
+            }
+
             override fun onEventListItemClick(eventId: String) {
                 presenter.onEventItemClick(eventId)
             }

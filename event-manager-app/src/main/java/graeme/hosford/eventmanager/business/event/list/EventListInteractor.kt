@@ -11,6 +11,8 @@ interface EventListInteractor : Interactor<EventListInteractor.EventListCallback
         fun onEventsRetrievalFailure()
     }
 
+    fun updateAttendingStatus(eventId: String, attending: Boolean)
+
     fun getEvents()
 
 }

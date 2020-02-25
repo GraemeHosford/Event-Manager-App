@@ -54,4 +54,6 @@
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
     <string name="person_profile_picture">Person Profile Picture</string>
+    <string name="generic_going_text">Going</string>
+    <string name="generic_not_going_text">Not Going</string>
 </resources>

@@ -1,5 +1,6 @@
 package graeme.hosford.eventmanager.data.event.list
 
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import graeme.hosford.eventmanager.data.company.CompanyFirebaseAccess
 import graeme.hosford.eventmanager.data.event.list.converter.EventEntityConverter
@@ -15,6 +16,43 @@ class EventListFirebaseAccessImpl @Inject constructor(
 
     override fun setEventListener(listener: EventListFirebaseAccess.EventDataListener) {
         this.listener = listener
+    }
+
+    override fun setAttendingStatus(eventId: String, userId: String, attending: Boolean) {
+        /* For whoever is unfortunate enough to read this code I know it's terrible and
+        I'm not happy about it either but we're now into the unfortunate phase of a college project
+         where anything so long as it works is acceptable so ¯\_(ツ)_/¯ */
+        FirebaseFirestore.getInstance()
+            .collection(USERS_COLLECTION)
+            .document(userId)
+            .get()
+            .addOnSuccessListener {
+                val field = if (attending) {
+                    Event.ATTENDEES_LIST
+                } else {
+                    Event.NOT_ATTENDING_LIST
+                }
+
+                FirebaseFirestore.getInstance()
+                    .collection(CompanyFirebaseAccess.COMPANIES_COLLECTION)
+                    .document(it.getString("companyId")!!)
+                    .collection(EventListFirebaseAccess.EVENTS_SUBCOLLECTION)
+                    .document(eventId)
+                    .update(
+                        field,
+                        FieldValue.arrayUnion(userId)
+                    ).addOnSuccessListener { _ ->
+                        FirebaseFirestore.getInstance()
+                            .collection(CompanyFirebaseAccess.COMPANIES_COLLECTION)
+                            .document(it.getString("companyId")!!)
+                            .collection(EventListFirebaseAccess.EVENTS_SUBCOLLECTION)
+                            .document(eventId)
+                            .update(
+                                Event.INVITEES_LIST,
+                                FieldValue.arrayRemove(userId)
+                            )
+                    }
+            }
     }
 
     override fun getAllEvents(userEmail: String) {

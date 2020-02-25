@@ -19,6 +19,7 @@ data class Event(
         const val LOCATION_FIELD = "location"
         const val INVITEES_LIST = "invitees"
         const val ATTENDEES_LIST = "attendees"
+        const val NOT_ATTENDING_LIST = "not_attending"
         const val START_DATE = "StartDate"
         const val END_DATE = "EndDate"
     }

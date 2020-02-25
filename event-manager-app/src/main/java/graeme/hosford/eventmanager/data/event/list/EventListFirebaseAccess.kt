@@ -15,6 +15,8 @@ interface EventListFirebaseAccess {
         fun onEventRetrieveFailure()
     }
 
+    fun setAttendingStatus(eventId: String, userId: String, attending: Boolean)
+
     fun setEventListener(listener: EventDataListener)
 
     fun getAllEvents(userEmail: String)

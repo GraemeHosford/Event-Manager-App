@@ -20,6 +20,14 @@ class EventListInteractorImpl @Inject constructor(
         eventListFirebaseAccess.getAllEvents(currentUserNetworkAccess.getCurrentUser()?.email!!)
     }
 
+    override fun updateAttendingStatus(eventId: String, attending: Boolean) {
+        eventListFirebaseAccess.setAttendingStatus(
+            eventId,
+            currentUserNetworkAccess.getCurrentUser()!!.email!!,
+            attending
+        )
+    }
+
     private inner class EventListFirebaseListener : EventListFirebaseAccess.EventDataListener {
         override fun onEventRetrieveSuccess(entities: List<Event>) {
             callback?.onEventsRetrieved(entities)

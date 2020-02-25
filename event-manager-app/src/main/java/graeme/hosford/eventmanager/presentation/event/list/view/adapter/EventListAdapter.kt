@@ -51,6 +51,12 @@ class EventListItemViewHolder(
     @BindView(R.id.event_list_item_num_attendees_text_view)
     lateinit var numAttendeesTextView: TextView
 
+    @BindView(R.id.event_list_item_going_response_text_view)
+    lateinit var goingTextView: TextView
+
+    @BindView(R.id.event_list_item_not_going_response_text_view)
+    lateinit var notGoingTextView: TextView
+
     override fun bind(model: EventListItemUiModel) {
         ButterKnife.bind(this, itemView)
         itemView.setOnClickListener {
@@ -73,6 +79,14 @@ class EventListItemViewHolder(
             numAttendeesTextView.visibility = View.VISIBLE
             numAttendeesTextView.text =
                 PeoplePresentationUtils.getAttendeeSummary(itemView.context.resources, attendees)
+        }
+
+        goingTextView.setOnClickListener {
+            clickListener.onGoingResponseClick(model.id)
+        }
+
+        notGoingTextView.setOnClickListener {
+            clickListener.onNotGoingResponseClick(model.id)
         }
     }
 }
