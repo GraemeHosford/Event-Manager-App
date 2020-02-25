@@ -2,12 +2,14 @@ package graeme.hosford.eventmanager.business.event.create
 
 import graeme.hosford.eventmanager.business.common.BaseInteractor
 import graeme.hosford.eventmanager.data.event.create.CreateEventFirebaseAccess
+import graeme.hosford.eventmanager.data.login.CurrentUserNetworkAccess
 import graeme.hosford.eventmanager.entity.event.Event
 import java.util.*
 import javax.inject.Inject
 
 class CreateEventInteractorImpl @Inject constructor(
-    private val createEventFirebaseAccess: CreateEventFirebaseAccess
+    private val createEventFirebaseAccess: CreateEventFirebaseAccess,
+    private val currentUserNetworkAccess: CurrentUserNetworkAccess
 ) : BaseInteractor<CreateEventInteractor.CreateEventCallback>(),
     CreateEventInteractor {
 
@@ -31,7 +33,8 @@ class CreateEventInteractorImpl @Inject constructor(
                 Event.LOCATION_FIELD to location,
                 Event.INVITEES_LIST to attendees,
                 Event.START_DATE to startDate,
-                Event.END_DATE to endDate
+                Event.END_DATE to endDate,
+                Event.OWNER to currentUserNetworkAccess.getCurrentUser()!!.email!!
             )
         )
     }

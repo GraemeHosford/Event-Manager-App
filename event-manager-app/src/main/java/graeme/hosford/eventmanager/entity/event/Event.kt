@@ -22,5 +22,6 @@ data class Event(
         const val NOT_ATTENDING_LIST = "not_attending"
         const val START_DATE = "StartDate"
         const val END_DATE = "EndDate"
+        const val OWNER = "Owner"
     }
 }
