@@ -64,7 +64,12 @@ class EventDetailFragment : BaseFragment(), EventDetailView {
         eventDesc.text = model.description
         eventDate.text = DatePresentationUtils.formatDateRange(model.startDate, model.endDate)
         eventTime.text = DatePresentationUtils.formatTimeRange(model.startDate, model.endDate)
-        eventAttendees.text = PeoplePresentationUtils.getAttendeeSummary(resources, model.attendees)
+
+        if (context != null) {
+            eventAttendees.text =
+                PeoplePresentationUtils.getAttendeeSummary(resources, model.attendees)
+        }
+
         eventLocation.text = model.location
     }
 }
