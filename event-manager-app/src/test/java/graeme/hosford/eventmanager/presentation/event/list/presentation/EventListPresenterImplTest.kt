@@ -69,6 +69,7 @@ class EventListPresenterImplTest {
         val models = listOf(
             EventListItemUiModel(
                 "122",
+                "Graeme",
                 "Event 1",
                 "Desc 1",
                 startDate,
@@ -78,6 +79,7 @@ class EventListPresenterImplTest {
             ),
             EventListItemUiModel(
                 "123",
+                "Graeme",
                 "Event 2",
                 "Desc 2",
                 startDate,
@@ -102,8 +104,8 @@ class EventListPresenterImplTest {
     @Test
     fun interactorCallback_onEventsRetrieved_callsProcessorToProcess() {
         val entities = listOf(
-            Event("122", "Event 1", "Desc 1", startDate, endDate, "Loc 1"),
-            Event("123", "Event 2", "Desc 2", startDate, endDate, "Loc 2")
+            Event("122", "Graeme", "Event 1", "Desc 1", startDate, endDate, "Loc 1"),
+            Event("123", "Graeme", "Event 2", "Desc 2", startDate, endDate, "Loc 2")
         )
 
         interactorCapture.captured.onEventsRetrieved(entities)

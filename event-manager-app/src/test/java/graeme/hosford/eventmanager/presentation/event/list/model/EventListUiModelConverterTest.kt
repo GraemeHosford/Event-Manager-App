@@ -26,12 +26,15 @@ class EventListUiModelConverterTest {
 
     @Test
     fun toUiModel_returnsCOrrectUiModelFromEntity() {
-        val entity = Event("123", "Event Name", "Description", startDate, endDate, "Cork")
+        val entity = Event("123", "Graeme", "Event Name", "Description", startDate, endDate, "Cork")
         val model = converter.toUiModel(entity)
 
         assertEquals(entity.id, model.id)
+        assertEquals(entity.owner, model.eventOwner)
         assertEquals(entity.name, model.eventName)
         assertEquals(entity.description, model.eventDesc)
+        assertEquals(entity.startDate, model.startDate)
+        assertEquals(entity.endDate, model.endDate)
         assertEquals(entity.location, model.eventLocation)
     }
 
