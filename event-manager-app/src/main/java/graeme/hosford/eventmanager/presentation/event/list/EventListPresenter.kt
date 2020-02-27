@@ -12,4 +12,6 @@ interface EventListPresenter : Presenter<EventListView> {
 
     fun onFabClick()
 
+    fun getCurrentUserId(): String
+
 }

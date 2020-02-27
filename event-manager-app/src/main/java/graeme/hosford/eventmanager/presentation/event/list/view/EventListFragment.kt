@@ -12,7 +12,7 @@ import graeme.hosford.eventmanager.presentation.event.list.EventListPresenter
 import graeme.hosford.eventmanager.presentation.event.list.EventListView
 import graeme.hosford.eventmanager.presentation.event.list.model.EventListItemUiModel
 import graeme.hosford.eventmanager.presentation.event.list.view.adapter.EventListAdapter
-import graeme.hosford.eventmanager.presentation.event.list.view.adapter.EventListItemClickListener
+import graeme.hosford.eventmanager.presentation.event.list.view.adapter.EventListItemPresenterBridge
 import graeme.hosford.eventmanager.presentation.event.list.view.adapter.EventListItemViewHolder
 import javax.inject.Inject
 
@@ -52,7 +52,7 @@ class EventListFragment :
     }
 
     override fun recyclerViewAdapter(): EventListAdapter {
-        return EventListAdapter(object : EventListItemClickListener {
+        return EventListAdapter(object : EventListItemPresenterBridge {
             override fun onGoingResponseClick(eventId: String) {
                 presenter.onGoingResponseClick(eventId)
             }
@@ -63,6 +63,10 @@ class EventListFragment :
 
             override fun onEventListItemClick(eventId: String) {
                 presenter.onEventItemClick(eventId)
+            }
+
+            override fun getCurrentUserId(): String {
+                return presenter.getCurrentUserId()
             }
         })
     }

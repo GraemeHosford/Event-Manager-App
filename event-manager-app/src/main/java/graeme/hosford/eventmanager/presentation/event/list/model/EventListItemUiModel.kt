@@ -4,6 +4,7 @@ import java.util.*
 
 class EventListItemUiModel(
     val id: String,
+    val eventOwner: String,
     val eventName: String,
     val eventDesc: String,
     val startDate: Calendar,

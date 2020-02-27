@@ -15,4 +15,6 @@ interface EventListInteractor : Interactor<EventListInteractor.EventListCallback
 
     fun getEvents()
 
+    fun getCurrentUserId(): String
+
 }

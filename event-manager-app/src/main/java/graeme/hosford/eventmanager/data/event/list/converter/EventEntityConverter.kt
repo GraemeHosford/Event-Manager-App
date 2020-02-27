@@ -12,6 +12,7 @@ class EventEntityConverter @Inject constructor() : EntityConverter<Event> {
         with(document.data) {
             return Event(
                 document.id,
+                getOrDefault(this, Event.OWNER, "") as String,
                 getOrDefault(this, Event.NAME_FIELD, "") as String,
                 getOrDefault(this, Event.DESCRIPTION_FIELD, "") as String,
                 getCalendarFromLong(document.getLong(Event.START_DATE) ?: 0L),
