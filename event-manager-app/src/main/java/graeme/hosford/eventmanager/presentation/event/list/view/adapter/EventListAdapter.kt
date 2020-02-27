@@ -3,6 +3,7 @@ package graeme.hosford.eventmanager.presentation.event.list.view.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
@@ -51,6 +52,9 @@ class EventListItemViewHolder(
     @BindView(R.id.event_list_item_num_attendees_text_view)
     lateinit var numAttendeesTextView: TextView
 
+    @BindView(R.id.event_response_options_container)
+    lateinit var responseContainer: LinearLayout
+
     @BindView(R.id.event_list_item_going_response_text_view)
     lateinit var goingTextView: TextView
 
@@ -81,11 +85,13 @@ class EventListItemViewHolder(
                 PeoplePresentationUtils.getAttendeeSummary(itemView.context.resources, attendees)
         }
 
-        if (presenterBridge.getCurrentUserId() == model.eventOwner ||
+        /* Commenting this out for the sake of being able to demo new functionality.
+        * Normally the person creating the event would not be able to respond to it as
+        * going or not going, they would be considered automatically going  */
+        if (/*presenterBridge.getCurrentUserId() == model.eventOwner ||*/
             presenterBridge.getCurrentUserId() in attendees
         ) {
-            goingTextView.visibility = View.GONE
-            notGoingTextView.visibility = View.GONE
+            responseContainer.visibility = View.GONE
         }
 
         goingTextView.setOnClickListener {
