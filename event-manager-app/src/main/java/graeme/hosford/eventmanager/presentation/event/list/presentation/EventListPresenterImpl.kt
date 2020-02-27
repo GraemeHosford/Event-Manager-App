@@ -28,7 +28,6 @@ class EventListPresenterImpl @Inject constructor(
 
     override fun onResume() {
         super.onResume()
-
         interactor.getEvents()
     }
 

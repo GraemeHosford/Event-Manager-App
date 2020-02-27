@@ -11,4 +11,8 @@ class EventListItemUiModel(
     val endDate: Calendar,
     val eventLocation: String,
     val attendees: ArrayList<String>
-)
+) {
+    fun shouldShowResponseOptions(currentUserId: String): Boolean {
+        return currentUserId != eventOwner && !attendees.contains(currentUserId)
+    }
+}

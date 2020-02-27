@@ -75,31 +75,27 @@ class EventListItemViewHolder(
 
         eventLocation.text = model.eventLocation
 
-        val attendees = model.attendees
-
-        if (attendees.size == 0) {
+        if (model.attendees.size == 0) {
             numAttendeesTextView.visibility = View.INVISIBLE
-        } else if (attendees.size > 0) {
+        } else if (model.attendees.size > 0) {
             numAttendeesTextView.visibility = View.VISIBLE
             numAttendeesTextView.text =
-                PeoplePresentationUtils.getAttendeeSummary(itemView.context.resources, attendees)
+                PeoplePresentationUtils.getAttendeeSummary(
+                    itemView.context.resources,
+                    model.attendees
+                )
         }
 
-        /* Commenting this out for the sake of being able to demo new functionality.
-        * Normally the person creating the event would not be able to respond to it as
-        * going or not going, they would be considered automatically going  */
-        if (/*presenterBridge.getCurrentUserId() == model.eventOwner ||*/
-            presenterBridge.getCurrentUserId() in attendees
-        ) {
-            responseContainer.visibility = View.GONE
-        }
+        if (model.shouldShowResponseOptions(presenterBridge.getCurrentUserId())) {
+            responseContainer.visibility = View.VISIBLE
 
-        goingTextView.setOnClickListener {
-            presenterBridge.onGoingResponseClick(model.id)
-        }
+            goingTextView.setOnClickListener {
+                presenterBridge.onGoingResponseClick(model.id)
+            }
 
-        notGoingTextView.setOnClickListener {
-            presenterBridge.onNotGoingResponseClick(model.id)
+            notGoingTextView.setOnClickListener {
+                presenterBridge.onNotGoingResponseClick(model.id)
+            }
         }
     }
 }
