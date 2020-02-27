@@ -96,6 +96,8 @@ class EventListItemViewHolder(
             notGoingTextView.setOnClickListener {
                 presenterBridge.onNotGoingResponseClick(model.id)
             }
+        } else {
+            responseContainer.visibility = View.GONE
         }
     }
 }
