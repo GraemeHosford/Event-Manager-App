@@ -251,6 +251,7 @@ class CreateEventPresenterImpl @Inject constructor(
     private inner class InteractorCallback : CreateEventInteractor.CreateEventCallback {
         override fun onEventSaved() {
             view?.showLongToast(R.string.create_event_success)
+            view?.closeCreateEventScreen()
         }
 
         override fun onEventSaveFailed() {

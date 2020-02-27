@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import androidx.navigation.fragment.findNavController
 import butterknife.BindView
 import butterknife.ButterKnife
 import graeme.hosford.eventmanager.EventManagerApplication
@@ -112,6 +113,10 @@ class CreateEventFragment : BaseFragment(), CreateEventView {
             Intent(context, AttendeesActivity::class.java),
             CreateEventView.CHOOSE_ATTENDEES_REQUEST_CODE
         )
+    }
+
+    override fun closeCreateEventScreen() {
+        findNavController().popBackStack()
     }
 
     override fun updateStartDateText() {

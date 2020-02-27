@@ -28,4 +28,6 @@ interface CreateEventView : ToastView {
 
     fun updateAttendeesText(attendees: ArrayList<String>?)
 
+    fun closeCreateEventScreen()
+
 }

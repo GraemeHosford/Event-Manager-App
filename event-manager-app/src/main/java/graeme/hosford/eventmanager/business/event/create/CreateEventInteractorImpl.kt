@@ -32,6 +32,7 @@ class CreateEventInteractorImpl @Inject constructor(
                 Event.DESCRIPTION_FIELD to description,
                 Event.LOCATION_FIELD to location,
                 Event.INVITEES_LIST to attendees,
+                Event.ATTENDEES_LIST to emptyList<String>(),
                 Event.START_DATE to startDate,
                 Event.END_DATE to endDate,
                 Event.OWNER to currentUserNetworkAccess.getCurrentUser()!!.email!!
