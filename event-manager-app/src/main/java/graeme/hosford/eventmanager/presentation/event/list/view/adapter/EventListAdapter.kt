@@ -3,11 +3,8 @@ package graeme.hosford.eventmanager.presentation.event.list.view.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
-import butterknife.BindView
-import butterknife.ButterKnife
 import graeme.hosford.eventmanager.R
+import graeme.hosford.eventmanager.databinding.EventListItemBinding
 import graeme.hosford.eventmanager.presentation.common.view.recyclerview.BaseAdapter
 import graeme.hosford.eventmanager.presentation.common.view.recyclerview.BaseViewHolder
 import graeme.hosford.eventmanager.presentation.event.list.model.EventListItemUiModel
@@ -34,70 +31,46 @@ class EventListItemViewHolder(
     private val presenterBridge: EventListItemPresenterBridge
 ) : BaseViewHolder<EventListItemUiModel>(itemView) {
 
-    @BindView(R.id.event_list_item_name_text_view)
-    lateinit var eventName: TextView
-
-    @BindView(R.id.event_list_item_description_text_view)
-    lateinit var eventDesc: TextView
-
-    @BindView(R.id.event_list_item_date_text_view)
-    lateinit var eventDate: TextView
-
-    @BindView(R.id.event_list_item_time_text_view)
-    lateinit var eventTime: TextView
-
-    @BindView(R.id.event_list_item_location_text_view)
-    lateinit var eventLocation: TextView
-
-    @BindView(R.id.event_list_item_num_attendees_text_view)
-    lateinit var numAttendeesTextView: TextView
-
-    @BindView(R.id.event_response_options_container)
-    lateinit var responseContainer: LinearLayout
-
-    @BindView(R.id.event_list_item_going_response_text_view)
-    lateinit var goingTextView: TextView
-
-    @BindView(R.id.event_list_item_not_going_response_text_view)
-    lateinit var notGoingTextView: TextView
-
     override fun bind(model: EventListItemUiModel) {
-        ButterKnife.bind(this, itemView)
-        itemView.setOnClickListener {
+        val binding = EventListItemBinding.bind(itemView)
+
+        binding.root.setOnClickListener {
             presenterBridge.onEventListItemClick(model.id)
         }
 
-        eventName.text = model.eventName
-        eventDesc.text = model.eventDesc
+        binding.eventListItemNameTextView.text = model.eventName
+        binding.eventListItemDescriptionTextView.text = model.eventDesc
 
-        eventDate.text = DatePresentationUtils.formatDateRange(model.startDate, model.endDate)
-        eventTime.text = DatePresentationUtils.formatTimeRange(model.startDate, model.endDate)
+        binding.eventListItemDateTextView.text =
+            DatePresentationUtils.formatDateRange(model.startDate, model.endDate)
+        binding.eventListItemTimeTextView.text =
+            DatePresentationUtils.formatTimeRange(model.startDate, model.endDate)
 
-        eventLocation.text = model.eventLocation
+        binding.eventListItemLocationTextView.text = model.eventLocation
 
         if (model.attendees.size == 0) {
-            numAttendeesTextView.visibility = View.INVISIBLE
+            binding.eventListItemNumAttendeesTextView.visibility = View.INVISIBLE
         } else if (model.attendees.size > 0) {
-            numAttendeesTextView.visibility = View.VISIBLE
-            numAttendeesTextView.text =
+            binding.eventListItemNumAttendeesTextView.visibility = View.VISIBLE
+            binding.eventListItemNumAttendeesTextView.text =
                 PeoplePresentationUtils.getAttendeeSummary(
-                    itemView.context.resources,
+                    binding.root.context.resources,
                     model.attendees
                 )
         }
 
         if (model.shouldShowResponseOptions(presenterBridge.getCurrentUserId())) {
-            responseContainer.visibility = View.VISIBLE
+            binding.eventResponseOptionsContainer.visibility = View.VISIBLE
 
-            goingTextView.setOnClickListener {
+            binding.eventListItemGoingResponseTextView.setOnClickListener {
                 presenterBridge.onGoingResponseClick(model.id)
             }
 
-            notGoingTextView.setOnClickListener {
+            binding.eventListItemNotGoingResponseTextView.setOnClickListener {
                 presenterBridge.onNotGoingResponseClick(model.id)
             }
         } else {
-            responseContainer.visibility = View.GONE
+            binding.eventResponseOptionsContainer.visibility = View.GONE
         }
     }
 }
