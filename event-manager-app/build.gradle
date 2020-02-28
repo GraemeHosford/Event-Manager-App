@@ -48,12 +48,12 @@ dependencies {
     api "com.google.android.material:material:${versions.androidx.material}"
 
     implementation "androidx.constraintlayout:constraintlayout:${versions.androidx.constraintLayout}"
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.navigation:navigation-fragment:2.1.0'
-    implementation 'androidx.navigation:navigation-ui:2.1.0'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.1.0'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.1.0'
+    implementation "androidx.legacy:legacy-support-v4:${versions.androidx.legacySupportV4}"
+    implementation "androidx.navigation:navigation-fragment:${versions.androidx.navigation}"
+    implementation "androidx.navigation:navigation-ui:${versions.androidx.navigation}"
+    implementation "androidx.lifecycle:lifecycle-extensions:${versions.androidx.lifecycleExtensions}"
+    implementation "androidx.navigation:navigation-fragment-ktx:${versions.androidx.navigation}"
+    implementation "androidx.navigation:navigation-ui-ktx:${versions.androidx.navigation}"
 
     // Dagger for Dependency Injection
     implementation "com.google.dagger:dagger:${versions.dagger}"
@@ -71,7 +71,7 @@ dependencies {
     // Retrofit Dependencies
     implementation "com.squareup.retrofit2:retrofit:${versions.retrofit}"
     implementation "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofit}"
-    implementation "com.squareup.retrofit2:converter-moshi:2.4.0"
+    implementation "com.squareup.retrofit2:converter-moshi:${versions.retrofitMoshiConverter}"
 
     // Moshi Dependencies
     implementation "com.squareup.moshi:moshi:${versions.moshi}"
