@@ -10,7 +10,7 @@ import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseFragmen
 import graeme.hosford.eventmanager.presentation.event.detail.EventDetailPresenter
 import graeme.hosford.eventmanager.presentation.event.detail.EventDetailView
 import graeme.hosford.eventmanager.presentation.event.detail.model.EventDetailUiModel
-import graeme.hosford.eventmanager.presentation.event.list.EventListView
+import graeme.hosford.eventmanager.presentation.event.list.common.EventListView
 import graeme.hosford.eventmanager.presentation.utils.DatePresentationUtils
 import graeme.hosford.eventmanager.presentation.utils.PeoplePresentationUtils
 import javax.inject.Inject

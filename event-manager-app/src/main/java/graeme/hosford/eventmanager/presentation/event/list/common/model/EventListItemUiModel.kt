@@ -1,4 +1,4 @@
-package graeme.hosford.eventmanager.presentation.event.list.model
+package graeme.hosford.eventmanager.presentation.event.list.common.model
 
 import java.util.*
 

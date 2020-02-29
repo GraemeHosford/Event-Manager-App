@@ -1,4 +1,4 @@
-package graeme.hosford.eventmanager.presentation.event.list.model
+package graeme.hosford.eventmanager.presentation.event.list.common.model
 
 import graeme.hosford.eventmanager.entity.event.Event
 import graeme.hosford.eventmanager.presentation.common.model.UiModelListProcessor

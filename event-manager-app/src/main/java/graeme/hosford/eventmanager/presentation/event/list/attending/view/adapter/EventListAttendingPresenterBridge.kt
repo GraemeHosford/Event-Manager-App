@@ -1,0 +1,5 @@
+package graeme.hosford.eventmanager.presentation.event.list.attending.view.adapter
+
+import graeme.hosford.eventmanager.presentation.event.list.common.view.adapter.BaseEventListItemPresenterBridge
+
+interface EventListAttendingPresenterBridge : BaseEventListItemPresenterBridge

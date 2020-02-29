@@ -1,4 +1,4 @@
-package graeme.hosford.eventmanager.presentation.event.list.view.adapter
+package graeme.hosford.eventmanager.presentation.event.list.invited.view.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,15 +7,18 @@ import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.databinding.EventListItemBinding
 import graeme.hosford.eventmanager.presentation.common.view.recyclerview.BaseAdapter
 import graeme.hosford.eventmanager.presentation.common.view.recyclerview.BaseViewHolder
-import graeme.hosford.eventmanager.presentation.event.list.model.EventListItemUiModel
+import graeme.hosford.eventmanager.presentation.event.list.common.model.EventListItemUiModel
 import graeme.hosford.eventmanager.presentation.utils.DatePresentationUtils
 import graeme.hosford.eventmanager.presentation.utils.PeoplePresentationUtils
 
-class EventListAdapter(private val itemPresenterBridge: EventListItemPresenterBridge) :
-    BaseAdapter<EventListItemUiModel, EventListItemViewHolder>() {
+class EventListInvitedAdapter(private val itemPresenterBridge: EventListInvitedPresenterBridge) :
+    BaseAdapter<EventListItemUiModel, EventListInvitedItemViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventListItemViewHolder {
-        return EventListItemViewHolder(
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): EventListInvitedItemViewHolder {
+        return EventListInvitedItemViewHolder(
             LayoutInflater.from(parent.context).inflate(
                 R.layout.event_list_item,
                 parent,
@@ -26,9 +29,9 @@ class EventListAdapter(private val itemPresenterBridge: EventListItemPresenterBr
     }
 }
 
-class EventListItemViewHolder(
+class EventListInvitedItemViewHolder(
     itemView: View,
-    private val presenterBridge: EventListItemPresenterBridge
+    private val presenterBridge: EventListInvitedPresenterBridge
 ) : BaseViewHolder<EventListItemUiModel>(itemView) {
 
     override fun bind(model: EventListItemUiModel) {

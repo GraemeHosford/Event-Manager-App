@@ -4,9 +4,10 @@ import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.business.event.list.EventListInteractor
 import graeme.hosford.eventmanager.entity.event.Event
 import graeme.hosford.eventmanager.presentation.common.model.UiModelListProcessor
-import graeme.hosford.eventmanager.presentation.event.list.EventListView
-import graeme.hosford.eventmanager.presentation.event.list.model.EventListItemUiModel
-import graeme.hosford.eventmanager.presentation.event.list.model.EventListItemUiModelProcessor
+import graeme.hosford.eventmanager.presentation.event.list.common.EventListView
+import graeme.hosford.eventmanager.presentation.event.list.common.model.EventListItemUiModel
+import graeme.hosford.eventmanager.presentation.event.list.common.model.EventListItemUiModelProcessor
+import graeme.hosford.eventmanager.presentation.event.list.common.presentation.BaseEventListPresenterImpl
 import io.mockk.MockKAnnotations
 import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.slot
@@ -17,7 +18,7 @@ import java.util.*
 
 class EventListPresenterImplTest {
 
-    private lateinit var presenter: EventListPresenterImpl
+    private lateinit var presenter: BaseEventListPresenterImpl
 
     @RelaxedMockK
     private lateinit var interactor: EventListInteractor
@@ -43,7 +44,11 @@ class EventListPresenterImplTest {
     fun setup() {
         MockKAnnotations.init(this)
 
-        presenter = EventListPresenterImpl(processor, interactor)
+        presenter =
+            BaseEventListPresenterImpl(
+                processor,
+                interactor
+            )
         presenter.onViewCreated(view)
 
         verify { processor.registerProcessingCallback(capture(processorCapture)) }

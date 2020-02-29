@@ -1,22 +1,21 @@
-package graeme.hosford.eventmanager.presentation.event.list.presentation
+package graeme.hosford.eventmanager.presentation.event.list.common.presentation
 
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.business.event.list.EventListInteractor
 import graeme.hosford.eventmanager.entity.event.Event
 import graeme.hosford.eventmanager.presentation.common.model.UiModelListProcessor
 import graeme.hosford.eventmanager.presentation.common.presenter.BasePresenter
-import graeme.hosford.eventmanager.presentation.event.list.EventListPresenter
-import graeme.hosford.eventmanager.presentation.event.list.EventListView
-import graeme.hosford.eventmanager.presentation.event.list.model.EventListItemUiModel
-import graeme.hosford.eventmanager.presentation.event.list.model.EventListItemUiModelComparator
-import graeme.hosford.eventmanager.presentation.event.list.model.EventListItemUiModelProcessor
-import javax.inject.Inject
+import graeme.hosford.eventmanager.presentation.event.list.common.BaseEventListPresenter
+import graeme.hosford.eventmanager.presentation.event.list.common.EventListView
+import graeme.hosford.eventmanager.presentation.event.list.common.model.EventListItemUiModel
+import graeme.hosford.eventmanager.presentation.event.list.common.model.EventListItemUiModelComparator
+import graeme.hosford.eventmanager.presentation.event.list.common.model.EventListItemUiModelProcessor
 
-class EventListPresenterImpl @Inject constructor(
+abstract class BaseEventListPresenterImpl constructor(
     private val processor: EventListItemUiModelProcessor,
     private val interactor: EventListInteractor
 ) : BasePresenter<EventListView, EventListInteractor>(interactor),
-    EventListPresenter {
+    BaseEventListPresenter {
 
     override fun onViewCreated(view: EventListView) {
         super.onViewCreated(view)
@@ -33,14 +32,6 @@ class EventListPresenterImpl @Inject constructor(
 
     override fun getCurrentUserId(): String {
         return interactor.getCurrentUserId()
-    }
-
-    override fun onGoingResponseClick(eventId: String) {
-        interactor.updateAttendingStatus(eventId, true)
-    }
-
-    override fun onNotGoingResponseClick(eventId: String) {
-        interactor.updateAttendingStatus(eventId, false)
     }
 
     override fun onEventItemClick(eventId: String) {

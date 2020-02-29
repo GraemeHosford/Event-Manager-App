@@ -1,8 +1,8 @@
-package graeme.hosford.eventmanager.presentation.event.list
+package graeme.hosford.eventmanager.presentation.event.list.common
 
 import graeme.hosford.eventmanager.presentation.common.view.recyclerview.RecyclerViewListView
 import graeme.hosford.eventmanager.presentation.common.view.toast.ToastView
-import graeme.hosford.eventmanager.presentation.event.list.model.EventListItemUiModel
+import graeme.hosford.eventmanager.presentation.event.list.common.model.EventListItemUiModel
 
 interface EventListView : RecyclerViewListView<EventListItemUiModel>, ToastView {
 
