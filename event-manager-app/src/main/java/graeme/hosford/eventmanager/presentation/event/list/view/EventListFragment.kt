@@ -1,81 +1,44 @@
 package graeme.hosford.eventmanager.presentation.event.list.view
 
-import android.content.Context
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
-import graeme.hosford.eventmanager.EventManagerApplication
-import graeme.hosford.eventmanager.R
-import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseRecyclerViewFragment
-import graeme.hosford.eventmanager.presentation.event.list.EventListPresenter
-import graeme.hosford.eventmanager.presentation.event.list.EventListView
-import graeme.hosford.eventmanager.presentation.event.list.model.EventListItemUiModel
-import graeme.hosford.eventmanager.presentation.event.list.view.adapter.EventListAdapter
-import graeme.hosford.eventmanager.presentation.event.list.view.adapter.EventListItemPresenterBridge
-import graeme.hosford.eventmanager.presentation.event.list.view.adapter.EventListItemViewHolder
-import javax.inject.Inject
+import android.view.ViewGroup
+import com.google.android.material.tabs.TabLayoutMediator
+import graeme.hosford.eventmanager.databinding.FragmentEventListLayoutBinding
+import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseFragment
+import graeme.hosford.eventmanager.presentation.event.list.view.adapter.EventListViewPagerAdapter
 
 class EventListFragment :
-    BaseRecyclerViewFragment<EventListItemUiModel, EventListItemViewHolder, EventListAdapter>(),
-    EventListView {
+    BaseFragment() {
 
-    @Inject
-    lateinit var presenter: EventListPresenter
+    private var binding: FragmentEventListLayoutBinding? = null
+    private val safeBinding get() = binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        EventManagerApplication.appComponent.inject(this)
-        super.onCreate(savedInstanceState)
-        presenter.onViewCreated(this)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentEventListLayoutBinding.inflate(inflater, container, false)
+        return safeBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        fab.setOnClickListener {
-            presenter.onFabClick()
-        }
+        val tabLayout = safeBinding.eventTabs
+        val viewPager = safeBinding.eventViewPager
+
+        viewPager.adapter = EventListViewPagerAdapter(this)
+
+        TabLayoutMediator(tabLayout, viewPager) { tab, pos ->
+            tab.text = "$pos"
+        }.attach()
     }
 
-    override fun addRecyclerViewDecorations(
-        recyclerViewContext: Context,
-        layoutOrientation: Int
-    ): List<RecyclerView.ItemDecoration> = emptyList()
-
-    override fun onResume() {
-        super.onResume()
-        presenter.onResume()
-    }
-
-    override fun startCreateNewEvent() {
-        findNavController().navigate(R.id.nav_create_event)
-    }
-
-    override fun recyclerViewAdapter(): EventListAdapter {
-        return EventListAdapter(object : EventListItemPresenterBridge {
-            override fun onGoingResponseClick(eventId: String) {
-                presenter.onGoingResponseClick(eventId)
-            }
-
-            override fun onNotGoingResponseClick(eventId: String) {
-                presenter.onNotGoingResponseClick(eventId)
-            }
-
-            override fun onEventListItemClick(eventId: String) {
-                presenter.onEventItemClick(eventId)
-            }
-
-            override fun getCurrentUserId(): String {
-                return presenter.getCurrentUserId()
-            }
-        })
-    }
-
-    override fun showFab(): Boolean = true
-
-    override fun showEventDetail(eventId: String) {
-        val args = Bundle()
-        args.putString(EventListView.ARG_EVENT_ID, eventId)
-        findNavController().navigate(R.id.nav_event_detail, args)
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 }
