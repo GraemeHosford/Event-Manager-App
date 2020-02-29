@@ -1,7 +1,7 @@
 package graeme.hosford.eventmanager.presentation.event.list.common.presentation
 
 import graeme.hosford.eventmanager.R
-import graeme.hosford.eventmanager.business.event.list.EventListInteractor
+import graeme.hosford.eventmanager.business.event.list.common.BaseEventListInteractor
 import graeme.hosford.eventmanager.entity.event.Event
 import graeme.hosford.eventmanager.presentation.common.model.UiModelListProcessor
 import graeme.hosford.eventmanager.presentation.common.presenter.BasePresenter
@@ -13,8 +13,8 @@ import graeme.hosford.eventmanager.presentation.event.list.common.model.EventLis
 
 abstract class BaseEventListPresenterImpl constructor(
     private val processor: EventListItemUiModelProcessor,
-    private val interactor: EventListInteractor
-) : BasePresenter<EventListView, EventListInteractor>(interactor),
+    private val interactor: BaseEventListInteractor
+) : BasePresenter<EventListView, BaseEventListInteractor>(interactor),
     BaseEventListPresenter {
 
     override fun onViewCreated(view: EventListView) {
@@ -23,11 +23,6 @@ abstract class BaseEventListPresenterImpl constructor(
         interactor.registerCallback(EventListInteractorCallback())
 
         processor.setListComparator(EventListItemUiModelComparator.DateTimeComparator)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        interactor.getEvents()
     }
 
     override fun getCurrentUserId(): String {
@@ -53,7 +48,7 @@ abstract class BaseEventListPresenterImpl constructor(
         }
     }
 
-    private inner class EventListInteractorCallback : EventListInteractor.EventListCallback {
+    private inner class EventListInteractorCallback : BaseEventListInteractor.EventListCallback {
         override fun onEventsRetrieved(entites: List<Event>) {
             processor.process(entites)
         }

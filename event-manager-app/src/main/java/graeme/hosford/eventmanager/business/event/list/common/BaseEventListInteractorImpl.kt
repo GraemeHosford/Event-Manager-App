@@ -1,15 +1,15 @@
-package graeme.hosford.eventmanager.business.event.list
+package graeme.hosford.eventmanager.business.event.list.common
 
 import graeme.hosford.eventmanager.business.common.BaseInteractor
 import graeme.hosford.eventmanager.data.event.list.EventListFirebaseAccess
 import graeme.hosford.eventmanager.data.login.CurrentUserNetworkAccess
 import graeme.hosford.eventmanager.entity.event.Event
-import javax.inject.Inject
 
-class EventListInteractorImpl @Inject constructor(
+abstract class BaseEventListInteractorImpl constructor(
     private val eventListFirebaseAccess: EventListFirebaseAccess,
     private val currentUserNetworkAccess: CurrentUserNetworkAccess
-) : BaseInteractor<EventListInteractor.EventListCallback>(), EventListInteractor {
+) : BaseInteractor<BaseEventListInteractor.EventListCallback>(),
+    BaseEventListInteractor {
 
     override fun onCreate() {
         super.onCreate()

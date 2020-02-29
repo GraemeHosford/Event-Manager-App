@@ -14,8 +14,10 @@ import graeme.hosford.eventmanager.business.event.create.CreateEventInteractor
 import graeme.hosford.eventmanager.business.event.create.CreateEventInteractorImpl
 import graeme.hosford.eventmanager.business.event.detail.EventDetailInteractor
 import graeme.hosford.eventmanager.business.event.detail.EventDetailInteractorImpl
-import graeme.hosford.eventmanager.business.event.list.EventListInteractor
-import graeme.hosford.eventmanager.business.event.list.EventListInteractorImpl
+import graeme.hosford.eventmanager.business.event.list.attending.EventListAttendingInteractor
+import graeme.hosford.eventmanager.business.event.list.attending.EventListAttendingInteractorImpl
+import graeme.hosford.eventmanager.business.event.list.invited.EventListInvitedInteractor
+import graeme.hosford.eventmanager.business.event.list.invited.EventListInvitedInteractorImpl
 import graeme.hosford.eventmanager.business.login.LoginInteractor
 import graeme.hosford.eventmanager.business.login.LoginInteractorImpl
 import graeme.hosford.eventmanager.business.notification.EventManagerNotificationInteractor
@@ -43,7 +45,11 @@ internal interface InteractorsBindingModule {
 
     @Binds
     @Singleton
-    fun eventListInteractor(impl: EventListInteractorImpl): EventListInteractor
+    fun eventListAttendingInteractor(impl: EventListAttendingInteractorImpl): EventListAttendingInteractor
+
+    @Binds
+    @Singleton
+    fun eventListInvitedInteractor(impl: EventListInvitedInteractorImpl): EventListInvitedInteractor
 
     @Binds
     @Singleton
