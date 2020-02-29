@@ -47,7 +47,7 @@ class EventListInvitedFragment :
     }
 
     override fun startCreateNewEvent() {
-        presenter.onFabClick()
+        findNavController().navigate(R.id.nav_create_event)
     }
 
     override fun showFab(): Boolean = true
