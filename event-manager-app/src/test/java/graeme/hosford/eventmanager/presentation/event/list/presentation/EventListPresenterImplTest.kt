@@ -1,7 +1,7 @@
 package graeme.hosford.eventmanager.presentation.event.list.presentation
 
 import graeme.hosford.eventmanager.R
-import graeme.hosford.eventmanager.business.event.list.EventListInteractor
+import graeme.hosford.eventmanager.business.event.list.common.BaseEventListInteractor
 import graeme.hosford.eventmanager.entity.event.Event
 import graeme.hosford.eventmanager.presentation.common.model.UiModelListProcessor
 import graeme.hosford.eventmanager.presentation.event.list.common.EventListView
@@ -21,7 +21,7 @@ class EventListPresenterImplTest {
     private lateinit var presenter: BaseEventListPresenterImpl
 
     @RelaxedMockK
-    private lateinit var interactor: EventListInteractor
+    private lateinit var interactor: BaseEventListInteractor
 
     @RelaxedMockK
     private lateinit var processor: EventListItemUiModelProcessor
@@ -38,17 +38,13 @@ class EventListPresenterImplTest {
     private val processorCapture =
         slot<UiModelListProcessor.ProcessingCompleteCallback<EventListItemUiModel>>()
 
-    private val interactorCapture = slot<EventListInteractor.EventListCallback>()
+    private val interactorCapture = slot<BaseEventListInteractor.EventListCallback>()
 
     @Before
     fun setup() {
         MockKAnnotations.init(this)
 
-        presenter =
-            BaseEventListPresenterImpl(
-                processor,
-                interactor
-            )
+        presenter = TestEventListPresenter()
         presenter.onViewCreated(view)
 
         verify { processor.registerProcessingCallback(capture(processorCapture)) }
@@ -124,5 +120,7 @@ class EventListPresenterImplTest {
 
         verify { view.showLongToast(R.string.generic_error_loading_data) }
     }
+
+    private inner class TestEventListPresenter : BaseEventListPresenterImpl(processor, interactor)
 
 }
