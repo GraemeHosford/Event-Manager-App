@@ -2,6 +2,7 @@ package graeme.hosford.eventmanager.presentation.event.list.attending.view
 
 import android.content.Context
 import android.os.Bundle
+import android.view.View
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import graeme.hosford.eventmanager.EventManagerApplication
@@ -26,6 +27,14 @@ class EventListAttendingFragment :
         EventManagerApplication.appComponent.inject(this)
         super.onCreate(savedInstanceState)
         presenter.onViewCreated(this)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        fab.setOnClickListener {
+            presenter.onFabClick()
+        }
     }
 
     override fun addRecyclerViewDecorations(

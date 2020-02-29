@@ -1,6 +1,7 @@
 package graeme.hosford.eventmanager.presentation.event.list.invited.view
 
 import android.os.Bundle
+import android.view.View
 import graeme.hosford.eventmanager.EventManagerApplication
 import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseRecyclerViewFragment
 import graeme.hosford.eventmanager.presentation.event.list.common.EventListView
@@ -22,6 +23,19 @@ class EventListInvitedFragment :
         EventManagerApplication.appComponent.inject(this)
         super.onCreate(savedInstanceState)
         presenter.onViewCreated(this)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        fab.setOnClickListener {
+            presenter.onFabClick()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        presenter.onResume()
     }
 
     override fun showEventDetail(eventId: String) {

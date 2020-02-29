@@ -62,18 +62,14 @@ class EventListInvitedItemViewHolder(
                 )
         }
 
-        if (model.shouldShowResponseOptions(presenterBridge.getCurrentUserId())) {
-            binding.eventResponseOptionsContainer.visibility = View.VISIBLE
+        binding.eventResponseOptionsContainer.visibility = View.VISIBLE
 
-            binding.eventListItemGoingResponseTextView.setOnClickListener {
-                presenterBridge.onGoingResponseClick(model.id)
-            }
+        binding.eventListItemGoingResponseTextView.setOnClickListener {
+            presenterBridge.onGoingResponseClick(model.id)
+        }
 
-            binding.eventListItemNotGoingResponseTextView.setOnClickListener {
-                presenterBridge.onNotGoingResponseClick(model.id)
-            }
-        } else {
-            binding.eventResponseOptionsContainer.visibility = View.GONE
+        binding.eventListItemNotGoingResponseTextView.setOnClickListener {
+            presenterBridge.onNotGoingResponseClick(model.id)
         }
     }
 }
