@@ -2,7 +2,9 @@ package graeme.hosford.eventmanager.presentation.event.list.invited.view
 
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import graeme.hosford.eventmanager.EventManagerApplication
+import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseRecyclerViewFragment
 import graeme.hosford.eventmanager.presentation.event.list.common.EventListView
 import graeme.hosford.eventmanager.presentation.event.list.common.model.EventListItemUiModel
@@ -39,7 +41,9 @@ class EventListInvitedFragment :
     }
 
     override fun showEventDetail(eventId: String) {
-        presenter.onEventItemClick(eventId)
+        val args = Bundle()
+        args.putString(EventListView.ARG_EVENT_ID, eventId)
+        findNavController().navigate(R.id.nav_event_detail, args)
     }
 
     override fun startCreateNewEvent() {
