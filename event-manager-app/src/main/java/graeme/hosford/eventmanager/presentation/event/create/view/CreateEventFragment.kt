@@ -7,15 +7,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
 import androidx.navigation.fragment.findNavController
-import butterknife.BindView
-import butterknife.ButterKnife
 import graeme.hosford.eventmanager.EventManagerApplication
-import graeme.hosford.eventmanager.R
+import graeme.hosford.eventmanager.databinding.FragmentCreateEventBinding
 import graeme.hosford.eventmanager.presentation.attendees.view.AttendeesActivity
-import graeme.hosford.eventmanager.presentation.common.view.custom.SummaryTextView
 import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseFragment
 import graeme.hosford.eventmanager.presentation.event.create.CreateEventPresenter
 import graeme.hosford.eventmanager.presentation.event.create.CreateEventView
@@ -26,32 +21,8 @@ class CreateEventFragment : BaseFragment(), CreateEventView {
     @Inject
     lateinit var presenter: CreateEventPresenter
 
-    @BindView(R.id.enter_event_name_edit_text)
-    lateinit var eventName: EditText
-
-    @BindView(R.id.enter_event_description_edit_text)
-    lateinit var eventDescription: EditText
-
-    @BindView(R.id.enter_event_location_edit_text)
-    lateinit var eventLocation: EditText
-
-    @BindView(R.id.create_event_choose_start_date_button)
-    lateinit var chooseStartDate: SummaryTextView
-
-    @BindView(R.id.create_event_choose_end_date_button)
-    lateinit var chooseEndDate: SummaryTextView
-
-    @BindView(R.id.create_event_choose_start_time_button)
-    lateinit var chooseStartTime: SummaryTextView
-
-    @BindView(R.id.create_event_choose_end_time_button)
-    lateinit var chooseEndTime: SummaryTextView
-
-    @BindView(R.id.choose_attendees_button)
-    lateinit var chooseAttendees: SummaryTextView
-
-    @BindView(R.id.create_event_button)
-    lateinit var createEvent: Button
+    private var binding: FragmentCreateEventBinding? = null
+    private val safeBinding get() = binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         EventManagerApplication.appComponent.inject(this)
@@ -64,39 +35,38 @@ class CreateEventFragment : BaseFragment(), CreateEventView {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_create_event, container, false)
-        ButterKnife.bind(this, view)
-        return view
+        binding = FragmentCreateEventBinding.inflate(inflater, container, false)
+        return safeBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        chooseStartDate.setOnClickListener {
+        safeBinding.createEventChooseStartDateButton.setOnClickListener {
             presenter.onChooseStartDateButtonClick()
         }
 
-        chooseEndDate.setOnClickListener {
+        safeBinding.createEventChooseEndDateButton.setOnClickListener {
             presenter.onChooseEndDateButtonClick()
         }
 
-        chooseStartTime.setOnClickListener {
+        safeBinding.createEventChooseStartTimeButton.setOnClickListener {
             presenter.onChooseStartTimeButtonClick()
         }
 
-        chooseEndTime.setOnClickListener {
+        safeBinding.createEventChooseEndTimeButton.setOnClickListener {
             presenter.onChooseEndTimeButtonClick()
         }
 
-        chooseAttendees.setOnClickListener {
+        safeBinding.chooseAttendeesButton.setOnClickListener {
             presenter.onChooseAttendeesButtonClick()
         }
 
-        createEvent.setOnClickListener {
+        safeBinding.createEventButton.setOnClickListener {
             presenter.onCreateEventButtonClick(
-                eventName.text.toString(),
-                eventDescription.text.toString(),
-                eventLocation.text.toString(),
+                safeBinding.enterEventNameEditText.text.toString(),
+                safeBinding.enterEventDescriptionEditText.text.toString(),
+                safeBinding.enterEventLocationEditText.text.toString(),
                 presenter.getInvitedAttendees()
             )
         }
@@ -104,6 +74,11 @@ class CreateEventFragment : BaseFragment(), CreateEventView {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         presenter.onActivityResult(requestCode, resultCode, data)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 
     override fun showChooseAttendeesFragment() {
@@ -120,23 +95,23 @@ class CreateEventFragment : BaseFragment(), CreateEventView {
     }
 
     override fun updateStartDateText() {
-        chooseStartDate.setDescriptionText(presenter.getStartDateDescriptionText())
+        safeBinding.createEventChooseStartDateButton.setDescriptionText(presenter.getStartDateDescriptionText())
     }
 
     override fun updateEndDateText() {
-        chooseEndDate.setDescriptionText(presenter.getEndDateDescriptionText())
+        safeBinding.createEventChooseEndDateButton.setDescriptionText(presenter.getEndDateDescriptionText())
     }
 
     override fun updateStartTimeText() {
-        chooseStartTime.setDescriptionText(presenter.getStartTimeDescriptionText())
+        safeBinding.createEventChooseStartTimeButton.setDescriptionText(presenter.getStartTimeDescriptionText())
     }
 
     override fun updateEndTimeText() {
-        chooseEndTime.setDescriptionText(presenter.getEndTimeDescriptionText())
+        safeBinding.createEventChooseEndTimeButton.setDescriptionText(presenter.getEndTimeDescriptionText())
     }
 
     override fun updateAttendeesText(attendees: ArrayList<String>?) {
-        chooseAttendees.setDescriptionText(
+        safeBinding.chooseAttendeesButton.setDescriptionText(
             presenter.getAttendeesDescriptionText(
                 resources,
                 attendees

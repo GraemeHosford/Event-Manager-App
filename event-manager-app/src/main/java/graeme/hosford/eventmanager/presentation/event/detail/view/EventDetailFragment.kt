@@ -4,11 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import butterknife.BindView
-import butterknife.ButterKnife
 import graeme.hosford.eventmanager.EventManagerApplication
-import graeme.hosford.eventmanager.R
+import graeme.hosford.eventmanager.databinding.FragmentEventDetailBinding
 import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseFragment
 import graeme.hosford.eventmanager.presentation.event.detail.EventDetailPresenter
 import graeme.hosford.eventmanager.presentation.event.detail.EventDetailView
@@ -23,23 +20,8 @@ class EventDetailFragment : BaseFragment(), EventDetailView {
     @Inject
     lateinit var presenter: EventDetailPresenter
 
-    @BindView(R.id.event_detail_event_name_text_view)
-    lateinit var eventName: TextView
-
-    @BindView(R.id.event_detail_event_desc_text_view)
-    lateinit var eventDesc: TextView
-
-    @BindView(R.id.event_detail_event_date_text_view)
-    lateinit var eventDate: TextView
-
-    @BindView(R.id.event_Detail_event_time_text_view)
-    lateinit var eventTime: TextView
-
-    @BindView(R.id.event_detail_event_attendees_summary_text_view)
-    lateinit var eventAttendees: TextView
-
-    @BindView(R.id.event_detail_event_location_text_view)
-    lateinit var eventLocation: TextView
+    private var binding: FragmentEventDetailBinding? = null
+    private val safeBinding get() = binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         EventManagerApplication.appComponent.inject(this)
@@ -54,22 +36,23 @@ class EventDetailFragment : BaseFragment(), EventDetailView {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_event_detail, container, false)
-        ButterKnife.bind(this, view)
-        return view
+        binding = FragmentEventDetailBinding.inflate(inflater, container, false)
+        return safeBinding.root
     }
 
     override fun setData(model: EventDetailUiModel) {
-        eventName.text = model.name
-        eventDesc.text = model.description
-        eventDate.text = DatePresentationUtils.formatDateRange(model.startDate, model.endDate)
-        eventTime.text = DatePresentationUtils.formatTimeRange(model.startDate, model.endDate)
+        safeBinding.eventDetailEventNameTextView.text = model.name
+        safeBinding.eventDetailEventDescTextView.text = model.description
+        safeBinding.eventDetailEventDateTextView.text =
+            DatePresentationUtils.formatDateRange(model.startDate, model.endDate)
+        safeBinding.eventDetailEventTimeTextView.text =
+            DatePresentationUtils.formatTimeRange(model.startDate, model.endDate)
 
         if (context != null) {
-            eventAttendees.text =
+            safeBinding.eventDetailEventAttendeesSummaryTextView.text =
                 PeoplePresentationUtils.getAttendeeSummary(resources, model.attendees)
         }
 
-        eventLocation.text = model.location
+        safeBinding.eventDetailEventLocationTextView.text = model.location
     }
 }

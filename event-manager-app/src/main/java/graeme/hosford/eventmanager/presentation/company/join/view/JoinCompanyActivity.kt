@@ -2,12 +2,8 @@ package graeme.hosford.eventmanager.presentation.company.join.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import butterknife.BindView
-import butterknife.ButterKnife
 import graeme.hosford.eventmanager.EventManagerApplication
-import graeme.hosford.eventmanager.R
+import graeme.hosford.eventmanager.databinding.ActivityJoinCompanyBinding
 import graeme.hosford.eventmanager.presentation.common.view.activity.BaseActivity
 import graeme.hosford.eventmanager.presentation.company.join.JoinCompanyPresenter
 import graeme.hosford.eventmanager.presentation.company.join.JoinCompanyView
@@ -19,22 +15,16 @@ class JoinCompanyActivity : BaseActivity(), JoinCompanyView {
     @Inject
     lateinit var presenter: JoinCompanyPresenter
 
-    @BindView(R.id.enter_company_id_edit_text)
-    lateinit var idEditText: EditText
-
-    @BindView(R.id.join_company_button)
-    lateinit var joinCompanyButton: Button
-
     override fun onCreate(savedInstanceState: Bundle?) {
         EventManagerApplication.appComponent.inject(this)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_join_company)
-        unbinder = ButterKnife.bind(this)
+        val binding = ActivityJoinCompanyBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         presenter.onViewCreated(this)
 
-        joinCompanyButton.setOnClickListener {
-            presenter.onJoinCompanyClick(idEditText.text.toString())
+        binding.joinCompanyButton.setOnClickListener {
+            presenter.onJoinCompanyClick(binding.enterCompanyIdEditText.text.toString())
         }
     }
 
