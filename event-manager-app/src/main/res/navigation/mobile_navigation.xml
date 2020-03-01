@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_my_events"
-        android:name="graeme.hosford.eventmanager.presentation.event.list.view.EventListFragment"
+        android:name="graeme.hosford.eventmanager.presentation.event.list.common.view.EventListFragment"
         android:label="@string/nav_menu_my_events"
         tools:layout="@layout/fragment_home" />
 

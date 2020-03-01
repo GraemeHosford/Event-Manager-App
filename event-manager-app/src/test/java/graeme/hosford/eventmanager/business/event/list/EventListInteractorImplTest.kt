@@ -1,6 +1,8 @@
 package graeme.hosford.eventmanager.business.event.list
 
 import com.google.firebase.auth.FirebaseUser
+import graeme.hosford.eventmanager.business.event.list.common.BaseEventListInteractor
+import graeme.hosford.eventmanager.business.event.list.common.BaseEventListInteractorImpl
 import graeme.hosford.eventmanager.data.event.list.EventListFirebaseAccess
 import graeme.hosford.eventmanager.data.login.CurrentUserNetworkAccess
 import graeme.hosford.eventmanager.entity.event.Event
@@ -15,7 +17,7 @@ import java.util.*
 
 class EventListInteractorImplTest {
 
-    private lateinit var interactor: EventListInteractorImpl
+    private lateinit var interactor: BaseEventListInteractorImpl
 
     @RelaxedMockK
     private lateinit var eventListFirebaseAccess: EventListFirebaseAccess
@@ -24,7 +26,7 @@ class EventListInteractorImplTest {
     private lateinit var currentUserNetworkAccess: CurrentUserNetworkAccess
 
     @RelaxedMockK
-    private lateinit var callback: EventListInteractor.EventListCallback
+    private lateinit var callback: BaseEventListInteractor.EventListCallback
 
     @RelaxedMockK
     private lateinit var user: FirebaseUser
@@ -35,7 +37,7 @@ class EventListInteractorImplTest {
     fun setup() {
         MockKAnnotations.init(this)
 
-        interactor = EventListInteractorImpl(eventListFirebaseAccess, currentUserNetworkAccess)
+        interactor = TestEventListInteractor()
         interactor.onCreate()
 
         verify { eventListFirebaseAccess.setEventListener(capture(eventListenerCapture)) }
@@ -81,5 +83,8 @@ class EventListInteractorImplTest {
 
         verify { interactor.callback?.onEventsRetrievalFailure() }
     }
+
+    private inner class TestEventListInteractor :
+        BaseEventListInteractorImpl(eventListFirebaseAccess, currentUserNetworkAccess)
 
 }

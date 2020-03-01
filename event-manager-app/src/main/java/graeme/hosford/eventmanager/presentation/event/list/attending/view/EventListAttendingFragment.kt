@@ -1,4 +1,4 @@
-package graeme.hosford.eventmanager.presentation.event.list.view
+package graeme.hosford.eventmanager.presentation.event.list.attending.view
 
 import android.content.Context
 import android.os.Bundle
@@ -8,20 +8,20 @@ import androidx.recyclerview.widget.RecyclerView
 import graeme.hosford.eventmanager.EventManagerApplication
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseRecyclerViewFragment
-import graeme.hosford.eventmanager.presentation.event.list.EventListPresenter
-import graeme.hosford.eventmanager.presentation.event.list.EventListView
-import graeme.hosford.eventmanager.presentation.event.list.model.EventListItemUiModel
-import graeme.hosford.eventmanager.presentation.event.list.view.adapter.EventListAdapter
-import graeme.hosford.eventmanager.presentation.event.list.view.adapter.EventListItemPresenterBridge
-import graeme.hosford.eventmanager.presentation.event.list.view.adapter.EventListItemViewHolder
+import graeme.hosford.eventmanager.presentation.event.list.attending.EventListAttendingPresenter
+import graeme.hosford.eventmanager.presentation.event.list.attending.view.adapter.EventListAttendingAdapter
+import graeme.hosford.eventmanager.presentation.event.list.attending.view.adapter.EventListAttendingItemViewHolder
+import graeme.hosford.eventmanager.presentation.event.list.attending.view.adapter.EventListAttendingPresenterBridge
+import graeme.hosford.eventmanager.presentation.event.list.common.EventListView
+import graeme.hosford.eventmanager.presentation.event.list.common.model.EventListItemUiModel
 import javax.inject.Inject
 
-class EventListFragment :
-    BaseRecyclerViewFragment<EventListItemUiModel, EventListItemViewHolder, EventListAdapter>(),
+class EventListAttendingFragment :
+    BaseRecyclerViewFragment<EventListItemUiModel, EventListAttendingItemViewHolder, EventListAttendingAdapter>(),
     EventListView {
 
     @Inject
-    lateinit var presenter: EventListPresenter
+    lateinit var presenter: EventListAttendingPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         EventManagerApplication.appComponent.inject(this)
@@ -51,24 +51,18 @@ class EventListFragment :
         findNavController().navigate(R.id.nav_create_event)
     }
 
-    override fun recyclerViewAdapter(): EventListAdapter {
-        return EventListAdapter(object : EventListItemPresenterBridge {
-            override fun onGoingResponseClick(eventId: String) {
-                presenter.onGoingResponseClick(eventId)
-            }
+    override fun recyclerViewAdapter(): EventListAttendingAdapter {
+        return EventListAttendingAdapter(
+            object :
+                EventListAttendingPresenterBridge {
+                override fun onEventListItemClick(eventId: String) {
+                    presenter.onEventItemClick(eventId)
+                }
 
-            override fun onNotGoingResponseClick(eventId: String) {
-                presenter.onNotGoingResponseClick(eventId)
-            }
-
-            override fun onEventListItemClick(eventId: String) {
-                presenter.onEventItemClick(eventId)
-            }
-
-            override fun getCurrentUserId(): String {
-                return presenter.getCurrentUserId()
-            }
-        })
+                override fun getCurrentUserId(): String {
+                    return presenter.getCurrentUserId()
+                }
+            })
     }
 
     override fun showFab(): Boolean = true
@@ -78,4 +72,5 @@ class EventListFragment :
         args.putString(EventListView.ARG_EVENT_ID, eventId)
         findNavController().navigate(R.id.nav_event_detail, args)
     }
+
 }

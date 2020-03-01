@@ -1,9 +1,9 @@
-package graeme.hosford.eventmanager.business.event.list
+package graeme.hosford.eventmanager.business.event.list.common
 
 import graeme.hosford.eventmanager.business.common.Interactor
 import graeme.hosford.eventmanager.entity.event.Event
 
-interface EventListInteractor : Interactor<EventListInteractor.EventListCallback> {
+interface BaseEventListInteractor : Interactor<BaseEventListInteractor.EventListCallback> {
 
     interface EventListCallback {
         fun onEventsRetrieved(entites: List<Event>)

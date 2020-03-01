@@ -1,6 +1,7 @@
 package graeme.hosford.eventmanager.presentation.event.list.model
 
 import graeme.hosford.eventmanager.entity.event.Event
+import graeme.hosford.eventmanager.presentation.event.list.common.model.EventListUiModelConverter
 import io.mockk.MockKAnnotations
 import io.mockk.impl.annotations.RelaxedMockK
 import org.junit.Assert.assertEquals
@@ -21,7 +22,8 @@ class EventListUiModelConverterTest {
     @Before
     fun setup() {
         MockKAnnotations.init(this)
-        converter = EventListUiModelConverter()
+        converter =
+            EventListUiModelConverter()
     }
 
     @Test

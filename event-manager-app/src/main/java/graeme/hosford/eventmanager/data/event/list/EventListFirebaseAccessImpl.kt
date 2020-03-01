@@ -80,4 +80,58 @@ class EventListFirebaseAccessImpl @Inject constructor(
                 listener?.onEventRetrieveFailure()
             }
     }
+
+    override fun getAttendingEvents(userId: String) {
+        FirebaseFirestore.getInstance()
+            .collection(USERS_COLLECTION)
+            .document(userId)
+            .get()
+            .addOnSuccessListener {
+                /* This nesting is not great but will work for now because of time constraints */
+                FirebaseFirestore.getInstance()
+                    .collection(CompanyFirebaseAccess.COMPANIES_COLLECTION)
+                    .document(it.getString("companyId")!!)
+                    .collection(EventListFirebaseAccess.EVENTS_SUBCOLLECTION)
+                    .whereArrayContains(Event.ATTENDEES_LIST, userId)
+                    .get()
+                    .addOnSuccessListener { d ->
+                        val entities = ArrayList<Event>()
+                        d.documents.forEach { doc ->
+                            entities.add(eventConverter.convert(doc))
+                        }
+                        listener?.onEventRetrieveSuccess(entities)
+                    }.addOnFailureListener {
+                        listener?.onEventRetrieveFailure()
+                    }
+            }.addOnFailureListener {
+                listener?.onEventRetrieveFailure()
+            }
+    }
+
+    override fun getInvitedEvents(userId: String) {
+        FirebaseFirestore.getInstance()
+            .collection(USERS_COLLECTION)
+            .document(userId)
+            .get()
+            .addOnSuccessListener {
+                /* This nesting is not great but will work for now because of time constraints */
+                FirebaseFirestore.getInstance()
+                    .collection(CompanyFirebaseAccess.COMPANIES_COLLECTION)
+                    .document(it.getString("companyId")!!)
+                    .collection(EventListFirebaseAccess.EVENTS_SUBCOLLECTION)
+                    .whereArrayContains(Event.INVITEES_LIST, userId)
+                    .get()
+                    .addOnSuccessListener { d ->
+                        val entities = ArrayList<Event>()
+                        d.documents.forEach { doc ->
+                            entities.add(eventConverter.convert(doc))
+                        }
+                        listener?.onEventRetrieveSuccess(entities)
+                    }.addOnFailureListener {
+                        listener?.onEventRetrieveFailure()
+                    }
+            }.addOnFailureListener {
+                listener?.onEventRetrieveFailure()
+            }
+    }
 }
