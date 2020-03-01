@@ -13,6 +13,10 @@ class EventListInvitedPresenterImpl @Inject constructor(
 
     override fun onResume() {
         super.onResume()
+        getInvitedEvents()
+    }
+
+    override fun getInvitedEvents() {
         interactor.getInvitedEvents()
     }
 

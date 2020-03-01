@@ -13,6 +13,10 @@ class EventListAttendingPresenterImpl @Inject constructor(
 
     override fun onResume() {
         super.onResume()
+        getAttendingEvents()
+    }
+
+    override fun getAttendingEvents() {
         interactor.getAttendingEvents()
     }
 }

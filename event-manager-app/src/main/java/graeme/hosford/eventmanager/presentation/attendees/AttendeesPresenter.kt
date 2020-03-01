@@ -7,5 +7,7 @@ interface AttendeesPresenter : Presenter<AttendeesView> {
 
     fun onConfirmAttendeesButtonClick()
 
+    fun getCompanyMembers()
+
     fun getAttendees(): ArrayList<String>
 }

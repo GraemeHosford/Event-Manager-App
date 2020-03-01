@@ -42,6 +42,10 @@ class EventListAttendingFragment :
         layoutOrientation: Int
     ): List<RecyclerView.ItemDecoration> = emptyList()
 
+    override fun doOnSwipeRefresh() {
+        presenter.getAttendingEvents()
+    }
+
     override fun onResume() {
         super.onResume()
         presenter.onResume()

@@ -35,6 +35,10 @@ class EventListInvitedFragment :
         }
     }
 
+    override fun doOnSwipeRefresh() {
+        presenter.getInvitedEvents()
+    }
+
     override fun onResume() {
         super.onResume()
         presenter.onResume()

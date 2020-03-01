@@ -23,6 +23,10 @@ class CompanyDetailPresenterImpl @Inject constructor(
         processor.registerProcessingCallback(ProcessorCallback())
 
         processor.setListComparator(CompanyMemberComparator.memberNameComparator)
+        getCompanyMembers()
+    }
+
+    override fun getCompanyMembers() {
         interactor.getCompanyMembers()
     }
 

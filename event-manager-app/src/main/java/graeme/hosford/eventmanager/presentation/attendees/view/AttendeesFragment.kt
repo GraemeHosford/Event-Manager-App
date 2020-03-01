@@ -51,6 +51,10 @@ class AttendeesFragment :
         /* Nothing for now */
     }
 
+    override fun doOnSwipeRefresh() {
+        presenter.getCompanyMembers()
+    }
+
     override fun getRecyclerViewLayout(): Int = R.layout.choose_attendees_layout
 
     override fun recyclerViewAdapter(): AttendeesAdapter {

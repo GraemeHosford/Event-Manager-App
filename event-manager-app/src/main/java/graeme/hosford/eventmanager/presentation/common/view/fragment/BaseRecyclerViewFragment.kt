@@ -11,6 +11,7 @@ import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -24,6 +25,9 @@ abstract class BaseRecyclerViewFragment<
         ViewHolder : BaseViewHolder<Model>,
         Adapter : BaseAdapter<Model, ViewHolder>> :
     BaseFragment(), RecyclerViewListView<Model> {
+
+    @BindView(R.id.recycler_view_refresh_layout)
+    lateinit var refreshLayout: SwipeRefreshLayout
 
     @BindView(R.id.recycler_view)
     lateinit var recyclerview: RecyclerView
@@ -72,6 +76,11 @@ abstract class BaseRecyclerViewFragment<
         } else {
             fab.hide()
         }
+
+        refreshLayout.setOnRefreshListener {
+            doOnSwipeRefresh()
+            refreshLayout.isRefreshing = false
+        }
     }
 
     protected open fun showFab(): Boolean {
@@ -85,6 +94,8 @@ abstract class BaseRecyclerViewFragment<
         listOf(DividerItemDecoration(recyclerViewContext, layoutOrientation))
 
     protected abstract fun recyclerViewAdapter(): Adapter
+
+    protected abstract fun doOnSwipeRefresh()
 
     override fun showData(items: List<Model>) {
         if (items.isNotEmpty()) {
