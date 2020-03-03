@@ -10,6 +10,7 @@ import graeme.hosford.eventmanager.presentation.login.LoginPresenter
 import graeme.hosford.eventmanager.presentation.login.LoginView
 import graeme.hosford.eventmanager.presentation.login.SIGN_IN_REQUEST_CODE
 import graeme.hosford.eventmanager.presentation.main.view.MainActivity
+import graeme.hosford.eventmanager.presentation.profile.create.view.CreateProfileActivity
 import javax.inject.Inject
 
 /* Calendar view for seeing all events to see event schedule
@@ -44,6 +45,11 @@ class LoginActivity : BaseActivity(),
                 .build(),
             SIGN_IN_REQUEST_CODE
         )
+    }
+
+    override fun showProfileCreationFlow() {
+        startActivity(Intent(this, CreateProfileActivity::class.java))
+        finish()
     }
 
     override fun showCompanyCreationFlow() {

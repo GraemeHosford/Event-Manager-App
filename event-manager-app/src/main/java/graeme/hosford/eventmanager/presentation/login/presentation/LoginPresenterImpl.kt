@@ -6,7 +6,9 @@ import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.business.login.LoginInteractor
+import graeme.hosford.eventmanager.business.profile.create.CreateProfileInteractor
 import graeme.hosford.eventmanager.business.user.CurrentUserInteractor
+import graeme.hosford.eventmanager.entity.company.Person
 import graeme.hosford.eventmanager.presentation.common.presenter.BasePresenter
 import graeme.hosford.eventmanager.presentation.login.LoginPresenter
 import graeme.hosford.eventmanager.presentation.login.LoginView
@@ -14,7 +16,8 @@ import graeme.hosford.eventmanager.presentation.login.SIGN_IN_REQUEST_CODE
 import javax.inject.Inject
 
 class LoginPresenterImpl @Inject constructor(
-    private val interactor: LoginInteractor
+    private val interactor: LoginInteractor,
+    private val profileInteractor: CreateProfileInteractor
 ) : BasePresenter<LoginView, LoginInteractor>(interactor),
     LoginPresenter {
 
@@ -22,11 +25,13 @@ class LoginPresenterImpl @Inject constructor(
         super.onViewCreated(view)
         interactor.registerCallback(UserDetailsSaveListener())
         interactor.registerCurrentUserInteractorCallback(UserInfoRetrieved())
+
+        profileInteractor.registerCallback(ProfileInteractorCallback())
     }
 
     override fun checkLoggedIn() {
         if (interactor.loggedIn()) {
-            interactor.checkUserHasCompany()
+            profileInteractor.checkProfileExists()
         } else {
             view?.showLoginFlow()
         }
@@ -87,6 +92,19 @@ class LoginPresenterImpl @Inject constructor(
 
         override fun onUserInfoRetrievalFailed() {
             view?.showLongToast(R.string.generic_error_loading_data)
+        }
+    }
+
+    private inner class ProfileInteractorCallback : CreateProfileInteractor.CreateProfileCallback {
+        override fun onUserInfoSavedSuccessfully() {
+
+        }
+
+        override fun onUserInfoSaveFailed() {
+        }
+
+        override fun onProfileInfoRetrieved(data: Person) {
+            interactor.checkUserHasCompany()
         }
     }
 }

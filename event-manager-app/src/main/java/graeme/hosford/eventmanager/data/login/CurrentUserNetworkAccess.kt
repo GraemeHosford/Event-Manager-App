@@ -16,6 +16,8 @@ interface CurrentUserNetworkAccess {
         fun onUserInfoRetrievalFailure()
     }
 
+    fun getFullUserInfo(userEmail: String)
+
     fun setUserInfoSavedListener(userInfoListener: UserInfoSavedCallback)
 
     fun setUserInfoRetrievedListener(userInfoRetrievedCallback: UserInfoRetrievedCallback)

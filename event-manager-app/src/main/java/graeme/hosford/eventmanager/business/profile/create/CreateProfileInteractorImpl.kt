@@ -13,6 +13,7 @@ class CreateProfileInteractorImpl @Inject constructor(
     override fun onCreate() {
         super.onCreate()
         currentUserNetworkAccess.setUserInfoSavedListener(UserInfoSavedListener())
+        currentUserNetworkAccess.setUserInfoRetrievedListener(UserInfoRetrievedListener())
     }
 
     override fun saveUserProfileData(
@@ -32,6 +33,12 @@ class CreateProfileInteractorImpl @Inject constructor(
         )
     }
 
+    override fun checkProfileExists() {
+        currentUserNetworkAccess.getFullUserInfo(
+            currentUserNetworkAccess.getCurrentUser()!!.email!!
+        )
+    }
+
     private inner class UserInfoSavedListener: CurrentUserNetworkAccess.UserInfoSavedCallback {
         override fun onUserInfoSavedSuccess() {
             callback?.onUserInfoSavedSuccessfully()
@@ -39,6 +46,17 @@ class CreateProfileInteractorImpl @Inject constructor(
 
         override fun onUserInfoSavedFailure() {
             callback?.onUserInfoSaveFailed()
+        }
+    }
+
+    private inner class UserInfoRetrievedListener :
+        CurrentUserNetworkAccess.UserInfoRetrievedCallback {
+        override fun onUserInfoRetrieved(info: Any?) {
+
+        }
+
+        override fun onUserInfoRetrievalFailure() {
+
         }
     }
 }

@@ -4,12 +4,14 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import graeme.hosford.eventmanager.data.login.converter.PersonEntityConverter
 import javax.inject.Inject
 
 const val USERS_COLLECTION = "Users"
 
-class CurrentUserNetworkAccessImpl @Inject constructor() :
-    CurrentUserNetworkAccess {
+class CurrentUserNetworkAccessImpl @Inject constructor(
+    private val personConverter: PersonEntityConverter
+) : CurrentUserNetworkAccess {
 
     lateinit var userInfoSavedCallback: CurrentUserNetworkAccess.UserInfoSavedCallback
     lateinit var userInfoRetrievedCallback: CurrentUserNetworkAccess.UserInfoRetrievedCallback
@@ -35,6 +37,19 @@ class CurrentUserNetworkAccessImpl @Inject constructor() :
             .get()
             .addOnSuccessListener {
                 userInfoRetrievedCallback.onUserInfoRetrieved(it.get(details))
+            }.addOnFailureListener {
+                userInfoRetrievedCallback.onUserInfoRetrievalFailure()
+            }
+    }
+
+    override fun getFullUserInfo(userEmail: String) {
+        FirebaseFirestore.getInstance()
+            .collection(USERS_COLLECTION)
+            .document(userEmail)
+            .get()
+            .addOnSuccessListener {
+                val person = personConverter.convert(it)
+                userInfoRetrievedCallback.onUserInfoRetrieved(person)
             }.addOnFailureListener {
                 userInfoRetrievedCallback.onUserInfoRetrievalFailure()
             }

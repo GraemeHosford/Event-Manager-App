@@ -9,6 +9,8 @@ interface LoginView :
 
     fun showLoginFlow()
 
+    fun showProfileCreationFlow()
+
     fun showCompanyCreationFlow()
 
     fun showMainActivity()

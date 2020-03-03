@@ -9,4 +9,6 @@ interface CreateProfileView: ToastView {
     fun startCamera()
 
     fun setProfileImage(image: Bitmap)
+
+    fun showCompanyCreationFlow()
 }

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.business.profile.create.CreateProfileInteractor
+import graeme.hosford.eventmanager.entity.company.Person
 import graeme.hosford.eventmanager.presentation.common.presenter.BasePresenter
 import graeme.hosford.eventmanager.presentation.profile.create.CAMERA_REQUEST_CODE
 import graeme.hosford.eventmanager.presentation.profile.create.CreateProfilePresenter
@@ -48,11 +49,15 @@ class CreateProfilePresenterImpl @Inject constructor(
 
     private inner class ProfileInteractorCallback : CreateProfileInteractor.CreateProfileCallback {
         override fun onUserInfoSavedSuccessfully() {
-
+            view?.showCompanyCreationFlow()
         }
 
         override fun onUserInfoSaveFailed() {
             view?.showLongToast(R.string.generic_error_saving_data)
+        }
+
+        override fun onProfileInfoRetrieved(data: Person) {
+            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         }
     }
 }

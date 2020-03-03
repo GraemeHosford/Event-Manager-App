@@ -1,6 +1,7 @@
 package graeme.hosford.eventmanager.business.profile.create
 
 import graeme.hosford.eventmanager.business.common.Interactor
+import graeme.hosford.eventmanager.entity.company.Person
 
 interface CreateProfileInteractor : Interactor<CreateProfileInteractor.CreateProfileCallback> {
 
@@ -8,6 +9,8 @@ interface CreateProfileInteractor : Interactor<CreateProfileInteractor.CreatePro
         fun onUserInfoSavedSuccessfully()
 
         fun onUserInfoSaveFailed()
+
+        fun onProfileInfoRetrieved(data: Person)
     }
 
     fun saveUserProfileData(
@@ -16,5 +19,7 @@ interface CreateProfileInteractor : Interactor<CreateProfileInteractor.CreatePro
         jobTitle: String,
         description: String
     )
+
+    fun checkProfileExists()
 
 }

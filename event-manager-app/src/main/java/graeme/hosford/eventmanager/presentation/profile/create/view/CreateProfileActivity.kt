@@ -7,6 +7,7 @@ import graeme.hosford.eventmanager.EventManagerApplication
 import graeme.hosford.eventmanager.databinding.ActivityCreateProfileBinding
 import graeme.hosford.eventmanager.presentation.CoreIntents
 import graeme.hosford.eventmanager.presentation.common.view.activity.BaseActivity
+import graeme.hosford.eventmanager.presentation.company.create_join_screen.view.CreateJoinCompanyActivity
 import graeme.hosford.eventmanager.presentation.profile.create.CAMERA_REQUEST_CODE
 import graeme.hosford.eventmanager.presentation.profile.create.CreateProfilePresenter
 import graeme.hosford.eventmanager.presentation.profile.create.CreateProfileView
@@ -39,6 +40,11 @@ class CreateProfileActivity : BaseActivity(), CreateProfileView {
 
             presenter.onCreateProfileButtonClick(firstName, lastName, jobTitle, description)
         }
+    }
+
+    override fun showCompanyCreationFlow() {
+        startActivity(Intent(this, CreateJoinCompanyActivity::class.java))
+        finish()
     }
 
     override fun startCamera() {
