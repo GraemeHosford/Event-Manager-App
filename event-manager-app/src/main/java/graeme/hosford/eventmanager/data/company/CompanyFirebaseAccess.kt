@@ -1,6 +1,6 @@
 package graeme.hosford.eventmanager.data.company
 
-import graeme.hosford.eventmanager.entity.company.Member
+import graeme.hosford.eventmanager.entity.company.Person
 
 interface CompanyFirebaseAccess {
 
@@ -22,7 +22,7 @@ interface CompanyFirebaseAccess {
     }
 
     interface MembersListener {
-        fun onMembersRetrieved(members: List<Member>)
+        fun onMembersRetrieved(people: List<Person>)
 
         fun onMembersRetrievalFailed()
     }

@@ -2,6 +2,7 @@
     <string name="app_name">Event Manager</string>
 
     <string name="generic_error_loading_data">There was an error while trying to load your data. Please try again</string>
+    <string name="generic_error_saving_data">There was an error while saving your data. Please try again</string>
     <string name="generic_nothing_to_load">There was nothing to load!</string>
 
     <string name="company_creation_enter_company_name_hint">Company Name</string>
@@ -50,6 +51,8 @@
 
     <string name="attending_text">Attending</string>
     <string name="invited_text">Invited</string>
+
+    <string name="create_profile_error_enter_name">You must enter your first and last name</string>
 
     <string name="nav_menu_my_company">My Company</string>
     <string name="menu_slideshow">Slideshow</string>

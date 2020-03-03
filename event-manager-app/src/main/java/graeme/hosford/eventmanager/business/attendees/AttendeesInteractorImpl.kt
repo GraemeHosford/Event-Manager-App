@@ -4,7 +4,7 @@ import graeme.hosford.eventmanager.business.common.BaseInteractor
 import graeme.hosford.eventmanager.business.common.Interactor
 import graeme.hosford.eventmanager.business.user.CurrentUserInteractor
 import graeme.hosford.eventmanager.data.company.CompanyFirebaseAccess
-import graeme.hosford.eventmanager.entity.company.Member
+import graeme.hosford.eventmanager.entity.company.Person
 import javax.inject.Inject
 
 class AttendeesInteractorImpl @Inject constructor(
@@ -42,8 +42,8 @@ class AttendeesInteractorImpl @Inject constructor(
     }
 
     private inner class MembersLisener : CompanyFirebaseAccess.MembersListener {
-        override fun onMembersRetrieved(members: List<Member>) {
-            callback?.onCompanyMembersRetrieved(members)
+        override fun onMembersRetrieved(people: List<Person>) {
+            callback?.onCompanyMembersRetrieved(people)
         }
 
         override fun onMembersRetrievalFailed() {

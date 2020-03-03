@@ -2,7 +2,7 @@ package graeme.hosford.eventmanager.presentation.attendees.presentation
 
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.business.attendees.AttendeesInteractor
-import graeme.hosford.eventmanager.entity.company.Member
+import graeme.hosford.eventmanager.entity.company.Person
 import graeme.hosford.eventmanager.presentation.attendees.AttendeesPresenter
 import graeme.hosford.eventmanager.presentation.attendees.AttendeesView
 import graeme.hosford.eventmanager.presentation.attendees.model.AttendeeComparator
@@ -52,8 +52,8 @@ class AttendeesPresenterImpl @Inject constructor(
     override fun getAttendees(): ArrayList<String> = attendees
 
     private inner class AttendeesCallback : AttendeesInteractor.AttendeesCallback {
-        override fun onCompanyMembersRetrieved(members: List<Member>) {
-            processor.process(members)
+        override fun onCompanyMembersRetrieved(people: List<Person>) {
+            processor.process(people)
         }
 
         override fun onMemberRetrievalFailed() {

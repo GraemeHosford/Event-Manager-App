@@ -4,7 +4,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import graeme.hosford.eventmanager.data.company.CompanyFirebaseAccess.Companion.COMPANIES_COLLECTION
 import graeme.hosford.eventmanager.data.company.CompanyFirebaseAccess.Companion.MEMBERS_SUBCOLLECTION
 import graeme.hosford.eventmanager.data.company.member.converter.MemberEntityConverter
-import graeme.hosford.eventmanager.entity.company.Member
+import graeme.hosford.eventmanager.entity.company.Person
 import javax.inject.Inject
 
 class CompanyFirebaseAccessImpl @Inject constructor(
@@ -66,7 +66,7 @@ class CompanyFirebaseAccessImpl @Inject constructor(
             .collection(MEMBERS_SUBCOLLECTION)
             .get()
             .addOnSuccessListener {
-                val entities = ArrayList<Member>()
+                val entities = ArrayList<Person>()
                 it.documents.forEach {
                     entities.add(memberConverter.convert(it))
                 }

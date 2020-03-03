@@ -1,7 +1,7 @@
 package graeme.hosford.eventmanager.presentation.company.detail.presentation
 
 import graeme.hosford.eventmanager.business.company.detail.CompanyDetailInteractor
-import graeme.hosford.eventmanager.entity.company.Member
+import graeme.hosford.eventmanager.entity.company.Person
 import graeme.hosford.eventmanager.presentation.common.model.UiModelListProcessor
 import graeme.hosford.eventmanager.presentation.common.presenter.BasePresenter
 import graeme.hosford.eventmanager.presentation.company.detail.CompanyDetailPresenter
@@ -36,8 +36,8 @@ class CompanyDetailPresenterImpl @Inject constructor(
 
         }
 
-        override fun onMembersRetrieved(members: List<Member>) {
-            processor.process(members)
+        override fun onMembersRetrieved(people: List<Person>) {
+            processor.process(people)
         }
 
         override fun onDataLoadFailure() {
