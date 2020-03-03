@@ -1,9 +1,13 @@
 package graeme.hosford.eventmanager.presentation.profile.create.view
 
+import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
 import graeme.hosford.eventmanager.EventManagerApplication
 import graeme.hosford.eventmanager.databinding.ActivityCreateProfileBinding
+import graeme.hosford.eventmanager.presentation.CoreIntents
 import graeme.hosford.eventmanager.presentation.common.view.activity.BaseActivity
+import graeme.hosford.eventmanager.presentation.profile.create.CAMERA_REQUEST_CODE
 import graeme.hosford.eventmanager.presentation.profile.create.CreateProfilePresenter
 import graeme.hosford.eventmanager.presentation.profile.create.CreateProfileView
 import javax.inject.Inject
@@ -30,5 +34,18 @@ class CreateProfileActivity : BaseActivity(), CreateProfileView {
         safeBinding.createProfileConfirmCreateButton.setOnClickListener {
             presenter.onCreateProfileButtonClick()
         }
+    }
+
+    override fun startCamera() {
+        startActivityForResult(CoreIntents.openCameraIntent(), CAMERA_REQUEST_CODE)
+    }
+
+    override fun setProfileImage(image: Bitmap) {
+        safeBinding.createProfilePictureImageView.setImageBitmap(image)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        presenter.onActivityResult(requestCode, resultCode, data)
     }
 }
