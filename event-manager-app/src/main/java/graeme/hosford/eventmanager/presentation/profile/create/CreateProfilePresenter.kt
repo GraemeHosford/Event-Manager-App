@@ -5,5 +5,10 @@ import graeme.hosford.eventmanager.presentation.common.presenter.Presenter
 interface CreateProfilePresenter : Presenter<CreateProfileView> {
     fun onProfileImageClick()
 
-    fun onCreateProfileButtonClick()
+    fun onCreateProfileButtonClick(
+        firstName: String,
+        lastName: String,
+        jobTitle: String,
+        description: String
+    )
 }

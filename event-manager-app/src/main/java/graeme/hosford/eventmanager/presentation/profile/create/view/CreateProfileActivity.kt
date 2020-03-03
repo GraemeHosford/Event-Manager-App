@@ -32,7 +32,12 @@ class CreateProfileActivity : BaseActivity(), CreateProfileView {
         }
 
         safeBinding.createProfileConfirmCreateButton.setOnClickListener {
-            presenter.onCreateProfileButtonClick()
+            val firstName = safeBinding.createProfileEnterFirstNameEditText.text.toString()
+            val lastName = safeBinding.createProfileEnterLastNameEditText.text.toString()
+            val jobTitle = safeBinding.createProfileEnterJobTitleEditText.text.toString()
+            val description = safeBinding.createProfileEnterDescriptionEditText.text.toString()
+
+            presenter.onCreateProfileButtonClick(firstName, lastName, jobTitle, description)
         }
     }
 

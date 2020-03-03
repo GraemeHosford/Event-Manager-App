@@ -19,7 +19,12 @@ class CreateProfilePresenterImpl @Inject constructor(
         view?.startCamera()
     }
 
-    override fun onCreateProfileButtonClick() {
+    override fun onCreateProfileButtonClick(
+        firstName: String,
+        lastName: String,
+        jobTitle: String,
+        description: String
+    ) {
 
     }
 
