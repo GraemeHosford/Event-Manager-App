@@ -64,4 +64,5 @@
     <string name="enter_job_title">Enter Job Title</string>
     <string name="enter_some_info_about_yourself">Enter some info about yourself!</string>
     <string name="create_profile">Create Profile</string>
+    <string name="tap_to_take_a_profile_picture">Tap to Take a Profile Picture</string>
 </resources>

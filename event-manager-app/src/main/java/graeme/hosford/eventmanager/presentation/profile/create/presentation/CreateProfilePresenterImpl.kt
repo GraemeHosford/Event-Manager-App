@@ -11,7 +11,11 @@ class CreateProfilePresenterImpl @Inject constructor(
 ) : BasePresenter<CreateProfileView, CreateProfileInteractor>(interactor),
     CreateProfilePresenter {
 
+    override fun onProfileImageClick() {
+
+    }
+
     override fun onCreateProfileButtonClick() {
-        
+
     }
 }

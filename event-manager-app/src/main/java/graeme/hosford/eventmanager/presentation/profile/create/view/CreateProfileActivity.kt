@@ -23,6 +23,10 @@ class CreateProfileActivity : BaseActivity(), CreateProfileView {
         setContentView(safeBinding.root)
         presenter.onViewCreated(this)
 
+        safeBinding.createProfilePictureImageView.setOnClickListener {
+            presenter.onProfileImageClick()
+        }
+
         safeBinding.createProfileConfirmCreateButton.setOnClickListener {
             presenter.onCreateProfileButtonClick()
         }
