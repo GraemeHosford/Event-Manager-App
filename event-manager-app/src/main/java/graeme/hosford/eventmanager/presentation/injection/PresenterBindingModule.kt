@@ -14,10 +14,14 @@ import graeme.hosford.eventmanager.presentation.event.create.CreateEventPresente
 import graeme.hosford.eventmanager.presentation.event.create.presentation.CreateEventPresenterImpl
 import graeme.hosford.eventmanager.presentation.event.detail.EventDetailPresenter
 import graeme.hosford.eventmanager.presentation.event.detail.presentation.EventDetailPresenterImpl
-import graeme.hosford.eventmanager.presentation.event.list.EventListPresenter
-import graeme.hosford.eventmanager.presentation.event.list.presentation.EventListPresenterImpl
+import graeme.hosford.eventmanager.presentation.event.list.attending.EventListAttendingPresenter
+import graeme.hosford.eventmanager.presentation.event.list.attending.presentation.EventListAttendingPresenterImpl
+import graeme.hosford.eventmanager.presentation.event.list.invited.EventListInvitedPresenter
+import graeme.hosford.eventmanager.presentation.event.list.invited.presentation.EventListInvitedPresenterImpl
 import graeme.hosford.eventmanager.presentation.login.LoginPresenter
 import graeme.hosford.eventmanager.presentation.login.presentation.LoginPresenterImpl
+import graeme.hosford.eventmanager.presentation.notification.EventManagerNotificationPresenter
+import graeme.hosford.eventmanager.presentation.notification.presentation.EventManagerNotificationPresenterImpl
 import javax.inject.Singleton
 
 @Module
@@ -37,7 +41,11 @@ interface PresenterBindingModule {
 
     @Binds
     @Singleton
-    fun eventListPresenter(impl: EventListPresenterImpl): EventListPresenter
+    fun eventListInvitedPresenter(impl: EventListInvitedPresenterImpl): EventListInvitedPresenter
+
+    @Binds
+    @Singleton
+    fun eventListAttendingPresenter(impl: EventListAttendingPresenterImpl): EventListAttendingPresenter
 
     @Binds
     @Singleton
@@ -53,5 +61,9 @@ interface PresenterBindingModule {
     @Binds
     @Singleton
     fun eventDetailPresenter(impl: EventDetailPresenterImpl): EventDetailPresenter
+
+    @Binds
+    @Singleton
+    fun eventManagerNotificationPresenter(impl: EventManagerNotificationPresenterImpl): EventManagerNotificationPresenter
 
 }

@@ -13,8 +13,11 @@ import graeme.hosford.eventmanager.presentation.company.detail.view.CompanyDetai
 import graeme.hosford.eventmanager.presentation.company.join.view.JoinCompanyActivity
 import graeme.hosford.eventmanager.presentation.event.create.view.CreateEventFragment
 import graeme.hosford.eventmanager.presentation.event.detail.view.EventDetailFragment
-import graeme.hosford.eventmanager.presentation.event.list.view.EventListFragment
+import graeme.hosford.eventmanager.presentation.event.list.attending.view.EventListAttendingFragment
+import graeme.hosford.eventmanager.presentation.event.list.common.view.EventListFragment
+import graeme.hosford.eventmanager.presentation.event.list.invited.view.EventListInvitedFragment
 import graeme.hosford.eventmanager.presentation.login.view.LoginActivity
+import graeme.hosford.eventmanager.presentation.notification.service.EventManagerNotificationService
 import javax.inject.Singleton
 
 @Singleton
@@ -59,5 +62,11 @@ interface ApplicationComponent {
     fun inject(attendeesActivity: AttendeesActivity)
 
     fun inject(eventDetailFragment: EventDetailFragment)
+
+    fun inject(eventManagerNotificationService: EventManagerNotificationService)
+
+    fun inject(eventListAttendingFragment: EventListAttendingFragment)
+
+    fun inject(eventListInvitedFragment: EventListInvitedFragment)
 
 }

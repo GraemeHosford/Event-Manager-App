@@ -30,6 +30,10 @@ class AttendeesPresenterImpl @Inject constructor(
 
     override fun onResume() {
         super.onResume()
+        getCompanyMembers()
+    }
+
+    override fun getCompanyMembers() {
         interactor.getCompanyMembers()
     }
 

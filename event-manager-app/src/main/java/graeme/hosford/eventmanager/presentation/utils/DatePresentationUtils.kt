@@ -6,6 +6,7 @@ import java.util.*
 object DatePresentationUtils {
     fun formatDateRange(startDate: Calendar, endDate: Calendar): String {
         val dateFormatter = SimpleDateFormat("MMM dd", Locale.getDefault())
+        val dateFormatterWithYear = SimpleDateFormat("MMM dd yyyy", Locale.getDefault())
 
         val start = dateFormatter.format(startDate.time)
 
@@ -13,7 +14,7 @@ object DatePresentationUtils {
             return if (startDate.isSameYear(Calendar.getInstance())) {
                 start
             } else {
-                "$start ${startDate.get(Calendar.YEAR)}"
+                dateFormatterWithYear.format(startDate.time)
             }
         }
 
@@ -23,10 +24,12 @@ object DatePresentationUtils {
             if (startDate.isSameYear(Calendar.getInstance())) {
                 "$start - $end"
             } else {
-                "$start - $end ${startDate.get(Calendar.YEAR)}"
+                "$start - ${dateFormatterWithYear.format(endDate.time)}"
             }
         } else {
-            "$start ${startDate.get(Calendar.YEAR)} - $end ${endDate.get(Calendar.YEAR)}"
+            "${dateFormatterWithYear.format(startDate.time)} - ${dateFormatterWithYear.format(
+                endDate.time
+            )}"
         }
     }
 

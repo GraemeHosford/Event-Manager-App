@@ -46,10 +46,17 @@
     <string name="create_event_success">Your event has been created successfully</string>
     <string name="create_event_error">There was an error creating your event. Please try again</string>
 
+    <string name="notification_token_save_error_message">There was an error setting up notification services</string>
+
+    <string name="attending_text">Attending</string>
+    <string name="invited_text">Invited</string>
+
     <string name="nav_menu_my_company">My Company</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
     <string name="person_profile_picture">Person Profile Picture</string>
+    <string name="generic_going_text">Going</string>
+    <string name="generic_not_going_text">Not Going</string>
 </resources>

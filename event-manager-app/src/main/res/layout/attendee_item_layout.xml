@@ -6,7 +6,9 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
-    <include layout="@layout/person_item_layout" />
+    <include
+        android:id="@+id/attendee_item_layout_included_name"
+        layout="@layout/person_item_layout" />
 
     <ImageView
         android:id="@+id/attendee_checkmark"

@@ -23,6 +23,10 @@ class CompanyDetailFragment :
         presenter.onViewCreated(this)
     }
 
+    override fun doOnSwipeRefresh() {
+        presenter.getCompanyMembers()
+    }
+
     override fun recyclerViewAdapter(): CompanyDetailAdapter {
         return CompanyDetailAdapter()
     }
