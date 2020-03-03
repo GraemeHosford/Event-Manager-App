@@ -69,6 +69,7 @@ dependencies {
     implementation "com.firebaseui:firebase-ui-auth:${versions.firebase.authui}"
     implementation "com.google.firebase:firebase-messaging:${versions.firebase.fcm}"
     implementation "com.google.firebase:firebase-firestore:${versions.firebase.firestore}"
+    implementation "com.google.firebase:firebase-storage:${versions.firebase.storage}"
 
     // Retrofit Dependencies
     implementation "com.squareup.retrofit2:retrofit:${versions.retrofit}"
