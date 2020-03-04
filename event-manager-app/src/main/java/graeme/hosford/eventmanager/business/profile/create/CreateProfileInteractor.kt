@@ -11,6 +11,8 @@ interface CreateProfileInteractor : Interactor<CreateProfileInteractor.CreatePro
         fun onUserInfoSaveFailed()
 
         fun onProfileInfoRetrieved(data: Person)
+
+        fun onProfileInfoNotRetrieved()
     }
 
     fun saveUserProfileData(

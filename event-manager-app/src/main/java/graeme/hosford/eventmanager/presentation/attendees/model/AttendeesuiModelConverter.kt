@@ -7,6 +7,6 @@ import javax.inject.Inject
 class AttendeesuiModelConverter @Inject constructor() : UiModelConverter<Person, AttendeesUiModel> {
 
     override fun toUiModel(entity: Person): AttendeesUiModel {
-        return AttendeesUiModel(entity.name)
+        return AttendeesUiModel(entity.firstName)
     }
 }

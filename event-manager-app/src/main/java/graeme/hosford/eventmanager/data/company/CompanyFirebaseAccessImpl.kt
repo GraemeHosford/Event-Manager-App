@@ -3,12 +3,12 @@ package graeme.hosford.eventmanager.data.company
 import com.google.firebase.firestore.FirebaseFirestore
 import graeme.hosford.eventmanager.data.company.CompanyFirebaseAccess.Companion.COMPANIES_COLLECTION
 import graeme.hosford.eventmanager.data.company.CompanyFirebaseAccess.Companion.MEMBERS_SUBCOLLECTION
-import graeme.hosford.eventmanager.data.company.member.converter.MemberEntityConverter
+import graeme.hosford.eventmanager.data.login.converter.PersonEntityConverter
 import graeme.hosford.eventmanager.entity.company.Person
 import javax.inject.Inject
 
 class CompanyFirebaseAccessImpl @Inject constructor(
-    private val memberConverter: MemberEntityConverter
+    private val memberConverter: PersonEntityConverter
 ) : CompanyFirebaseAccess {
 
     private lateinit var companySaveListener: CompanyFirebaseAccess.CompanySaveListener
@@ -65,9 +65,9 @@ class CompanyFirebaseAccessImpl @Inject constructor(
             .document(companyId)
             .collection(MEMBERS_SUBCOLLECTION)
             .get()
-            .addOnSuccessListener {
+            .addOnSuccessListener { query ->
                 val entities = ArrayList<Person>()
-                it.documents.forEach {
+                query.documents.forEach {
                     entities.add(memberConverter.convert(it))
                 }
                 memberslistener.onMembersRetrieved(entities)

@@ -84,7 +84,11 @@ class LoginPresenterImpl @Inject constructor(
 
         override fun onUserInfoRetrieved(info: Any?) {
             if (info != null) {
-                view?.showMainActivity()
+                if (info is Person && info.firstName == "") {
+                    view?.showProfileCreationFlow()
+                } else {
+                    view?.showMainActivity()
+                }
             } else {
                 view?.showCompanyCreationFlow()
             }
@@ -104,7 +108,15 @@ class LoginPresenterImpl @Inject constructor(
         }
 
         override fun onProfileInfoRetrieved(data: Person) {
-            interactor.checkUserHasCompany()
+            if (data.firstName == "") {
+                view?.showProfileCreationFlow()
+            } else {
+                interactor.checkUserHasCompany()
+            }
+        }
+
+        override fun onProfileInfoNotRetrieved() {
+            view?.showProfileCreationFlow()
         }
     }
 }

@@ -36,7 +36,8 @@ class CurrentUserNetworkAccessImpl @Inject constructor(
             .document(userEmail)
             .get()
             .addOnSuccessListener {
-                userInfoRetrievedCallback.onUserInfoRetrieved(it.get(details))
+                val person = personConverter.convert(it)
+                userInfoRetrievedCallback.onUserInfoRetrieved(person)
             }.addOnFailureListener {
                 userInfoRetrievedCallback.onUserInfoRetrievalFailure()
             }

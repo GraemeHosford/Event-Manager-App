@@ -47,6 +47,11 @@ class CreateProfileActivity : BaseActivity(), CreateProfileView {
         finish()
     }
 
+    override fun showMainActivity() {
+        startActivity(Intent(this, CreateJoinCompanyActivity::class.java))
+        finish()
+    }
+
     override fun startCamera() {
         startActivityForResult(CoreIntents.openCameraIntent(), CAMERA_REQUEST_CODE)
     }

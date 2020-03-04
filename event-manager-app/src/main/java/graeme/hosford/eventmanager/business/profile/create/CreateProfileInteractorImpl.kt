@@ -52,11 +52,11 @@ class CreateProfileInteractorImpl @Inject constructor(
     private inner class UserInfoRetrievedListener :
         CurrentUserNetworkAccess.UserInfoRetrievedCallback {
         override fun onUserInfoRetrieved(info: Any?) {
-
+            callback?.onProfileInfoRetrieved(info as Person)
         }
 
         override fun onUserInfoRetrievalFailure() {
-
+            callback?.onProfileInfoNotRetrieved()
         }
     }
 }
