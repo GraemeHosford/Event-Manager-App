@@ -2,6 +2,7 @@ package graeme.hosford.eventmanager.presentation.login.presentation
 
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.business.login.LoginInteractor
+import graeme.hosford.eventmanager.business.profile.create.CreateProfileInteractor
 import graeme.hosford.eventmanager.business.user.CurrentUserInteractor
 import graeme.hosford.eventmanager.presentation.login.LoginView
 import io.mockk.MockKAnnotations
@@ -22,6 +23,9 @@ class LoginPresenterImplTest {
     @RelaxedMockK
     private lateinit var interactor: LoginInteractor
 
+    @RelaxedMockK
+    private lateinit var profileInteractor: CreateProfileInteractor
+
     private val userDetailsListener = slot<LoginInteractor.SaveUserDetailsListener>()
 
     private val userInfoRetrieved = slot<CurrentUserInteractor.UserCompanyListener>()
@@ -30,7 +34,7 @@ class LoginPresenterImplTest {
     fun setup() {
         MockKAnnotations.init(this)
 
-        presenter = LoginPresenterImpl(interactor)
+        presenter = LoginPresenterImpl(interactor, profileInteractor)
         presenter.onViewCreated(view)
 
         verify { interactor.registerCallback(capture(userDetailsListener)) }
@@ -38,12 +42,12 @@ class LoginPresenterImplTest {
     }
 
     @Test
-    fun checkLoggedIn_checksIfUserAlreadyHasCompany_whenLoggedIn() {
+    fun checkLoggedIn_checksIfUserAlreadyHasProfile_whenLoggedIn() {
         every { interactor.loggedIn() } returns true
 
         presenter.checkLoggedIn()
 
-        verify { interactor.checkUserHasCompany() }
+        verify { profileInteractor.checkProfileExists() }
     }
 
     @Test
