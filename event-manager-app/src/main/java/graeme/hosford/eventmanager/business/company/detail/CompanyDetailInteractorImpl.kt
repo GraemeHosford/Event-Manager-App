@@ -33,7 +33,7 @@ class CompanyDetailInteractorImpl @Inject constructor(
         }
 
         override fun onUserInfoRetrieved(info: Any?) {
-            companyFirebaseAccess.getCompanyMembers(info as String)
+            companyFirebaseAccess.getCompanyMembers((info as Person).companyId!!)
         }
 
         override fun onUserInfoRetrievalFailed() {

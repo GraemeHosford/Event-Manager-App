@@ -2,6 +2,6 @@ package graeme.hosford.eventmanager.presentation.attendees.model
 
 object AttendeeComparator {
 
-    val attendeeNameComparator = compareBy(AttendeesUiModel::name)
+    val attendeeNameComparator = compareBy(AttendeesUiModel::displayName)
 
 }

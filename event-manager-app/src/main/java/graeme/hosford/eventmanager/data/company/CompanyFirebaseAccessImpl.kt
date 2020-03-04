@@ -3,6 +3,7 @@ package graeme.hosford.eventmanager.data.company
 import com.google.firebase.firestore.FirebaseFirestore
 import graeme.hosford.eventmanager.data.company.CompanyFirebaseAccess.Companion.COMPANIES_COLLECTION
 import graeme.hosford.eventmanager.data.company.CompanyFirebaseAccess.Companion.MEMBERS_SUBCOLLECTION
+import graeme.hosford.eventmanager.data.login.USERS_COLLECTION
 import graeme.hosford.eventmanager.data.login.converter.PersonEntityConverter
 import graeme.hosford.eventmanager.entity.company.Person
 import javax.inject.Inject
@@ -61,9 +62,8 @@ class CompanyFirebaseAccessImpl @Inject constructor(
 
     override fun getCompanyMembers(companyId: String) {
         FirebaseFirestore.getInstance()
-            .collection(COMPANIES_COLLECTION)
-            .document(companyId)
-            .collection(MEMBERS_SUBCOLLECTION)
+            .collection(USERS_COLLECTION)
+            .whereEqualTo(Person.COMPANY_ID, companyId)
             .get()
             .addOnSuccessListener { query ->
                 val entities = ArrayList<Person>()

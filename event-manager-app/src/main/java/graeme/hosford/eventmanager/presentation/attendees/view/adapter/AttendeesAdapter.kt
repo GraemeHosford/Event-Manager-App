@@ -31,7 +31,7 @@ class AttendeesViewHolder(itemView: View, private val clickListener: AttendeeCli
     override fun bind(model: AttendeesUiModel) {
         val binding = AttendeeItemLayoutBinding.bind(itemView)
 
-        binding.attendeeItemLayoutIncludedName.memberNameTextView.text = model.name
+        binding.attendeeItemLayoutIncludedName.memberNameTextView.text = model.displayName
 
         itemView.setOnClickListener {
             if (binding.attendeeCheckmark.isVisible()) {
@@ -40,9 +40,7 @@ class AttendeesViewHolder(itemView: View, private val clickListener: AttendeeCli
                 binding.attendeeCheckmark.visibility = View.VISIBLE
             }
 
-            /* TODO: As of now name is essentially just email and will serve as a unique ID.
-                This will need to change when profile is created */
-            clickListener.onAttendeeClick(model.name)
+            clickListener.onAttendeeClick(model.id)
         }
     }
 }

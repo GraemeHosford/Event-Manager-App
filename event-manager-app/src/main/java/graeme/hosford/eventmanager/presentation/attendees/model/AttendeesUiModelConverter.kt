@@ -4,9 +4,12 @@ import graeme.hosford.eventmanager.entity.company.Person
 import graeme.hosford.eventmanager.presentation.common.model.UiModelConverter
 import javax.inject.Inject
 
-class AttendeesuiModelConverter @Inject constructor() : UiModelConverter<Person, AttendeesUiModel> {
+class AttendeesUiModelConverter @Inject constructor() : UiModelConverter<Person, AttendeesUiModel> {
 
     override fun toUiModel(entity: Person): AttendeesUiModel {
-        return AttendeesUiModel(entity.firstName)
+        return AttendeesUiModel(
+            entity.id,
+            "${entity.firstName} ${entity.lastName}"
+        )
     }
 }

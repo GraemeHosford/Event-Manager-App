@@ -5,5 +5,5 @@ import graeme.hosford.eventmanager.presentation.common.model.UiModelListProcesso
 import javax.inject.Inject
 
 class AttendeesUiModelProcessor @Inject constructor(
-    private val converter: AttendeesuiModelConverter
+    converter: AttendeesUiModelConverter
 ) : UiModelListProcessor<Person, AttendeesUiModel>(converter)
