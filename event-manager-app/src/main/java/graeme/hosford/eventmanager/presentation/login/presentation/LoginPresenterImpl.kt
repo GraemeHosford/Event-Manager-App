@@ -118,5 +118,13 @@ class LoginPresenterImpl @Inject constructor(
         override fun onProfileInfoNotRetrieved() {
             view?.showProfileCreationFlow()
         }
+
+        override fun onProfileImageSaved(imagePath: String) {
+            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
+
+        override fun onProfileImageSaveFailed() {
+            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
     }
 }

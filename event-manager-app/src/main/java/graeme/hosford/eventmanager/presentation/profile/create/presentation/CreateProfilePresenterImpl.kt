@@ -11,6 +11,7 @@ import graeme.hosford.eventmanager.presentation.common.presenter.BasePresenter
 import graeme.hosford.eventmanager.presentation.profile.create.CAMERA_REQUEST_CODE
 import graeme.hosford.eventmanager.presentation.profile.create.CreateProfilePresenter
 import graeme.hosford.eventmanager.presentation.profile.create.CreateProfileView
+import java.io.ByteArrayOutputStream
 import javax.inject.Inject
 
 class CreateProfilePresenterImpl @Inject constructor(
@@ -18,6 +19,13 @@ class CreateProfilePresenterImpl @Inject constructor(
     private val currentUserInteractor: CurrentUserInteractor
 ) : BasePresenter<CreateProfileView, CreateProfileInteractor>(interactor),
     CreateProfilePresenter {
+
+    private var imageBytes: ByteArray? = null
+
+    private lateinit var firstName: String
+    private lateinit var lastName: String
+    private var jobTitle: String? = null
+    private var description: String? = null
 
     override fun onViewCreated(view: CreateProfileView) {
         super.onViewCreated(view)
@@ -36,7 +44,16 @@ class CreateProfilePresenterImpl @Inject constructor(
         description: String
     ) {
         if (firstName.isNotBlank() && lastName.isNotBlank()) {
-            interactor.saveUserProfileData(firstName, lastName, jobTitle, description)
+            if (imageBytes == null) {
+                interactor.saveUserProfileData(firstName, lastName, jobTitle, description, "")
+            } else {
+                this.firstName = firstName
+                this.lastName = lastName
+                this.jobTitle = jobTitle
+                this.description = description
+
+                interactor.saveUserProfileImage(imageBytes!!)
+            }
         } else {
             view?.showLongToast(R.string.create_profile_error_enter_name)
         }
@@ -47,6 +64,10 @@ class CreateProfilePresenterImpl @Inject constructor(
         if (requestCode == CAMERA_REQUEST_CODE && resultCode == RESULT_OK) {
             val image = data?.extras?.get("data") as Bitmap
             view?.setProfileImage(image)
+
+            val byteOutputStream = ByteArrayOutputStream()
+            image.compress(Bitmap.CompressFormat.PNG, 100, byteOutputStream)
+            imageBytes = byteOutputStream.toByteArray()
         }
     }
 
@@ -69,6 +90,20 @@ class CreateProfilePresenterImpl @Inject constructor(
 
         override fun onProfileInfoNotRetrieved() {
             TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
+
+        override fun onProfileImageSaved(imagePath: String) {
+            interactor.saveUserProfileData(
+                firstName,
+                lastName,
+                jobTitle ?: "",
+                description ?: "",
+                imagePath
+            )
+        }
+
+        override fun onProfileImageSaveFailed() {
+            view?.showLongToast(R.string.generic_error_saving_data)
         }
     }
 

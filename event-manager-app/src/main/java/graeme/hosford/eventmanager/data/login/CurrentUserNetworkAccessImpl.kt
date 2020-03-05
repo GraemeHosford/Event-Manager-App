@@ -4,17 +4,20 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import com.google.firebase.storage.FirebaseStorage
 import graeme.hosford.eventmanager.data.login.converter.PersonEntityConverter
 import javax.inject.Inject
 
 const val USERS_COLLECTION = "Users"
+const val USER_PROFILE_IMAGE_PATH = "user_profile/"
 
 class CurrentUserNetworkAccessImpl @Inject constructor(
     private val personConverter: PersonEntityConverter
 ) : CurrentUserNetworkAccess {
 
-    lateinit var userInfoSavedCallback: CurrentUserNetworkAccess.UserInfoSavedCallback
-    lateinit var userInfoRetrievedCallback: CurrentUserNetworkAccess.UserInfoRetrievedCallback
+    private lateinit var userInfoSavedCallback: CurrentUserNetworkAccess.UserInfoSavedCallback
+    private lateinit var userInfoRetrievedCallback: CurrentUserNetworkAccess.UserInfoRetrievedCallback
+    private lateinit var profileImageUploadedCallback: CurrentUserNetworkAccess.ProfileImageUploadedCallback
 
     override fun setUserInfoSavedListener(userInfoListener: CurrentUserNetworkAccess.UserInfoSavedCallback) {
         userInfoSavedCallback = userInfoListener
@@ -26,8 +29,25 @@ class CurrentUserNetworkAccessImpl @Inject constructor(
         this.userInfoRetrievedCallback = userInfoRetrievedCallback
     }
 
+    override fun setProfileImageUploadedCallback(callback: CurrentUserNetworkAccess.ProfileImageUploadedCallback) {
+        profileImageUploadedCallback = callback
+    }
+
     override fun getCurrentUser(): FirebaseUser? {
         return FirebaseAuth.getInstance().currentUser
+    }
+
+    override fun saveUserProfileImage(imageBytes: ByteArray) {
+        val path = "${USER_PROFILE_IMAGE_PATH}${getCurrentUser()!!.email}"
+
+        FirebaseStorage.getInstance()
+            .getReference(path)
+            .putBytes(imageBytes)
+            .addOnSuccessListener {
+                profileImageUploadedCallback.onProfileImageUploadedSuccessfully(path)
+            }.addOnFailureListener {
+                profileImageUploadedCallback.onProfileImageUploadFailed()
+            }
     }
 
     override fun getUserInfo(userEmail: String, details: String) {

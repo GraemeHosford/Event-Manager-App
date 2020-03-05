@@ -16,6 +16,16 @@ interface CurrentUserNetworkAccess {
         fun onUserInfoRetrievalFailure()
     }
 
+    interface ProfileImageUploadedCallback {
+        fun onProfileImageUploadedSuccessfully(imagePath: String)
+
+        fun onProfileImageUploadFailed()
+    }
+
+    fun setProfileImageUploadedCallback(callback: ProfileImageUploadedCallback)
+
+    fun saveUserProfileImage(imageBytes: ByteArray)
+
     fun getFullUserInfo(userEmail: String)
 
     fun setUserInfoSavedListener(userInfoListener: UserInfoSavedCallback)

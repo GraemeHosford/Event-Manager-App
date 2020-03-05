@@ -16,6 +16,7 @@ data class Person(
         const val COMPANY_ID = "companyId"
         const val JOB_TITLE = "jobTitle"
         const val DESCRIPTION = "Description"
+        const val IMAGE_URL_PATH = "imagePath"
     }
 
 }

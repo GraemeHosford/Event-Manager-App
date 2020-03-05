@@ -69,7 +69,6 @@ interface PresenterBindingModule {
     fun eventManagerNotificationPresenter(impl: EventManagerNotificationPresenterImpl): EventManagerNotificationPresenter
 
     @Binds
-    @Singleton
     fun createProfilePresenter(impl: CreateProfilePresenterImpl): CreateProfilePresenter
 
 }

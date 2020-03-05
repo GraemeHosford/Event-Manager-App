@@ -13,13 +13,20 @@ interface CreateProfileInteractor : Interactor<CreateProfileInteractor.CreatePro
         fun onProfileInfoRetrieved(data: Person)
 
         fun onProfileInfoNotRetrieved()
+
+        fun onProfileImageSaved(imagePath: String)
+
+        fun onProfileImageSaveFailed()
     }
+
+    fun saveUserProfileImage(imageBytes: ByteArray)
 
     fun saveUserProfileData(
         firstName: String,
         lastName: String,
         jobTitle: String,
-        description: String
+        description: String,
+        imageUrlPath: String
     )
 
     fun checkProfileExists()
