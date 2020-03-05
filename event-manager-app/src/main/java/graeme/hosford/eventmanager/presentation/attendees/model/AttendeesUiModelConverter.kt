@@ -9,7 +9,8 @@ class AttendeesUiModelConverter @Inject constructor() : UiModelConverter<Person,
     override fun toUiModel(entity: Person): AttendeesUiModel {
         return AttendeesUiModel(
             entity.id,
-            "${entity.firstName} ${entity.lastName}"
+            "${entity.firstName} ${entity.lastName}",
+            entity.imageUrlPath
         )
     }
 }

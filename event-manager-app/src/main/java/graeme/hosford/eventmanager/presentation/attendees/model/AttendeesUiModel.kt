@@ -2,5 +2,6 @@ package graeme.hosford.eventmanager.presentation.attendees.model
 
 class AttendeesUiModel(
     val id: String,
-    val displayName: String
+    val displayName: String,
+    val imageUrl: String
 )
