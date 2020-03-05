@@ -31,7 +31,7 @@ class CompanyDetailPresenterImpl @Inject constructor(
     }
 
     override fun onCompanyMemberClick(id: String) {
-
+        view?.showMemberDetail(id)
     }
 
     private inner class CompanyDetailInteractorCallback :
