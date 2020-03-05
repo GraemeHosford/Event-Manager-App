@@ -5,9 +5,11 @@ import graeme.hosford.eventmanager.EventManagerApplication
 import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseRecyclerViewFragment
 import graeme.hosford.eventmanager.presentation.company.detail.CompanyDetailPresenter
 import graeme.hosford.eventmanager.presentation.company.detail.CompanyDetailView
+import graeme.hosford.eventmanager.presentation.company.detail.MEMBER_ID_ARG
 import graeme.hosford.eventmanager.presentation.company.detail.model.CompanyMemberUiModel
 import graeme.hosford.eventmanager.presentation.company.detail.view.adapter.CompanyDetailAdapter
 import graeme.hosford.eventmanager.presentation.company.detail.view.adapter.CompanyDetailViewHolder
+import graeme.hosford.eventmanager.presentation.company.detail.view.adapter.CompanyMemberPresenterBridge
 import javax.inject.Inject
 
 class CompanyDetailFragment :
@@ -27,7 +29,16 @@ class CompanyDetailFragment :
         presenter.getCompanyMembers()
     }
 
+    override fun showMemberDetail(id: String) {
+        val args = Bundle()
+        args.putString(MEMBER_ID_ARG, id)
+    }
+
     override fun recyclerViewAdapter(): CompanyDetailAdapter {
-        return CompanyDetailAdapter()
+        return CompanyDetailAdapter(object : CompanyMemberPresenterBridge {
+            override fun onCompanyMemberClick(id: String) {
+                presenter.onCompanyMemberClick(id)
+            }
+        })
     }
 }

@@ -30,6 +30,10 @@ class CompanyDetailPresenterImpl @Inject constructor(
         interactor.getCompanyMembers()
     }
 
+    override fun onCompanyMemberClick(id: String) {
+
+    }
+
     private inner class CompanyDetailInteractorCallback :
         CompanyDetailInteractor.CompanyDetailCallback {
         override fun onUserCompanyIdRetrieved(companyId: String) {

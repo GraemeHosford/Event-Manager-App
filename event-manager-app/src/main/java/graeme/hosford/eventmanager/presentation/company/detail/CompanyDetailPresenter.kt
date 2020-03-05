@@ -4,4 +4,6 @@ import graeme.hosford.eventmanager.presentation.common.presenter.Presenter
 
 interface CompanyDetailPresenter : Presenter<CompanyDetailView> {
     fun getCompanyMembers()
+
+    fun onCompanyMemberClick(id: String)
 }
