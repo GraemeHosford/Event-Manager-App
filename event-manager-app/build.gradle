@@ -69,7 +69,7 @@ dependencies {
     implementation "com.firebaseui:firebase-ui-auth:${versions.firebase.authui}"
     implementation "com.google.firebase:firebase-messaging:${versions.firebase.fcm}"
     implementation "com.google.firebase:firebase-firestore:${versions.firebase.firestore}"
-    implementation "com.google.firebase:firebase-storage:${versions.firebase.storage}"
+    implementation "com.firebaseui:firebase-ui-storage:${versions.firebase.storageui}"
 
     // Glide Dependencies
     implementation "com.github.bumptech.glide:glide:${versions.glide}"

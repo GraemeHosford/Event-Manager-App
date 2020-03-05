@@ -8,6 +8,6 @@ class CompanyMemberUiModelConverter @Inject constructor() :
     UiModelConverter<Person, CompanyMemberUiModel> {
 
     override fun toUiModel(entity: Person): CompanyMemberUiModel {
-        return CompanyMemberUiModel(entity.firstName)
+        return CompanyMemberUiModel(entity.firstName, entity.imageUrlPath)
     }
 }

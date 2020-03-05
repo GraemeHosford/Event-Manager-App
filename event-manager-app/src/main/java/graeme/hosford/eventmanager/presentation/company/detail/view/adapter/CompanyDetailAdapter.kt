@@ -3,10 +3,10 @@ package graeme.hosford.eventmanager.presentation.company.detail.view.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import butterknife.BindView
-import butterknife.ButterKnife
+import com.google.firebase.storage.FirebaseStorage
 import graeme.hosford.eventmanager.R
+import graeme.hosford.eventmanager.databinding.PersonItemLayoutBinding
+import graeme.hosford.eventmanager.presentation.GlideApp
 import graeme.hosford.eventmanager.presentation.common.view.recyclerview.BaseAdapter
 import graeme.hosford.eventmanager.presentation.common.view.recyclerview.BaseViewHolder
 import graeme.hosford.eventmanager.presentation.company.detail.model.CompanyMemberUiModel
@@ -26,12 +26,17 @@ class CompanyDetailAdapter : BaseAdapter<CompanyMemberUiModel, CompanyDetailView
 
 class CompanyDetailViewHolder(itemView: View) : BaseViewHolder<CompanyMemberUiModel>(itemView) {
 
-    @BindView(R.id.member_name_text_view)
-    lateinit var memberName: TextView
-
     override fun bind(model: CompanyMemberUiModel) {
-        ButterKnife.bind(this, itemView)
+        val binding = PersonItemLayoutBinding.bind(itemView)
 
-        memberName.text = model.personName
+        binding.memberNameTextView.text = model.personName
+        
+        val storageRef = FirebaseStorage.getInstance().getReference(model.personImageUrl)
+
+        GlideApp.with(itemView)
+            .load(storageRef)
+            .error(R.drawable.ic_person)
+            .placeholder(R.drawable.ic_person)
+            .into(binding.personItemLayoutImage)
     }
 }

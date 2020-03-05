@@ -54,7 +54,8 @@ ext {
                     authui   : '6.2.0',
                     fcm      : '20.1.1',
                     firestore: '21.4.1',
-                    storage  : '19.1.1'
+                    storage  : '19.1.1',
+                    storageui: '6.2.0'
             ],
 
             // AndroidX - https://developer.android.com/jetpack/androidx/versions
