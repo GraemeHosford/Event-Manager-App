@@ -6,7 +6,8 @@ data class Person(
     val lastName: String,
     val companyId: String?,
     val jobTitle: String,
-    val description: String
+    val description: String,
+    val imageUrlPath: String
 ) {
 
     companion object {
