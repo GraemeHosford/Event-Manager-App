@@ -27,6 +27,11 @@ class CompanyDetailFragment :
         presenter.onViewCreated(this)
     }
 
+    override fun onResume() {
+        super.onResume()
+        presenter.getCompanyMembers()
+    }
+
     override fun doOnSwipeRefresh() {
         presenter.getCompanyMembers()
     }

@@ -40,6 +40,11 @@ class EventDetailFragment : BaseFragment(), EventDetailView {
         return safeBinding.root
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
+
     override fun setData(model: EventDetailUiModel) {
         safeBinding.eventDetailEventNameTextView.text = model.name
         safeBinding.eventDetailEventDescTextView.text = model.description
