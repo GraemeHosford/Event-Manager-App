@@ -1,7 +1,9 @@
 package graeme.hosford.eventmanager.presentation.company.detail.view
 
 import android.os.Bundle
+import androidx.navigation.fragment.findNavController
 import graeme.hosford.eventmanager.EventManagerApplication
+import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseRecyclerViewFragment
 import graeme.hosford.eventmanager.presentation.company.detail.CompanyDetailPresenter
 import graeme.hosford.eventmanager.presentation.company.detail.CompanyDetailView
@@ -32,6 +34,7 @@ class CompanyDetailFragment :
     override fun showMemberDetail(id: String) {
         val args = Bundle()
         args.putString(MEMBER_ID_ARG, id)
+        findNavController().navigate(R.id.nav_profile_detail, args)
     }
 
     override fun recyclerViewAdapter(): CompanyDetailAdapter {

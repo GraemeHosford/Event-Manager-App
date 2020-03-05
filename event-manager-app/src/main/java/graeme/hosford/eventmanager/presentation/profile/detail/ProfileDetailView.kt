@@ -1,0 +1,3 @@
+package graeme.hosford.eventmanager.presentation.profile.detail
+
+interface ProfileDetailView

@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/nav_event_detail"
-        android:name="graeme.hosford.eventmanager.presentation.event.detail.view.EventDetailFragment"/>
+        android:name="graeme.hosford.eventmanager.presentation.event.detail.view.EventDetailFragment" />
 
     <fragment
         android:id="@+id/nav_create_event"
@@ -30,6 +30,10 @@
         android:name="graeme.hosford.eventmanager.presentation.company.detail.view.CompanyDetailFragment"
         android:label="@string/nav_menu_my_company"
         tools:layout="@layout/fragment_gallery" />
+
+    <fragment
+        android:id="@+id/nav_profile_detail"
+        android:name="graeme.hosford.eventmanager.presentation.profile.detail.view.ProfileDetailFragment" />
 
     <fragment
         android:id="@+id/nav_slideshow"
