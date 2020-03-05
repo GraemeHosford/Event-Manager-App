@@ -39,6 +39,7 @@ ext {
             // production dependencies
             butterknife           : '10.2.1',
             dagger                : '2.25.2',
+            glide                 : '4.11.0',
             jsrAnnotations        : '3.0.2',
             moshi                 : '1.8.0',
             okhttp                : '3.11.0',
