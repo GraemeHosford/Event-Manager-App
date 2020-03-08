@@ -20,7 +20,7 @@ object CoreIntents {
     fun sendEmailIntent(context: Context, email: String) {
         val emailIntent = Intent(Intent.ACTION_SENDTO).apply {
             data = Uri.parse("mailto:")
-            putExtra(Intent.EXTRA_EMAIL, email)
+            putExtra(Intent.EXTRA_EMAIL, arrayOf(email))
         }
 
         if (emailIntent.resolveActivity(context.packageManager) != null) {
