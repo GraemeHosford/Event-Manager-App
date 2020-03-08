@@ -5,6 +5,7 @@ import graeme.hosford.eventmanager.business.profile.detail.ProfileDetailInteract
 import graeme.hosford.eventmanager.entity.company.Person
 import graeme.hosford.eventmanager.presentation.common.model.UiModelSingleProcessor
 import graeme.hosford.eventmanager.presentation.common.presenter.BasePresenter
+import graeme.hosford.eventmanager.presentation.company.detail.DEFAULT_MEMBER_ID_ARG
 import graeme.hosford.eventmanager.presentation.profile.detail.ProfileDetailPresenter
 import graeme.hosford.eventmanager.presentation.profile.detail.ProfileDetailView
 import graeme.hosford.eventmanager.presentation.profile.detail.model.ProfileDetailUiModel
@@ -24,7 +25,11 @@ class ProfileDetailPresenterImpl @Inject constructor(
     }
 
     override fun getPersonDetail(personId: String) {
-        interactor.getUserDetails(personId)
+        if (personId != DEFAULT_MEMBER_ID_ARG) {
+            interactor.getUserDetails(personId)
+        } else {
+            interactor.getCurrentUserProfile()
+        }
     }
 
     private inner class ProfileDetailInteractorCallback :

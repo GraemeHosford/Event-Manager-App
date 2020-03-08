@@ -62,6 +62,7 @@
     <string name="create_profile_error_enter_name">You must enter your first and last name</string>
 
     <string name="nav_menu_my_company">My Company</string>
+    <string name="nav_menu_my_profile">My Profile</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>

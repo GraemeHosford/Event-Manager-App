@@ -13,4 +13,6 @@ interface ProfileDetailInteractor : Interactor<ProfileDetailInteractor.ProfileDe
 
     fun getUserDetails(personId: String)
 
+    fun getCurrentUserProfile()
+
 }

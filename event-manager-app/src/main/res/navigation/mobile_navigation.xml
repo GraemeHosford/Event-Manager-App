@@ -33,29 +33,7 @@
 
     <fragment
         android:id="@+id/nav_profile_detail"
-        android:name="graeme.hosford.eventmanager.presentation.profile.detail.view.ProfileDetailFragment" />
-
-    <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="graeme.hosford.eventmanager.presentation.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
-
-    <fragment
-        android:id="@+id/nav_tools"
-        android:name="graeme.hosford.eventmanager.presentation.tools.ToolsFragment"
-        android:label="@string/menu_tools"
-        tools:layout="@layout/fragment_tools" />
-
-    <fragment
-        android:id="@+id/nav_share"
-        android:name="graeme.hosford.eventmanager.presentation.share.ShareFragment"
-        android:label="@string/menu_share"
-        tools:layout="@layout/fragment_share" />
-
-    <fragment
-        android:id="@+id/nav_send"
-        android:name="graeme.hosford.eventmanager.presentation.send.SendFragment"
-        android:label="@string/menu_send"
-        tools:layout="@layout/fragment_send" />
+        android:name="graeme.hosford.eventmanager.presentation.profile.detail.view.ProfileDetailFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile_detail" />
 </navigation>

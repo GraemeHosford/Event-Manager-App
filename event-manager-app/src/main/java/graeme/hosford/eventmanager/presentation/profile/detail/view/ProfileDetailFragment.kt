@@ -12,6 +12,7 @@ import graeme.hosford.eventmanager.presentation.CoreIntents
 import graeme.hosford.eventmanager.presentation.GlideApp
 import graeme.hosford.eventmanager.presentation.common.view.custom.SummaryTextView
 import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseFragment
+import graeme.hosford.eventmanager.presentation.company.detail.DEFAULT_MEMBER_ID_ARG
 import graeme.hosford.eventmanager.presentation.company.detail.MEMBER_ID_ARG
 import graeme.hosford.eventmanager.presentation.profile.detail.ProfileDetailPresenter
 import graeme.hosford.eventmanager.presentation.profile.detail.ProfileDetailView
@@ -31,7 +32,8 @@ class ProfileDetailFragment : BaseFragment(), ProfileDetailView {
         super.onCreate(savedInstanceState)
         presenter.onViewCreated(this)
 
-        presenter.getPersonDetail(arguments?.getString(MEMBER_ID_ARG)!!)
+        val personId = arguments?.getString(MEMBER_ID_ARG)
+        presenter.getPersonDetail(personId ?: DEFAULT_MEMBER_ID_ARG)
     }
 
     override fun onCreateView(

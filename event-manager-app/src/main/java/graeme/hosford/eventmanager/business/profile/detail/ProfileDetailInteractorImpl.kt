@@ -19,6 +19,12 @@ class ProfileDetailInteractorImpl @Inject constructor(
         userNetworkAccess.getFullUserInfo(personId)
     }
 
+    override fun getCurrentUserProfile() {
+        userNetworkAccess.getFullUserInfo(
+            userNetworkAccess.getCurrentUser()!!.email!!
+        )
+    }
+
     private inner class UserInfoRetrievedListener :
         CurrentUserNetworkAccess.UserInfoRetrievedCallback {
         override fun onUserInfoRetrieved(info: Any?) {
