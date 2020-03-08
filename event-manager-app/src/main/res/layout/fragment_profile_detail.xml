@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/profile_detail_picture_image_view"
-        android:layout_width="108dp"
-        android:layout_height="108dp"
+        android:layout_width="192dp"
+        android:layout_height="192dp"
         android:layout_marginTop="48dp"
         android:src="@drawable/ic_person"
         app:layout_constraintEnd_toEndOf="parent"
@@ -16,36 +16,36 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
 
-    <TextView
+    <graeme.hosford.eventmanager.presentation.common.view.custom.SummaryTextView
         android:id="@+id/profile_Detail_name_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:textSize="22sp"
-        app:layout_constraintTop_toBottomOf="@id/profile_detail_picture_image_view" />
+        app:layout_constraintTop_toBottomOf="@id/profile_detail_picture_image_view"
+        app:titleText="@string/generic_name" />
 
-    <TextView
+    <graeme.hosford.eventmanager.presentation.common.view.custom.SummaryTextView
         android:id="@+id/profile_detail_job_title_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@id/profile_Detail_name_text_view" />
+        app:layout_constraintTop_toBottomOf="@id/profile_Detail_name_text_view"
+        app:titleText="@string/generic_job_title" />
 
-    <TextView
+    <graeme.hosford.eventmanager.presentation.common.view.custom.SummaryTextView
         android:id="@+id/profile_detail_user_email_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@id/profile_detail_job_title_text_view" />
+        app:layout_constraintTop_toBottomOf="@id/profile_detail_job_title_text_view"
+        app:titleText="@string/generic_email" />
 
-    <TextView
+    <graeme.hosford.eventmanager.presentation.common.view.custom.SummaryTextView
         android:id="@+id/profile_detail_description_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@id/profile_detail_user_email_text_view" />
+        app:layout_constraintTop_toBottomOf="@id/profile_detail_user_email_text_view"
+        app:titleText="@string/generic_description" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

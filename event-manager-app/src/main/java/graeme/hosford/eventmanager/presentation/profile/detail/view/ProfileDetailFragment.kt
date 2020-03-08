@@ -8,7 +8,9 @@ import com.google.firebase.storage.FirebaseStorage
 import graeme.hosford.eventmanager.EventManagerApplication
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.databinding.FragmentProfileDetailBinding
+import graeme.hosford.eventmanager.presentation.CoreIntents
 import graeme.hosford.eventmanager.presentation.GlideApp
+import graeme.hosford.eventmanager.presentation.common.view.custom.SummaryTextView
 import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseFragment
 import graeme.hosford.eventmanager.presentation.company.detail.MEMBER_ID_ARG
 import graeme.hosford.eventmanager.presentation.profile.detail.ProfileDetailPresenter
@@ -47,10 +49,17 @@ class ProfileDetailFragment : BaseFragment(), ProfileDetailView {
     }
 
     override fun setData(model: ProfileDetailUiModel) {
-        safeBinding.profileDetailNameTextView.text = model.name
-        safeBinding.profileDetailJobTitleTextView.text = model.jobTitle
-        safeBinding.profileDetailDescriptionTextView.text = model.description
-        safeBinding.profileDetailUserEmailTextView.text = model.email
+        safeBinding.profileDetailNameTextView.setDescriptionText(model.name)
+        safeBinding.profileDetailJobTitleTextView.setDescriptionText(model.jobTitle)
+        safeBinding.profileDetailDescriptionTextView.setDescriptionText(model.description)
+        safeBinding.profileDetailUserEmailTextView.setDescriptionText(model.email)
+
+        safeBinding.profileDetailUserEmailTextView.setOnClickListener {
+            CoreIntents.sendEmailIntent(
+                requireContext(),
+                (it as SummaryTextView).getDescriptionText()
+            )
+        }
 
         val imageRef = FirebaseStorage.getInstance().getReference(model.imageUrl)
 

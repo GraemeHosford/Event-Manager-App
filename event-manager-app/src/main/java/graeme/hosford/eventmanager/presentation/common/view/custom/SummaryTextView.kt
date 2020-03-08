@@ -57,4 +57,6 @@ class SummaryTextView(context: Context, attrs: AttributeSet) : FrameLayout(conte
     fun setDescriptionText(text: String) {
         descText.text = text
     }
+
+    fun getDescriptionText() = descText.text.toString()
 }

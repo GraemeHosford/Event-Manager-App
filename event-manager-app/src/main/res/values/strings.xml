@@ -5,6 +5,13 @@
     <string name="generic_error_saving_data">There was an error while saving your data. Please try again</string>
     <string name="generic_nothing_to_load">There was nothing to load!</string>
 
+    <string name="generic_name">Name</string>
+    <string name="generic_description">Description</string>
+    <string name="generic_job_title">Job Title</string>
+    <string name="generic_email">Email</string>
+
+    <string name="send_email_chooser_title">Send Email!</string>
+
     <string name="company_creation_enter_company_name_hint">Company Name</string>
     <string name="company_creation_create_company_text">Create a Company</string>
     <string name="company_creation_join_company_text">Join a Company</string>
