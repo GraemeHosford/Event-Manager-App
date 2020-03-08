@@ -50,8 +50,19 @@ class ProfileDetailFragment : BaseFragment(), ProfileDetailView {
 
     override fun setData(model: ProfileDetailUiModel) {
         safeBinding.profileDetailNameTextView.setDescriptionText(model.name)
-        safeBinding.profileDetailJobTitleTextView.setDescriptionText(model.jobTitle)
-        safeBinding.profileDetailDescriptionTextView.setDescriptionText(model.description)
+
+        if (model.jobTitle.isNotBlank()) {
+            safeBinding.profileDetailJobTitleTextView.setDescriptionText(model.jobTitle)
+        } else {
+            safeBinding.profileDetailJobTitleTextView.visibility = View.GONE
+        }
+
+        if (model.description.isNotBlank()) {
+            safeBinding.profileDetailDescriptionTextView.setDescriptionText(model.description)
+        } else {
+            safeBinding.profileDetailDescriptionTextView.visibility = View.GONE
+        }
+
         safeBinding.profileDetailUserEmailTextView.setDescriptionText(model.email)
 
         safeBinding.profileDetailUserEmailTextView.setOnClickListener {

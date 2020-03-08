@@ -10,7 +10,7 @@
     <string name="generic_job_title">Job Title</string>
     <string name="generic_email">Email</string>
 
-    <string name="send_email_chooser_title">Send Email!</string>
+    <string name="send_email_chooser_title">Send Email</string>
 
     <string name="company_creation_enter_company_name_hint">Company Name</string>
     <string name="company_creation_create_company_text">Create a Company</string>

@@ -41,10 +41,6 @@ class SummaryTextView(context: Context, attrs: AttributeSet) : FrameLayout(conte
         titleText = findViewById(R.id.summaryTextViewTitle)
         descText = findViewById(R.id.summaryTextViewDesc)
 
-        if (titleString == null || descString == null) {
-            throw IllegalStateException("Must have values for title and description text")
-        }
-
         if (imageDrawable != null) {
             image.setImageDrawable(imageDrawable)
             image.visibility = View.VISIBLE
