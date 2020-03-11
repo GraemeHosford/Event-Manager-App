@@ -1,7 +1,7 @@
 package graeme.hosford.eventmanager.presentation.attendees.choose.presentation
 
 import graeme.hosford.eventmanager.R
-import graeme.hosford.eventmanager.business.attendees.AttendeesInteractor
+import graeme.hosford.eventmanager.business.attendees.choose.ChooseAttendeesInteractor
 import graeme.hosford.eventmanager.entity.company.Person
 import graeme.hosford.eventmanager.presentation.attendees.choose.AttendeesPresenter
 import graeme.hosford.eventmanager.presentation.attendees.choose.AttendeesView
@@ -13,16 +13,16 @@ import graeme.hosford.eventmanager.presentation.common.presenter.BasePresenter
 import javax.inject.Inject
 
 class AttendeesPresenterImpl @Inject constructor(
-    private val interactor: AttendeesInteractor,
+    private val interactor: ChooseAttendeesInteractor,
     private val processor: AttendeesUiModelProcessor
-) : BasePresenter<AttendeesView, AttendeesInteractor>(interactor),
+) : BasePresenter<AttendeesView, ChooseAttendeesInteractor>(interactor),
     AttendeesPresenter {
 
     private val attendees: ArrayList<String> = ArrayList()
 
     override fun onViewCreated(view: AttendeesView) {
         super.onViewCreated(view)
-        interactor.registerCallback(AttendeesCallback())
+        interactor.registerCallback(ChooseAttendeesCallback())
         processor.registerProcessingCallback(ProcessorCallback())
 
         processor.setListComparator(AttendeeComparator.attendeeNameComparator)
@@ -51,7 +51,8 @@ class AttendeesPresenterImpl @Inject constructor(
 
     override fun getAttendees(): ArrayList<String> = attendees
 
-    private inner class AttendeesCallback : AttendeesInteractor.AttendeesCallback {
+    private inner class ChooseAttendeesCallback :
+        ChooseAttendeesInteractor.ChooseAttendeesCallback {
         override fun onCompanyMembersRetrieved(people: List<Person>) {
             processor.process(people)
         }

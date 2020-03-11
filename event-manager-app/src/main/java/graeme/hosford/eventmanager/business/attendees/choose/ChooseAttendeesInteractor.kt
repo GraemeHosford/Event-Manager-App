@@ -1,11 +1,12 @@
-package graeme.hosford.eventmanager.business.attendees
+package graeme.hosford.eventmanager.business.attendees.choose
 
 import graeme.hosford.eventmanager.business.common.Interactor
 import graeme.hosford.eventmanager.entity.company.Person
 
-interface AttendeesInteractor : Interactor<AttendeesInteractor.AttendeesCallback> {
+interface ChooseAttendeesInteractor :
+    Interactor<ChooseAttendeesInteractor.ChooseAttendeesCallback> {
 
-    interface AttendeesCallback {
+    interface ChooseAttendeesCallback {
         fun onCompanyMembersRetrieved(people: List<Person>)
 
         fun onMemberRetrievalFailed()

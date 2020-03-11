@@ -4,6 +4,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import graeme.hosford.eventmanager.data.company.CompanyFirebaseAccess.Companion.COMPANIES_COLLECTION
 import graeme.hosford.eventmanager.data.event.list.EventListFirebaseAccess.Companion.EVENTS_SUBCOLLECTION
 import graeme.hosford.eventmanager.data.event.list.converter.EventEntityConverter
+import graeme.hosford.eventmanager.data.login.USERS_COLLECTION
 import javax.inject.Inject
 
 class EventDetailFirebaseAccessImpl @Inject constructor(
@@ -25,6 +26,28 @@ class EventDetailFirebaseAccessImpl @Inject constructor(
             .get()
             .addOnSuccessListener {
                 callback.onEventRetrieved(converter.convert(it))
+            }.addOnFailureListener {
+                callback.onEventRetrievalFailed()
+            }
+    }
+
+    override fun getUserEventDetails(userId: String, eventId: String) {
+        FirebaseFirestore.getInstance()
+            .collection(USERS_COLLECTION)
+            .document(userId)
+            .get()
+            .addOnSuccessListener { doc ->
+                FirebaseFirestore.getInstance()
+                    .collection(COMPANIES_COLLECTION)
+                    .document(doc.getString("companyId")!!)
+                    .collection(EVENTS_SUBCOLLECTION)
+                    .document(eventId)
+                    .get()
+                    .addOnSuccessListener {
+                        callback.onEventRetrieved(converter.convert(it))
+                    }.addOnFailureListener {
+                        callback.onEventRetrievalFailed()
+                    }
             }.addOnFailureListener {
                 callback.onEventRetrievalFailed()
             }

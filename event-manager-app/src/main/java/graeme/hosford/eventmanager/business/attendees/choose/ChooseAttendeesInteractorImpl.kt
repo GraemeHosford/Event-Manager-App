@@ -1,4 +1,4 @@
-package graeme.hosford.eventmanager.business.attendees
+package graeme.hosford.eventmanager.business.attendees.choose
 
 import graeme.hosford.eventmanager.business.common.BaseInteractor
 import graeme.hosford.eventmanager.business.common.Interactor
@@ -7,11 +7,11 @@ import graeme.hosford.eventmanager.data.company.CompanyFirebaseAccess
 import graeme.hosford.eventmanager.entity.company.Person
 import javax.inject.Inject
 
-class AttendeesInteractorImpl @Inject constructor(
+class ChooseAttendeesInteractorImpl @Inject constructor(
     private val companyFirebaseAccess: CompanyFirebaseAccess,
     private val currentUserInteractor: CurrentUserInteractor
-) : BaseInteractor<AttendeesInteractor.AttendeesCallback>(),
-    AttendeesInteractor {
+) : BaseInteractor<ChooseAttendeesInteractor.ChooseAttendeesCallback>(),
+    ChooseAttendeesInteractor {
 
     override fun onCreate() {
         super.onCreate()

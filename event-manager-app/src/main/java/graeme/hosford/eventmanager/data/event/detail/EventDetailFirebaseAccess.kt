@@ -14,4 +14,6 @@ interface EventDetailFirebaseAccess {
 
     fun getEventDetails(companyId: String, eventId: String)
 
+    fun getUserEventDetails(userId: String, eventId: String)
+
 }

@@ -15,6 +15,7 @@ import graeme.hosford.eventmanager.presentation.attendees.detail.view.adapter.At
 import graeme.hosford.eventmanager.presentation.attendees.detail.view.adapter.AttendeeDialogOptionsPresenterBridge
 import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseRecyclerViewFragment
 import graeme.hosford.eventmanager.presentation.company.detail.MEMBER_ID_ARG
+import graeme.hosford.eventmanager.presentation.event.detail.EVENT_ID_ARG
 import javax.inject.Inject
 
 class AttendeeListFragment :
@@ -28,6 +29,8 @@ class AttendeeListFragment :
         EventManagerApplication.appComponent.inject(this)
         super.onCreate(savedInstanceState)
         presenter.onViewCreated(this)
+
+        presenter.getAttendees(arguments?.getString(EVENT_ID_ARG)!!)
     }
 
     override fun showAttendeeOptions(id: String) {

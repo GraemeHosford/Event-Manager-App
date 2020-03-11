@@ -4,6 +4,7 @@ import graeme.hosford.eventmanager.business.common.BaseInteractor
 import graeme.hosford.eventmanager.business.common.Interactor
 import graeme.hosford.eventmanager.business.user.CurrentUserInteractor
 import graeme.hosford.eventmanager.data.event.detail.EventDetailFirebaseAccess
+import graeme.hosford.eventmanager.entity.company.Person
 import graeme.hosford.eventmanager.entity.event.Event
 import javax.inject.Inject
 
@@ -35,7 +36,7 @@ class EventDetailInteractorImpl @Inject constructor(
         }
 
         override fun onUserInfoRetrieved(info: Any?) {
-            eventDetailFirebaseAccess.getEventDetails(info as String, eventId)
+            eventDetailFirebaseAccess.getEventDetails((info as Person).companyId!!, eventId)
         }
 
         override fun onUserInfoRetrievalFailed() {
