@@ -4,9 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.navigation.fragment.findNavController
 import graeme.hosford.eventmanager.EventManagerApplication
+import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.databinding.FragmentEventDetailBinding
 import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseFragment
+import graeme.hosford.eventmanager.presentation.event.detail.ATTENDEES_ARG
 import graeme.hosford.eventmanager.presentation.event.detail.EventDetailPresenter
 import graeme.hosford.eventmanager.presentation.event.detail.EventDetailView
 import graeme.hosford.eventmanager.presentation.event.detail.model.EventDetailUiModel
@@ -58,7 +62,12 @@ class EventDetailFragment : BaseFragment(), EventDetailView {
                 PeoplePresentationUtils.getAttendeeSummary(resources, model.attendees)
 
             safeBinding.eventDetailEventAttendeesSummaryTextView.setOnClickListener {
-
+                findNavController().navigate(
+                    R.id.nav_attendee_detail,
+                    bundleOf(
+                        ATTENDEES_ARG to model.attendees
+                    )
+                )
             }
         }
 

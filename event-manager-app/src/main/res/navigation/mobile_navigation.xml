@@ -36,4 +36,9 @@
         android:name="graeme.hosford.eventmanager.presentation.profile.detail.view.ProfileDetailFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile_detail" />
+
+    <fragment
+        android:id="@+id/nav_attendee_detail"
+        android:name="graeme.hosford.eventmanager.presentation.attendees.detail.view.AttendeeListFragment"
+        android:label="Attendees" />
 </navigation>

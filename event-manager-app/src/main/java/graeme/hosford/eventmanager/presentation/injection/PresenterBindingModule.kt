@@ -4,6 +4,8 @@ import dagger.Binds
 import dagger.Module
 import graeme.hosford.eventmanager.presentation.attendees.choose.AttendeesPresenter
 import graeme.hosford.eventmanager.presentation.attendees.choose.presentation.AttendeesPresenterImpl
+import graeme.hosford.eventmanager.presentation.attendees.detail.AttendeesDetailPresenter
+import graeme.hosford.eventmanager.presentation.attendees.detail.presentation.AttendeesDetailPresenterImpl
 import graeme.hosford.eventmanager.presentation.company.create.CreateCompanyPresenter
 import graeme.hosford.eventmanager.presentation.company.create.presentation.CreateCompanyPresenterImpl
 import graeme.hosford.eventmanager.presentation.company.detail.CompanyDetailPresenter
@@ -76,5 +78,9 @@ interface PresenterBindingModule {
     @Binds
     @Singleton
     fun profileDetailPresenter(impl: ProfileDetailPresenterImpl): ProfileDetailPresenter
+
+    @Binds
+    @Singleton
+    fun viewAttendeesPresenter(impl: AttendeesDetailPresenterImpl): AttendeesDetailPresenter
 
 }

@@ -7,6 +7,7 @@ import graeme.hosford.eventmanager.data.injection.module.internal.NetworkModule
 import graeme.hosford.eventmanager.data.injection.module.internal.ThreadingModule
 import graeme.hosford.eventmanager.presentation.attendees.choose.view.AttendeesActivity
 import graeme.hosford.eventmanager.presentation.attendees.choose.view.AttendeesFragment
+import graeme.hosford.eventmanager.presentation.attendees.detail.view.AttendeeListFragment
 import graeme.hosford.eventmanager.presentation.company.create.view.CreateCompanyActivity
 import graeme.hosford.eventmanager.presentation.company.create_join_screen.view.CreateJoinCompanyActivity
 import graeme.hosford.eventmanager.presentation.company.detail.view.CompanyDetailFragment
@@ -74,5 +75,7 @@ interface ApplicationComponent {
     fun inject(createProfileActivity: CreateProfileActivity)
 
     fun inject(profileDetailFragment: ProfileDetailFragment)
+
+    fun inject(attendeeListFragment: AttendeeListFragment)
 
 }
