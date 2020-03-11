@@ -31,8 +31,6 @@ class EventDetailFragment : BaseFragment(), EventDetailView {
         EventManagerApplication.appComponent.inject(this)
         super.onCreate(savedInstanceState)
         presenter.onViewCreated(this)
-
-        presenter.loadEventDetail(arguments?.getString(EventListView.ARG_EVENT_ID)!!)
     }
 
     override fun onCreateView(
@@ -42,6 +40,11 @@ class EventDetailFragment : BaseFragment(), EventDetailView {
     ): View? {
         binding = FragmentEventDetailBinding.inflate(inflater, container, false)
         return safeBinding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        presenter.loadEventDetail(arguments?.getString(EventListView.ARG_EVENT_ID)!!)
     }
 
     override fun onDestroyView() {
