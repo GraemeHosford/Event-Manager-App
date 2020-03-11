@@ -1,4 +1,4 @@
-package graeme.hosford.eventmanager.presentation.attendees.view.adapter
+package graeme.hosford.eventmanager.presentation.attendees.choose.view.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +7,7 @@ import com.google.firebase.storage.FirebaseStorage
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.databinding.AttendeeItemLayoutBinding
 import graeme.hosford.eventmanager.presentation.GlideApp
-import graeme.hosford.eventmanager.presentation.attendees.model.AttendeesUiModel
+import graeme.hosford.eventmanager.presentation.attendees.choose.model.AttendeesUiModel
 import graeme.hosford.eventmanager.presentation.common.view.ViewExtensions.isVisible
 import graeme.hosford.eventmanager.presentation.common.view.recyclerview.BaseAdapter
 import graeme.hosford.eventmanager.presentation.common.view.recyclerview.BaseViewHolder

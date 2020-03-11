@@ -2,8 +2,8 @@ package graeme.hosford.eventmanager.presentation.injection
 
 import dagger.Binds
 import dagger.Module
-import graeme.hosford.eventmanager.presentation.attendees.AttendeesPresenter
-import graeme.hosford.eventmanager.presentation.attendees.presentation.AttendeesPresenterImpl
+import graeme.hosford.eventmanager.presentation.attendees.choose.AttendeesPresenter
+import graeme.hosford.eventmanager.presentation.attendees.choose.presentation.AttendeesPresenterImpl
 import graeme.hosford.eventmanager.presentation.company.create.CreateCompanyPresenter
 import graeme.hosford.eventmanager.presentation.company.create.presentation.CreateCompanyPresenterImpl
 import graeme.hosford.eventmanager.presentation.company.detail.CompanyDetailPresenter

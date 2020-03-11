@@ -1,4 +1,4 @@
-package graeme.hosford.eventmanager.presentation.attendees.model
+package graeme.hosford.eventmanager.presentation.attendees.choose.model
 
 class AttendeesUiModel(
     val id: String,

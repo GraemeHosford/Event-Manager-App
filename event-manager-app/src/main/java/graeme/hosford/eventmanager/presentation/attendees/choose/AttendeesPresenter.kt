@@ -1,5 +1,6 @@
-package graeme.hosford.eventmanager.presentation.attendees
+package graeme.hosford.eventmanager.presentation.attendees.choose
 
+import graeme.hosford.eventmanager.presentation.attendees.choose.AttendeesView
 import graeme.hosford.eventmanager.presentation.common.presenter.Presenter
 
 interface AttendeesPresenter : Presenter<AttendeesView> {

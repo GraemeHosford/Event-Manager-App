@@ -56,6 +56,10 @@ class EventDetailFragment : BaseFragment(), EventDetailView {
         if (context != null) {
             safeBinding.eventDetailEventAttendeesSummaryTextView.text =
                 PeoplePresentationUtils.getAttendeeSummary(resources, model.attendees)
+
+            safeBinding.eventDetailEventAttendeesSummaryTextView.setOnClickListener {
+
+            }
         }
 
         safeBinding.eventDetailEventLocationTextView.text = model.location

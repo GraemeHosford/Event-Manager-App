@@ -1,13 +1,13 @@
-package graeme.hosford.eventmanager.presentation.attendees.presentation
+package graeme.hosford.eventmanager.presentation.attendees.choose.presentation
 
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.business.attendees.AttendeesInteractor
 import graeme.hosford.eventmanager.entity.company.Person
-import graeme.hosford.eventmanager.presentation.attendees.AttendeesPresenter
-import graeme.hosford.eventmanager.presentation.attendees.AttendeesView
-import graeme.hosford.eventmanager.presentation.attendees.model.AttendeeComparator
-import graeme.hosford.eventmanager.presentation.attendees.model.AttendeesUiModel
-import graeme.hosford.eventmanager.presentation.attendees.model.AttendeesUiModelProcessor
+import graeme.hosford.eventmanager.presentation.attendees.choose.AttendeesPresenter
+import graeme.hosford.eventmanager.presentation.attendees.choose.AttendeesView
+import graeme.hosford.eventmanager.presentation.attendees.choose.model.AttendeeComparator
+import graeme.hosford.eventmanager.presentation.attendees.choose.model.AttendeesUiModel
+import graeme.hosford.eventmanager.presentation.attendees.choose.model.AttendeesUiModelProcessor
 import graeme.hosford.eventmanager.presentation.common.model.UiModelListProcessor
 import graeme.hosford.eventmanager.presentation.common.presenter.BasePresenter
 import javax.inject.Inject

@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import graeme.hosford.eventmanager.EventManagerApplication
 import graeme.hosford.eventmanager.databinding.FragmentCreateEventBinding
-import graeme.hosford.eventmanager.presentation.attendees.view.AttendeesActivity
+import graeme.hosford.eventmanager.presentation.attendees.choose.view.AttendeesActivity
 import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseFragment
 import graeme.hosford.eventmanager.presentation.event.create.CreateEventPresenter
 import graeme.hosford.eventmanager.presentation.event.create.CreateEventView

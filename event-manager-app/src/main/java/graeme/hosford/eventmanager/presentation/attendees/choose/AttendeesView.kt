@@ -1,6 +1,6 @@
-package graeme.hosford.eventmanager.presentation.attendees
+package graeme.hosford.eventmanager.presentation.attendees.choose
 
-import graeme.hosford.eventmanager.presentation.attendees.model.AttendeesUiModel
+import graeme.hosford.eventmanager.presentation.attendees.choose.model.AttendeesUiModel
 import graeme.hosford.eventmanager.presentation.common.view.recyclerview.RecyclerViewListView
 import graeme.hosford.eventmanager.presentation.common.view.toast.ToastView
 

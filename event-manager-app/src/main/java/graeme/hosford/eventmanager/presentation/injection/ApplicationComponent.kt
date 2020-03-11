@@ -5,8 +5,8 @@ import graeme.hosford.eventmanager.business.injection.module.internal.Interactor
 import graeme.hosford.eventmanager.data.injection.module.internal.DataBindingModule
 import graeme.hosford.eventmanager.data.injection.module.internal.NetworkModule
 import graeme.hosford.eventmanager.data.injection.module.internal.ThreadingModule
-import graeme.hosford.eventmanager.presentation.attendees.view.AttendeesActivity
-import graeme.hosford.eventmanager.presentation.attendees.view.AttendeesFragment
+import graeme.hosford.eventmanager.presentation.attendees.choose.view.AttendeesActivity
+import graeme.hosford.eventmanager.presentation.attendees.choose.view.AttendeesFragment
 import graeme.hosford.eventmanager.presentation.company.create.view.CreateCompanyActivity
 import graeme.hosford.eventmanager.presentation.company.create_join_screen.view.CreateJoinCompanyActivity
 import graeme.hosford.eventmanager.presentation.company.detail.view.CompanyDetailFragment

@@ -5,7 +5,7 @@ import android.content.Intent
 import android.content.res.Resources
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.business.event.create.CreateEventInteractor
-import graeme.hosford.eventmanager.presentation.attendees.AttendeesView
+import graeme.hosford.eventmanager.presentation.attendees.choose.AttendeesView
 import graeme.hosford.eventmanager.presentation.common.presenter.BasePresenter
 import graeme.hosford.eventmanager.presentation.event.create.CreateEventPresenter
 import graeme.hosford.eventmanager.presentation.event.create.CreateEventView

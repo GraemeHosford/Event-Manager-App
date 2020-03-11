@@ -1,4 +1,4 @@
-package graeme.hosford.eventmanager.presentation.attendees.view
+package graeme.hosford.eventmanager.presentation.attendees.choose.view
 
 import android.app.Activity
 import android.content.Intent
@@ -8,12 +8,12 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import graeme.hosford.eventmanager.EventManagerApplication
 import graeme.hosford.eventmanager.R
-import graeme.hosford.eventmanager.presentation.attendees.AttendeesPresenter
-import graeme.hosford.eventmanager.presentation.attendees.AttendeesView
-import graeme.hosford.eventmanager.presentation.attendees.model.AttendeesUiModel
-import graeme.hosford.eventmanager.presentation.attendees.view.adapter.AttendeeClickListener
-import graeme.hosford.eventmanager.presentation.attendees.view.adapter.AttendeesAdapter
-import graeme.hosford.eventmanager.presentation.attendees.view.adapter.AttendeesViewHolder
+import graeme.hosford.eventmanager.presentation.attendees.choose.AttendeesPresenter
+import graeme.hosford.eventmanager.presentation.attendees.choose.AttendeesView
+import graeme.hosford.eventmanager.presentation.attendees.choose.model.AttendeesUiModel
+import graeme.hosford.eventmanager.presentation.attendees.choose.view.adapter.AttendeeClickListener
+import graeme.hosford.eventmanager.presentation.attendees.choose.view.adapter.AttendeesAdapter
+import graeme.hosford.eventmanager.presentation.attendees.choose.view.adapter.AttendeesViewHolder
 import graeme.hosford.eventmanager.presentation.common.view.activity.BaseRecyclerViewActivity
 import javax.inject.Inject
 
@@ -59,7 +59,8 @@ class AttendeesActivity :
 
     override fun recyclerViewAdapter(): AttendeesAdapter {
         return AttendeesAdapter(
-            object : AttendeeClickListener {
+            object :
+                AttendeeClickListener {
                 override fun onAttendeeClick(email: String) {
                     presenter.onAttendeeClick(email)
                 }

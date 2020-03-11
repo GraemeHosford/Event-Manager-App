@@ -1,4 +1,4 @@
-package graeme.hosford.eventmanager.presentation.attendees.model
+package graeme.hosford.eventmanager.presentation.attendees.choose.model
 
 import graeme.hosford.eventmanager.entity.company.Person
 import graeme.hosford.eventmanager.presentation.common.model.UiModelConverter

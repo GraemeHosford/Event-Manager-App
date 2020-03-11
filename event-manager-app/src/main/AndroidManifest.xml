@@ -41,7 +41,7 @@
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".presentation.attendees.view.AttendeesActivity"
+            android:name=".presentation.attendees.choose.view.AttendeesActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity

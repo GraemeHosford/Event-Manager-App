@@ -22,7 +22,7 @@
 
     <fragment
         android:id="@+id/nav_choose_attendees"
-        android:name="graeme.hosford.eventmanager.presentation.attendees.view.AttendeesFragment"
+        android:name="graeme.hosford.eventmanager.presentation.attendees.choose.view.AttendeesFragment"
         android:label="@string/create_event_choose_attendees_text" />
 
     <fragment
