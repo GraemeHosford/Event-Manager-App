@@ -3,6 +3,7 @@ package graeme.hosford.eventmanager.presentation.attendees.detail.presentation
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.business.attendees.detail.AttendeesDetailInteractor
 import graeme.hosford.eventmanager.entity.company.Person
+import graeme.hosford.eventmanager.presentation.attendees.choose.model.AttendeeComparator
 import graeme.hosford.eventmanager.presentation.attendees.choose.model.AttendeesUiModel
 import graeme.hosford.eventmanager.presentation.attendees.choose.model.AttendeesUiModelProcessor
 import graeme.hosford.eventmanager.presentation.attendees.detail.AttendeesDetailPresenter
@@ -21,6 +22,8 @@ class AttendeesDetailPresenterImpl @Inject constructor(
         super.onViewCreated(view)
         interactor.registerCallback(InteractorCallback())
         processor.registerProcessingCallback(ProcessingCallback())
+
+        processor.setListComparator(AttendeeComparator.attendeeNameComparator)
     }
 
     override fun showAttendees(attendees: ArrayList<String>) {

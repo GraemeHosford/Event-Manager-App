@@ -29,8 +29,13 @@ class AttendeeListFragment :
         EventManagerApplication.appComponent.inject(this)
         super.onCreate(savedInstanceState)
         presenter.onViewCreated(this)
+    }
 
-        presenter.showAttendees(arguments?.getStringArrayList(ATTENDEES_ARG)!!)
+    override fun onResume() {
+        super.onResume()
+
+        val emails = arguments?.getStringArrayList(ATTENDEES_ARG)!!
+        presenter.showAttendees(emails)
     }
 
     override fun showAttendeeOptions(id: String) {
