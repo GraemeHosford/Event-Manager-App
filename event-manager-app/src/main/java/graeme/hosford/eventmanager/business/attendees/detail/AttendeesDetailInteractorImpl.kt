@@ -1,35 +1,30 @@
 package graeme.hosford.eventmanager.business.attendees.detail
 
 import graeme.hosford.eventmanager.business.common.BaseInteractor
-import graeme.hosford.eventmanager.data.event.detail.EventDetailFirebaseAccess
-import graeme.hosford.eventmanager.data.login.CurrentUserNetworkAccess
-import graeme.hosford.eventmanager.entity.event.Event
+import graeme.hosford.eventmanager.data.attendees.AttendeesFirebaseAccess
+import graeme.hosford.eventmanager.entity.company.Person
 import javax.inject.Inject
 
 class AttendeesDetailInteractorImpl @Inject constructor(
-    private val eventDetailFirebaseAccessImpl: EventDetailFirebaseAccess,
-    private val currentUserNetworkAccess: CurrentUserNetworkAccess
+    private val attendeesFirebaseAccess: AttendeesFirebaseAccess
 ) : BaseInteractor<AttendeesDetailInteractor.AttendeesDetailCallback>(), AttendeesDetailInteractor {
 
     override fun onCreate() {
         super.onCreate()
-        eventDetailFirebaseAccessImpl.registerCallback(EventDetailCallback())
+        attendeesFirebaseAccess.setCallback(AttendeesDetailCallback())
     }
 
-    override fun getEventAttendees(eventId: String) {
-        eventDetailFirebaseAccessImpl.getEventDetails(
-            currentUserNetworkAccess.getCurrentUser()!!.email!!,
-            eventId
-        )
+    override fun getEventAttendees(emails: List<String>) {
+        attendeesFirebaseAccess.getEventAttendees(emails)
     }
 
-    private inner class EventDetailCallback : EventDetailFirebaseAccess.EventDetailCallback {
-        override fun onEventRetrieved(event: Event) {
-
+    private inner class AttendeesDetailCallback : AttendeesFirebaseAccess.AttendeesDetailCallback {
+        override fun onAttendeesRetrieved(attendees: List<Person>) {
+            callback?.onAttendeesRetrieved(attendees)
         }
 
-        override fun onEventRetrievalFailed() {
-
+        override fun onAttendeeRetrievedFail() {
+            callback?.onAttendeeRetrievalFailed()
         }
     }
 }

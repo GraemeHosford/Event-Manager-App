@@ -4,6 +4,8 @@ import dagger.Binds
 import dagger.Module
 import graeme.hosford.eventmanager.business.attendees.choose.ChooseAttendeesInteractor
 import graeme.hosford.eventmanager.business.attendees.choose.ChooseAttendeesInteractorImpl
+import graeme.hosford.eventmanager.business.attendees.detail.AttendeesDetailInteractor
+import graeme.hosford.eventmanager.business.attendees.detail.AttendeesDetailInteractorImpl
 import graeme.hosford.eventmanager.business.company.create.CreateCompanyInteractor
 import graeme.hosford.eventmanager.business.company.create.CreateCompanyInteractorImpl
 import graeme.hosford.eventmanager.business.company.detail.CompanyDetailInteractor
@@ -70,6 +72,10 @@ internal interface InteractorsBindingModule {
     @Binds
     @Singleton
     fun attendeesInteractor(impl: ChooseAttendeesInteractorImpl): ChooseAttendeesInteractor
+
+    @Binds
+    @Singleton
+    fun attendeesDetailAInteractor(impl: AttendeesDetailInteractorImpl): AttendeesDetailInteractor
 
     @Binds
     @Singleton

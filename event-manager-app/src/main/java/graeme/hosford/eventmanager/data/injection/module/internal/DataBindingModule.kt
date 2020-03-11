@@ -2,6 +2,8 @@ package graeme.hosford.eventmanager.data.injection.module.internal
 
 import dagger.Binds
 import dagger.Module
+import graeme.hosford.eventmanager.data.attendees.AttendeesFirebaseAccess
+import graeme.hosford.eventmanager.data.attendees.AttendeesFirebaseAccessImpl
 import graeme.hosford.eventmanager.data.company.CompanyFirebaseAccess
 import graeme.hosford.eventmanager.data.company.CompanyFirebaseAccessImpl
 import graeme.hosford.eventmanager.data.event.create.CreateEventFirebaseAccess
@@ -39,5 +41,9 @@ internal interface DataBindingModule {
     @Binds
     @Singleton
     fun createEventFirebaseAccess(impl: CreateEventFirebaseAccessImpl): CreateEventFirebaseAccess
+
+    @Binds
+    @Singleton
+    fun attendeesFirebaseAccess(impl: AttendeesFirebaseAccessImpl): AttendeesFirebaseAccess
 
 }
