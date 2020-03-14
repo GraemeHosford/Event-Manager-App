@@ -20,11 +20,13 @@ class AttendeeDetailOptionsDialog : DialogFragment() {
 
             builder.setItems(
                 arrayOf("View Profile", "Add Event Details")
-            ) { _, which ->
+            ) { dialog, which ->
                 when (which) {
                     0 -> listener.onViewProfileClick(userId)
                     1 -> listener.onAddEventDetailClick(userId)
                 }
+
+                dialog.cancel()
             }
 
             builder.create()
