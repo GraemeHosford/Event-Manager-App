@@ -51,7 +51,7 @@ class AttendeeListFragment :
     }
 
     override fun onAddEventDetailClick(userId: String, eventId: String) {
-        
+
     }
 
     override fun recyclerViewAdapter(): AttendeeDetailAdapter {

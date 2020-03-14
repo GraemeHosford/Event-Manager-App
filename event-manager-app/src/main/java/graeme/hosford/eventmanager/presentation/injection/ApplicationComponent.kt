@@ -21,6 +21,7 @@ import graeme.hosford.eventmanager.presentation.login.view.LoginActivity
 import graeme.hosford.eventmanager.presentation.notification.service.EventManagerNotificationService
 import graeme.hosford.eventmanager.presentation.profile.create.view.CreateProfileActivity
 import graeme.hosford.eventmanager.presentation.profile.detail.view.ProfileDetailFragment
+import graeme.hosford.eventmanager.presentation.usereventdetail.view.AddUserEventDetailFragment
 import javax.inject.Singleton
 
 @Singleton
@@ -77,5 +78,7 @@ interface ApplicationComponent {
     fun inject(profileDetailFragment: ProfileDetailFragment)
 
     fun inject(attendeeListFragment: AttendeeListFragment)
+
+    fun inject(addUserEventDetailFragment: AddUserEventDetailFragment)
 
 }
