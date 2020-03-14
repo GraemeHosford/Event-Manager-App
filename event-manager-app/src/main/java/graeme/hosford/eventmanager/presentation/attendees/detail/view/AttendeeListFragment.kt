@@ -51,7 +51,13 @@ class AttendeeListFragment :
     }
 
     override fun onAddEventDetailClick(userId: String, eventId: String) {
-
+        findNavController().navigate(
+            R.id.nav_add_user_event_detail,
+            bundleOf(
+                MEMBER_ID_ARG to userId,
+                EVENT_ID_ARG to eventId
+            )
+        )
     }
 
     override fun recyclerViewAdapter(): AttendeeDetailAdapter {
