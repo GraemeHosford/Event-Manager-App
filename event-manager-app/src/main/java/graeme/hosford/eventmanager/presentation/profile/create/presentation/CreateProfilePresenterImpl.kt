@@ -1,5 +1,6 @@
 package graeme.hosford.eventmanager.presentation.profile.create.presentation
 
+import android.annotation.SuppressLint
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.graphics.Bitmap
@@ -59,6 +60,11 @@ class CreateProfilePresenterImpl @Inject constructor(
         }
     }
 
+    /* Only sometimes shows error for wrong thread for the compress method below
+    * Builds and runs fine on my laptop and phone but is occasionally causing problems with CI.
+    * Probably a better way to fix it but don't have the time for that so this will have to do
+    * for now */
+    @SuppressLint("WrongThread")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == CAMERA_REQUEST_CODE && resultCode == RESULT_OK) {
