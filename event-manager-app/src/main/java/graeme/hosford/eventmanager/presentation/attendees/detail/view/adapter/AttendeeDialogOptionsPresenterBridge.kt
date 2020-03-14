@@ -1,7 +1,7 @@
 package graeme.hosford.eventmanager.presentation.attendees.detail.view.adapter
 
 interface AttendeeDialogOptionsPresenterBridge {
-    fun onViewProfileClick(id: String)
+    fun onViewProfileClick(userId: String)
 
-    fun onAddEventDetailClick(id: String)
+    fun onAddEventDetailClick(userId: String, eventId: String)
 }

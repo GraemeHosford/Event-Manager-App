@@ -7,5 +7,5 @@ import graeme.hosford.eventmanager.presentation.common.view.toast.ToastView
 const val ATTENDEE_ID_ARG = "AttendeeID"
 
 interface AttendeesDetailView : RecyclerViewListView<AttendeesUiModel>, ToastView {
-    fun showAttendeeOptions(id: String)
+    fun showAttendeeOptions(userId: String, eventId: String)
 }

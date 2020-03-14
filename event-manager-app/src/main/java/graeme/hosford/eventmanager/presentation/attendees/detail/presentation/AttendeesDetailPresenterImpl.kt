@@ -30,8 +30,8 @@ class AttendeesDetailPresenterImpl @Inject constructor(
         interactor.getEventAttendees(attendees)
     }
 
-    override fun onAttendeeClick(id: String) {
-        view?.showAttendeeOptions(id)
+    override fun onAttendeeClick(userId: String, eventId: String) {
+        view?.showAttendeeOptions(userId, eventId)
     }
 
     private inner class InteractorCallback : AttendeesDetailInteractor.AttendeesDetailCallback {

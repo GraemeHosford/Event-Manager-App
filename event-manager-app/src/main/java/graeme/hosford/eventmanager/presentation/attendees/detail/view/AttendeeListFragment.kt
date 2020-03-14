@@ -16,6 +16,7 @@ import graeme.hosford.eventmanager.presentation.attendees.detail.view.adapter.At
 import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseRecyclerViewFragment
 import graeme.hosford.eventmanager.presentation.company.detail.MEMBER_ID_ARG
 import graeme.hosford.eventmanager.presentation.event.detail.ATTENDEES_ARG
+import graeme.hosford.eventmanager.presentation.event.detail.EVENT_ID_ARG
 import javax.inject.Inject
 
 class AttendeeListFragment :
@@ -38,26 +39,26 @@ class AttendeeListFragment :
         presenter.showAttendees(emails)
     }
 
-    override fun showAttendeeOptions(id: String) {
+    override fun showAttendeeOptions(userId: String, eventId: String) {
         val optionsDialog = AttendeeDetailOptionsDialog()
         optionsDialog.listener = this
-        optionsDialog.arguments = bundleOf(ATTENDEE_ID_ARG to id)
+        optionsDialog.arguments = bundleOf(ATTENDEE_ID_ARG to userId, EVENT_ID_ARG to eventId)
         optionsDialog.show(childFragmentManager, "")
     }
 
-    override fun onViewProfileClick(id: String) {
-        findNavController().navigate(R.id.nav_profile_detail, bundleOf(MEMBER_ID_ARG to id))
+    override fun onViewProfileClick(userId: String) {
+        findNavController().navigate(R.id.nav_profile_detail, bundleOf(MEMBER_ID_ARG to userId))
     }
 
-    override fun onAddEventDetailClick(id: String) {
-
+    override fun onAddEventDetailClick(userId: String, eventId: String) {
+        
     }
 
     override fun recyclerViewAdapter(): AttendeeDetailAdapter {
         return AttendeeDetailAdapter(
             object : AttendeeDetailPresenterBridge {
-                override fun onAttendeeClick(id: String) {
-                    presenter.onAttendeeClick(id)
+                override fun onAttendeeClick(userId: String) {
+                    presenter.onAttendeeClick(userId, arguments?.getString(EVENT_ID_ARG)!!)
                 }
             }
         )
