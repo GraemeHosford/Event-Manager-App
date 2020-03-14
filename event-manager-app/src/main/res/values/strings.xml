@@ -76,4 +76,7 @@
     <string name="enter_some_info_about_yourself">Enter some info about yourself!</string>
     <string name="create_profile">Create Profile</string>
     <string name="tap_to_take_a_profile_picture">Tap to Take a Profile Picture</string>
+    <string name="confirm_details">Confirm Details</string>
+    <string name="enter_event_details_for_this_user">Enter Event Details for this User</string>
+    <string name="enter_a_heading_for_these_details">Enter a heading for these details</string>
 </resources>

@@ -14,6 +14,8 @@ import graeme.hosford.eventmanager.data.event.list.EventListFirebaseAccess
 import graeme.hosford.eventmanager.data.event.list.EventListFirebaseAccessImpl
 import graeme.hosford.eventmanager.data.login.CurrentUserNetworkAccess
 import graeme.hosford.eventmanager.data.login.CurrentUserNetworkAccessImpl
+import graeme.hosford.eventmanager.data.usereventdetail.UserEventDetailFirebaseAccess
+import graeme.hosford.eventmanager.data.usereventdetail.UserEventDetailFirebaseAccessImpl
 import javax.inject.Singleton
 
 /**
@@ -45,5 +47,9 @@ internal interface DataBindingModule {
     @Binds
     @Singleton
     fun attendeesFirebaseAccess(impl: AttendeesFirebaseAccessImpl): AttendeesFirebaseAccess
+
+    @Binds
+    @Singleton
+    fun userEventDetailsFirebaseAccess(impl: UserEventDetailFirebaseAccessImpl): UserEventDetailFirebaseAccess
 
 }

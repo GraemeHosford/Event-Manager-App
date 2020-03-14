@@ -1,3 +1,7 @@
 package graeme.hosford.eventmanager.presentation.usereventdetail
 
-interface AddUserEventDetailView
+import graeme.hosford.eventmanager.presentation.common.view.toast.ToastView
+
+interface AddUserEventDetailView : ToastView {
+    fun onDetailsSaved()
+}
