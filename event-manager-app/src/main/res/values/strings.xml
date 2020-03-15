@@ -79,4 +79,5 @@
     <string name="confirm_details">Confirm Details</string>
     <string name="enter_event_details_for_this_user">Enter Event Details for this User</string>
     <string name="enter_a_heading_for_these_details">Enter a heading for these details</string>
+    <string name="view_event_details">View Event Details</string>
 </resources>

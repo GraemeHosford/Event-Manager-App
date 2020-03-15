@@ -30,8 +30,10 @@ import graeme.hosford.eventmanager.business.profile.detail.ProfileDetailInteract
 import graeme.hosford.eventmanager.business.profile.detail.ProfileDetailInteractorImpl
 import graeme.hosford.eventmanager.business.user.CurrentUserInteractor
 import graeme.hosford.eventmanager.business.user.CurrentUserInteractorImpl
-import graeme.hosford.eventmanager.business.usereventdetail.UserEventDetailInteractor
-import graeme.hosford.eventmanager.business.usereventdetail.UserEventDetailInteractorImpl
+import graeme.hosford.eventmanager.business.usereventdetail.create.UserEventDetailInteractor
+import graeme.hosford.eventmanager.business.usereventdetail.create.UserEventDetailInteractorImpl
+import graeme.hosford.eventmanager.business.usereventdetail.detail.UserEventDetailListInteractor
+import graeme.hosford.eventmanager.business.usereventdetail.detail.UserEventDetailListInteractorImpl
 import javax.inject.Singleton
 
 @Module
@@ -98,6 +100,10 @@ internal interface InteractorsBindingModule {
     @Binds
     @Singleton
     fun userEventDetailInteractor(impl: UserEventDetailInteractorImpl): UserEventDetailInteractor
+
+    @Binds
+    @Singleton
+    fun userEventDetailListInteractor(impl: UserEventDetailListInteractorImpl): UserEventDetailListInteractor
 
     //endregion
 

@@ -46,4 +46,9 @@
         android:id="@+id/nav_add_user_event_detail"
         android:name="graeme.hosford.eventmanager.presentation.usereventdetail.create.view.AddUserEventDetailFragment"
         android:label="Add Event Detail" />
+
+    <fragment
+        android:id="@+id/nav_user_event_detail_list"
+        android:name="graeme.hosford.eventmanager.presentation.usereventdetail.detail.view.UserEventDetailsListFragment"
+        android:label="Event Details" />
 </navigation>

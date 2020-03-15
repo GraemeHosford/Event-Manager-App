@@ -1,4 +1,4 @@
-package graeme.hosford.eventmanager.business.usereventdetail
+package graeme.hosford.eventmanager.business.usereventdetail.create
 
 import graeme.hosford.eventmanager.business.common.Interactor
 

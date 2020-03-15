@@ -1,6 +1,7 @@
-package graeme.hosford.eventmanager.business.usereventdetail
+package graeme.hosford.eventmanager.business.usereventdetail.create
 
 import graeme.hosford.eventmanager.business.common.BaseInteractor
+import graeme.hosford.eventmanager.business.usereventdetail.create.UserEventDetailInteractor
 import graeme.hosford.eventmanager.data.usereventdetail.UserEventDetailFirebaseAccess
 import javax.inject.Inject
 

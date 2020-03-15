@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.storage.FirebaseStorage
 import graeme.hosford.eventmanager.EventManagerApplication
 import graeme.hosford.eventmanager.R
@@ -27,13 +29,15 @@ class ProfileDetailFragment : BaseFragment(), ProfileDetailView {
     private var binding: FragmentProfileDetailBinding? = null
     private val safeBinding get() = binding!!
 
+    private lateinit var personId: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         EventManagerApplication.appComponent.inject(this)
         super.onCreate(savedInstanceState)
         presenter.onViewCreated(this)
 
-        val personId = arguments?.getString(MEMBER_ID_ARG)
-        presenter.getPersonDetail(personId ?: DEFAULT_MEMBER_ID_ARG)
+        personId = arguments?.getString(MEMBER_ID_ARG) ?: DEFAULT_MEMBER_ID_ARG
+        presenter.getPersonDetail(personId)
     }
 
     override fun onCreateView(
@@ -71,6 +75,13 @@ class ProfileDetailFragment : BaseFragment(), ProfileDetailView {
             CoreIntents.sendEmailIntent(
                 requireContext(),
                 (it as SummaryTextView).getDescriptionText()
+            )
+        }
+
+        safeBinding.viewUserEventDetailsTextView.setOnClickListener {
+            findNavController().navigate(
+                R.id.nav_user_event_detail_list,
+                bundleOf(MEMBER_ID_ARG to personId)
             )
         }
 

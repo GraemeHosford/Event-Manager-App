@@ -45,4 +45,14 @@
         app:layout_constraintTop_toBottomOf="@id/profile_detail_user_email_text_view"
         app:titleText="@string/generic_description" />
 
+    <TextView
+        android:id="@+id/view_user_event_details_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="@string/view_event_details"
+        android:textColor="#3783B0"
+        android:textSize="22sp"
+        app:layout_constraintTop_toBottomOf="@id/profile_detail_description_text_view" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

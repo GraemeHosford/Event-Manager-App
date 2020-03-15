@@ -1,7 +1,7 @@
 package graeme.hosford.eventmanager.presentation.usereventdetail.create.presentation
 
 import graeme.hosford.eventmanager.R
-import graeme.hosford.eventmanager.business.usereventdetail.UserEventDetailInteractor
+import graeme.hosford.eventmanager.business.usereventdetail.create.UserEventDetailInteractor
 import graeme.hosford.eventmanager.presentation.common.presenter.BasePresenter
 import graeme.hosford.eventmanager.presentation.usereventdetail.create.AddUserEventDetailPresenter
 import graeme.hosford.eventmanager.presentation.usereventdetail.create.AddUserEventDetailView
