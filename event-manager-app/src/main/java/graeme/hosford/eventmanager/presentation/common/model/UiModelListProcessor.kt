@@ -13,7 +13,7 @@ abstract class UiModelListProcessor<Entity, UiModel>(
 
     private var callback: ProcessingCompleteCallback<UiModel>? = null
 
-    private lateinit var listComparator: Comparator<UiModel>
+    private var listComparator: Comparator<UiModel>? = null
 
     interface ProcessingCompleteCallback<UiModel> {
         fun onProcessingComplete(models: List<UiModel>)
@@ -30,6 +30,12 @@ abstract class UiModelListProcessor<Entity, UiModel>(
     }
 
     fun process(entities: List<Entity>) {
+        /* Having listComparator as a lateinit var does not give an informative error message if the
+        * comparator is not set. This way an explicit exception makes the problem more obvious */
+        if (listComparator == null) {
+            throw IllegalStateException("A list comparator must be set for any use of UiModelListProcessor")
+        }
+
         disposable.add(Observable.fromArray(entities)
             .map { t ->
                 val modelList = ArrayList<UiModel>()
@@ -37,7 +43,7 @@ abstract class UiModelListProcessor<Entity, UiModel>(
                     modelList.add(converter.toUiModel(it))
                 }
 
-                modelList.sortedWith(listComparator)
+                modelList.sortedWith(listComparator!!)
             }
             .subscribeOn(Schedulers.computation())
             .observeOn(AndroidSchedulers.mainThread())
