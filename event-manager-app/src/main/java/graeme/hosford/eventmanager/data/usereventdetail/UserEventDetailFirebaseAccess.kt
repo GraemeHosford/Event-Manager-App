@@ -25,7 +25,13 @@ interface UserEventDetailFirebaseAccess {
         fun onRetrievalFailed()
     }
 
-    fun saveEventDetails(userId: String, eventId: String, subject: String, details: String)
+    fun saveEventDetails(
+        userId: String,
+        eventId: String,
+        eventName: String,
+        subject: String,
+        details: String
+    )
 
     fun getUserEventDetails(userId: String)
 

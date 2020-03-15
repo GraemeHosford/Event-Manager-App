@@ -11,6 +11,12 @@ interface UserEventDetailInteractor :
         fun onDetailsSaveFailed()
     }
 
-    fun saveEventDetail(userId: String, eventId: String, subject: String, detail: String)
+    fun saveEventDetail(
+        userId: String,
+        eventId: String,
+        eventName: String,
+        subject: String,
+        detail: String
+    )
 
 }

@@ -1,7 +1,6 @@
 package graeme.hosford.eventmanager.business.usereventdetail.create
 
 import graeme.hosford.eventmanager.business.common.BaseInteractor
-import graeme.hosford.eventmanager.business.usereventdetail.create.UserEventDetailInteractor
 import graeme.hosford.eventmanager.data.usereventdetail.UserEventDetailFirebaseAccess
 import javax.inject.Inject
 
@@ -15,8 +14,14 @@ class UserEventDetailInteractorImpl @Inject constructor(
         userEventDetailFirebaseAccess.callback = UserEventDetailsCallback()
     }
 
-    override fun saveEventDetail(userId: String, eventId: String, subject: String, detail: String) {
-        userEventDetailFirebaseAccess.saveEventDetails(userId, eventId, subject, detail)
+    override fun saveEventDetail(
+        userId: String,
+        eventId: String,
+        eventName: String,
+        subject: String,
+        detail: String
+    ) {
+        userEventDetailFirebaseAccess.saveEventDetails(userId, eventId, eventName, subject, detail)
     }
 
     private inner class UserEventDetailsCallback :

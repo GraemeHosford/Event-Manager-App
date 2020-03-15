@@ -6,6 +6,7 @@ interface AddUserEventDetailPresenter : Presenter<AddUserEventDetailView> {
     fun onConfirmDetailsButtonClick(
         userId: String,
         eventId: String,
+        eventName: String,
         subject: String,
         details: String
     )

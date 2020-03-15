@@ -10,10 +10,7 @@ import graeme.hosford.eventmanager.EventManagerApplication
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.databinding.FragmentEventDetailBinding
 import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseFragment
-import graeme.hosford.eventmanager.presentation.event.detail.ATTENDEES_ARG
-import graeme.hosford.eventmanager.presentation.event.detail.EVENT_ID_ARG
-import graeme.hosford.eventmanager.presentation.event.detail.EventDetailPresenter
-import graeme.hosford.eventmanager.presentation.event.detail.EventDetailView
+import graeme.hosford.eventmanager.presentation.event.detail.*
 import graeme.hosford.eventmanager.presentation.event.detail.model.EventDetailUiModel
 import graeme.hosford.eventmanager.presentation.event.list.common.EventListView
 import graeme.hosford.eventmanager.presentation.utils.DatePresentationUtils
@@ -70,6 +67,7 @@ class EventDetailFragment : BaseFragment(), EventDetailView {
                     R.id.nav_attendee_detail,
                     bundleOf(
                         EVENT_ID_ARG to model.id,
+                        EVENT_NAME_ARG to model.name,
                         ATTENDEES_ARG to model.attendees
                     )
                 )

@@ -20,6 +20,7 @@ class UserEventDetailFirebaseAccessImpl @Inject constructor(
     override fun saveEventDetails(
         userId: String,
         eventId: String,
+        eventName: String,
         subject: String,
         details: String
     ) {
@@ -30,8 +31,9 @@ class UserEventDetailFirebaseAccessImpl @Inject constructor(
             .document(eventId)
             .set(
                 hashMapOf(
-                    SUBJECT_KEY to subject,
-                    DETAILS_KEY to details
+                    UserEventDetail.EVENT_NAME_KEY to eventName,
+                    UserEventDetail.SUBJECT_KEY to subject,
+                    UserEventDetail.DETAIL_KEY to details
                 ),
                 SetOptions.merge()
             ).addOnSuccessListener {

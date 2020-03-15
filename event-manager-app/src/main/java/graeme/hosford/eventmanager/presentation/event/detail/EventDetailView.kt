@@ -6,6 +6,7 @@ import graeme.hosford.eventmanager.presentation.event.detail.model.EventDetailUi
 
 const val ATTENDEES_ARG = "Attendees"
 const val EVENT_ID_ARG = "EventID"
+const val EVENT_NAME_ARG = "EventName"
 const val COMPANY_ID_ARG = "ComapnyID"
 
 interface EventDetailView : ToastView, SingleUiModelView<EventDetailUiModel>

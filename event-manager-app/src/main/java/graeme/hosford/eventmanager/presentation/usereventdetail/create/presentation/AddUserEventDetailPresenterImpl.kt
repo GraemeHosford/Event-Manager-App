@@ -20,13 +20,14 @@ class AddUserEventDetailPresenterImpl @Inject constructor(
     override fun onConfirmDetailsButtonClick(
         userId: String,
         eventId: String,
+        eventName: String,
         subject: String,
         details: String
     ) {
         if (details.isBlank() || subject.isBlank()) {
             view?.showLongToast("Enter a subject and some details to save for this user")
         } else {
-            interactor.saveEventDetail(userId, eventId, subject, details)
+            interactor.saveEventDetail(userId, eventId, eventName, subject, details)
         }
     }
 

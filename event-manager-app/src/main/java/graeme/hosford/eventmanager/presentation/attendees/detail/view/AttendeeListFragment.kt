@@ -5,6 +5,7 @@ import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import graeme.hosford.eventmanager.EventManagerApplication
 import graeme.hosford.eventmanager.R
+import graeme.hosford.eventmanager.entity.usereventdetail.UserEventDetail
 import graeme.hosford.eventmanager.presentation.attendees.choose.model.AttendeesUiModel
 import graeme.hosford.eventmanager.presentation.attendees.detail.ATTENDEE_ID_ARG
 import graeme.hosford.eventmanager.presentation.attendees.detail.AttendeesDetailPresenter
@@ -17,6 +18,7 @@ import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseRecycle
 import graeme.hosford.eventmanager.presentation.company.detail.MEMBER_ID_ARG
 import graeme.hosford.eventmanager.presentation.event.detail.ATTENDEES_ARG
 import graeme.hosford.eventmanager.presentation.event.detail.EVENT_ID_ARG
+import graeme.hosford.eventmanager.presentation.event.detail.EVENT_NAME_ARG
 import javax.inject.Inject
 
 class AttendeeListFragment :
@@ -55,7 +57,8 @@ class AttendeeListFragment :
             R.id.nav_add_user_event_detail,
             bundleOf(
                 MEMBER_ID_ARG to userId,
-                EVENT_ID_ARG to eventId
+                EVENT_ID_ARG to eventId,
+                UserEventDetail.EVENT_NAME_KEY to arguments?.getString(EVENT_NAME_ARG)
             )
         )
     }

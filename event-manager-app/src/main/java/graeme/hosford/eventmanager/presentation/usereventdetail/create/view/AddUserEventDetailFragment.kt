@@ -10,6 +10,7 @@ import graeme.hosford.eventmanager.databinding.FragmentAddUserEventDetailBinding
 import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseFragment
 import graeme.hosford.eventmanager.presentation.company.detail.MEMBER_ID_ARG
 import graeme.hosford.eventmanager.presentation.event.detail.EVENT_ID_ARG
+import graeme.hosford.eventmanager.presentation.event.detail.EVENT_NAME_ARG
 import graeme.hosford.eventmanager.presentation.usereventdetail.create.AddUserEventDetailPresenter
 import graeme.hosford.eventmanager.presentation.usereventdetail.create.AddUserEventDetailView
 import javax.inject.Inject
@@ -44,6 +45,7 @@ class AddUserEventDetailFragment : BaseFragment(),
             presenter.onConfirmDetailsButtonClick(
                 arguments?.getString(MEMBER_ID_ARG)!!,
                 arguments?.getString(EVENT_ID_ARG)!!,
+                arguments?.getString(EVENT_NAME_ARG)!!,
                 binding?.enterEventDetailSubject?.text.toString(),
                 binding?.enterEventDetailEditText?.text.toString()
             )
