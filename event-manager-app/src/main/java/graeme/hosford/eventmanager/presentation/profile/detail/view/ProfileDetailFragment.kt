@@ -35,9 +35,6 @@ class ProfileDetailFragment : BaseFragment(), ProfileDetailView {
         EventManagerApplication.appComponent.inject(this)
         super.onCreate(savedInstanceState)
         presenter.onViewCreated(this)
-
-        personId = arguments?.getString(MEMBER_ID_ARG) ?: DEFAULT_MEMBER_ID_ARG
-        presenter.getPersonDetail(personId)
     }
 
     override fun onCreateView(
@@ -47,6 +44,12 @@ class ProfileDetailFragment : BaseFragment(), ProfileDetailView {
     ): View? {
         binding = FragmentProfileDetailBinding.inflate(inflater, container, false)
         return safeBinding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        personId = arguments?.getString(MEMBER_ID_ARG) ?: DEFAULT_MEMBER_ID_ARG
+        presenter.getPersonDetail(personId)
     }
 
     override fun onDestroyView() {
