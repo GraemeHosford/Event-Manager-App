@@ -1,6 +1,8 @@
 package graeme.hosford.eventmanager.presentation.usereventdetail.detail.view
 
+import android.content.Context
 import android.os.Bundle
+import androidx.recyclerview.widget.RecyclerView
 import graeme.hosford.eventmanager.EventManagerApplication
 import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseRecyclerViewFragment
 import graeme.hosford.eventmanager.presentation.company.detail.DEFAULT_MEMBER_ID_ARG
@@ -33,6 +35,11 @@ class UserEventDetailsListFragment :
     override fun recyclerViewAdapter(): UserEventDetailListAdapter {
         return UserEventDetailListAdapter()
     }
+
+    override fun addRecyclerViewDecorations(
+        recyclerViewContext: Context,
+        layoutOrientation: Int
+    ): List<RecyclerView.ItemDecoration> = emptyList()
 
     override fun doOnSwipeRefresh() {
         /* Nothing for now */

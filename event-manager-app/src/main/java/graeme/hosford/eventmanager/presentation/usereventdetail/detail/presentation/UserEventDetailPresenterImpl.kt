@@ -9,6 +9,7 @@ import graeme.hosford.eventmanager.presentation.common.presenter.BasePresenter
 import graeme.hosford.eventmanager.presentation.company.detail.DEFAULT_MEMBER_ID_ARG
 import graeme.hosford.eventmanager.presentation.usereventdetail.detail.UserEventDetailPresenter
 import graeme.hosford.eventmanager.presentation.usereventdetail.detail.UserEventDetailView
+import graeme.hosford.eventmanager.presentation.usereventdetail.detail.model.UserEventDetailListComparator
 import graeme.hosford.eventmanager.presentation.usereventdetail.detail.model.UserEventDetailListUiModel
 import graeme.hosford.eventmanager.presentation.usereventdetail.detail.model.UserEventDetailProcessor
 import javax.inject.Inject
@@ -24,6 +25,8 @@ class UserEventDetailPresenterImpl @Inject constructor(
         super.onViewCreated(view)
         interactor.registerCallback(UserEventDetailListCallback())
         processor.registerProcessingCallback(UserEventDetailProcessingCallback())
+
+        processor.setListComparator(UserEventDetailListComparator.userEventDetailComparator)
     }
 
     override fun getUserEventDetails(userId: String) {
