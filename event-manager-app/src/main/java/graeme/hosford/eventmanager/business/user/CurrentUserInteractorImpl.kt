@@ -38,6 +38,10 @@ class CurrentUserInteractorImpl @Inject constructor(
         )
     }
 
+    override fun getCurrentUserId(): String {
+        return currentUserNetworkAccess.getCurrentUser()!!.email!!
+    }
+
     private inner class UserInfoSavedListener : CurrentUserNetworkAccess.UserInfoSavedCallback {
         override fun onUserInfoSavedSuccess() {
             callback?.onAddUserCompanySuccess()

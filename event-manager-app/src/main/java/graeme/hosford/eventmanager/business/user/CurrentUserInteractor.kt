@@ -20,4 +20,6 @@ interface CurrentUserInteractor : Interactor<CurrentUserInteractor.UserCompanyLi
 
     fun checkUserHasCompany()
 
+    fun getCurrentUserId(): String
+
 }

@@ -3,6 +3,8 @@ package graeme.hosford.eventmanager.presentation.usereventdetail.detail.view
 import android.os.Bundle
 import graeme.hosford.eventmanager.EventManagerApplication
 import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseRecyclerViewFragment
+import graeme.hosford.eventmanager.presentation.company.detail.DEFAULT_MEMBER_ID_ARG
+import graeme.hosford.eventmanager.presentation.company.detail.MEMBER_ID_ARG
 import graeme.hosford.eventmanager.presentation.usereventdetail.detail.UserEventDetailPresenter
 import graeme.hosford.eventmanager.presentation.usereventdetail.detail.UserEventDetailView
 import graeme.hosford.eventmanager.presentation.usereventdetail.detail.model.UserEventDetailListUiModel
@@ -25,7 +27,7 @@ class UserEventDetailsListFragment :
 
     override fun onResume() {
         super.onResume()
-
+        presenter.getUserEventDetails(arguments?.getString(MEMBER_ID_ARG) ?: DEFAULT_MEMBER_ID_ARG)
     }
 
     override fun recyclerViewAdapter(): UserEventDetailListAdapter {
