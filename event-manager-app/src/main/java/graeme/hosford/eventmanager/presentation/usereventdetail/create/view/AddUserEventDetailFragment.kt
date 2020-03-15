@@ -1,4 +1,4 @@
-package graeme.hosford.eventmanager.presentation.usereventdetail.view
+package graeme.hosford.eventmanager.presentation.usereventdetail.create.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,8 +10,8 @@ import graeme.hosford.eventmanager.databinding.FragmentAddUserEventDetailBinding
 import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseFragment
 import graeme.hosford.eventmanager.presentation.company.detail.MEMBER_ID_ARG
 import graeme.hosford.eventmanager.presentation.event.detail.EVENT_ID_ARG
-import graeme.hosford.eventmanager.presentation.usereventdetail.AddUserEventDetailPresenter
-import graeme.hosford.eventmanager.presentation.usereventdetail.AddUserEventDetailView
+import graeme.hosford.eventmanager.presentation.usereventdetail.create.AddUserEventDetailPresenter
+import graeme.hosford.eventmanager.presentation.usereventdetail.create.AddUserEventDetailView
 import javax.inject.Inject
 
 class AddUserEventDetailFragment : BaseFragment(),

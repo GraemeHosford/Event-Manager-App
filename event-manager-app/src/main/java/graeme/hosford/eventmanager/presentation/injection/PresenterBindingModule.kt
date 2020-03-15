@@ -28,8 +28,8 @@ import graeme.hosford.eventmanager.presentation.profile.create.CreateProfilePres
 import graeme.hosford.eventmanager.presentation.profile.create.presentation.CreateProfilePresenterImpl
 import graeme.hosford.eventmanager.presentation.profile.detail.ProfileDetailPresenter
 import graeme.hosford.eventmanager.presentation.profile.detail.presentation.ProfileDetailPresenterImpl
-import graeme.hosford.eventmanager.presentation.usereventdetail.AddUserEventDetailPresenter
-import graeme.hosford.eventmanager.presentation.usereventdetail.presentation.AddUserEventDetailPresenterImpl
+import graeme.hosford.eventmanager.presentation.usereventdetail.create.AddUserEventDetailPresenter
+import graeme.hosford.eventmanager.presentation.usereventdetail.create.presentation.AddUserEventDetailPresenterImpl
 import javax.inject.Singleton
 
 @Module

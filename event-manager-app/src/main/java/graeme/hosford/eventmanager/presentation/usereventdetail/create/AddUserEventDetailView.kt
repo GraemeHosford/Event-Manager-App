@@ -1,4 +1,4 @@
-package graeme.hosford.eventmanager.presentation.usereventdetail
+package graeme.hosford.eventmanager.presentation.usereventdetail.create
 
 import graeme.hosford.eventmanager.presentation.common.view.toast.ToastView
 
