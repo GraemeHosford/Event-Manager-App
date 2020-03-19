@@ -8,7 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.google.android.gms.common.api.Status
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import graeme.hosford.eventmanager.EventManagerApplication
+import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.databinding.FragmentCreateEventBinding
 import graeme.hosford.eventmanager.presentation.attendees.choose.view.AttendeesActivity
 import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseFragment
@@ -42,6 +47,29 @@ class CreateEventFragment : BaseFragment(), CreateEventView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val placeSelectionFragment =
+            childFragmentManager.findFragmentById(R.id.place_selection_fragment) as AutocompleteSupportFragment
+
+        placeSelectionFragment.setPlaceFields(
+            listOf(
+                Place.Field.ID,
+                Place.Field.NAME,
+                Place.Field.LAT_LNG
+            )
+        )
+
+        placeSelectionFragment.setOnPlaceSelectedListener(
+            object : PlaceSelectionListener {
+                override fun onPlaceSelected(place: Place) {
+                    presenter.onPlaceSelected(place)
+                }
+
+                override fun onError(status: Status) {
+                    showLongToast(R.string.generic_error_loading_data)
+                }
+            }
+        )
+
         safeBinding.createEventChooseStartDateButton.setOnClickListener {
             presenter.onChooseStartDateButtonClick()
         }
@@ -66,7 +94,6 @@ class CreateEventFragment : BaseFragment(), CreateEventView {
             presenter.onCreateEventButtonClick(
                 safeBinding.enterEventNameEditText.text.toString(),
                 safeBinding.enterEventDescriptionEditText.text.toString(),
-                safeBinding.enterEventLocationEditText.text.toString(),
                 presenter.getInvitedAttendees()
             )
         }

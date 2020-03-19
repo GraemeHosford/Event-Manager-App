@@ -1,5 +1,6 @@
 package graeme.hosford.eventmanager.business.event.create
 
+import com.google.android.libraries.places.api.model.Place
 import graeme.hosford.eventmanager.business.common.BaseInteractor
 import graeme.hosford.eventmanager.data.event.create.CreateEventFirebaseAccess
 import graeme.hosford.eventmanager.data.login.CurrentUserNetworkAccess
@@ -21,7 +22,7 @@ class CreateEventInteractorImpl @Inject constructor(
     override fun createEvent(
         name: String,
         description: String,
-        location: String,
+        location: Place,
         attendees: ArrayList<String>,
         startDate: Long,
         endDate: Long
@@ -30,7 +31,7 @@ class CreateEventInteractorImpl @Inject constructor(
             hashMapOf(
                 Event.NAME_FIELD to name,
                 Event.DESCRIPTION_FIELD to description,
-                Event.LOCATION_FIELD to location,
+                Event.LOCATION_FIELD to location.latLng!!,
                 Event.INVITEES_LIST to attendees,
                 Event.ATTENDEES_LIST to emptyList<String>(),
                 Event.START_DATE to startDate,

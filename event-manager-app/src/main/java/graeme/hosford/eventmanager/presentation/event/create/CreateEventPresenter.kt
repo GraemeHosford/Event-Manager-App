@@ -1,6 +1,7 @@
 package graeme.hosford.eventmanager.presentation.event.create
 
 import android.content.res.Resources
+import com.google.android.libraries.places.api.model.Place
 import graeme.hosford.eventmanager.presentation.common.presenter.Presenter
 
 interface CreateEventPresenter : Presenter<CreateEventView> {
@@ -10,9 +11,10 @@ interface CreateEventPresenter : Presenter<CreateEventView> {
     fun onCreateEventButtonClick(
         name: String,
         description: String,
-        location: String,
         attendees: ArrayList<String>
     )
+
+    fun onPlaceSelected(place: Place)
 
     fun getInvitedAttendees(): ArrayList<String>
 

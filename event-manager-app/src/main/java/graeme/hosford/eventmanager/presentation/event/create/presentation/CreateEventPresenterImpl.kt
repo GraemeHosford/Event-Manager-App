@@ -3,6 +3,7 @@ package graeme.hosford.eventmanager.presentation.event.create.presentation
 import android.app.Activity
 import android.content.Intent
 import android.content.res.Resources
+import com.google.android.libraries.places.api.model.Place
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.business.event.create.CreateEventInteractor
 import graeme.hosford.eventmanager.presentation.attendees.choose.AttendeesView
@@ -18,6 +19,8 @@ class CreateEventPresenterImpl @Inject constructor(
 ) : BasePresenter<CreateEventView, CreateEventInteractor>(interactor), CreateEventPresenter {
 
     private var attendees: ArrayList<String>? = ArrayList()
+
+    private var place: Place? = null
 
     private var startYear = 0
     private var startMonth = 0
@@ -218,13 +221,16 @@ class CreateEventPresenterImpl @Inject constructor(
         }
     }
 
+    override fun onPlaceSelected(place: Place) {
+        this.place = place
+    }
+
     override fun onCreateEventButtonClick(
         name: String,
         description: String,
-        location: String,
         attendees: ArrayList<String>
     ) {
-        if (name.isBlank() || description.isBlank() || location.isBlank()) {
+        if (name.isBlank() || description.isBlank() || place == null) {
             view?.showLongToast(R.string.create_event_error_empty_fields)
         } else {
             val startCal = Calendar.getInstance().apply {
@@ -238,7 +244,7 @@ class CreateEventPresenterImpl @Inject constructor(
             interactor.createEvent(
                 name,
                 description,
-                location,
+                place!!,
                 attendees,
                 startCal.timeInMillis,
                 endCal.timeInMillis

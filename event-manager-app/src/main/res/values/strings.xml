@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Event Manager</string>
 
+    <string name="places_sdk_api_key">AIzaSyCC0kAMTuMYQkXTeMQqtxWBB03QukQonzk</string>
+
     <string name="generic_error_loading_data">There was an error while trying to load your data. Please try again</string>
     <string name="generic_error_saving_data">There was an error while saving your data. Please try again</string>
     <string name="generic_nothing_to_load">There was nothing to load!</string>

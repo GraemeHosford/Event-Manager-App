@@ -8,6 +8,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.libraries.places.api.Places
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.messaging.FirebaseMessaging
 import graeme.hosford.eventmanager.R
@@ -44,6 +45,10 @@ class MainActivity : BaseActivity(),
 
         /* Only init FCM when user has passed the sign in and chose company stuff */
         FirebaseMessaging.getInstance().isAutoInitEnabled = true
+
+        if (!Places.isInitialized()) {
+            Places.initialize(applicationContext, getString(R.string.places_sdk_api_key))
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
