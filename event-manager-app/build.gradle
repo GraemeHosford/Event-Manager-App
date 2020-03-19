@@ -57,6 +57,10 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:${versions.androidx.navigation}"
     implementation "androidx.navigation:navigation-ui-ktx:${versions.androidx.navigation}"
 
+    implementation "com.google.android.gms:play-services-maps:${versions.places}"
+    implementation "com.google.android.gms:play-services-location:${versions.places}"
+    implementation "com.google.android.gms:play-services-places:${versions.places}"
+
     // Dagger for Dependency Injection
     implementation "com.google.dagger:dagger:${versions.dagger}"
     kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
