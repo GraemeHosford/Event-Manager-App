@@ -1,5 +1,6 @@
 package graeme.hosford.eventmanager.presentation.event.detail.model
 
+import com.google.android.gms.maps.model.LatLng
 import java.util.*
 
 class EventDetailUiModel(
@@ -8,7 +9,8 @@ class EventDetailUiModel(
     val description: String,
     val startDate: Calendar,
     val endDate: Calendar,
-    val location: String,
+    val locationName: String,
+    val locationLatLng: LatLng,
     val invitees: List<String>,
     val attendees: List<String>
 )

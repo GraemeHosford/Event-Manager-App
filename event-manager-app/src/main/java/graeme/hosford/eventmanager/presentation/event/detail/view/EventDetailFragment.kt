@@ -74,6 +74,6 @@ class EventDetailFragment : BaseFragment(), EventDetailView {
             }
         }
 
-        safeBinding.eventDetailEventLocationTextView.text = model.location
+        safeBinding.eventDetailEventLocationTextView.text = model.locationName
     }
 }

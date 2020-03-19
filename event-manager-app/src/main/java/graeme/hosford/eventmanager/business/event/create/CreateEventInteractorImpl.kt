@@ -31,7 +31,9 @@ class CreateEventInteractorImpl @Inject constructor(
             hashMapOf(
                 Event.NAME_FIELD to name,
                 Event.DESCRIPTION_FIELD to description,
-                Event.LOCATION_FIELD to location.latLng!!,
+                Event.LOCATION_NAME_FIELD to location.name!!,
+                Event.LOCATION_LAT_FIELD to location.latLng!!.latitude,
+                Event.LOCATION_LONG_FIELD to location.latLng!!.longitude,
                 Event.INVITEES_LIST to attendees,
                 Event.ATTENDEES_LIST to emptyList<String>(),
                 Event.START_DATE to startDate,
