@@ -3,6 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="graeme.hosford.eventmanager">
 
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
     <application
         android:name=".EventManagerApplication"
         android:allowBackup="false"
@@ -67,6 +71,12 @@
         <meta-data
             android:name="firebase_analytics_collection_enabled"
             android:value="false" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/places_sdk_api_key" />
     </application>
 
 </manifest>

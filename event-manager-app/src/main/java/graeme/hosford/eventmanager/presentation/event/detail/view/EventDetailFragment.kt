@@ -6,6 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import graeme.hosford.eventmanager.EventManagerApplication
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.databinding.FragmentEventDetailBinding
@@ -17,13 +23,16 @@ import graeme.hosford.eventmanager.presentation.utils.DatePresentationUtils
 import graeme.hosford.eventmanager.presentation.utils.PeoplePresentationUtils
 import javax.inject.Inject
 
-class EventDetailFragment : BaseFragment(), EventDetailView {
+class EventDetailFragment : BaseFragment(), EventDetailView, OnMapReadyCallback {
 
     @Inject
     lateinit var presenter: EventDetailPresenter
 
     private var binding: FragmentEventDetailBinding? = null
     private val safeBinding get() = binding!!
+
+    private var mapMarkerTitle: String? = null
+    private var mapCoords: LatLng? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         EventManagerApplication.appComponent.inject(this)
@@ -50,6 +59,19 @@ class EventDetailFragment : BaseFragment(), EventDetailView {
         binding = null
     }
 
+    override fun onMapReady(map: GoogleMap?) {
+        map?.addMarker(
+            MarkerOptions()
+                .position(mapCoords!!)
+                .title(mapMarkerTitle!!)
+        )
+
+        map?.mapType = GoogleMap.MAP_TYPE_HYBRID
+        map?.isTrafficEnabled = true
+
+        map?.moveCamera(CameraUpdateFactory.newLatLng(mapCoords!!))
+    }
+
     override fun setData(model: EventDetailUiModel) {
         safeBinding.eventDetailEventNameTextView.text = model.name
         safeBinding.eventDetailEventDescTextView.text = model.description
@@ -74,6 +96,11 @@ class EventDetailFragment : BaseFragment(), EventDetailView {
             }
         }
 
-        safeBinding.eventDetailEventLocationTextView.text = model.locationName
+        mapMarkerTitle = model.locationName
+        mapCoords = model.locationLatLng
+
+        val locationMap =
+            childFragmentManager.findFragmentById(R.id.event_location_map) as SupportMapFragment
+        locationMap.getMapAsync(this)
     }
 }
