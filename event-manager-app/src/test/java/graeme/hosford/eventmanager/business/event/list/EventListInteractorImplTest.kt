@@ -67,7 +67,7 @@ class EventListInteractorImplTest {
         val cal = Calendar.getInstance()
 
         val entities = listOf(
-            Event("123", "Graeme", "Event 1", "Desc", cal, cal, "Loc")
+            Event("123", "Graeme", "Event 1", "Desc", cal, cal, "Loc", 0.0, 0.0)
         )
 
         eventListenerCapture.captured.onEventRetrieveSuccess(entities)

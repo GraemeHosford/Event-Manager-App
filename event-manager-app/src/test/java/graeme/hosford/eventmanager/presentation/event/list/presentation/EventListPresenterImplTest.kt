@@ -105,8 +105,14 @@ class EventListPresenterImplTest {
     @Test
     fun interactorCallback_onEventsRetrieved_callsProcessorToProcess() {
         val entities = listOf(
-            Event("122", "Graeme", "Event 1", "Desc 1", startDate, endDate, "Loc 1"),
-            Event("123", "Graeme", "Event 2", "Desc 2", startDate, endDate, "Loc 2")
+            Event(
+                "122", "Graeme", "Event 1", "Desc 1", startDate,
+                endDate, "Loc 1", 0.0, 0.0
+            ),
+            Event(
+                "123", "Graeme", "Event 2", "Desc 2", startDate,
+                endDate, "Loc 2", 0.0, 0.0
+            )
         )
 
         interactorCapture.captured.onEventsRetrieved(entities)
