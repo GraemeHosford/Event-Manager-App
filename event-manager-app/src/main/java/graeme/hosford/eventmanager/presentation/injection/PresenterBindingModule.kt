@@ -65,7 +65,6 @@ interface PresenterBindingModule {
     fun createEventPresenter(impl: CreateEventPresenterImpl): CreateEventPresenter
 
     @Binds
-    @Singleton
     fun attendeesPresenter(impl: AttendeesPresenterImpl): AttendeesPresenter
 
     @Binds
