@@ -37,7 +37,7 @@ class EventManagerNotificationService : BaseMessagingService(),
     override fun onMessageReceived(message: RemoteMessage) {
         super.onMessageReceived(message)
 
-        message.notification?.let {
+        message.data.let {
             val notificationManager =
                 getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
@@ -52,30 +52,28 @@ class EventManagerNotificationService : BaseMessagingService(),
             val notBuilder = NotificationCompat.Builder(
                 this,
                 CHANNEL_ID
-            ).setContentTitle(it.title)
-                .setContentText(it.body)
+            ).setContentTitle(it["title"])
+                .setContentText(it["body"])
                 .setContentIntent(pendingIntent)
                 .setSmallIcon(R.drawable.ic_calendar)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
-            with(message.data) {
-                if (get(INVITE_DATA_KEY) != null) {
-                    notBuilder.addAction(
-                        R.drawable.ic_calendar, "Accept", getActionPendingIntent(
-                            "Accept",
-                            0,
-                            this
-                        )
+            if (it[INVITE_DATA_KEY] != null) {
+                notBuilder.addAction(
+                    R.drawable.ic_calendar, "Accept", getActionPendingIntent(
+                        "Accept",
+                        0,
+                        it
                     )
+                )
 
-                    notBuilder.addAction(
-                        R.drawable.ic_calendar, "Decline", getActionPendingIntent(
-                            "Decline",
-                            1,
-                            this
-                        )
+                notBuilder.addAction(
+                    R.drawable.ic_calendar, "Decline", getActionPendingIntent(
+                        "Decline",
+                        1,
+                        it
                     )
-                }
+                )
             }
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
