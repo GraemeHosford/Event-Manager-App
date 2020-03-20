@@ -23,16 +23,13 @@ import graeme.hosford.eventmanager.presentation.utils.DatePresentationUtils
 import graeme.hosford.eventmanager.presentation.utils.PeoplePresentationUtils
 import javax.inject.Inject
 
-class EventDetailFragment : BaseFragment(), EventDetailView, OnMapReadyCallback {
+class EventDetailFragment : BaseFragment(), EventDetailView {
 
     @Inject
     lateinit var presenter: EventDetailPresenter
 
     private var binding: FragmentEventDetailBinding? = null
     private val safeBinding get() = binding!!
-
-    private var mapMarkerTitle: String? = null
-    private var mapCoords: LatLng? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         EventManagerApplication.appComponent.inject(this)
@@ -59,19 +56,6 @@ class EventDetailFragment : BaseFragment(), EventDetailView, OnMapReadyCallback 
         binding = null
     }
 
-    override fun onMapReady(map: GoogleMap?) {
-        map?.addMarker(
-            MarkerOptions()
-                .position(mapCoords!!)
-                .title(mapMarkerTitle!!)
-        )
-
-        map?.mapType = GoogleMap.MAP_TYPE_HYBRID
-        map?.isTrafficEnabled = true
-
-        map?.moveCamera(CameraUpdateFactory.newLatLng(mapCoords!!))
-    }
-
     override fun setData(model: EventDetailUiModel) {
         safeBinding.eventDetailEventNameTextView.text = model.name
         safeBinding.eventDetailEventDescTextView.text = model.description
@@ -96,11 +80,27 @@ class EventDetailFragment : BaseFragment(), EventDetailView, OnMapReadyCallback 
             }
         }
 
-        mapMarkerTitle = model.locationName
-        mapCoords = model.locationLatLng
-
         val locationMap =
             childFragmentManager.findFragmentById(R.id.event_location_map) as SupportMapFragment
-        locationMap.getMapAsync(this)
+        locationMap.getMapAsync(MapAsyncCallback(model.locationName, model.locationLatLng))
+    }
+
+    private inner class MapAsyncCallback(
+        val locationName: String,
+        val locationLatLng: LatLng
+    ) : OnMapReadyCallback {
+        override fun onMapReady(map: GoogleMap?) {
+            map?.addMarker(
+                MarkerOptions()
+                    .position(locationLatLng)
+                    .title(locationName)
+                    .draggable(false)
+            )?.showInfoWindow()
+
+            map?.mapType = GoogleMap.MAP_TYPE_HYBRID
+            map?.isTrafficEnabled = true
+
+            map?.moveCamera(CameraUpdateFactory.newLatLngZoom(locationLatLng, 17.0f))
+        }
     }
 }
