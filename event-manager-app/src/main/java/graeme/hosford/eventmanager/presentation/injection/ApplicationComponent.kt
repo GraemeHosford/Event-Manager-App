@@ -19,6 +19,7 @@ import graeme.hosford.eventmanager.presentation.event.list.common.view.EventList
 import graeme.hosford.eventmanager.presentation.event.list.invited.view.EventListInvitedFragment
 import graeme.hosford.eventmanager.presentation.login.view.LoginActivity
 import graeme.hosford.eventmanager.presentation.notification.service.EventManagerNotificationService
+import graeme.hosford.eventmanager.presentation.notification.service.EventResponseService
 import graeme.hosford.eventmanager.presentation.profile.create.view.CreateProfileActivity
 import graeme.hosford.eventmanager.presentation.profile.detail.view.ProfileDetailFragment
 import graeme.hosford.eventmanager.presentation.usereventdetail.create.view.AddUserEventDetailFragment
@@ -83,5 +84,7 @@ interface ApplicationComponent {
     fun inject(addUserEventDetailFragment: AddUserEventDetailFragment)
 
     fun inject(userEventDetailsListFragment: UserEventDetailsListFragment)
+
+    fun inject(eventResponseService: EventResponseService)
 
 }

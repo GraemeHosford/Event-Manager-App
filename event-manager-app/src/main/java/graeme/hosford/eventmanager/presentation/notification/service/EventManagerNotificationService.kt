@@ -4,6 +4,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -20,7 +21,8 @@ class EventManagerNotificationService : BaseMessagingService(),
     EventManagerNotificationView {
 
     companion object {
-        const val CHANNEL_ID = "Event Manager Channel"
+        private const val CHANNEL_ID = "Event Manager Channel"
+        private const val INVITE_DATA_KEY = "Invite"
     }
 
     @Inject
@@ -50,12 +52,31 @@ class EventManagerNotificationService : BaseMessagingService(),
             val notBuilder = NotificationCompat.Builder(
                 this,
                 CHANNEL_ID
-            )
-                .setContentTitle(it.title)
+            ).setContentTitle(it.title)
                 .setContentText(it.body)
                 .setContentIntent(pendingIntent)
                 .setSmallIcon(R.drawable.ic_calendar)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+            with(message.data) {
+                if (get(INVITE_DATA_KEY) != null) {
+                    notBuilder.addAction(
+                        R.drawable.ic_calendar, "Accept", getActionPendingIntent(
+                            "Accept",
+                            0,
+                            this
+                        )
+                    )
+
+                    notBuilder.addAction(
+                        R.drawable.ic_calendar, "Decline", getActionPendingIntent(
+                            "Decline",
+                            1,
+                            this
+                        )
+                    )
+                }
+            }
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 val channel = NotificationChannel(
@@ -71,6 +92,23 @@ class EventManagerNotificationService : BaseMessagingService(),
                 notify(1, notBuilder.build())
             }
         }
+    }
+
+    private fun getActionPendingIntent(
+        actionValue: String,
+        requestCode: Int,
+        data: MutableMap<String, String>
+    ): PendingIntent {
+        val intent = Intent(applicationContext, EventResponseService::class.java)
+        intent.putExtra("Action", actionValue)
+        intent.putExtra("EventID", data["eventId"])
+
+        return PendingIntent.getService(
+            applicationContext,
+            requestCode,
+            intent,
+            PendingIntent.FLAG_UPDATE_CURRENT
+        )
     }
 
     override fun onNewToken(token: String) {

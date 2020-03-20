@@ -62,6 +62,10 @@
             </intent-filter>
         </service>
 
+        <service
+            android:name=".presentation.notification.service.EventResponseService"
+            android:exported="false" />
+
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_calendar" />
