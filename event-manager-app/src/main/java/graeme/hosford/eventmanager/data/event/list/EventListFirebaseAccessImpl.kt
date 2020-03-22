@@ -50,8 +50,15 @@ class EventListFirebaseAccessImpl @Inject constructor(
                             .update(
                                 Event.INVITEES_LIST,
                                 FieldValue.arrayRemove(userId)
-                            )
+                            ).addOnSuccessListener {
+                                val x = 2
+                            }
+                    }.addOnFailureListener {
+                        it.printStackTrace()
+                        val x = 2
                     }
+            }.addOnFailureListener {
+                val d = 2
             }
     }
 

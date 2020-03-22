@@ -13,4 +13,6 @@ interface EventManagerNotificationInteractor :
 
     fun saveUserMessagingToken(token: String)
 
+    fun updateEventInviteStatus(eventId: String, attending: Boolean)
+
 }

@@ -21,6 +21,14 @@ class EventManagerNotificationPresenterImpl @Inject constructor(
         interactor.saveUserMessagingToken(token)
     }
 
+    override fun onAcceptClick(eventId: String) {
+        interactor.updateEventInviteStatus(eventId, true)
+    }
+
+    override fun onDeclineClick(eventId: String) {
+        interactor.updateEventInviteStatus(eventId, false)
+    }
+
     private inner class NotificationInteractorCallback :
         EventManagerNotificationInteractor.NotificationInteractorCallback {
         override fun onMessagingTokenSaved() {

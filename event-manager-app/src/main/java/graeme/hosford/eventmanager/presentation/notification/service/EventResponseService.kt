@@ -3,7 +3,7 @@ package graeme.hosford.eventmanager.presentation.notification.service
 import android.app.IntentService
 import android.content.Intent
 import graeme.hosford.eventmanager.EventManagerApplication
-import graeme.hosford.eventmanager.presentation.event.list.invited.EventListInvitedPresenter
+import graeme.hosford.eventmanager.presentation.notification.EventManagerNotificationPresenter
 import javax.inject.Inject
 
 class EventResponseService : IntentService("EventResponseService") {
@@ -11,7 +11,7 @@ class EventResponseService : IntentService("EventResponseService") {
     /* This should obviously be its own presenter to handle the event responses but very behind on
     * college work right now so need to just reuse this for the moment */
     @Inject
-    lateinit var presenter: EventListInvitedPresenter
+    lateinit var presenter: EventManagerNotificationPresenter
 
     override fun onCreate() {
         EventManagerApplication.appComponent.inject(this)
@@ -24,9 +24,9 @@ class EventResponseService : IntentService("EventResponseService") {
         }
 
         if (intent.getStringExtra("Action") == "Accept") {
-            presenter.onGoingResponseClick(intent.getStringExtra("EventID"))
+            presenter.onAcceptClick(intent.getStringExtra("EventID"))
         } else {
-            presenter.onNotGoingResponseClick(intent.getStringExtra("EventID"))
+            presenter.onDeclineClick(intent.getStringExtra("EventID"))
         }
     }
 }
