@@ -58,6 +58,8 @@ class CreateEventFragment : BaseFragment(), CreateEventView {
             )
         )
 
+        placeSelectionFragment.setHint("Search Location")
+
         placeSelectionFragment.setOnPlaceSelectedListener(
             object : PlaceSelectionListener {
                 override fun onPlaceSelected(place: Place) {
