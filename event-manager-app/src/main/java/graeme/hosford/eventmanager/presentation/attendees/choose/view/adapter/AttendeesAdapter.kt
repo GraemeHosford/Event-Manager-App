@@ -34,6 +34,7 @@ class AttendeesViewHolder(itemView: View, private val clickListener: AttendeeCli
         val binding = AttendeeItemLayoutBinding.bind(itemView)
 
         binding.attendeeItemLayoutIncludedName.memberNameTextView.text = model.displayName
+        binding.attendeeItemLayoutIncludedName.memberJobTextView.text = model.jobTitle
 
         val imageRef = FirebaseStorage.getInstance().getReference(model.imageUrl)
 

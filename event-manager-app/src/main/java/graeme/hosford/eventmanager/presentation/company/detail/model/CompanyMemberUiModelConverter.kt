@@ -11,7 +11,8 @@ class CompanyMemberUiModelConverter @Inject constructor() :
         return CompanyMemberUiModel(
             entity.id,
             entity.firstName,
-            entity.imageUrlPath
+            entity.imageUrlPath,
+            entity.jobTitle
         )
     }
 }

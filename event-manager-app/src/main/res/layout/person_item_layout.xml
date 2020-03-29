@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/person_item_layout_image"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
         android:contentDescription="@string/person_profile_picture"
         android:padding="8dp"
         android:src="@drawable/ic_person"
@@ -22,12 +22,23 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:maxLines="1"
-        android:padding="8dp"
+        android:paddingTop="8dp"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/person_item_layout_image"
         app:layout_constraintStart_toEndOf="@id/person_item_layout_image"
-        app:layout_constraintTop_toTopOf="@id/person_item_layout_image"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="Graeme Hosford" />
+
+    <TextView
+        android:id="@+id/member_job_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingBottom="8dp"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@id/person_item_layout_image"
+        app:layout_constraintTop_toBottomOf="@id/member_name_text_view"
+        tools:text="Android Programmer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

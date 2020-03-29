@@ -35,6 +35,7 @@ class CompanyDetailViewHolder(
         val binding = PersonItemLayoutBinding.bind(itemView)
 
         binding.memberNameTextView.text = model.personName
+        binding.memberJobTextView.text = model.jobTitle
 
         val storageRef = FirebaseStorage.getInstance().getReference(model.personImageUrl)
 

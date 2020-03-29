@@ -10,7 +10,8 @@ class AttendeesUiModelConverter @Inject constructor() : UiModelConverter<Person,
         return AttendeesUiModel(
             entity.id,
             "${entity.firstName} ${entity.lastName}",
-            entity.imageUrlPath
+            entity.imageUrlPath,
+            entity.jobTitle
         )
     }
 }
