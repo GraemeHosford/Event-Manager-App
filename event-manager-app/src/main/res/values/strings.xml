@@ -82,4 +82,9 @@
     <string name="enter_event_details_for_this_user">Enter Event Details for this User</string>
     <string name="enter_a_heading_for_these_details">Enter a heading for these details</string>
     <string name="view_event_details">View Event Details</string>
+    <string name="rate_your_experience_with_event_creation">Rate your experience with event creation</string>
+    <string name="rate_your_experience_with_attendee_management">Rate your experience with attendee management</string>
+    <string name="rate_your_experience_with_managing_a_created_event">Rate your experience with managing a created event</string>
+    <string name="submit_feedback">Submit Feedback</string>
+    <string name="enter_any_other_comments_you_have">Enter any other comments you have</string>
 </resources>

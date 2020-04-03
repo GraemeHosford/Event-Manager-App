@@ -12,6 +12,8 @@ import graeme.hosford.eventmanager.data.event.detail.EventDetailFirebaseAccess
 import graeme.hosford.eventmanager.data.event.detail.EventDetailFirebaseAccessImpl
 import graeme.hosford.eventmanager.data.event.list.EventListFirebaseAccess
 import graeme.hosford.eventmanager.data.event.list.EventListFirebaseAccessImpl
+import graeme.hosford.eventmanager.data.feedback.FeedbackFirebaseAccess
+import graeme.hosford.eventmanager.data.feedback.FeedbackFirebaseAccessImpl
 import graeme.hosford.eventmanager.data.login.CurrentUserNetworkAccess
 import graeme.hosford.eventmanager.data.login.CurrentUserNetworkAccessImpl
 import graeme.hosford.eventmanager.data.usereventdetail.UserEventDetailFirebaseAccess
@@ -51,5 +53,9 @@ internal interface DataBindingModule {
     @Binds
     @Singleton
     fun userEventDetailsFirebaseAccess(impl: UserEventDetailFirebaseAccessImpl): UserEventDetailFirebaseAccess
+
+    @Binds
+    @Singleton
+    fun feedbackFirebaseAccess(impl: FeedbackFirebaseAccessImpl): FeedbackFirebaseAccess
 
 }

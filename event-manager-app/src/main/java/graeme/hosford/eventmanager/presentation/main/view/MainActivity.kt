@@ -36,7 +36,8 @@ class MainActivity : BaseActivity(),
             setOf(
                 R.id.nav_my_events,
                 R.id.nav_my_company,
-                R.id.nav_profile_detail
+                R.id.nav_profile_detail,
+                R.id.nav_feedback
             ), drawerLayout
         )
 
