@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import graeme.hosford.eventmanager.EventManagerApplication
 import graeme.hosford.eventmanager.databinding.FragmentFeedbackBinding
 import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseFragment
@@ -43,6 +44,8 @@ class FeedbackFragment : BaseFragment(), FeedbackView {
                 binding!!.attendeeManagementRatingBar.rating,
                 binding!!.otherCommentsEditText.text.toString()
             )
+
+            findNavController().popBackStack()
         }
     }
 }
