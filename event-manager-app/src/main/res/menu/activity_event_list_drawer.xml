@@ -15,7 +15,7 @@
             android:title="@string/nav_menu_my_profile" />
         <item
             android:id="@+id/nav_feedback"
-            android:title="Give Feedback" />
+            android:title="@string/give_feedback" />
     </group>
 
 </menu>
