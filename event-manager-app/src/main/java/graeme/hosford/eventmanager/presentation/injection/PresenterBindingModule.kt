@@ -20,6 +20,8 @@ import graeme.hosford.eventmanager.presentation.event.list.attending.EventListAt
 import graeme.hosford.eventmanager.presentation.event.list.attending.presentation.EventListAttendingPresenterImpl
 import graeme.hosford.eventmanager.presentation.event.list.invited.EventListInvitedPresenter
 import graeme.hosford.eventmanager.presentation.event.list.invited.presentation.EventListInvitedPresenterImpl
+import graeme.hosford.eventmanager.presentation.event.list.owned.EventListOwnedPresenter
+import graeme.hosford.eventmanager.presentation.event.list.owned.presentation.EventListOwnedPresenterImpl
 import graeme.hosford.eventmanager.presentation.feedback.FeedbackPresenter
 import graeme.hosford.eventmanager.presentation.feedback.presentation.FeedbackPresenterImpl
 import graeme.hosford.eventmanager.presentation.login.LoginPresenter
@@ -98,5 +100,8 @@ interface PresenterBindingModule {
 
     @Binds
     fun feedbackPresenter(impl: FeedbackPresenterImpl): FeedbackPresenter
+
+    @Binds
+    fun eventListOwnedPresenter(impl: EventListOwnedPresenterImpl): EventListOwnedPresenter
 
 }

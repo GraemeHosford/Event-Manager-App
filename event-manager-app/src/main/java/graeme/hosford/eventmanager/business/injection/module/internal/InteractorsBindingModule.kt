@@ -20,6 +20,8 @@ import graeme.hosford.eventmanager.business.event.list.attending.EventListAttend
 import graeme.hosford.eventmanager.business.event.list.attending.EventListAttendingInteractorImpl
 import graeme.hosford.eventmanager.business.event.list.invited.EventListInvitedInteractor
 import graeme.hosford.eventmanager.business.event.list.invited.EventListInvitedInteractorImpl
+import graeme.hosford.eventmanager.business.event.list.owned.EventListOwnedInteractor
+import graeme.hosford.eventmanager.business.event.list.owned.EventListOwnedInteractorImpl
 import graeme.hosford.eventmanager.business.feedback.FeedbackInteractor
 import graeme.hosford.eventmanager.business.feedback.FeedbackInteractorImpl
 import graeme.hosford.eventmanager.business.login.LoginInteractor
@@ -110,6 +112,10 @@ internal interface InteractorsBindingModule {
     @Binds
     @Singleton
     fun feedbackInteractor(impl: FeedbackInteractorImpl): FeedbackInteractor
+
+    @Binds
+    @Singleton
+    fun eventListOwnedInteractor(impl: EventListOwnedInteractorImpl): EventListOwnedInteractor
 
     //endregion
 

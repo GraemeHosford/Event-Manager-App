@@ -36,7 +36,8 @@ class EventListFragment :
                 this
             )
 
-        val tabNames = arrayOf(R.string.attending_text, R.string.invited_text)
+        val tabNames =
+            arrayOf(R.string.attending_text, R.string.invited_text, R.string.my_events_text)
 
         TabLayoutMediator(tabLayout, viewPager) { tab, pos ->
             tab.text = getString(tabNames[pos])

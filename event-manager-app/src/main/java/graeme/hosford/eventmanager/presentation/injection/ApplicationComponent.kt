@@ -17,6 +17,7 @@ import graeme.hosford.eventmanager.presentation.event.detail.view.EventDetailFra
 import graeme.hosford.eventmanager.presentation.event.list.attending.view.EventListAttendingFragment
 import graeme.hosford.eventmanager.presentation.event.list.common.view.EventListFragment
 import graeme.hosford.eventmanager.presentation.event.list.invited.view.EventListInvitedFragment
+import graeme.hosford.eventmanager.presentation.event.list.owned.view.EventListOwnedFragment
 import graeme.hosford.eventmanager.presentation.feedback.view.FeedbackFragment
 import graeme.hosford.eventmanager.presentation.login.view.LoginActivity
 import graeme.hosford.eventmanager.presentation.notification.service.EventManagerNotificationService
@@ -89,5 +90,7 @@ interface ApplicationComponent {
     fun inject(eventResponseService: EventResponseService)
 
     fun inject(feedbackFragment: FeedbackFragment)
+
+    fun inject(eventListOwnedFragment: EventListOwnedFragment)
 
 }

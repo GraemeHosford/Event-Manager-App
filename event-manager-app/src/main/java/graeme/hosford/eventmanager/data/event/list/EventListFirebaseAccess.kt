@@ -25,4 +25,6 @@ interface EventListFirebaseAccess {
 
     fun getInvitedEvents(userId: String)
 
+    fun getOwnedEvents(userId: String)
+
 }

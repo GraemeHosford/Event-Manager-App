@@ -50,15 +50,8 @@ class EventListFirebaseAccessImpl @Inject constructor(
                             .update(
                                 Event.INVITEES_LIST,
                                 FieldValue.arrayRemove(userId)
-                            ).addOnSuccessListener {
-                                val x = 2
-                            }
-                    }.addOnFailureListener {
-                        it.printStackTrace()
-                        val x = 2
+                            )
                     }
-            }.addOnFailureListener {
-                val d = 2
             }
     }
 
@@ -127,6 +120,33 @@ class EventListFirebaseAccessImpl @Inject constructor(
                     .document(it.getString("companyId")!!)
                     .collection(EventListFirebaseAccess.EVENTS_SUBCOLLECTION)
                     .whereArrayContains(Event.INVITEES_LIST, userId)
+                    .get()
+                    .addOnSuccessListener { d ->
+                        val entities = ArrayList<Event>()
+                        d.documents.forEach { doc ->
+                            entities.add(eventConverter.convert(doc))
+                        }
+                        listener?.onEventRetrieveSuccess(entities)
+                    }.addOnFailureListener {
+                        listener?.onEventRetrieveFailure()
+                    }
+            }.addOnFailureListener {
+                listener?.onEventRetrieveFailure()
+            }
+    }
+
+    override fun getOwnedEvents(userId: String) {
+        FirebaseFirestore.getInstance()
+            .collection(USERS_COLLECTION)
+            .document(userId)
+            .get()
+            .addOnSuccessListener {
+                /* This nesting is not great but will work for now because of time constraints */
+                FirebaseFirestore.getInstance()
+                    .collection(CompanyFirebaseAccess.COMPANIES_COLLECTION)
+                    .document(it.getString("companyId")!!)
+                    .collection(EventListFirebaseAccess.EVENTS_SUBCOLLECTION)
+                    .whereEqualTo(Event.OWNER, userId)
                     .get()
                     .addOnSuccessListener { d ->
                         val entities = ArrayList<Event>()
