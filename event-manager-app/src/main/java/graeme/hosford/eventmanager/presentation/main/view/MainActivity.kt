@@ -1,6 +1,7 @@
 package graeme.hosford.eventmanager.presentation.main.view
 
 import android.os.Bundle
+import android.view.Menu
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
@@ -50,6 +51,10 @@ class MainActivity : BaseActivity(),
         if (!Places.isInitialized()) {
             Places.initialize(applicationContext, getString(R.string.places_sdk_api_key))
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        return false
     }
 
     override fun onSupportNavigateUp(): Boolean {

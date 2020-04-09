@@ -27,5 +27,6 @@ class EventCalendarFragment : BaseFragment() {
 
         childFragmentManager.beginTransaction()
             .replace(R.id.event_list_fragment_container, EventListAttendingFragment())
+            .commit()
     }
 }

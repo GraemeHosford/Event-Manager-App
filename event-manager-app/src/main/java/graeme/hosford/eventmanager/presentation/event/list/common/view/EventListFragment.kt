@@ -1,9 +1,8 @@
 package graeme.hosford.eventmanager.presentation.event.list.common.view
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.databinding.FragmentEventListLayoutBinding
@@ -16,6 +15,11 @@ class EventListFragment :
     private var binding: FragmentEventListLayoutBinding? = null
     private val safeBinding get() = binding!!
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -23,6 +27,21 @@ class EventListFragment :
     ): View? {
         binding = FragmentEventListLayoutBinding.inflate(inflater, container, false)
         return safeBinding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.event_list_options_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.calendar_option -> {
+                findNavController().navigate(R.id.nav_calendar)
+                true
+            }
+            else -> false
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

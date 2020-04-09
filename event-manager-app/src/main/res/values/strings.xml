@@ -89,4 +89,5 @@
     <string name="submit_feedback">Submit Feedback</string>
     <string name="enter_any_other_comments_you_have">Enter any other comments you have</string>
     <string name="give_feedback">Give Feedback</string>
+    <string name="calendar">Calendar</string>
 </resources>
