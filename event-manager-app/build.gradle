@@ -57,6 +57,8 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:${versions.androidx.navigation}"
     implementation "androidx.navigation:navigation-ui-ktx:${versions.androidx.navigation}"
 
+    implementation "com.github.prolificinteractive:material-calendarview:${versions.material_calendar}"
+
     implementation "com.google.android.gms:play-services-maps:${versions.location}"
     implementation "com.google.android.gms:play-services-location:${versions.location}"
     implementation "com.google.android.gms:play-services-places:${versions.location}"

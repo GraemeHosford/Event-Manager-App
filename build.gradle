@@ -20,6 +20,7 @@ allprojects {
         mavenCentral()
         google()
         jcenter()
+        maven { url 'https://jitpack.io' }
     }
 
     project.ext {
@@ -42,6 +43,7 @@ ext {
             glide                 : '4.11.0',
             jsrAnnotations        : '3.0.2',
             location              : '17.0.0',
+            material_calendar     : '2.0.1',
             moshi                 : '1.8.0',
             okhttp                : '3.11.0',
             places                : '2.2.0',
