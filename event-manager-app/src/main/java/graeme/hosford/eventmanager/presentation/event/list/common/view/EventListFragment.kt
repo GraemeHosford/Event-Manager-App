@@ -2,6 +2,9 @@ package graeme.hosford.eventmanager.presentation.event.list.common.view
 
 import android.os.Bundle
 import android.view.*
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
+import androidx.core.view.get
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
 import graeme.hosford.eventmanager.R
@@ -32,6 +35,8 @@ class EventListFragment :
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.event_list_options_menu, menu)
+        DrawableCompat.wrap(menu[0].icon).mutate()
+            .setTint(ContextCompat.getColor(requireContext(), android.R.color.white))
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
