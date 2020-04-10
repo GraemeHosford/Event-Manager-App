@@ -175,7 +175,6 @@ class EventListFirebaseAccessImpl @Inject constructor(
                     .document(it.getString("companyId")!!)
                     .collection(EventListFirebaseAccess.EVENTS_SUBCOLLECTION)
                     .whereGreaterThanOrEqualTo(Event.START_DATE, dayStart)
-                    .whereLessThan(Event.END_DATE, dayStart + TimeUnit.DAYS.toMillis(1))
                     .get()
                     .addOnSuccessListener { d ->
                         val entities = ArrayList<Event>()

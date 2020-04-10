@@ -32,7 +32,7 @@ class EventCalendarFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         childFragmentManager.beginTransaction()
-            .replace(R.id.event_list_fragment_container, EventListAttendingFragment())
+            .replace(R.id.event_list_fragment_container, EventDayListFragment())
             .commit()
 
         binding?.calendarview?.setOnDateChangeListener { _, year, month, dayOfMonth ->

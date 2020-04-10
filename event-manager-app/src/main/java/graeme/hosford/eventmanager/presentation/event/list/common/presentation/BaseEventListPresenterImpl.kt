@@ -37,10 +37,22 @@ abstract class BaseEventListPresenterImpl constructor(
         view?.startCreateNewEvent()
     }
 
+    protected open fun eventFilterOptions(model: EventListItemUiModel): Boolean {
+        return true
+    }
+
     private inner class EventListProcessorCallback :
         UiModelListProcessor.ProcessingCompleteCallback<EventListItemUiModel> {
         override fun onProcessingComplete(models: List<EventListItemUiModel>) {
-            view?.showData(models)
+            val items = arrayListOf<EventListItemUiModel>()
+
+            models.forEach {
+                if (eventFilterOptions(it)) {
+                    items.add(it)
+                }
+            }
+
+            view?.showData(items)
         }
 
         override fun onProcessingFailure() {
