@@ -12,6 +12,7 @@ import graeme.hosford.eventmanager.presentation.company.create.view.CreateCompan
 import graeme.hosford.eventmanager.presentation.company.create_join_screen.view.CreateJoinCompanyActivity
 import graeme.hosford.eventmanager.presentation.company.detail.view.CompanyDetailFragment
 import graeme.hosford.eventmanager.presentation.company.join.view.JoinCompanyActivity
+import graeme.hosford.eventmanager.presentation.event.calendar.view.EventDayListFragment
 import graeme.hosford.eventmanager.presentation.event.create.view.CreateEventFragment
 import graeme.hosford.eventmanager.presentation.event.detail.view.EventDetailFragment
 import graeme.hosford.eventmanager.presentation.event.list.attending.view.EventListAttendingFragment
@@ -92,5 +93,7 @@ interface ApplicationComponent {
     fun inject(feedbackFragment: FeedbackFragment)
 
     fun inject(eventListOwnedFragment: EventListOwnedFragment)
+
+    fun inject(eventDayListFragment: EventDayListFragment)
 
 }

@@ -59,6 +59,6 @@
 
     <fragment
         android:id="@+id/nav_calendar"
-        android:name="graeme.hosford.eventmanager.presentation.event.calendar.EventCalendarFragment"
+        android:name="graeme.hosford.eventmanager.presentation.event.calendar.view.EventCalendarFragment"
         android:label="Event Calendar" />
 </navigation>

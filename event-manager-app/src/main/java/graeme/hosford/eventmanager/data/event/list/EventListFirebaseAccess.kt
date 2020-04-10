@@ -27,4 +27,6 @@ interface EventListFirebaseAccess {
 
     fun getOwnedEvents(userId: String)
 
+    fun getDayEvents(userId: String, dayStart: Long)
+
 }

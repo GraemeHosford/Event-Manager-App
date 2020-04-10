@@ -1,4 +1,4 @@
-package graeme.hosford.eventmanager.presentation.event.calendar
+package graeme.hosford.eventmanager.presentation.event.calendar.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +10,12 @@ import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseFragmen
 import graeme.hosford.eventmanager.presentation.event.list.attending.view.EventListAttendingFragment
 
 class EventCalendarFragment : BaseFragment() {
+
+    interface EventCalendarListInteractionBridge {
+        fun onDateSelected(year: Int, month: Int, dayOfMonth: Int)
+    }
+
+    lateinit var calendarBridge: EventCalendarListInteractionBridge
 
     private var binding: FragmentEventCalendarLayoutBinding? = null
 
@@ -28,5 +34,9 @@ class EventCalendarFragment : BaseFragment() {
         childFragmentManager.beginTransaction()
             .replace(R.id.event_list_fragment_container, EventListAttendingFragment())
             .commit()
+
+        binding?.calendarview?.setOnDateChangeListener { _, year, month, dayOfMonth ->
+            calendarBridge.onDateSelected(year, month, dayOfMonth)
+        }
     }
 }

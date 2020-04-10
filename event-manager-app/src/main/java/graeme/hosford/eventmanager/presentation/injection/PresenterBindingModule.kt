@@ -12,6 +12,8 @@ import graeme.hosford.eventmanager.presentation.company.detail.CompanyDetailPres
 import graeme.hosford.eventmanager.presentation.company.detail.presentation.CompanyDetailPresenterImpl
 import graeme.hosford.eventmanager.presentation.company.join.JoinCompanyPresenter
 import graeme.hosford.eventmanager.presentation.company.join.presentation.JoinCompanyPresenterImpl
+import graeme.hosford.eventmanager.presentation.event.calendar.EventDayListPresenter
+import graeme.hosford.eventmanager.presentation.event.calendar.presentation.EventDayListPresenterImpl
 import graeme.hosford.eventmanager.presentation.event.create.CreateEventPresenter
 import graeme.hosford.eventmanager.presentation.event.create.presentation.CreateEventPresenterImpl
 import graeme.hosford.eventmanager.presentation.event.detail.EventDetailPresenter
@@ -103,5 +105,8 @@ interface PresenterBindingModule {
 
     @Binds
     fun eventListOwnedPresenter(impl: EventListOwnedPresenterImpl): EventListOwnedPresenter
+
+    @Binds
+    fun eventDayListPresenter(impl: EventDayListPresenterImpl): EventDayListPresenter
 
 }

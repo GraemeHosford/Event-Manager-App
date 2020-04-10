@@ -14,6 +14,8 @@ import graeme.hosford.eventmanager.business.company.join.JoinCompanyInteractor
 import graeme.hosford.eventmanager.business.company.join.JoinCompanyInteractorImpl
 import graeme.hosford.eventmanager.business.event.create.CreateEventInteractor
 import graeme.hosford.eventmanager.business.event.create.CreateEventInteractorImpl
+import graeme.hosford.eventmanager.business.event.day.EventDayListInteractor
+import graeme.hosford.eventmanager.business.event.day.EventDayListInteractorImpl
 import graeme.hosford.eventmanager.business.event.detail.EventDetailInteractor
 import graeme.hosford.eventmanager.business.event.detail.EventDetailInteractorImpl
 import graeme.hosford.eventmanager.business.event.list.attending.EventListAttendingInteractor
@@ -116,6 +118,10 @@ internal interface InteractorsBindingModule {
     @Binds
     @Singleton
     fun eventListOwnedInteractor(impl: EventListOwnedInteractorImpl): EventListOwnedInteractor
+
+    @Binds
+    @Singleton
+    fun eventListDayInteractor(impl: EventDayListInteractorImpl): EventDayListInteractor
 
     //endregion
 

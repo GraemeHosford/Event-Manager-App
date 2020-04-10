@@ -6,6 +6,7 @@ import graeme.hosford.eventmanager.data.company.CompanyFirebaseAccess
 import graeme.hosford.eventmanager.data.event.list.converter.EventEntityConverter
 import graeme.hosford.eventmanager.data.login.USERS_COLLECTION
 import graeme.hosford.eventmanager.entity.event.Event
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class EventListFirebaseAccessImpl @Inject constructor(
@@ -147,6 +148,34 @@ class EventListFirebaseAccessImpl @Inject constructor(
                     .document(it.getString("companyId")!!)
                     .collection(EventListFirebaseAccess.EVENTS_SUBCOLLECTION)
                     .whereEqualTo(Event.OWNER, userId)
+                    .get()
+                    .addOnSuccessListener { d ->
+                        val entities = ArrayList<Event>()
+                        d.documents.forEach { doc ->
+                            entities.add(eventConverter.convert(doc))
+                        }
+                        listener?.onEventRetrieveSuccess(entities)
+                    }.addOnFailureListener {
+                        listener?.onEventRetrieveFailure()
+                    }
+            }.addOnFailureListener {
+                listener?.onEventRetrieveFailure()
+            }
+    }
+
+    override fun getDayEvents(userId: String, dayStart: Long) {
+        FirebaseFirestore.getInstance()
+            .collection(USERS_COLLECTION)
+            .document(userId)
+            .get()
+            .addOnSuccessListener {
+                /* This nesting is not great but will work for now because of time constraints */
+                FirebaseFirestore.getInstance()
+                    .collection(CompanyFirebaseAccess.COMPANIES_COLLECTION)
+                    .document(it.getString("companyId")!!)
+                    .collection(EventListFirebaseAccess.EVENTS_SUBCOLLECTION)
+                    .whereGreaterThanOrEqualTo(Event.START_DATE, dayStart)
+                    .whereLessThan(Event.END_DATE, dayStart + TimeUnit.DAYS.toMillis(1))
                     .get()
                     .addOnSuccessListener { d ->
                         val entities = ArrayList<Event>()
