@@ -71,6 +71,4 @@ class EventDayListFragment :
     override fun startCreateNewEvent() {
         findNavController().navigate(R.id.nav_create_event)
     }
-
-    override fun showFab(): Boolean = true
 }
