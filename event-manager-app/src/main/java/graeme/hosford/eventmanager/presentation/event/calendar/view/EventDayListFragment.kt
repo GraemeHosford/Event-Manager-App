@@ -23,6 +23,10 @@ class EventDayListFragment :
     @Inject
     lateinit var presenter: EventDayListPresenter
 
+    private var year: Int = 0
+    private var month: Int = 0
+    private var dayOfMonth: Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         EventManagerApplication.appComponent.inject(this)
         super.onCreate(savedInstanceState)
@@ -40,6 +44,9 @@ class EventDayListFragment :
     }
 
     override fun onDateSelected(year: Int, month: Int, dayOfMonth: Int) {
+        this.year = year
+        this.month = month
+        this.dayOfMonth = dayOfMonth
         presenter.onDateSelected(year, month, dayOfMonth)
     }
 
@@ -59,7 +66,7 @@ class EventDayListFragment :
     }
 
     override fun doOnSwipeRefresh() {
-
+        presenter.onDateSelected(year, month, dayOfMonth)
     }
 
     override fun showEventDetail(eventId: String) {
