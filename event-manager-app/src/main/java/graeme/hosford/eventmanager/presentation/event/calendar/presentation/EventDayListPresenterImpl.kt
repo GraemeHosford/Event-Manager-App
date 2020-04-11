@@ -30,7 +30,7 @@ class EventDayListPresenterImpl @Inject constructor(
         val start = model.startDate.timeInMillis
         val end = model.endDate.timeInMillis
 
-        if (start >= startTime && end < start + TimeUnit.DAYS.toMillis(1)) {
+        if ((start >= startTime) && (end < (startTime + TimeUnit.DAYS.toMillis(1)))) {
             return true
         }
 

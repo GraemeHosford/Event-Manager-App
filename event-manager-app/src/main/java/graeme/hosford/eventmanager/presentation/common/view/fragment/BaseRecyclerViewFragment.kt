@@ -101,7 +101,10 @@ abstract class BaseRecyclerViewFragment<
         if (items.isNotEmpty()) {
             recyclerViewAdapter.setItems(items)
             recyclerview.visibility = View.VISIBLE
+            errorMessage.visibility = View.GONE
+            emptyItems.visibility = View.GONE
         } else {
+            recyclerview.visibility = View.INVISIBLE
             emptyItems.visibility = View.VISIBLE
         }
 

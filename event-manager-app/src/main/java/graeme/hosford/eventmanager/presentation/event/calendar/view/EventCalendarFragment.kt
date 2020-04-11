@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.databinding.FragmentEventCalendarLayoutBinding
 import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseFragment
-import graeme.hosford.eventmanager.presentation.event.list.attending.view.EventListAttendingFragment
 
 class EventCalendarFragment : BaseFragment() {
 

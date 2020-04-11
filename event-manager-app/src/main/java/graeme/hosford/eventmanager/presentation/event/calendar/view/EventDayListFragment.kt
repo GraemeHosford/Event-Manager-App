@@ -1,7 +1,9 @@
 package graeme.hosford.eventmanager.presentation.event.calendar.view
 
+import android.content.Context
 import android.os.Bundle
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import graeme.hosford.eventmanager.EventManagerApplication
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseRecyclerViewFragment
@@ -40,6 +42,11 @@ class EventDayListFragment :
     override fun onDateSelected(year: Int, month: Int, dayOfMonth: Int) {
         presenter.onDateSelected(year, month, dayOfMonth)
     }
+
+    override fun addRecyclerViewDecorations(
+        recyclerViewContext: Context,
+        layoutOrientation: Int
+    ): List<RecyclerView.ItemDecoration> = emptyList()
 
     override fun recyclerViewAdapter(): EventDayListAdapter {
         return EventDayListAdapter(
