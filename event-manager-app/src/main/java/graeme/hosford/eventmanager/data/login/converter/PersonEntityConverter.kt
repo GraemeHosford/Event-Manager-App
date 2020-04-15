@@ -13,7 +13,7 @@ class PersonEntityConverter @Inject constructor() : EntityConverter<Person> {
                 get(Person.ID) as String,
                 get(Person.FIRST_NAME) as String? ?: "",
                 get(Person.LAST_NAME) as String? ?: "",
-                get(Person.COMPANY_ID) as String,
+                get(Person.COMPANY_ID) as String? ?: "",
                 get(Person.JOB_TITLE) as String? ?: "",
                 get(Person.DESCRIPTION) as String? ?: "",
                 get(Person.IMAGE_URL_PATH) as String? ?: ""

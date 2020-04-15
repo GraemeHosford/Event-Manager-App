@@ -8,14 +8,14 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:442185452019:android:baebfaec5ad99f783d6a86",
+        "mobilesdk_app_id": "1:442185452019:android:f0b3221d2e7ddcdb3d6a86",
         "android_client_info": {
           "package_name": "graeme.hosford.eventmanager"
         }
       },
       "oauth_client": [
         {
-          "client_id": "442185452019-r6rgm1mddoildp4ib1shejl1ps1rfj1k.apps.googleusercontent.com",
+          "client_id": "442185452019-o6mei15eeqkcknqp3qilk15qbadpjdsh.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "graeme.hosford.eventmanager",
@@ -29,7 +29,7 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCC0kAMTuMYQkXTeMQqtxWBB03QukQonzk"
+          "current_key": "AIzaSyCdomrCkMWt3MqAbX2ST1EmR0IYCtrmry0"
         }
       ],
       "services": {
