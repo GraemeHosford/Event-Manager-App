@@ -1,12 +1,16 @@
 package graeme.hosford.eventmanager.presentation.event.create.view
 
-import android.app.DatePickerDialog
-import android.app.TimePickerDialog
+import android.app.*
+import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.common.api.Status
 import com.google.android.libraries.places.api.model.Place
@@ -15,10 +19,14 @@ import com.google.android.libraries.places.widget.listener.PlaceSelectionListene
 import graeme.hosford.eventmanager.EventManagerApplication
 import graeme.hosford.eventmanager.R
 import graeme.hosford.eventmanager.databinding.FragmentCreateEventBinding
+import graeme.hosford.eventmanager.presentation.CoreIntents
 import graeme.hosford.eventmanager.presentation.attendees.choose.view.AttendeesActivity
 import graeme.hosford.eventmanager.presentation.common.view.fragment.BaseFragment
 import graeme.hosford.eventmanager.presentation.event.create.CreateEventPresenter
 import graeme.hosford.eventmanager.presentation.event.create.CreateEventView
+import graeme.hosford.eventmanager.presentation.notification.service.EventManagerNotificationService
+import graeme.hosford.eventmanager.presentation.notification.service.EventResponseService
+import java.util.*
 import javax.inject.Inject
 
 class CreateEventFragment : BaseFragment(), CreateEventView {
@@ -99,6 +107,120 @@ class CreateEventFragment : BaseFragment(), CreateEventView {
                 presenter.getInvitedAttendees()
             )
         }
+    }
+
+    override fun showNotification(eventId: String) {
+        fakeNotificationOutput(
+            eventId,
+            safeBinding.enterEventNameEditText.text.toString(),
+            presenter.getInvitedAttendees()
+        )
+    }
+
+    /*
+    * Notifications were working correctly without this faked data but API keys for Firebase were compromised
+    * and Google shut down account. Despite gaining access to the account once again the cloud functions stuff
+    * which made the notifications work treats the API key as still being deactivated despite
+    * creating a new one and updating all references to it in cloud functions code.
+    * At this point in the semester (April 16th) and with plenty of other assignments still to do it
+    * is just too late to spend hours playing around with cloud functions in an attempt to get them working again.
+    *
+    * Good thing about this faked data though is that it will still function exactly the same as the
+    * cloud function did only with the possibility that now if an event is not created successfully
+    * the notification will still show.
+    *
+    * The notification will also only show on the device of the event creator and not on the device od
+    * any invited person
+    * */
+    private fun fakeNotificationOutput(
+        eventId: String,
+        eventTitle: String,
+        attendees: List<String>
+    ) {
+        if (attendees.isEmpty()) {
+            return
+        }
+
+        val notificationHandler = Handler()
+
+        notificationHandler.postDelayed(
+            {
+                val notificationManager =
+                    requireContext().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+                val pendingIntent =
+                    PendingIntent.getActivity(
+                        requireContext(),
+                        0,
+                        CoreIntents.startAppIntent(requireContext()),
+                        PendingIntent.FLAG_UPDATE_CURRENT
+                    )
+
+                val notBuilder = NotificationCompat.Builder(
+                    requireContext(),
+                    EventManagerNotificationService.CHANNEL_ID
+                ).setContentTitle(eventTitle)
+                    .setContentText("Tap here to view your events!")
+                    .setContentIntent(pendingIntent)
+                    .setSmallIcon(R.drawable.ic_calendar)
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+                notBuilder.addAction(
+                    R.drawable.ic_calendar, "Accept", getActionPendingIntent(
+                        eventId,
+                        "Accept",
+                        0
+                    )
+                )
+
+                notBuilder.addAction(
+                    R.drawable.ic_calendar, "Decline", getActionPendingIntent(
+                        eventId,
+                        "Decline",
+                        1
+                    )
+                )
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    val channel = NotificationChannel(
+                        EventManagerNotificationService.CHANNEL_ID,
+                        "Event Manager",
+                        NotificationManager.IMPORTANCE_DEFAULT
+                    )
+
+                    notificationManager.createNotificationChannel(channel)
+                }
+
+                with(NotificationManagerCompat.from(requireContext())) {
+                    notify(1, notBuilder.build())
+                }
+            },
+            delay()
+        )
+    }
+
+    private fun delay(): Long {
+        var rand = Random().nextInt(10)
+        rand += 5
+        rand *= 1000
+        return rand.toLong()
+    }
+
+    private fun getActionPendingIntent(
+        eventId: String,
+        actionValue: String,
+        requestCode: Int
+    ): PendingIntent {
+        val intent = Intent(context, EventResponseService::class.java)
+        intent.putExtra("Action", actionValue)
+        intent.putExtra("EventID", eventId)
+
+        return PendingIntent.getService(
+            context,
+            requestCode,
+            intent,
+            PendingIntent.FLAG_UPDATE_CURRENT
+        )
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -255,9 +255,9 @@ class CreateEventPresenterImpl @Inject constructor(
     override fun getInvitedAttendees(): ArrayList<String> = attendees!!
 
     private inner class InteractorCallback : CreateEventInteractor.CreateEventCallback {
-        override fun onEventSaved() {
+        override fun onEventSaved(eventId: String) {
             view?.showLongToast(R.string.create_event_success)
-            view?.closeCreateEventScreen()
+            view?.showNotification(eventId)
         }
 
         override fun onEventSaveFailed() {

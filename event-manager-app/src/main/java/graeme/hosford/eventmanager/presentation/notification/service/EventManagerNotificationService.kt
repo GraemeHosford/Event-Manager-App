@@ -21,7 +21,7 @@ class EventManagerNotificationService : BaseMessagingService(),
     EventManagerNotificationView {
 
     companion object {
-        private const val CHANNEL_ID = "Event Manager Channel"
+        const val CHANNEL_ID = "Event Manager Channel"
         private const val INVITE_DATA_KEY = "Invite"
     }
 

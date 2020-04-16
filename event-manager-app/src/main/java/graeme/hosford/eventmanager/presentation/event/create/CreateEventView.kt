@@ -8,6 +8,8 @@ interface CreateEventView : ToastView {
         const val CHOOSE_ATTENDEES_REQUEST_CODE = 1233
     }
 
+    fun showNotification(eventId: String)
+
     fun showChooseAttendeesFragment()
 
     fun showStartDatePicker()

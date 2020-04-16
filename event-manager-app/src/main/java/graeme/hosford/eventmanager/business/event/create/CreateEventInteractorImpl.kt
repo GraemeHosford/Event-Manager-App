@@ -44,8 +44,8 @@ class CreateEventInteractorImpl @Inject constructor(
     }
 
     private inner class EventSavedCallback : CreateEventFirebaseAccess.EventCreatedCallback {
-        override fun onEventSavedSuccessfully() {
-            callback?.onEventSaved()
+        override fun onEventSavedSuccessfully(eventId: String) {
+            callback?.onEventSaved(eventId)
         }
 
         override fun onEventSaveFailure() {

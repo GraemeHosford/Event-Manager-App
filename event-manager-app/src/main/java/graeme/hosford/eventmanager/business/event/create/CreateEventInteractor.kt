@@ -7,7 +7,7 @@ import java.util.*
 interface CreateEventInteractor : Interactor<CreateEventInteractor.CreateEventCallback> {
 
     interface CreateEventCallback {
-        fun onEventSaved()
+        fun onEventSaved(eventId: String)
 
         fun onEventSaveFailed()
     }

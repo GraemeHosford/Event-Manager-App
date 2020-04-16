@@ -3,7 +3,7 @@ package graeme.hosford.eventmanager.data.event.create
 interface CreateEventFirebaseAccess {
 
     interface EventCreatedCallback {
-        fun onEventSavedSuccessfully()
+        fun onEventSavedSuccessfully(eventId: String)
 
         fun onEventSaveFailure()
     }

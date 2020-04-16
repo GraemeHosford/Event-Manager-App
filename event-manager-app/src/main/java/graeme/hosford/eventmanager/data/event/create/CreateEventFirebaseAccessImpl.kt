@@ -1,7 +1,6 @@
 package graeme.hosford.eventmanager.data.event.create
 
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.SetOptions
 import graeme.hosford.eventmanager.data.company.CompanyFirebaseAccess
 import graeme.hosford.eventmanager.data.event.list.EventListFirebaseAccess
 import graeme.hosford.eventmanager.data.login.CurrentUserNetworkAccess
@@ -30,12 +29,10 @@ class CreateEventFirebaseAccessImpl @Inject constructor(
                     .collection(CompanyFirebaseAccess.COMPANIES_COLLECTION)
                     .document(it.getString("companyId")!!)
                     .collection(EventListFirebaseAccess.EVENTS_SUBCOLLECTION)
-                    .document()
-                    .set(
-                        eventDetails,
-                        SetOptions.merge()
-                    ).addOnSuccessListener {
-                        callback.onEventSavedSuccessfully()
+                    .add(
+                        eventDetails
+                    ).addOnSuccessListener { doc ->
+                        callback.onEventSavedSuccessfully(doc.id)
                     }.addOnFailureListener {
                         callback.onEventSaveFailure()
                     }
