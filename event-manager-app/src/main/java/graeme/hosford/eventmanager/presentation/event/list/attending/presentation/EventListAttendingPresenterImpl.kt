@@ -7,7 +7,7 @@ import graeme.hosford.eventmanager.presentation.event.list.common.presentation.B
 import javax.inject.Inject
 
 class EventListAttendingPresenterImpl @Inject constructor(
-    private val processor: EventListItemUiModelProcessor,
+    processor: EventListItemUiModelProcessor,
     private val interactor: EventListAttendingInteractor
 ) : BaseEventListPresenterImpl(processor, interactor), EventListAttendingPresenter {
 

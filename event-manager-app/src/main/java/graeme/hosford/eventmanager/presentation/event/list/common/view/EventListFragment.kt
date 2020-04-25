@@ -45,6 +45,10 @@ class EventListFragment :
                 findNavController().navigate(R.id.nav_calendar)
                 true
             }
+            R.id.my_events_option -> {
+                findNavController().navigate(R.id.nav_owned_events)
+                true
+            }
             else -> false
         }
     }

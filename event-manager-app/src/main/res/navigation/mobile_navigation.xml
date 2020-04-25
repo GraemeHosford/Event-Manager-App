@@ -61,4 +61,9 @@
         android:id="@+id/nav_calendar"
         android:name="graeme.hosford.eventmanager.presentation.event.calendar.view.EventCalendarFragment"
         android:label="Event Calendar" />
+
+    <fragment
+        android:id="@+id/nav_owned_events"
+        android:name="graeme.hosford.eventmanager.presentation.event.list.owned.view.EventListOwnedFragment"
+        android:label="@string/my_events_text" />
 </navigation>

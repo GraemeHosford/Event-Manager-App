@@ -101,8 +101,8 @@ abstract class BaseRecyclerViewFragment<
         if (items.isNotEmpty()) {
             recyclerViewAdapter.setItems(items)
             recyclerview.visibility = View.VISIBLE
-            errorMessage.visibility = View.GONE
-            emptyItems.visibility = View.GONE
+            errorMessage.visibility = View.INVISIBLE
+            emptyItems.visibility = View.INVISIBLE
         } else {
             recyclerview.visibility = View.INVISIBLE
             emptyItems.visibility = View.VISIBLE
@@ -110,7 +110,7 @@ abstract class BaseRecyclerViewFragment<
 
         /* Hide loading bar after items have been set to avoid flicker which can
         sometimes happen when hiding before RecyclerView is updated */
-        loadingBar.visibility = View.GONE
+        loadingBar.visibility = View.INVISIBLE
     }
 
     override fun showErrorScreen() {

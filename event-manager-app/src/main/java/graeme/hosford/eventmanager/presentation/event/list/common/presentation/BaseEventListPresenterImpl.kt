@@ -19,7 +19,7 @@ abstract class BaseEventListPresenterImpl constructor(
 
     override fun onViewCreated(view: EventListView) {
         super.onViewCreated(view)
-        processor.registerProcessingCallback(EventListProcessorCallback())
+        processor.registerProcessingCallback(getProcessingClass())
         interactor.registerCallback(EventListInteractorCallback())
 
         processor.setListComparator(EventListItemUiModelComparator.DateTimeComparator)
@@ -39,6 +39,10 @@ abstract class BaseEventListPresenterImpl constructor(
 
     protected open fun eventFilterOptions(model: EventListItemUiModel): Boolean {
         return true
+    }
+
+    protected open fun getProcessingClass(): UiModelListProcessor.ProcessingCompleteCallback<EventListItemUiModel> {
+        return EventListProcessorCallback()
     }
 
     private inner class EventListProcessorCallback :

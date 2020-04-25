@@ -5,5 +5,10 @@
         android:id="@+id/calendar_option"
         android:icon="@drawable/ic_calendar"
         android:title="@string/calendar"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/my_events_option"
+        android:title="@string/my_events_text"
+        app:showAsAction="never" />
 </menu>
